@@ -6,15 +6,11 @@
     <title>Mohammad Ali | SOC Analyst & Cyber Defense</title>
     <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --dark-bg: #030712;
-            --glass-bg: rgba(17, 24, 39, 0.7);
+            --glass-bg: rgba(17, 24, 39, 0.6);
             --glass-border: rgba(255, 255, 255, 0.08);
             --neon-purple: #a855f7;
             --neon-blue: #3b82f6;
@@ -33,15 +29,13 @@
 
         /* High-Quality Background Engine */
         .bg-wrapper {
-            fixed: top 0 left 0;
             position: fixed;
-            width: 100vw;
-            height: 100vh;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
             z-index: -1;
             background: radial-gradient(circle at 50% 50%, #0f172a 0%, #030712 100%);
         }
 
-        /* Noise Texture for Premium Feel */
         .bg-wrapper::before {
             content: "";
             position: absolute;
@@ -54,7 +48,7 @@
         .blob {
             position: absolute;
             filter: blur(120px);
-            opacity: 0.25;
+            opacity: 0.2;
             z-index: -1;
             animation: move 20s infinite alternate;
         }
@@ -64,287 +58,246 @@
             to { transform: translate(100px, 100px); }
         }
 
-        /* Modern Glassmorphism Utility */
-        .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-
-        /* Navigation Update */
+        /* Nav - Cleaned (Removed Logo) */
         nav {
             position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.25rem 5%;
+            top: 0; width: 100%;
+            padding: 1.5rem 5%;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: center; /* Centered links since logo is gone */
             z-index: 1000;
-            background: rgba(3, 7, 18, 0.5);
-            backdrop-filter: blur(12px);
+            background: rgba(3, 7, 18, 0.3);
+            backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass-border);
         }
 
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links { display: flex; gap: 3rem; list-style: none; }
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
+            font-size: 0.8rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             transition: 0.3s;
         }
-        .nav-links a:hover { color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); }
+        .nav-links a:hover { color: var(--neon-cyan); }
 
-        /* Hero Enhancement */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 10%;
+        /* Sections Utility */
+        section { padding: 100px 10%; max-width: 1400px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-family: 'Clash Display'; font-size: 3rem; letter-spacing: -1px; }
+        .line { width: 50px; height: 4px; background: var(--neon-cyan); margin: 1rem auto; border-radius: 10px; }
+
+        /* Glass Panel Styling */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
         }
 
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .hero-text .badge {
-            display: inline-block;
-            padding: 6px 16px;
-            background: rgba(34, 211, 238, 0.1);
-            border: 1px solid var(--neon-cyan);
-            border-radius: 100px;
-            color: var(--neon-cyan);
-            font-size: 0.75rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .hero-text h1 {
-            font-family: 'Clash Display', sans-serif;
-            font-size: 4.5rem;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
-
-        .gradient-text {
-            background: linear-gradient(90deg, #fff, var(--neon-blue), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Profile Visuals */
-        .profile-wrapper {
-            position: relative;
-            width: 400px;
-            height: 400px;
-        }
-
-        .profile-card {
-            width: 100%;
-            height: 100%;
+        /* Hero */
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .hero-content { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: center; }
+        .hero-text h1 { font-family: 'Clash Display'; font-size: 5rem; line-height: 1; margin-bottom: 1.5rem; }
+        .gradient-text { background: linear-gradient(90deg, #fff, var(--neon-cyan), var(--neon-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .profile-container {
+            width: 380px; height: 380px;
             border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
             background: url('img.jpeg') center/cover;
-            border: 2px solid var(--neon-purple);
-            box-shadow: 0 0 40px rgba(168, 85, 247, 0.2);
+            border: 2px solid var(--glass-border);
+            box-shadow: 0 0 50px rgba(34, 211, 238, 0.15);
             animation: morph 8s ease-in-out infinite;
         }
 
         @keyframes morph {
-            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
             50% { border-radius: 50% 50% 30% 70% / 50% 60% 40% 50%; }
-            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
         }
 
-        /* Stats & Cards */
-        .grid-layout {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            padding: 4rem 10%;
-        }
-
-        .glass-card {
-            padding: 2.5rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--neon-cyan);
-        }
-
-        .icon-box {
-            width: 50px;
-            height: 50px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-            border: 1px solid var(--glass-border);
-        }
-
-        /* Section Headings */
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-family: 'Clash Display';
-            font-size: 2.5rem;
-        }
-
-        .section-header .line {
-            width: 60px;
-            height: 4px;
-            background: var(--neon-cyan);
-            margin: 1rem auto;
-            border-radius: 10px;
-        }
-
-        /* Terminal Style Stats */
-        .terminal-stats {
+        /* Terminal Component */
+        .terminal {
             background: #000;
             font-family: 'JetBrains Mono', monospace;
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid #333;
-            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #222;
+            font-size: 0.9rem;
+        }
+        .t-green { color: #4ade80; }
+
+        /* Timeline (Journey) */
+        .journey-grid { position: relative; padding-left: 2rem; border-left: 2px solid var(--glass-border); }
+        .journey-item { position: relative; margin-bottom: 3rem; padding-left: 2rem; }
+        .journey-item::before {
+            content: "";
+            position: absolute;
+            left: -31px; top: 5px;
+            width: 16px; height: 16px;
+            background: var(--dark-bg);
+            border: 3px solid var(--neon-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-cyan);
         }
 
-        .terminal-line { color: #4ade80; margin-bottom: 0.5rem; }
-        .terminal-line span { color: #fff; }
+        /* Certs Grid */
+        .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .cert-card { transition: 0.4s; position: relative; overflow: hidden; }
+        .cert-card:hover { transform: translateY(-10px); border-color: var(--neon-purple); }
+        .cert-link { color: var(--neon-cyan); text-decoration: none; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
 
-        @media (max-width: 968px) {
+        @media (max-width: 1024px) {
             .hero-content { grid-template-columns: 1fr; text-align: center; }
-            .profile-wrapper { margin: 0 auto; width: 280px; height: 280px; }
-            .hero-text h1 { font-size: 3rem; }
-            .nav-links { display: none; }
+            .profile-container { margin: 0 auto; width: 300px; height: 300px; }
+            .hero-text h1 { font-size: 3.5rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="bg-wrapper">
-        <div class="blob" style="top: 10%; left: 10%; width: 400px; height: 400px; background: var(--neon-purple);"></div>
-        <div class="blob" style="bottom: 10%; right: 10%; width: 500px; height: 500px; background: var(--neon-blue);"></div>
+        <div class="blob" style="top: 10%; left: 5%; width: 500px; height: 500px; background: var(--neon-purple);"></div>
+        <div class="blob" style="bottom: 15%; right: 10%; width: 400px; height: 400px; background: var(--neon-blue);"></div>
     </div>
 
     <nav>
-        <div class="logo" style="font-family: 'Clash Display'; font-weight: 700; font-size: 1.5rem;">M.ALI</div>
         <ul class="nav-links">
-            <li><a href="#about">Defense</a></li>
-            <li><a href="#skills">Stack</a></li>
-            <li><a href="#certifications">Verification</a></li>
-            <li><a href="#contact">Terminal</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#journey">Journey</a></li>
+            <li><a href="#certifications">Credentials</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <span class="badge">System Status: Secure</span>
-                <h1>Protecting the <span class="gradient-text">Digital Frontier</span></h1>
-                <p style="color: var(--text-secondary); font-size: 1.2rem; max-width: 600px; margin-bottom: 2rem;">
-                    I am a L1 SOC Analyst specializing in real-time threat hunting and incident response. Based in Mumbai, I turn security logs into actionable defense.
+                <div style="color: var(--neon-cyan); font-weight: 700; letter-spacing: 3px; margin-bottom: 1rem; font-size: 0.8rem; text-transform: uppercase;">SOC Analyst L1</div>
+                <h1><span class="gradient-text">Mohammad Ali</span></h1>
+                <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 550px; margin-bottom: 2.5rem;">
+                    Cybersecurity professional specializing in Blue Team operations, threat detection, and incident response. Based in Mumbai, protecting digital assets 24/7.
                 </p>
                 <div style="display: flex; gap: 1rem;">
-                    <a href="#contact" style="background: var(--neon-cyan); color: #000; padding: 14px 32px; border-radius: 12px; text-decoration: none; font-weight: 700;">Initiate Contact</a>
-                    <a href="https://tryhackme.com/p/chan4o" target="_blank" style="border: 1px solid var(--glass-border); color: #fff; padding: 14px 32px; border-radius: 12px; text-decoration: none; backdrop-filter: blur(10px);">TryHackMe Profile</a>
+                    <a href="mailto:alifaizan20@outlook.com" class="glass-panel" style="padding: 1rem 2rem; text-decoration: none; color: #fff; font-weight: 700; background: var(--neon-purple);">Email Terminal</a>
+                    <a href="#certifications" style="padding: 1rem 2rem; color: #fff; text-decoration: none; font-weight: 700; border: 1px solid var(--glass-border); border-radius: 24px;">View Certs</a>
                 </div>
             </div>
-            <div class="profile-wrapper">
-                <div class="profile-card"></div>
-            </div>
+            <div class="profile-container"></div>
         </div>
     </section>
 
-    <section id="about" style="padding: 100px 10%;">
+    <section id="about">
         <div class="section-header">
-            <h2>Operations Overview</h2>
+            <h2>Operations Info</h2>
             <div class="line"></div>
         </div>
-        <div class="glass-panel" style="padding: 3rem;">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+        <div class="glass-panel">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
                 <div>
-                    <h3 style="margin-bottom: 1rem; color: var(--neon-cyan);">The Mission</h3>
-                    <p style="color: var(--text-secondary);">Currently scaling the ranks of defensive security. I focus on identifying anomalies that others miss, using SIEM tools to map out adversary behavior and hardening infrastructure against modern attack vectors.</p>
+                    <p style="color: var(--text-secondary); font-size: 1.1rem;">Dedicated to Security Operations Center (SOC) management. My expertise spans threat detection, log analysis, and network defense. I combine technical precision with a passion for proactive hunting.</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;">
+                        <div class="glass-panel" style="padding: 1.5rem; text-align: center;">
+                            <div style="color: var(--neon-cyan); font-size: 1.5rem; font-weight: 800;">Top 4%</div>
+                            <div style="font-size: 0.7rem; color: var(--text-secondary);">THM GLOBAL</div>
+                        </div>
+                        <div class="glass-panel" style="padding: 1.5rem; text-align: center;">
+                            <div style="color: var(--neon-purple); font-size: 1.5rem; font-weight: 800;">109</div>
+                            <div style="font-size: 0.7rem; color: var(--text-secondary);">ROOMS CLEARED</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="terminal-stats">
-                    <div class="terminal-line">> rank: <span>Top 4% (Global)</span></div>
-                    <div class="terminal-line">> platforms_cleared: <span>109 Rooms</span></div>
-                    <div class="terminal-line">> active_streak: <span>30 Days</span></div>
-                    <div class="terminal-line">> focus: <span>Blue Team Ops</span></div>
+                <div class="terminal">
+                    <div class="t-green">ali@defense:~$ <span style="color: #fff;">fetch --skills</span></div>
+                    <div style="margin: 10px 0;">
+                        [+] SIEM: Splunk, QRadar<br>
+                        [+] Analysis: Wireshark, Logs<br>
+                        [+] Systems: Linux, Kali, Windows<br>
+                        [+] Defense: IDS/IPS, Anomaly Detection
+                    </div>
+                    <div class="t-green">ali@defense:~$ <span style="color: #f87171;">status --active</span></div>
+                    <div style="color: #fbbf24;">Monitoring incoming threats... [OK]</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="skills">
+    <section id="journey">
         <div class="section-header">
-            <h2>Security Stack</h2>
+            <h2>Learning Path</h2>
             <div class="line"></div>
         </div>
-        <div class="grid-layout">
-            <div class="glass-card glass-panel">
-                <div class="icon-box">🔍</div>
-                <h3>SIEM Mastery</h3>
-                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 10px;">Splunk & QRadar expert for log correlation and visibility.</p>
+        <div class="journey-grid">
+            <div class="journey-item">
+                <h3 style="color: var(--neon-cyan);">Pre-Security Foundation</h3>
+                <div style="font-size: 0.8rem; color: var(--neon-purple); font-weight: 700;">TRYHACKME</div>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Mastery of cybersecurity fundamentals, networking basics, and web security concepts.</p>
             </div>
-            <div class="glass-card glass-panel">
-                <div class="icon-box">🛡️</div>
-                <h3>Traffic Analysis</h3>
-                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 10px;">Deep packet inspection using Wireshark and Brim.</p>
+            <div class="journey-item">
+                <h3 style="color: var(--neon-cyan);">Cyber Security 101</h3>
+                <div style="font-size: 0.8rem; color: var(--neon-purple); font-weight: 700;">TRYHACKME</div>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Deep dive into practical security tools and methodology with hands-on lab environments.</p>
             </div>
-            <div class="glass-card glass-panel">
-                <div class="icon-box">🚨</div>
-                <h3>Containment</h3>
-                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 10px;">Rapid response to mitigate threats and limit blast radius.</p>
+            <div class="journey-item">
+                <h3 style="color: var(--neon-cyan);">SOC Level 1 Analyst Path</h3>
+                <div style="font-size: 0.8rem; color: var(--neon-purple); font-weight: 700;">IN PROGRESS - 35%</div>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Advanced training in log analysis, incident response procedures, and digital forensics.</p>
+            </div>
+            <div class="journey-item" style="opacity: 0.6;">
+                <h3 style="color: var(--text-secondary);">CompTIA Security+</h3>
+                <div style="font-size: 0.8rem; font-weight: 700;">TARGET: JUNE 2026</div>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Finalizing global certification to validate core security knowledge and skills.</p>
             </div>
         </div>
     </section>
 
-    <section id="certifications" style="padding: 100px 10%; background: rgba(255,255,255,0.02);">
+    <section id="certifications">
         <div class="section-header">
-            <h2>Validated Expertise</h2>
+            <h2>Certifications</h2>
             <div class="line"></div>
         </div>
-        <div class="grid-layout">
-            <!-- Certification Card -->
-            <div class="glass-panel" style="padding: 2rem; border-left: 4px solid var(--neon-purple);">
-                <span style="font-size: 0.8rem; color: var(--neon-purple); font-weight: 700;">TRYHACKME</span>
-                <h3 style="margin: 0.5rem 0;">SOC Level 1</h3>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);">Focus: Incident Response, Digital Forensics, and SIEM.</p>
+        <div class="certs-grid">
+            <div class="cert-card glass-panel">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">🎓</div>
+                <h3>Pre-Security</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 10px 0 20px;">TryHackMe Certification of Foundation.</p>
+                <a href="https://tryhackme.com/certificate/THM-FNKRNERDLO" target="_blank" class="cert-link">Verify ID →</a>
             </div>
-            <div class="glass-panel" style="padding: 2rem; border-left: 4px solid var(--neon-cyan);">
-                <span style="font-size: 0.8rem; color: var(--neon-cyan); font-weight: 700;">COMPTIA</span>
-                <h3 style="margin: 0.5rem 0;">Security+</h3>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);">Target: June 2026. Currently in deep prep phase.</p>
+            <div class="cert-card glass-panel">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">🛡️</div>
+                <h3>Cyber Security 101</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 10px 0 20px;">Practical introduction to security operations.</p>
+                <a href="https://tryhackme.com/certificate/THM-ARJJJENRWO" target="_blank" class="cert-link">Verify ID →</a>
+            </div>
+            <div class="cert-card glass-panel">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">⚙️</div>
+                <h3>SOC Level 1</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 10px 0 20px;">Security Operations Center fundamental training.</p>
+                <span style="font-size: 0.7rem; color: var(--neon-purple); font-weight: 700;">CREDENTIAL PENDING</span>
             </div>
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 4rem; border-top: 1px solid var(--glass-border);">
-        <p style="color: var(--text-secondary);">Designed for 2026 • Mohammad Ali • Secured with passion.</p>
+    <section id="contact" style="text-align: center;">
+        <div class="glass-panel" style="max-width: 600px; margin: 0 auto; padding: 4rem 2rem;">
+            <h2>Initiate Connection</h2>
+            <p style="color: var(--text-secondary); margin: 1.5rem 0 2.5rem;">Available for collaborations and SOC opportunities.</p>
+            <div style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem;">
+                <a href="https://www.linkedin.com/in/mohdali02/" target="_blank" style="font-size: 1.5rem; text-decoration: none;">🔗</a>
+                <a href="https://github.com/Mohd-Ali2" target="_blank" style="font-size: 1.5rem; text-decoration: none;">💻</a>
+                <a href="mailto:alifaizan20@outlook.com" style="font-size: 1.5rem; text-decoration: none;">✉️</a>
+            </div>
+            <a href="mailto:alifaizan20@outlook.com" style="color: var(--neon-cyan); font-weight: 700; text-decoration: none;">alifaizan20@outlook.com</a>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 3rem; border-top: 1px solid var(--glass-border); font-size: 0.8rem; color: var(--text-secondary);">
+        © 2026 Mohammad Ali • Always Learning • Secured by Blue Team Tactics
     </footer>
 
     <script>
-        // Smooth reveal of cards
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -354,10 +307,10 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.glass-panel').forEach(el => {
+        document.querySelectorAll('.glass-panel, .journey-item').forEach(el => {
             el.style.opacity = "0";
-            el.style.transform = "translateY(30px)";
-            el.style.transition = "all 0.8s ease-out";
+            el.style.transform = "translateY(20px)";
+            el.style.transition = "all 0.6s ease-out";
             observer.observe(el);
         });
     </script>
