@@ -1,363 +1,445 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohammad Ali | SOC Analyst & Cyber Defense</title>
-    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>Mohammad Ali // SOC Analyst & Cyber Defense Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        clash: ['Clash Display', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        cyber: {
+                            bg: '#02040a',
+                            panel: 'rgba(10, 15, 30, 0.45)',
+                            border: 'rgba(255, 255, 255, 0.06)',
+                            cyan: '#00f2fe',
+                            purple: '#9d4edd',
+                            blue: '#3a86ff',
+                            textMuted: '#94a3b8'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --dark-bg: #030712;
-            --glass-bg: rgba(17, 24, 39, 0.6);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --neon-purple: #a855f7;
-            --neon-blue: #3b82f6;
-            --neon-cyan: #22d3ee;
-            --text-primary: #f9fafb;
-            --text-secondary: #9ca3af;
-        }
-
         body {
-            background-color: var(--dark-bg);
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            line-height: 1.6;
+            background-color: #02040a;
+            font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+        }
+        
+        /* Glassmorphism Ultra Engine */
+        .cyber-glass {
+            background: radial-gradient(120% 120% at 0% 0%, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(24px) saturate(160%);
+            -webkit-backdrop-filter: blur(24px) saturate(160%);
+            border: 1px solid rgba(255, 255, 255, 0.07);
         }
 
-        /* High-Quality Background Engine */
-        .bg-wrapper {
+        .cyber-glass:hover {
+            border-color: rgba(0, 242, 254, 0.25);
+            box-shadow: 0 0 40px rgba(0, 242, 254, 0.06);
+        }
+
+        /* Subtle Static Noise Film Layer */
+        .noise-overlay {
             position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #0f172a 0%, #030712 100%);
-        }
-
-        .bg-wrapper::before {
-            content: "";
-            position: absolute;
             inset: 0;
-            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-            opacity: 0.15;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3联%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.025;
             pointer-events: none;
+            z-index: 999;
         }
 
-        .blob {
-            position: absolute;
-            filter: blur(120px);
-            opacity: 0.2;
-            z-index: -1;
-            animation: move 20s infinite alternate;
+        /* Fluid Morphing Core Visual Mesh */
+        .cyber-avatar {
+            animation: cyberMorph 12s ease-in-out infinite alternate;
+            background: url('img.jpeg') center/cover no-repeat;
         }
 
-        @keyframes move {
-            from { transform: translate(0, 0); }
-            to { transform: translate(100px, 100px); }
+        @keyframes cyberMorph {
+            0% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+            33% { border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%; }
+            66% { border-radius: 50% 50% 30% 70% / 40% 60% 40% 60%; }
+            100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
         }
 
-        /* Nav - Cleaned & Blurred */
-        nav {
-            position: fixed;
-            top: 0; width: 100%;
-            padding: 1.2rem 5%;
-            display: flex;
-            justify-content: center;
-            z-index: 1000;
-            background: rgba(3, 7, 18, 0.4);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
-        }
+        /* Scrollbar Optimization */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #02040a; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00f2fe; }
 
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.3s;
-        }
-        .nav-links a:hover { color: var(--neon-cyan); }
-
-        /* Sections Utility */
-        section { padding: 80px 8%; max-width: 1400px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 4rem; }
-        .section-header h2 { font-family: 'Clash Display'; font-size: 2.5rem; letter-spacing: -1px; }
-        .line { width: 50px; height: 4px; background: var(--neon-cyan); margin: 1rem auto; border-radius: 10px; }
-
-        /* Glass Panel Styling */
-        .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 2.5rem;
-        }
-
-        /* Hero - Responsive Fixes Applied Here */
-        .hero { 
-            min-height: 100vh; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            padding-top: 100px; /* Safe padding from fixed navbar */
-            padding-bottom: 50px;
-        }
-        .hero-content { 
-            display: grid; 
-            grid-template-columns: 1.2fr 0.8fr; 
-            gap: 3rem; 
-            align-items: center; 
-            width: 100%;
-        }
-        
-        /* Responsive font size dynamically adjusts between mobile and desktop */
-        .hero-text h1 { 
-            font-family: 'Clash Display'; 
-            font-size: clamp(2.8rem, 6vw, 4.8rem); 
-            line-height: 1.1; 
-            margin-bottom: 1.5rem; 
-            word-wrap: break-word;
-        }
-        .gradient-text { background: linear-gradient(90deg, #fff, var(--neon-cyan), var(--neon-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .profile-container {
-            width: 100%;
-            max-width: 360px; 
-            aspect-ratio: 1/1;
-            margin: 0 auto;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            background: url('img.jpeg') center/cover;
-            border: 2px solid var(--glass-border);
-            box-shadow: 0 0 50px rgba(34, 211, 238, 0.15);
-            animation: morph 8s ease-in-out infinite;
-        }
-
-        @keyframes morph {
-            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-            50% { border-radius: 50% 50% 30% 70% / 50% 60% 40% 50%; }
-        }
-
-        /* Terminal Component */
-        .terminal {
-            background: #000;
-            font-family: 'JetBrains Mono', monospace;
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid #222;
-            font-size: 0.9rem;
-        }
-        .t-green { color: #4ade80; }
-
-        /* Timeline (Journey) */
-        .journey-grid { position: relative; padding-left: 2rem; border-left: 2px solid var(--glass-border); }
-        .journey-item { position: relative; margin-bottom: 3rem; padding-left: 2rem; }
-        .journey-item::before {
-            content: "";
-            position: absolute;
-            left: -31px; top: 5px;
-            width: 16px; height: 16px;
-            background: var(--dark-bg);
-            border: 3px solid var(--neon-cyan);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--neon-cyan);
-        }
-
-        /* Certs Grid */
-        .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
-        .cert-card { transition: 0.4s; position: relative; overflow: hidden; }
-        .cert-card:hover { transform: translateY(-10px); border-color: var(--neon-purple); }
-        .cert-link { color: var(--neon-cyan); text-decoration: none; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
-
-        /* Tablet & Mobile Breakpoints */
-        @media (max-width: 1024px) {
-            .hero-content { 
-                grid-template-columns: 1fr; 
-                text-align: center; 
-                gap: 2.5rem;
-            }
-            .hero-text h1 {
-                margin-top: 1rem;
-            }
-            .hero-buttons {
-                justify-content: center;
-            }
-            .profile-container { 
-                width: 280px; 
-                height: 280px; 
-                grid-row: 1; /* Moves photo above text on mobile devices for better flow */
-            }
-            .nav-links { gap: 1.2rem; }
-        }
+        /* Animation Hooks */
+        .reveal-node { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-node.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
-<body>
+<body class="text-slate-200 font-sans antialiased overflow-x-hidden">
 
-    <div class="bg-wrapper">
-        <div class="blob" style="top: 10%; left: 5%; width: 500px; height: 500px; background: var(--neon-purple);"></div>
-        <div class="blob" style="bottom: 15%; right: 10%; width: 400px; height: 400px; background: var(--neon-blue);"></div>
+    <div class="noise-overlay"></div>
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-br from-purple-900/15 to-transparent blur-[140px] animate-pulse-slow"></div>
+        <div class="absolute bottom-[-5%] right-[-5%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-tl from-cyan-950/20 to-transparent blur-[140px] animate-pulse-slow"></div>
     </div>
 
-    <nav>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#journey">Journey</a></li>
-            <li><a href="#certifications">Credentials</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-transparent backdrop-blur-md py-4">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center gap-2 font-mono text-xs text-cyber-cyan tracking-[0.25em]">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                NODE // ACTIVE
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-xs font-mono tracking-widest uppercase">
+                <a href="#about" class="text-slate-400 hover:text-cyber-cyan transition-colors">01 // Defense Overview</a>
+                <a href="#journey" class="text-slate-400 hover:text-cyber-cyan transition-colors">02 // Learning Operations</a>
+                <a href="#certifications" class="text-slate-400 hover:text-cyber-cyan transition-colors">03 // Verification</a>
+                <a href="#contact" class="text-slate-400 hover:text-cyber-cyan transition-colors">04 // Contact Matrix</a>
+            </div>
+            <div>
+                <a href="mailto:alifaizan20@outlook.com" class="px-4 py-2 border border-cyber-cyan/20 text-cyber-cyan font-mono text-xs uppercase tracking-wider rounded-md hover:bg-cyber-cyan/10 transition-all duration-300">
+                    Direct Ping
+                </a>
+            </div>
+        </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <div style="color: var(--neon-cyan); font-weight: 700; letter-spacing: 3px; margin-bottom: 0.75rem; font-size: 0.8rem; text-transform: uppercase;">SOC Analyst L1</div>
-                <h1><span class="gradient-text">Mohammad Ali</span></h1>
-                <p style="color: var(--text-secondary); font-size: 1.05rem; max-width: 550px; margin: 0 auto 2.5rem;">
-                    Cybersecurity professional specializing in Blue Team operations, threat detection, and incident response. Based in Mumbai, protecting digital assets 24/7.
+    <section class="relative min-h-screen flex items-center justify-center pt-24 pb-12 px-6 lg:px-8 z-10">
+        <div class="max-w-7xl w-full grid grid-columns-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left order-2 lg:order-1">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/60 border border-slate-800 backdrop-blur-sm">
+                    <span class="flex h-2 w-2 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-cyan opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-cyber-cyan"></span>
+                    </span>
+                    <span class="font-mono text-[10px] tracking-widest text-slate-400 uppercase">SecOps Layer 1 Professional</span>
+                </div>
+                
+                <h1 class="font-clash text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-none">
+                    Mohammad Ali
+                </h1>
+                
+                <p class="text-cyber-textMuted text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                    Cybersecurity engineer operating within defensive operations vectors. Specializing in real-time threat neutralization, network packet diagnostics, and tactical infrastructure security management based out of Mumbai.
                 </p>
-                <div class="hero-buttons">
-                    <a href="mailto:alifaizan20@outlook.com" class="glass-panel" style="padding: 1rem 1.8rem; text-decoration: none; color: #fff; font-weight: 700; background: var(--neon-purple); border-radius: 24px;">Email Terminal</a>
-                    <a href="#certifications" style="padding: 1rem 1.8rem; color: #fff; text-decoration: none; font-weight: 700; border: 1px solid var(--glass-border); border-radius: 24px; display: flex; align-items: center; background: rgba(255,255,255,0.03);">View Certs</a>
+
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4 font-mono text-xs">
+                    <a href="#contact" class="px-6 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 font-bold tracking-wider text-white uppercase shadow-lg shadow-blue-900/30 transition-all duration-300 transform hover:-translate-y-0.5">
+                        Initiate Handshake <i class="fa-solid fa-terminal ml-2"></i>
+                    </a>
+                    <a href="#certifications" class="px-6 py-4 rounded-xl cyber-glass font-medium tracking-wider text-slate-300 uppercase transition-all duration-300">
+                        View Credentials
+                    </a>
                 </div>
             </div>
-            <div class="profile-container"></div>
+
+            <div class="lg:col-span-5 flex justify-center order-1 lg:order-2">
+                <div class="relative w-72 sm:w-96 aspect-square">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-cyber-cyan via-transparent to-cyber-purple opacity-30 rounded-full blur-2xl animate-pulse-slow"></div>
+                    <div class="w-full h-full cyber-avatar border-2 border-slate-800/40 shadow-2xl relative z-10 transition-transform duration-700 hover:scale-[1.02]"></div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <section id="about">
-        <div class="section-header">
-            <h2>Operations Info</h2>
-            <div class="line"></div>
-        </div>
-        <div class="glass-panel">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem;">
-                <div>
-                    <p style="color: var(--text-secondary); font-size: 1.1rem;">Dedicated to Security Operations Center (SOC) management. My expertise spans threat detection, log analysis, and network defense. I combine technical precision with a passion for proactive hunting.</p>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;">
-                        <div class="glass-panel" style="padding: 1.5rem; text-align: center; border-radius: 16px;">
-                            <div style="color: var(--neon-cyan); font-size: 1.5rem; font-weight: 800;">Top 4%</div>
-                            <div style="font-size: 0.7rem; color: var(--text-secondary);">THM GLOBAL</div>
+    <section id="about" class="py-24 px-6 lg:px-8 z-10 relative">
+        <div class="max-w-7xl mx-auto space-y-16">
+            
+            <div class="text-center space-y-3">
+                <div class="font-mono text-xs tracking-[0.3em] text-cyber-purple uppercase">01 // Operations Overview</div>
+                <h2 class="font-clash text-3xl sm:text-5xl font-bold text-white tracking-tight">Analytical Defense Parameters</h2>
+                <div class="w-12 h-1 bg-gradient-to-r from-cyber-cyan to-cyber-purple mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                <div class="lg:col-span-7 cyber-glass rounded-3xl p-8 flex flex-col justify-between space-y-8 reveal-node">
+                    <div class="space-y-4">
+                        <h3 class="font-clash text-2xl text-white font-semibold">The Blue Team Paradigm</h3>
+                        <p class="text-cyber-textMuted leading-relaxed">
+                            Operating with structural telemetry analytics to process complex threat scenarios. My architecture is constructed around monitoring systemic event streams, executing comprehensive log parsing routines, and hardening exposed logical vectors against hostile scanning mechanisms.
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-6 rounded-2xl bg-slate-950/50 border border-slate-900">
+                            <div class="font-clash text-3xl sm:text-4xl font-bold text-white bg-gradient-to-r from-cyber-cyan to-blue-500 bg-clip-text text-transparent">Top 4%</div>
+                            <div class="font-mono text-[10px] tracking-wider text-slate-500 uppercase mt-2">TryHackMe Global Rank</div>
                         </div>
-                        <div class="glass-panel" style="padding: 1.5rem; text-align: center; border-radius: 16px;">
-                            <div style="color: var(--neon-purple); font-size: 1.5rem; font-weight: 800;">109</div>
-                            <div style="font-size: 0.7rem; color: var(--text-secondary);">ROOMS CLEARED</div>
+                        <div class="p-6 rounded-2xl bg-slate-950/50 border border-slate-900">
+                            <div class="font-clash text-3xl sm:text-4xl font-bold text-white bg-gradient-to-r from-cyber-purple to-pink-500 bg-clip-text text-transparent">109</div>
+                            <div class="font-mono text-[10px] tracking-wider text-slate-500 uppercase mt-2">Exploration Rooms Cleared</div>
                         </div>
                     </div>
                 </div>
-                <div class="terminal">
-                    <div class="t-green">ali@defense:~$ <span style="color: #fff;">fetch --skills</span></div>
-                    <div style="margin: 10px 0; line-height: 1.8;">
-                        [+] SIEM: Splunk, QRadar<br>
-                        [+] Analysis: Wireshark, Logs<br>
-                        [+] Systems: Linux, Kali, Windows<br>
-                        [+] Defense: IDS/IPS, Anomaly Detection
+
+                <div class="lg:col-span-5 rounded-3xl bg-black border border-slate-900 p-6 flex flex-col font-mono text-xs text-slate-400 reveal-node">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-900 mb-4">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                        </div>
+                        <span class="text-[10px] text-slate-600 uppercase tracking-widest">SIEM_TELEMETRY.sh</span>
                     </div>
-                    <div class="t-green">ali@defense:~$ <span style="color: #f87171;">status --active</span></div>
-                    <div style="color: #fbbf24;">Monitoring incoming threats... [OK]</div>
+                    <div class="flex-1 space-y-3">
+                        <div><span class="text-emerald-400">ali@defense:~$</span> systemctl status analytical-matrix.service</div>
+                        <div class="text-slate-500 text-[11px] leading-relaxed">
+                            ● analytical-matrix.service - Defending Assets<br>
+                            &nbsp;&nbsp;&nbsp;Loaded: active (running) since standard operational time<br>
+                            &nbsp;&nbsp;&nbsp;Main PID: 2026 (core-hunting-engine)
+                        </div>
+                        <div><span class="text-emerald-400">ali@defense:~$</span> probe --list-competencies</div>
+                        <div class="grid grid-cols-2 gap-x-2 gap-y-1 text-slate-300 bg-slate-950 p-3 rounded-lg border border-slate-900 mt-1">
+                            <div>• SIEM (Splunk, QRadar)</div>
+                            <div>• Packet Interception</div>
+                            <div>• Threat Containment</div>
+                            <div>• Log Correlation</div>
+                            <div>• Linux Ecosystem</div>
+                            <div>• Defensive Playbooks</div>
+                        </div>
+                        <div class="pt-2 flex items-center justify-between text-[11px]">
+                            <span class="text-amber-400 animate-pulse"><i class="fa-solid fa-satellite-dish mr-1"></i> Listening on port 443</span>
+                            <span class="text-slate-600">[READY]</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <section id="journey">
-        <div class="section-header">
-            <h2>Learning Path</h2>
-            <div class="line"></div>
-        </div>
-        <div class="journey-grid">
-            <div class="journey-item">
-                <h3 style="color: var(--neon-cyan);">Pre-Security Foundation</h3>
-                <div style="font-size: 0.8rem; color: var(--neon-purple); font-weight: 700;">TRYHACKME</div>
-                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Mastery of cybersecurity fundamentals, networking basics, and web security concepts.</p>
+    <section id="journey" class="py-24 px-6 lg:px-8 z-10 relative">
+        <div class="max-w-4xl mx-auto space-y-16">
+            
+            <div class="text-center space-y-3">
+                <div class="font-mono text-xs tracking-[0.3em] text-cyber-cyan uppercase">02 // Learning Operations</div>
+                <h2 class="font-clash text-3xl sm:text-5xl font-bold text-white tracking-tight">Milestone Progression Track</h2>
+                <div class="w-12 h-1 bg-gradient-to-r from-cyber-cyan to-cyber-purple mx-auto rounded-full"></div>
             </div>
-            <div class="journey-item">
-                <h3 style="color: var(--neon-cyan);">Cyber Security 101</h3>
-                <div style="font-size: 0.8rem; color: var(--neon-purple); font-weight: 700;">TRYHACKME</div>
-                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Deep dive into practical security tools and methodology with hands-on lab environments.</p>
+
+            <div class="relative border-l-2 border-slate-900 ml-4 md:ml-6 space-y-12">
+                
+                <div class="relative pl-8 md:pl-12 reveal-node">
+                    <div class="absolute -left-[11px] top-1.5 w-5 h-5 bg-cyber-bg border-4 border-cyber-cyan rounded-full shadow-[0_0_15px_rgba(0,242,254,0.6)]"></div>
+                    <div class="cyber-glass rounded-2xl p-6 space-y-2">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <h3 class="font-clash text-lg text-white font-semibold tracking-tight">Pre-Security Architecture</h3>
+                            <span class="font-mono text-[10px] px-2.5 py-1 rounded bg-cyan-950/40 text-cyber-cyan border border-cyan-800/50 uppercase tracking-widest">Completed</span>
+                        </div>
+                        <div class="font-mono text-[11px] text-cyber-purple font-bold">TRYHACKME OPERATIONS MATRIX</div>
+                        <p class="text-cyber-textMuted text-sm leading-relaxed">
+                            Established core networking foundations, programmatic logic primitives, and systemic protocol structures necessary for high-tier defensive assessment vectors.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative pl-8 md:pl-12 reveal-node">
+                    <div class="absolute -left-[11px] top-1.5 w-5 h-5 bg-cyber-bg border-4 border-cyber-cyan rounded-full shadow-[0_0_15px_rgba(0,242,254,0.6)]"></div>
+                    <div class="cyber-glass rounded-2xl p-6 space-y-2">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <h3 class="font-clash text-lg text-white font-semibold tracking-tight">Cyber Security 101 Track</h3>
+                            <span class="font-mono text-[10px] px-2.5 py-1 rounded bg-cyan-950/40 text-cyber-cyan border border-cyan-800/50 uppercase tracking-widest">Completed</span>
+                        </div>
+                        <div class="font-mono text-[11px] text-cyber-purple font-bold">TRYHACKME OPERATIONS MATRIX</div>
+                        <p class="text-cyber-textMuted text-sm leading-relaxed">
+                            Executed offensive exploration mechanics within target configurations to thoroughly understand adversarial execution vectors and construct corresponding architectural defensive playbooks.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative pl-8 md:pl-12 reveal-node">
+                    <div class="absolute -left-[11px] top-1.5 w-5 h-5 bg-cyber-bg border-4 border-purple-500 rounded-full shadow-[0_0_15px_rgba(157,78,221,0.6)]"></div>
+                    <div class="cyber-glass rounded-2xl p-6 space-y-2">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <h3 class="font-clash text-lg text-white font-semibold tracking-tight">SOC Level 1 Analyst Path</h3>
+                            <span class="font-mono text-[10px] px-2.5 py-1 rounded bg-purple-950/40 text-purple-400 border border-purple-800/50 uppercase tracking-widest animate-pulse">Processing // 35%</span>
+                        </div>
+                        <div class="font-mono text-[11px] text-cyber-cyan font-bold">ADVANCED DEPLOYMENT DEEP-DIVE</div>
+                        <p class="text-cyber-textMuted text-sm leading-relaxed">
+                            Active architectural training phase isolating parsing mechanics within SIEM pipelines, execution of malware containment routines, and structural data tracking.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative pl-8 md:pl-12 reveal-node opacity-50">
+                    <div class="absolute -left-[11px] top-1.5 w-5 h-5 bg-cyber-bg border-4 border-slate-700 rounded-full"></div>
+                    <div class="cyber-glass rounded-2xl p-6 space-y-2">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <h3 class="font-clash text-lg text-slate-400 font-semibold tracking-tight">CompTIA Security+ Blueprint</h3>
+                            <span class="font-mono text-[10px] px-2.5 py-1 rounded bg-slate-900 text-slate-500 border border-slate-800 uppercase tracking-widest">Target Layer</span>
+                        </div>
+                        <div class="font-mono text-[11px] text-slate-500 font-bold">TARGET DEPLOYMENT WINDOW // MID 2026</div>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            Consolidating theoretical models and operational protocols to lock down globally accepted certification standard vectors.
+                        </p>
+                    </div>
+                </div>
+
             </div>
-            <div class="journey-item">
-                <h3 style="color: var(--neon-cyan);">SOC Level 1 Analyst Path</h3>
-                <div style="font-size: 0.8rem; color: var(--neon-purple); font-weight: 700;">IN PROGRESS - 35%</div>
-                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Advanced training in log analysis, incident response procedures, and digital forensics.</p>
-            </div>
-            <div class="journey-item" style="opacity: 0.6;">
-                <h3 style="color: var(--text-secondary);">CompTIA Security+</h3>
-                <div style="font-size: 0.8rem; font-weight: 700;">TARGET: JUNE 2026</div>
-                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Finalizing global certification to validate core security knowledge and skills.</p>
-            </div>
+
         </div>
     </section>
 
-    <section id="certifications">
-        <div class="section-header">
-            <h2>Certifications</h2>
-            <div class="line"></div>
-        </div>
-        <div class="certs-grid">
-            <div class="cert-card glass-panel">
-                <div style="font-size: 2rem; margin-bottom: 1rem;">🎓</div>
-                <h3>Pre-Security</h3>
-                <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 10px 0 20px;">TryHackMe Certification of Foundation.</p>
-                <a href="https://tryhackme.com/certificate/THM-FNKRNERDLO" target="_blank" class="cert-link">Verify ID →</a>
+    <section id="certifications" class="py-24 px-6 lg:px-8 z-10 relative">
+        <div class="max-w-7xl mx-auto space-y-16">
+            
+            <div class="text-center space-y-3">
+                <div class="font-mono text-xs tracking-[0.3em] text-cyber-purple uppercase">03 // Verification Node</div>
+                <h2 class="font-clash text-3xl sm:text-5xl font-bold text-white tracking-tight">Cryptographic Credentials</h2>
+                <div class="w-12 h-1 bg-gradient-to-r from-cyber-cyan to-cyber-purple mx-auto rounded-full"></div>
             </div>
-            <div class="cert-card glass-panel">
-                <div style="font-size: 2rem; margin-bottom: 1rem;">🛡️</div>
-                <h3>Cyber Security 101</h3>
-                <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 10px 0 20px;">Practical introduction to security operations.</p>
-                <a href="https://tryhackme.com/certificate/THM-ARJJJENRWO" target="_blank" class="cert-link">Verify ID →</a>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="cyber-glass rounded-2xl p-6 flex flex-col justify-between space-y-6 group reveal-node">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-950/40 border border-cyan-800/30 flex items-center justify-center text-cyber-cyan text-xl group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <span class="font-mono text-[9px] tracking-widest text-cyber-cyan uppercase">TryHackMe Validated</span>
+                            <h3 class="font-clash text-xl text-white font-semibold">Pre-Security Certificate</h3>
+                        </div>
+                        <p class="text-cyber-textMuted text-xs leading-relaxed">
+                            Verified proficiency across core baseline domains including infrastructure communication paradigms, web sub-layer mechanics, and Linux command arrays.
+                        </p>
+                    </div>
+                    <a href="https://tryhackme.com/certificate/THM-FNKRNERDLO" target="_blank" class="w-full text-center py-2.5 rounded-lg bg-slate-900 hover:bg-cyber-cyan/10 border border-slate-800 hover:border-cyber-cyan/30 text-slate-300 hover:text-cyber-cyan font-mono text-[11px] tracking-wider uppercase transition-all duration-300">
+                        Query Verification Engine <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[9px]"></i>
+                    </a>
+                </div>
+
+                <div class="cyber-glass rounded-2xl p-6 flex flex-col justify-between space-y-6 group reveal-node">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-950/40 border border-blue-800/30 flex items-center justify-center text-cyber-blue text-xl group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <span class="font-mono text-[9px] tracking-widest text-cyber-blue uppercase">TryHackMe Validated</span>
+                            <h3 class="font-clash text-xl text-white font-semibold">Cyber Security 101</h3>
+                        </div>
+                        <p class="text-cyber-textMuted text-xs leading-relaxed">
+                            Hands-on defensive architecture execution matrix validating configuration handling parameters, exploit signatures, and security system analysis.
+                        </p>
+                    </div>
+                    <a href="https://tryhackme.com/certificate/THM-ARJJJENRWO" target="_blank" class="w-full text-center py-2.5 rounded-lg bg-slate-900 hover:bg-cyber-blue/10 border border-slate-800 hover:border-cyber-blue/30 text-slate-300 hover:text-cyber-blue font-mono text-[11px] tracking-wider uppercase transition-all duration-300">
+                        Query Verification Engine <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[9px]"></i>
+                    </a>
+                </div>
+
+                <div class="cyber-glass rounded-2xl p-6 flex flex-col justify-between space-y-6 group reveal-node">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-purple-950/40 border border-purple-800/30 flex items-center justify-center text-cyber-purple text-xl group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-gears"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <span class="font-mono text-[9px] tracking-widest text-cyber-purple uppercase">In-Transit Pipeline</span>
+                            <h3 class="font-clash text-xl text-white font-semibold">SOC Level 1 Platform</h3>
+                        </div>
+                        <p class="text-cyber-textMuted text-xs leading-relaxed">
+                            Comprehensive specialization modules targeting active log configuration tracing, alert structuring logic, and forensic incident payload extraction metrics.
+                        </p>
+                    </div>
+                    <div class="w-full text-center py-2.5 rounded-lg bg-slate-950 border border-slate-900 text-slate-600 font-mono text-[10px] tracking-widest uppercase">
+                        Compilation Process Pending...
+                    </div>
+                </div>
+
             </div>
-            <div class="cert-card glass-panel">
-                <div style="font-size: 2rem; margin-bottom: 1rem;">⚙️</div>
-                <h3>SOC Level 1</h3>
-                <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 10px 0 20px;">Security Operations Center fundamental training.</p>
-                <span style="font-size: 0.7rem; color: var(--neon-purple); font-weight: 700;">CREDENTIAL PENDING</span>
-            </div>
+
         </div>
     </section>
 
-    <section id="contact" style="text-align: center;">
-        <div class="glass-panel" style="max-width: 600px; margin: 0 auto; padding: 4rem 2rem;">
-            <h2>Initiate Connection</h2>
-            <p style="color: var(--text-secondary); margin: 1.5rem 0 2.5rem;">Available for collaborations and SOC opportunities.</p>
-            <div style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem;">
-                <a href="https://www.linkedin.com/in/mohdali02/" target="_blank" style="font-size: 1.5rem; text-decoration: none;">🔗</a>
-                <a href="https://github.com/Mohd-Ali2" target="_blank" style="font-size: 1.5rem; text-decoration: none;">💻</a>
-                <a href="mailto:alifaizan20@outlook.com" style="font-size: 1.5rem; text-decoration: none;">✉️</a>
+    <section id="contact" class="py-24 px-6 lg:px-8 z-10 relative">
+        <div class="max-w-3xl mx-auto text-center space-y-10 reveal-node">
+            
+            <div class="space-y-3">
+                <div class="font-mono text-xs tracking-[0.3em] text-cyber-cyan uppercase">04 // Secure Link Matrix</div>
+                <h2 class="font-clash text-3xl sm:text-5xl font-bold text-white tracking-tight">Establish Handshake Stream</h2>
+                <p class="text-cyber-textMuted text-sm sm:text-base max-w-xl mx-auto font-normal">
+                    Secure communication lines are open. Initialize interface vectors for structural collaboration arrangements, team integration, or infrastructure consulting deployments.
+                </p>
             </div>
-            <a href="mailto:alifaizan20@outlook.com" style="color: var(--neon-cyan); font-weight: 700; text-decoration: none;">alifaizan20@outlook.com</a>
+
+            <div class="cyber-glass rounded-3xl p-8 space-y-8 max-w-xl mx-auto shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-3 font-mono text-[8px] text-slate-700 tracking-widest uppercase">TLS_1.3_ACTIVE</div>
+                
+                <div class="flex items-center justify-center gap-6">
+                    <a href="https://www.linkedin.com/in/mohdali02/" target="_blank" class="w-14 h-14 rounded-2xl bg-slate-950 border border-slate-900 flex items-center justify-center text-slate-400 hover:text-cyber-cyan text-xl hover:border-cyber-cyan/30 shadow-inner hover:scale-105 transition-all duration-300" title="LinkedIn Connection">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/Mohd-Ali2" target="_blank" class="w-14 h-14 rounded-2xl bg-slate-950 border border-slate-900 flex items-center justify-center text-slate-400 hover:text-cyber-purple text-xl hover:border-cyber-purple/30 shadow-inner hover:scale-105 transition-all duration-300" title="GitHub Array">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="mailto:alifaizan20@outlook.com" class="w-14 h-14 rounded-2xl bg-slate-950 border border-slate-900 flex items-center justify-center text-slate-400 hover:text-cyber-blue text-xl hover:border-cyber-blue/30 shadow-inner hover:scale-105 transition-all duration-300" title="Direct SMTP Mail">
+                        <i class="fa-regular fa-envelope"></i>
+                    </a>
+                </div>
+
+                <div class="pt-4 border-t border-slate-900/60 font-mono text-xs space-y-1">
+                    <div class="text-slate-600 uppercase text-[9px] tracking-widest">Primary Routing Vector</div>
+                    <a href="mailto:alifaizan20@outlook.com" class="text-cyber-cyan hover:underline text-sm font-semibold tracking-wide">
+                        alifaizan20@outlook.com
+                    </a>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 3rem; border-top: 1px solid var(--glass-border); font-size: 0.8rem; color: var(--text-secondary);">
-        © 2026 Mohammad Ali • Always Learning • Secured by Blue Team Tactics
+    <footer class="py-8 border-t border-slate-950 bg-black/40 text-center font-mono text-[10px] text-slate-600 tracking-wider space-y-1.5 z-10 relative">
+        <p>© 2026 Mohammad Ali // Structural Blueprint Matrix.</p>
+        <p class="text-[9px] text-slate-700 uppercase">Secured & Maintained via Tactical Blue-Team Engineering Protocols.</p>
     </footer>
 
     <script>
-        const observer = new IntersectionObserver((entries) => {
+        const scrollRevealEngine = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = "1";
-                    entry.target.style.transform = "translateY(0)";
+                    entry.target.classList.add('active');
+                    scrollRevealEngine.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
+        }, { 
+            threshold: 0.05,
+            rootMargin: '0px 0px -40px 0px'
+        });
 
-        document.querySelectorAll('.glass-panel, .journey-item').forEach(el => {
-            el.style.opacity = "0";
-            el.style.transform = "translateY(20px)";
-            el.style.transition = "all 0.6s ease-out";
-            observer.observe(el);
+        document.querySelectorAll('.reveal-node').forEach(node => {
+            scrollRevealEngine.observe(node);
+        });
+
+        // Top-Bar Scrolled Visual Shift Mechanics
+        window.addEventListener('scroll', () => {
+            const topBar = document.querySelector('nav');
+            if (window.scrollY > 40) {
+                topBar.classList.add('bg-cyber-bg/80', 'border-slate-900/80');
+                topBar.classList.remove('py-4');
+                topBar.classList.add('py-3');
+            } else {
+                topBar.classList.remove('bg-cyber-bg/80', 'border-slate-900/80');
+                topBar.classList.remove('py-3');
+                topBar.classList.add('py-4');
+            }
         });
     </script>
 </body>
