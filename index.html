@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M. ALI // CYBER DEFENSE OPERATIVE</title>
+    <title>Mohammad Ali // Cyber Defense Architecture</title>
     
-    <!-- Award-Winning Typefaces -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Premium Font Pairings -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&family=Syne:wght@500;700;800&family=JetBrains+Mono:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Scripts for Premium Motion -->
+    <!-- High-Performance Animation Engines -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -19,15 +20,15 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Syncopate', 'sans-serif'],
-                        heading: ['Space Grotesk', 'sans-serif'],
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        void: '#000000',
-                        neon: '#00F0FF',
-                        accent: '#7000FF',
-                        surface: 'rgba(255, 255, 255, 0.03)',
+                        obsidian: '#050505',
+                        acid: '#CCFF00',
+                        ash: '#1A1A1A',
+                        slate: '#888888'
                     }
                 }
             }
@@ -35,187 +36,352 @@
     </script>
 
     <style>
-        :root { --cursor-color: 0, 240, 255; }
-        body { background: #000; color: #fff; cursor: none; overflow-x: hidden; }
+        :root { --acid-rgb: 204, 255, 0; }
+        body { background: #050505; color: #fff; cursor: none; overflow-x: hidden; }
 
-        /* Award-Winning Refraction Effect */
-        .glass-panel {
-            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.8);
+        /* Premium Glass & Borders */
+        .premium-panel {
+            background: rgba(26, 26, 26, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
-        /* Kinetic Typography Glitch */
-        .glitch-text:hover {
-            text-shadow: 2px 0 #7000FF, -2px 0 #00F0FF;
-            animation: glitch 0.3s infinite;
-        }
-
-        @keyframes glitch {
-            0% { transform: translate(0) }
-            20% { transform: translate(-2px, 2px) }
-            40% { transform: translate(-2px, -2px) }
-            60% { transform: translate(2px, 2px) }
-            80% { transform: translate(2px, -2px) }
-            100% { transform: translate(0) }
+        .premium-panel:hover {
+            border-color: rgba(var(--acid-rgb), 0.4);
+            background: rgba(26, 26, 26, 0.6);
         }
 
         /* Magnetic Cursor */
-        #custom-cursor {
-            position: fixed;
-            width: 10px; height: 10px;
-            background: #fff; border-radius: 50%;
-            pointer-events: none; z-index: 9999;
-            mix-blend-mode: difference;
-            transition: transform 0.1s ease;
+        #cursor-dot {
+            position: fixed; width: 6px; height: 6px; background: #CCFF00; border-radius: 50%;
+            pointer-events: none; z-index: 9999; transform: translate(-50%, -50%);
         }
-        #cursor-follower {
-            position: fixed;
-            width: 40px; height: 40px;
-            border: 1px solid rgba(var(--cursor-color), 0.5);
-            border-radius: 50%;
-            pointer-events: none; z-index: 9998;
-            transition: transform 0.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        #cursor-ring {
+            position: fixed; width: 40px; height: 40px; border: 1px solid rgba(204, 255, 0, 0.5);
+            border-radius: 50%; pointer-events: none; z-index: 9998;
+            transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s;
         }
 
-        #canvas-container { position: fixed; top: 0; left: 0; z-index: -1; }
+        /* Text Scramble Effect Class */
+        .scramble-hover:hover { color: #CCFF00; letter-spacing: 2px; }
+
+        /* ThreeJS Canvas */
+        #webgl-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; opacity: 0.6; pointer-events: none; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; }
+        ::-webkit-scrollbar-thumb:hover { background: #CCFF00; }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased selection:bg-acid selection:text-obsidian">
 
-    <!-- Premium Interactions -->
-    <div id="custom-cursor"></div>
-    <div id="cursor-follower"></div>
-    <div id="canvas-container"></div>
+    <!-- WebGL Background -->
+    <div id="webgl-container"></div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
 
     <!-- Minimalist Navigation -->
-    <nav class="fixed top-0 w-full p-8 z-50 flex justify-between items-center mix-blend-difference">
-        <div class="font-display font-bold text-xl tracking-tighter">M.ALI</div>
-        <div class="hidden md:flex gap-12 font-heading text-[10px] uppercase tracking-[0.4em]">
-            <a href="#about" class="nav-link overflow-hidden"><span class="block">About</span></a>
-            <a href="#journey" class="nav-link overflow-hidden"><span class="block">Journey</span></a>
-            <a href="#contact" class="nav-link overflow-hidden"><span class="block">Contact</span></a>
+    <nav class="fixed top-0 w-full px-8 py-6 z-50 flex justify-between items-center mix-blend-difference">
+        <div class="font-display font-bold text-2xl uppercase tracking-tighter scramble-hover transition-all">M. ALI</div>
+        <div class="hidden md:flex gap-10 font-mono text-[10px] uppercase tracking-[0.2em] text-slate">
+            <a href="#intel" class="hover:text-acid transition-colors">01. Intel</a>
+            <a href="#operations" class="hover:text-acid transition-colors">02. Operations</a>
+            <a href="#credentials" class="hover:text-acid transition-colors">03. Credentials</a>
         </div>
-        <div class="font-heading text-[10px] text-neon uppercase tracking-widest">
-            <span id="system-time">15:26:08</span> // UTC+5.5
-        </div>
+        <a href="#comms" class="border border-acid/30 text-acid font-mono text-[10px] uppercase tracking-[0.2em] px-6 py-3 rounded-full hover:bg-acid hover:text-obsidian transition-all duration-300">
+            Establish Comms
+        </a>
     </nav>
 
     <!-- Hero Section -->
-    <main class="relative h-screen flex flex-col justify-center px-10 md:px-24">
-        <div class="reveal-group">
-            <h2 class="font-heading text-xs tracking-[0.5em] text-accent mb-4 uppercase">SOC Analyst & Security Engineer</h2>
-            <h1 class="font-display text-6xl md:text-9xl font-bold leading-none tracking-tighter mb-8">
-                NEUTRALIZING <br> 
-                <span class="text-transparent" style="-webkit-text-stroke: 1px #fff;">THREATS.</span>
-            </h1>
-            <p class="max-w-xl font-sans text-slate-400 text-lg mb-12 border-l border-neon pl-6">
-                Operationalizing defense through structural telemetry and real-time neutralization of adversarial vectors.
-            </p>
-            <div class="flex gap-8">
-                <button class="glass-panel px-10 py-5 font-display text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition-all">
-                    Initialize Protocol
-                </button>
+    <main class="relative min-h-screen flex flex-col justify-center px-8 md:px-16 pt-20">
+        <div class="max-w-7xl mx-auto w-full z-10 gs-reveal">
+            
+            <!-- Terminal Readout Data -->
+            <div class="flex flex-wrap gap-6 font-mono text-[10px] uppercase tracking-widest text-slate mb-8">
+                <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-acid rounded-full animate-pulse"></span> STATUS: ACTIVE</div>
+                <div>UPTIME: 21_CYCLES</div>
+                <div>LOC: KHAMGAON_MH // IN</div>
+                <div>SPECIALTY: SOC_DEFENSE</div>
             </div>
-        </div>
 
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-10 left-10 flex items-center gap-4 text-[10px] font-heading tracking-widest uppercase text-slate-500">
-            <div class="w-1 h-20 bg-surface relative overflow-hidden">
-                <div class="absolute w-full h-1/2 bg-neon animate-bounce"></div>
+            <h1 class="font-display text-5xl md:text-8xl lg:text-[10rem] font-extrabold leading-[0.85] tracking-tighter uppercase mb-8">
+                Adversarial <br>
+                <span class="text-transparent" style="-webkit-text-stroke: 1px #CCFF00;">Neutralization.</span>
+            </h1>
+            
+            <div class="grid md:grid-cols-2 gap-12 mt-12">
+                <p class="font-sans text-lg md:text-xl text-slate font-light leading-relaxed max-w-lg">
+                    I am a Cybersecurity Engineer specializing in real-time threat diagnostics, log parsing routines, and tactical defense structures.
+                </p>
+                <div class="flex flex-col justify-center items-start md:items-end">
+                    <p class="font-mono text-xs text-acid mb-2">CURRENT ACADEMIC DESIGNATION</p>
+                    <p class="font-display text-2xl uppercase">BCA Graduate</p>
+                </div>
             </div>
-            <span>Scroll to Explore</span>
         </div>
     </main>
 
-    <!-- Interactive Data Section -->
-    <section id="about" class="py-32 px-10 md:px-24">
-        <div class="grid lg:grid-cols-2 gap-24">
-            <div class="space-y-12">
-                <h3 class="font-display text-4xl tracking-tighter">ANALYTICAL <br> PARADIGM.</h3>
-                <div class="glass-panel p-10 rounded-sm">
-                    <p class="text-xl leading-relaxed text-slate-300">
-                        Operating in the top 4% globally on TryHackMe. My architecture focuses on log correlation, SIEM telemetry, and hardening critical logical infrastructure.
-                    </p>
-                </div>
-            </div>
+    <!-- 01. INTEL (About & Stats) -->
+    <section id="intel" class="py-32 px-8 md:px-16 border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="font-display text-4xl md:text-6xl font-bold uppercase mb-16 gs-reveal">01. Tactical Intel</h2>
             
-            <div class="grid grid-cols-2 gap-4">
-                <div class="glass-panel p-8 flex flex-col justify-center items-center group">
-                    <span class="text-neon font-display text-5xl mb-2 group-hover:scale-110 transition-transform">109</span>
-                    <span class="font-heading text-[10px] tracking-widest uppercase text-slate-500">Rooms Cleared</span>
+            <div class="grid lg:grid-cols-3 gap-6">
+                <!-- Paradigm -->
+                <div class="lg:col-span-2 premium-panel p-10 rounded-2xl gs-reveal">
+                    <h3 class="font-display text-2xl mb-4 text-acid">The Blue Team Paradigm</h3>
+                    <p class="font-sans text-slate leading-relaxed text-lg mb-8">
+                        Operating with structural telemetry analytics to process complex threat scenarios. My architecture is constructed around monitoring systemic event streams, hardening logical vectors against hostile scanning mechanisms, and maintaining absolute network integrity.
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 font-mono text-xs text-white">
+                        <div class="p-4 border border-white/10 rounded-lg">SIEM (Splunk)</div>
+                        <div class="p-4 border border-white/10 rounded-lg">Packet Interception</div>
+                        <div class="p-4 border border-white/10 rounded-lg">Log Correlation</div>
+                        <div class="p-4 border border-white/10 rounded-lg">Linux Ecosystem</div>
+                    </div>
                 </div>
-                <div class="glass-panel p-8 flex flex-col justify-center items-center group">
-                    <span class="text-accent font-display text-5xl mb-2 group-hover:scale-110 transition-transform">TOP 4%</span>
-                    <span class="font-heading text-[10px] tracking-widest uppercase text-slate-500">Global Ranking</span>
+
+                <!-- Stats -->
+                <div class="flex flex-col gap-6 gs-reveal">
+                    <div class="premium-panel p-8 rounded-2xl flex-1 flex flex-col justify-center items-center text-center">
+                        <div class="font-display text-6xl text-acid mb-2">Top 4%</div>
+                        <div class="font-mono text-[10px] tracking-widest uppercase text-slate">TryHackMe Global Rank</div>
+                    </div>
+                    <div class="premium-panel p-8 rounded-2xl flex-1 flex flex-col justify-center items-center text-center">
+                        <div class="font-display text-6xl text-white mb-2">109</div>
+                        <div class="font-mono text-[10px] tracking-widest uppercase text-slate">Exploration Rooms Cleared</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Interactive Footer -->
-    <footer id="contact" class="h-screen flex flex-col justify-center items-center bg-void text-center">
-        <h4 class="font-heading text-xs tracking-[1em] text-slate-500 mb-10">READY FOR DEPLOYMENT</h4>
-        <a href="mailto:alifaizan20@outlook.com" class="font-display text-4xl md:text-7xl glitch-text transition-all">
-            ALIFAIZAN20@OUTLOOK.COM
-        </a>
-        <div class="mt-20 flex gap-12 text-slate-500 font-heading text-[10px] tracking-widest uppercase">
-            <a href="#" class="hover:text-neon">LinkedIn</a>
-            <a href="#" class="hover:text-neon">GitHub</a>
-            <a href="#" class="hover:text-neon">Terminal</a>
+    <!-- 02. OPERATIONS (Journey) -->
+    <section id="operations" class="py-32 px-8 md:px-16 border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="font-display text-4xl md:text-6xl font-bold uppercase mb-16 gs-reveal">02. Operations Track</h2>
+            
+            <div class="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/10 before:to-transparent">
+                
+                <!-- Node 1 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active gs-reveal">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-obsidian bg-acid shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_20px_rgba(204,255,0,0.4)] relative z-10"></div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] premium-panel p-8 rounded-2xl">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-mono text-[10px] text-acid border border-acid/20 px-2 py-1 rounded">PHASE 03 (CURRENT)</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold mb-2">SOC Level 1 Analyst Path</h3>
+                        <p class="font-sans text-slate text-sm leading-relaxed">Active architectural training phase isolating parsing mechanics within SIEM pipelines, execution of malware containment routines, and structural data tracking.</p>
+                    </div>
+                </div>
+
+                <!-- Node 2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group gs-reveal">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-obsidian bg-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 relative z-10"></div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] premium-panel p-8 rounded-2xl">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-mono text-[10px] text-slate border border-white/10 px-2 py-1 rounded">PHASE 02</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold mb-2">Cyber Security 101</h3>
+                        <p class="font-sans text-slate text-sm leading-relaxed">Executed offensive exploration mechanics within target configurations to thoroughly understand adversarial execution vectors and construct defensive playbooks.</p>
+                    </div>
+                </div>
+
+                <!-- Node 3 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group gs-reveal">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-obsidian bg-white/30 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 relative z-10"></div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] premium-panel p-8 rounded-2xl">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-mono text-[10px] text-slate border border-white/10 px-2 py-1 rounded">PHASE 01</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold mb-2">Pre-Security Architecture</h3>
+                        <p class="font-sans text-slate text-sm leading-relaxed">Established core networking foundations, programmatic logic primitives, and systemic protocol structures necessary for high-tier defensive assessment vectors.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 03. CREDENTIALS (Certifications) -->
+    <section id="credentials" class="py-32 px-8 md:px-16 border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="font-display text-4xl md:text-6xl font-bold uppercase mb-16 gs-reveal">03. Credentials</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <a href="https://tryhackme.com/certificate/THM-ARJJJENRWO" target="_blank" class="premium-panel p-8 rounded-2xl group flex flex-col justify-between min-h-[250px] gs-reveal cursor-none">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <i class="fa-solid fa-shield-halved text-3xl text-acid"></i>
+                            <i class="fa-solid fa-arrow-right -rotate-45 opacity-0 group-hover:opacity-100 transition-all text-xl"></i>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold mb-2">Cyber Security 101</h3>
+                        <p class="font-sans text-slate text-sm">Hands-on defensive architecture execution matrix validating configuration handling parameters.</p>
+                    </div>
+                    <div class="font-mono text-[10px] text-acid uppercase tracking-widest mt-6">TryHackMe Verified Node</div>
+                </a>
+
+                <a href="https://tryhackme.com/certificate/THM-FNKRNERDLO" target="_blank" class="premium-panel p-8 rounded-2xl group flex flex-col justify-between min-h-[250px] gs-reveal cursor-none">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <i class="fa-solid fa-network-wired text-3xl text-white"></i>
+                            <i class="fa-solid fa-arrow-right -rotate-45 opacity-0 group-hover:opacity-100 transition-all text-xl text-acid"></i>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold mb-2">Pre-Security</h3>
+                        <p class="font-sans text-slate text-sm">Verified proficiency across core baseline domains including infrastructure communication paradigms and Linux command arrays.</p>
+                    </div>
+                    <div class="font-mono text-[10px] text-white/50 uppercase tracking-widest mt-6">TryHackMe Verified Node</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 04. COMMS (Footer / Contact) -->
+    <footer id="comms" class="border-t border-white/5 overflow-hidden relative pb-10">
+        <!-- Huge Marquee -->
+        <div class="whitespace-nowrap flex py-20 opacity-10">
+            <h2 class="font-display text-[10vw] font-extrabold uppercase leading-none tracking-tighter">SECURE COMMS — SECURE COMMS — SECURE COMMS — </h2>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-8 md:px-16 relative z-10 flex flex-col items-center text-center -mt-24 gs-reveal">
+            <p class="font-mono text-xs text-acid mb-6 uppercase tracking-[0.3em]">Initialize Transmission</p>
+            <a href="mailto:alifaizan20@outlook.com" class="font-display text-3xl md:text-5xl lg:text-7xl font-bold hover:text-acid transition-colors duration-500 mb-16 cursor-none">
+                ALIFAIZAN20@OUTLOOK.COM
+            </a>
+            
+            <div class="flex gap-8 mb-20">
+                <a href="https://www.linkedin.com/in/mohdali02/" target="_blank" class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center text-xl hover:border-acid hover:text-acid transition-all duration-300 cursor-none">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/Mohd-Ali2" target="_blank" class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center text-xl hover:border-acid hover:text-acid transition-all duration-300 cursor-none">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+
+            <div class="w-full border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 font-mono text-[10px] text-slate uppercase tracking-widest">
+                <p>© 2026 Mohammad Ali. System Intact.</p>
+                <p>Designed for Defensive Protocols.</p>
+            </div>
         </div>
     </footer>
 
+    <!-- Interactive Scripts -->
     <script>
-        // --- System Time ---
-        setInterval(() => {
-            const now = new Date();
-            document.getElementById('system-time').innerText = now.toLocaleTimeString();
-        }, 1000);
-
-        // --- Custom Cursor Logic ---
-        const cursor = document.getElementById('custom-cursor');
-        const follower = document.getElementById('cursor-follower');
+        // --- Custom Cursor ---
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorRing = document.getElementById('cursor-ring');
         
-        document.addEventListener('mousemove', (e) => {
-            gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0 });
-            gsap.to(follower, { x: e.clientX - 15, y: e.clientY - 15, duration: 0.3 });
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            
+            // Fast follow for dot
+            gsap.to(cursorDot, { x: posX, y: posY, duration: 0.1 });
+            // Smooth follow for ring
+            gsap.to(cursorRing, { x: posX, y: posY, duration: 0.3, ease: "power2.out" });
         });
 
-        // --- Three.js Background (Award Winning Particle Mesh) ---
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById('canvas-container').appendChild(renderer.domElement);
+        // Hover effect on links
+        const links = document.querySelectorAll('a, button');
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                gsap.to(cursorRing, { width: 60, height: 60, borderColor: '#fff', backgroundColor: 'rgba(255,255,255,0.1)', duration: 0.2 });
+            });
+            link.addEventListener('mouseleave', () => {
+                gsap.to(cursorRing, { width: 40, height: 40, borderColor: 'rgba(204,255,0,0.5)', backgroundColor: 'transparent', duration: 0.2 });
+            });
+        });
 
-        const geometry = new THREE.BufferGeometry();
-        const vertices = [];
-        for (let i = 0; i < 5000; i++) {
-            vertices.push(THREE.MathUtils.randFloatSpread(2000));
-            vertices.push(THREE.MathUtils.randFloatSpread(2000));
-            vertices.push(THREE.MathUtils.randFloatSpread(2000));
+        // --- Three.js Topographic Data Wave ---
+        const scene = new THREE.Scene();
+        // Use a wide camera for atmospheric effect
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+        camera.position.set(0, 30, 80);
+        camera.lookAt(0, 0, 0);
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        document.getElementById('webgl-container').appendChild(renderer.domElement);
+
+        // Create a wireframe plane geometry
+        const geometry = new THREE.PlaneGeometry(200, 100, 60, 30);
+        
+        // Store original Z positions for animation
+        const count = geometry.attributes.position.count;
+        const originalZ = new Float32Array(count);
+        for(let i = 0; i < count; i++) {
+            originalZ[i] = geometry.attributes.position.getZ(i);
         }
-        geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-        const particles = new THREE.Points(geometry, new THREE.PointsMaterial({ color: 0x7000FF, size: 2 }));
-        scene.add(particles);
-        camera.position.z = 500;
+
+        // Deep obsidian/emerald material
+        const material = new THREE.MeshBasicMaterial({ 
+            color: 0x334400, 
+            wireframe: true,
+            transparent: true,
+            opacity: 0.15
+        });
+
+        const plane = new THREE.Mesh(geometry, material);
+        plane.rotation.x = -Math.PI / 2;
+        scene.add(plane);
+
+        const clock = new THREE.Clock();
 
         function animate() {
             requestAnimationFrame(animate);
-            particles.rotation.y += 0.001;
+            const time = clock.getElapsedTime();
+
+            // Animate vertices to create a data-wave effect
+            const positions = plane.geometry.attributes.position;
+            for(let i = 0; i < count; i++) {
+                const x = positions.getX(i);
+                const y = positions.getY(i);
+                // Complex sine wave math for organic tech feel
+                const z = Math.sin(x * 0.1 + time) * 3 + Math.cos(y * 0.1 + time) * 3;
+                positions.setZ(i, z);
+            }
+            positions.needsUpdate = true;
+
+            // Slow rotation
+            plane.rotation.z = time * 0.05;
+
             renderer.render(scene, camera);
         }
         animate();
 
-        // --- GSAP Reveal Animations ---
-        gsap.from(".reveal-group > *", {
-            duration: 1.5,
-            y: 100,
-            opacity: 0,
-            stagger: 0.2,
-            ease: "power4.out"
+        // Handle Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // --- GSAP Scroll Reveal ---
+        gsap.registerPlugin(ScrollTrigger);
+        
+        const revealElements = document.querySelectorAll(".gs-reveal");
+        revealElements.forEach((elem) => {
+            gsap.fromTo(elem, 
+                { y: 50, opacity: 0 }, 
+                {
+                    y: 0, 
+                    opacity: 1, 
+                    duration: 1, 
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: "top 85%", 
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
         });
     </script>
 </body>
