@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Mohammad Ali | Cybersecurity Engineer — AI‑Powered Portfolio</title>
+  <title>Mohammad Ali | AI‑Powered Portfolio</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
       overflow-x: hidden;
     }
 
-    /* Animated gradient background (looping, rich colors, not oversaturated) */
+    /* Animated gradient background (rich, looping) */
     .gradient-bg {
       position: fixed;
       top: 0;
@@ -36,7 +36,7 @@
       width: 100%;
       height: 100%;
       z-index: -2;
-      background: linear-gradient(125deg, #0a0f1a, #0e1a2a, #121d30, #0e1525);
+      background: linear-gradient(125deg, #0a0f1a, #0e1a2a, #121d30, #0a1020);
       background-size: 300% 300%;
       animation: gradientFlow 18s ease infinite;
     }
@@ -44,18 +44,6 @@
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
-    }
-
-    /* Additional moving particles / noise (subtle) */
-    .noise-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 20% 40%, rgba(79, 70, 229, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
-      pointer-events: none;
-      z-index: -1;
     }
 
     /* Glass cards (dark, premium) */
@@ -72,7 +60,6 @@
       box-shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.5);
     }
 
-    /* Custom scrollbar */
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: #111827; }
     ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 10px; }
@@ -94,60 +81,57 @@
       transform: translateY(0);
     }
 
-    /* Chat widget (dark theme) */
-    .chat-window {
+    /* Ask Me Big Button + Inline AI Chat */
+    .ask-section {
+      scroll-margin-top: 80px;
+    }
+    .big-ask-btn {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      box-shadow: 0 15px 35px -10px rgba(79, 70, 229, 0.4);
+      transition: all 0.3s ease;
+    }
+    .big-ask-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 20px 40px -8px rgba(79, 70, 229, 0.6);
+    }
+    .chat-panel {
       background: rgba(10, 15, 25, 0.98);
       backdrop-filter: blur(16px);
       border: 1px solid #2d3a5e;
-      box-shadow: 0 25px 40px -12px rgba(0,0,0,0.5);
+      transition: all 0.3s;
     }
-    .chat-messages {
-      scrollbar-width: thin;
-    }
-    .user-msg {
+    .user-bubble {
       background: #4f46e5;
       color: white;
       border-bottom-right-radius: 6px;
     }
-    .bot-msg {
+    .ai-bubble {
       background: #1e293b;
       color: #e2e8f0;
       border-bottom-left-radius: 6px;
     }
-    .chat-input {
-      background: #0f172a;
-      border: 1px solid #334155;
-      color: #f1f5f9;
-    }
-    .chat-input:focus {
-      border-color: #4f46e5;
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(79,70,229,0.3);
-    }
-
-    /* Bold nav for dark theme */
-    .nav-link {
-      font-weight: 600;
-      letter-spacing: 0.05em;
+    .typing-indicator {
+      font-style: italic;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
 
   <div class="gradient-bg"></div>
-  <div class="noise-overlay"></div>
 
   <div id="app">
-    <!-- Navigation (bold, sticky, dark glass) -->
+    <!-- Navigation (bold) -->
     <nav class="fixed top-0 w-full px-6 md:px-12 py-5 z-50 flex justify-between items-center bg-black/40 backdrop-blur-lg border-b border-white/10 shadow-xl">
       <div class="font-sans font-extrabold text-2xl tracking-tight text-white drop-shadow-md">M. ALI</div>
       <div class="hidden md:flex gap-8 font-mono text-sm font-semibold uppercase tracking-wide text-white/80">
-        <a href="#about" class="nav-link hover:text-indigo-400 transition">About</a>
-        <a href="#journey" class="nav-link hover:text-indigo-400 transition">Experience</a>
-        <a href="#credentials" class="nav-link hover:text-indigo-400 transition">Credentials</a>
-        <a href="#contact" class="nav-link hover:text-indigo-400 transition">Contact</a>
+        <a href="#about" class="hover:text-indigo-400 transition">About</a>
+        <a href="#journey" class="hover:text-indigo-400 transition">Experience</a>
+        <a href="#credentials" class="hover:text-indigo-400 transition">Credentials</a>
+        <a href="#ask" class="hover:text-indigo-400 transition">Ask Me</a>
+        <a href="#contact" class="hover:text-indigo-400 transition">Contact</a>
       </div>
-      <a href="#contact" class="border border-indigo-500 text-indigo-300 font-mono text-sm uppercase px-5 py-2 rounded-full hover:bg-indigo-600 hover:text-white transition-all duration-300">Connect</a>
+      <a href="#contact" class="border border-indigo-500 text-indigo-300 font-mono text-sm uppercase px-5 py-2 rounded-full hover:bg-indigo-600 hover:text-white transition-all">Connect</a>
     </nav>
 
     <main class="relative z-10 pt-28">
@@ -270,6 +254,41 @@
         </div>
       </section>
 
+      <!-- ========== ASK ME BIG SECTION (NO FLOATING, FULL WIDTH) ========== -->
+      <section id="ask" class="ask-section px-6 md:px-16 py-24 bg-black/30 border-y border-indigo-900/50">
+        <div class="max-w-5xl mx-auto text-center">
+          <h2 class="font-sans text-5xl md:text-6xl font-extrabold tracking-tight text-white">Have questions?</h2>
+          <div class="section-divider mx-auto mb-8"></div>
+          <p class="text-gray-300 text-xl mb-10">Ask me anything about my skills, experience, certifications, or background. Powered by <span class="text-indigo-400 font-semibold">Gemini AI</span> — real answers, no scripts.</p>
+          
+          <!-- Big Ask Button that reveals chat panel -->
+          <button v-if="!chatActive" @click="chatActive = true" class="big-ask-btn px-12 py-5 rounded-full text-white text-2xl font-bold flex items-center gap-3 mx-auto transition-all">
+            <i class="fa-regular fa-comment-dots text-3xl"></i> Ask Me Anything
+          </button>
+
+          <!-- Live AI Chat Panel (appears after clicking button) -->
+          <div v-if="chatActive" class="chat-panel rounded-3xl p-6 mt-8 text-left w-full transition-all">
+            <div class="flex justify-between items-center border-b border-gray-700 pb-3 mb-4">
+              <h3 class="text-xl font-bold text-indigo-300"><i class="fa-regular fa-message mr-2"></i>Ask Mohammad AI</h3>
+              <button @click="chatActive = false; messages = [{ role: 'ai', content: '👋 Hi! I\'m Mohammad\'s AI assistant. Ask me anything about his work, skills or background.' }]" class="text-gray-400 hover:text-white"><i class="fa-solid fa-times"></i></button>
+            </div>
+            <div class="chat-messages h-80 overflow-y-auto p-2 flex flex-col gap-3 mb-4" ref="chatContainer">
+              <div v-for="msg in messages" :class="msg.role === 'user' ? 'user-bubble' : 'ai-bubble'" class="max-w-[85%] rounded-2xl px-4 py-2 text-sm self-start">
+                {{ msg.content }}
+              </div>
+              <div v-if="loading" class="ai-bubble px-4 py-2 rounded-2xl text-sm typing-indicator">
+                <i class="fa-regular fa-circle-notch fa-spin"></i> Thinking...
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <input v-model="userInput" @keyup.enter="sendMessage" type="text" placeholder="e.g., What are your top skills? or Tell me about your certifications..." class="flex-1 bg-black/60 border border-indigo-500/40 rounded-full px-5 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400">
+              <button @click="sendMessage" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-full font-semibold transition">Ask</button>
+            </div>
+            <p class="text-xs text-gray-500 mt-3 text-center">⚡ Real answers from Gemini 2.0 Flash — no predefined templates.</p>
+          </div>
+        </div>
+      </section>
+
       <!-- Contact Footer -->
       <footer id="contact" class="border-t border-white/10 py-20 px-6 md:px-16 text-center bg-black/30">
         <div class="max-w-4xl mx-auto">
@@ -286,73 +305,36 @@
         </div>
       </footer>
     </main>
-
-    <!-- Floating Chat Widget (Gemini AI Powered) -->
-    <div class="fixed bottom-6 right-6 z-50">
-      <button @click="chatOpen = !chatOpen" class="w-14 h-14 rounded-full bg-indigo-600 shadow-lg flex items-center justify-center text-white text-xl hover:bg-indigo-700 transition-all">
-        <i class="fa-regular fa-comment-dots"></i>
-      </button>
-    </div>
-
-    <div v-if="chatOpen" class="fixed bottom-24 right-6 w-96 max-w-[calc(100vw-3rem)] chat-window rounded-2xl shadow-2xl z-50 transition-all">
-      <div class="flex justify-between items-center px-5 py-4 border-b border-gray-700">
-        <span class="font-bold text-white"><i class="fa-regular fa-message text-indigo-400 mr-2"></i>Ask Mohammad AI</span>
-        <button @click="chatOpen = false" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="chat-messages h-96 overflow-y-auto p-4 flex flex-col gap-3" ref="chatContainer">
-        <div v-for="msg in messages" :class="msg.role === 'user' ? 'user-msg' : 'bot-msg'" class="max-w-[85%] rounded-2xl px-4 py-2 text-sm">
-          {{ msg.content }}
-        </div>
-        <div v-if="loading" class="bot-msg px-4 py-2 rounded-2xl text-sm italic text-gray-300">Thinking... <i class="fa-regular fa-circle-notch fa-spin"></i></div>
-      </div>
-      <div class="p-3 border-t border-gray-700 flex gap-2">
-        <input v-model="userInput" @keyup.enter="sendMessage" type="text" placeholder="Ask me anything — skills, background, certifications..." class="chat-input flex-1 rounded-full px-4 py-2 text-gray-200 text-sm">
-        <button @click="sendMessage" class="bg-indigo-600 text-white rounded-full px-5 py-2 text-sm font-medium hover:bg-indigo-700 transition">Send</button>
-      </div>
-      <div class="text-xs text-gray-500 text-center pb-3">⚡ Powered by Google Gemini AI</div>
-    </div>
   </div>
 
   <script>
     // --------------------------------------------------------------
-    // GEMINI AI INTEGRATION (REAL LLM) — using provided API key
+    // GEMINI API KEY (provided by user) — Real LLM integration
     // --------------------------------------------------------------
     const GEMINI_API_KEY = "AIzaSyB4Bpn7f2cLSG-ymsNpqHe4aSZnU7xG4mo";
     const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
 
-    // Personal context for the AI (enhances answers)
+    // Comprehensive personal context for the AI (so it always answers correctly)
     const PERSONAL_CONTEXT = `
       Mohammad Ali is a Cybersecurity Engineer based in Mumbai, India.
       Education: Bachelor of Computer Applications (BCA).
-      Skills: SIEM (Splunk), Packet Analysis, Log Correlation, Linux/Unix, incident response.
-      Certifications: Cyber Security 101 and Pre-Security (TryHackMe) — both verified.
-      Rankings: Top 4% globally on TryHackMe, completed 109+ security labs.
+      Core skills: SIEM (Splunk), Packet Analysis, Log Correlation, Linux/Unix, incident response, threat hunting.
+      Certifications: Cyber Security 101 (TryHackMe), Pre-Security Certification (TryHackMe) — both verified.
+      Achievements: Top 4% globally on TryHackMe, completed 109+ security labs / rooms.
       Email: alifaizan20@outlook.com.
       GitHub: github.com/Mohd-Ali2.
       LinkedIn: linkedin.com/in/mohdali02.
-      Current focus: SOC Level 1 Analyst path, passionate about defensive security and threat hunting.
-      He is a BCA graduate, proactive, and always improving.
+      Current focus: SOC Level 1 Analyst path, building defensive playbooks, improving SIEM pipelines.
+      He is passionate about Blue Team operations, proactive defense, and continuous learning.
     `;
 
-    // Fallback local answers (if API fails)
-    const localFallback = (question) => {
-      const q = question.toLowerCase();
-      if (q.includes("skill") || q.includes("technology")) return "My core skills include SIEM (Splunk), Packet Analysis, Log Correlation, Linux, and incident response.";
-      if (q.includes("certif")) return "I hold Cyber Security 101 and Pre‑Security certifications from TryHackMe, top 4% globally.";
-      if (q.includes("location") || q.includes("mumbai")) return "I'm based in Mumbai, India.";
-      if (q.includes("education") || q.includes("bca")) return "I have a Bachelor of Computer Applications (BCA) degree.";
-      if (q.includes("email") || q.includes("contact")) return "You can email me at alifaizan20@outlook.com.";
-      if (q.includes("tryhackme") || q.includes("rank")) return "I'm in the top 4% on TryHackMe, with 109+ completed rooms.";
-      return "I'm Mohammad Ali, a cybersecurity engineer. Ask me about my skills, certifications, background, or contact details.";
-    };
-
-    // Vue App
+    // Vue 3 Application
     const { createApp, ref, nextTick } = Vue;
     const app = createApp({
       setup() {
-        const chatOpen = ref(false);
+        const chatActive = ref(false);
         const messages = ref([
-          { role: "bot", content: "👋 Hey! I'm Mohammad's AI assistant. Ask me anything about his skills, certifications, experience, or contact info — I'll give you a real answer using Gemini AI." }
+          { role: "ai", content: "👋 Hi! I'm Mohammad's AI assistant. Ask me anything about his work, skills, certifications, or background. I'll answer using live AI — no predefined scripts!" }
         ]);
         const userInput = ref("");
         const loading = ref(false);
@@ -373,42 +355,43 @@
           loading.value = true;
 
           try {
-            // Build prompt with context to ensure accurate answers about Mohammad
-            const prompt = `You are a helpful, professional AI assistant for Mohammad Ali (cybersecurity engineer). Answer in a friendly tone, concisely. Use this context: ${PERSONAL_CONTEXT}\n\nUser: ${text}\nAssistant:`;
-            
+            // Build prompt: give the AI full context about Mohammad, no predefined answers
+            const prompt = `You are a helpful, friendly, and professional AI assistant for Mohammad Ali (a cybersecurity engineer). Always answer based on the following context. If the question is personal but not covered, say "I don't have that information, but you can email Mohammad directly at alifaizan20@outlook.com". Keep answers concise, warm, and informative.\n\nContext about Mohammad:\n${PERSONAL_CONTEXT}\n\nUser question: ${text}\n\nYour answer:`;
+
             const response = await fetch(GEMINI_URL, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
-                contents: [{ parts: [{ text: prompt }] }]
+                contents: [{ parts: [{ text: prompt }] }],
+                generationConfig: { temperature: 0.5, maxOutputTokens: 300 }
               })
             });
-            
+
             const data = await response.json();
-            let aiReply = null;
+            let aiReply = "Sorry, I couldn't generate a response. Please try again later.";
             if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
               aiReply = data.candidates[0].content.parts[0].text;
-            } else {
-              throw new Error("Gemini returned empty");
+            } else if (data.error) {
+              console.error("Gemini API error:", data.error);
+              aiReply = "⚠️ AI service is currently unavailable. Please email Mohammad directly at alifaizan20@outlook.com for any questions.";
             }
-            messages.value.push({ role: "bot", content: aiReply });
+            messages.value.push({ role: "ai", content: aiReply });
           } catch (err) {
-            console.warn("Gemini API error, using fallback:", err);
-            messages.value.push({ role: "bot", content: localFallback(text) });
+            console.error("Network error:", err);
+            messages.value.push({ role: "ai", content: "❌ Unable to reach AI service. Please check your internet or contact Mohammad via email." });
           } finally {
             loading.value = false;
             scrollToBottom();
           }
         };
 
-        return { chatOpen, messages, userInput, loading, chatContainer, sendMessage };
+        return { chatActive, messages, userInput, loading, chatContainer, sendMessage };
       }
     }).mount('#app');
 
-    // ---------- GSAP + Scroll Animations ----------
+    // ---------- GSAP Scroll Animations + Counters ----------
     gsap.registerPlugin(ScrollTrigger);
 
-    // counter animation
     const counters = document.querySelectorAll('.counter');
     counters.forEach(c => {
       const target = parseInt(c.getAttribute('data-target'));
@@ -430,12 +413,12 @@
       });
     });
 
-    // reveal items
+    // Reveal items
     document.querySelectorAll('.reveal-item').forEach(el => {
       ScrollTrigger.create({ trigger: el, start: 'top 85%', once: true, onEnter: () => el.classList.add('revealed') });
     });
 
-    // timeline stagger
+    // Timeline stagger
     gsap.utils.toArray('.timeline-item').forEach((item, idx) => {
       gsap.fromTo(item, { x: idx % 2 === 0 ? -40 : 40, opacity: 0 }, {
         x: 0, opacity: 1, duration: 0.9, delay: idx * 0.12,
@@ -443,7 +426,7 @@
       });
     });
 
-    // smooth anchor scrolling
+    // Smooth anchor scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         const targetElem = document.querySelector(this.getAttribute('href'));
@@ -454,7 +437,7 @@
       });
     });
 
-    // Hero text entrance
+    // Hero entrance animations
     gsap.from("h1 .block:first-child", { y: 40, opacity: 0, duration: 0.9, delay: 0.2 });
     gsap.from("h1 .block:last-child", { y: 40, opacity: 0, duration: 0.9, delay: 0.4 });
     gsap.from(".text-gray-300.text-xl", { y: 30, opacity: 0, duration: 0.8, delay: 0.6 });
