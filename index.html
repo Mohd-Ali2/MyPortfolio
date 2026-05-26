@@ -3,54 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Mohammad Ali | Cybersecurity Engineer — Intelligent Portfolio</title>
+  <title>Mohammad Ali | Cybersecurity Engineer — AI‑Powered Portfolio</title>
 
-  <!-- Google Fonts: Inter & JetBrains Mono -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome 6 (free icons) -->
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Vue 3 + GSAP + Tailwind -->
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <!-- GSAP + ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Vue 3 -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
   <style>
-    /* ------------------------------
-       Custom smooth gradient + legibility
-    -------------------------------- */
+    /* ---------- DARK THEME WITH ANIMATED GRADIENT BACKGROUND ---------- */
     body {
-      background: linear-gradient(135deg, #f8faff 0%, #ffffff 50%, #eef2ff 100%);
+      background: #0a0c10;
       font-family: 'Inter', sans-serif;
-      color: #1e293b;
+      color: #eef2ff;
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
-    /* glassmorphic cards (light & airy) */
+    /* Animated gradient background (looping, rich colors, not oversaturated) */
+    .gradient-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: linear-gradient(125deg, #0a0f1a, #0e1a2a, #121d30, #0e1525);
+      background-size: 300% 300%;
+      animation: gradientFlow 18s ease infinite;
+    }
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Additional moving particles / noise (subtle) */
+    .noise-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 40%, rgba(79, 70, 229, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Glass cards (dark, premium) */
     .glass-card {
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(18, 25, 40, 0.65);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(79, 70, 229, 0.3);
       transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
     .glass-card:hover {
-      background: rgba(255, 255, 255, 0.97);
-      border-color: rgba(37, 99, 235, 0.3);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.08);
+      background: rgba(25, 35, 55, 0.85);
+      border-color: rgba(139, 92, 246, 0.6);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.5);
     }
 
-    /* custom scrollbar */
+    /* Custom scrollbar */
     ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #e2e8f0; }
-    ::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 10px; }
+    ::-webkit-scrollbar-track { background: #111827; }
+    ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 10px; }
 
     .section-divider {
       width: 70px;
       height: 3px;
-      background: linear-gradient(90deg, #2563eb, #94a3f8);
+      background: linear-gradient(90deg, #4f46e5, #8b5cf6);
       margin: 1rem 0 2rem 0;
     }
 
@@ -64,183 +94,192 @@
       transform: translateY(0);
     }
 
-    /* chat widget styling (light/blue theme) */
+    /* Chat widget (dark theme) */
     .chat-window {
-      background: rgba(255, 255, 255, 0.98);
+      background: rgba(10, 15, 25, 0.98);
       backdrop-filter: blur(16px);
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 25px 40px -15px rgba(0, 0, 0, 0.1);
+      border: 1px solid #2d3a5e;
+      box-shadow: 0 25px 40px -12px rgba(0,0,0,0.5);
     }
     .chat-messages {
       scrollbar-width: thin;
     }
     .user-msg {
-      background: #2563eb;
+      background: #4f46e5;
       color: white;
       border-bottom-right-radius: 6px;
     }
     .bot-msg {
-      background: #f1f5f9;
-      color: #1e293b;
+      background: #1e293b;
+      color: #e2e8f0;
       border-bottom-left-radius: 6px;
     }
     .chat-input {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      transition: all 0.2s;
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #f1f5f9;
     }
     .chat-input:focus {
-      border-color: #2563eb;
+      border-color: #4f46e5;
       outline: none;
-      box-shadow: 0 0 0 2px rgba(37,99,235,0.2);
+      box-shadow: 0 0 0 2px rgba(79,70,229,0.3);
+    }
+
+    /* Bold nav for dark theme */
+    .nav-link {
+      font-weight: 600;
+      letter-spacing: 0.05em;
     }
   </style>
 </head>
-<body class="antialiased">
+<body>
+
+  <div class="gradient-bg"></div>
+  <div class="noise-overlay"></div>
 
   <div id="app">
-    <!-- === BOLD & CLEAR NAVIGATION === -->
-    <nav class="fixed top-0 w-full px-6 md:px-12 py-5 z-50 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm">
-      <div class="font-sans font-extrabold text-2xl tracking-tight text-gray-900">M. ALI</div>
-      <div class="hidden md:flex gap-10 font-mono text-sm font-semibold uppercase tracking-wide text-gray-600">
-        <a href="#about" class="hover:text-blue-600 transition">About</a>
-        <a href="#journey" class="hover:text-blue-600 transition">Experience</a>
-        <a href="#credentials" class="hover:text-blue-600 transition">Credentials</a>
-        <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
+    <!-- Navigation (bold, sticky, dark glass) -->
+    <nav class="fixed top-0 w-full px-6 md:px-12 py-5 z-50 flex justify-between items-center bg-black/40 backdrop-blur-lg border-b border-white/10 shadow-xl">
+      <div class="font-sans font-extrabold text-2xl tracking-tight text-white drop-shadow-md">M. ALI</div>
+      <div class="hidden md:flex gap-8 font-mono text-sm font-semibold uppercase tracking-wide text-white/80">
+        <a href="#about" class="nav-link hover:text-indigo-400 transition">About</a>
+        <a href="#journey" class="nav-link hover:text-indigo-400 transition">Experience</a>
+        <a href="#credentials" class="nav-link hover:text-indigo-400 transition">Credentials</a>
+        <a href="#contact" class="nav-link hover:text-indigo-400 transition">Contact</a>
       </div>
-      <a href="#contact" class="border border-blue-600 text-blue-700 font-mono text-sm uppercase px-5 py-2 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300">Connect</a>
+      <a href="#contact" class="border border-indigo-500 text-indigo-300 font-mono text-sm uppercase px-5 py-2 rounded-full hover:bg-indigo-600 hover:text-white transition-all duration-300">Connect</a>
     </nav>
 
     <main class="relative z-10 pt-28">
-      <!-- HERO -->
+      <!-- Hero Section -->
       <section class="px-6 md:px-16 pb-24">
         <div class="max-w-7xl mx-auto">
-          <div class="flex flex-wrap gap-4 font-mono text-xs font-medium tracking-wide text-blue-600 mb-8">
+          <div class="flex flex-wrap gap-4 font-mono text-sm font-medium tracking-wide text-indigo-300 mb-8">
             <span>📍 MUMBAI, MH — INDIA</span>
             <span>⚡ SPECIALTY: SOC DEFENSE</span>
             <span>🛡️ CYBERSECURITY ENGINEER</span>
           </div>
-          <h1 class="font-sans text-6xl md:text-8xl lg:text-9xl font-extrabold leading-[1.1] tracking-tighter text-gray-900">
+          <h1 class="font-sans text-6xl md:text-8xl lg:text-9xl font-extrabold leading-[1.1] tracking-tighter text-white">
             <span class="block">Mohammad Ali</span>
-            <span class="block text-blue-500 text-4xl md:text-5xl lg:text-6xl mt-4">Cybersecurity Engineer</span>
+            <span class="block text-indigo-400 text-4xl md:text-5xl lg:text-6xl mt-4">Cybersecurity Engineer</span>
           </h1>
           <div class="grid md:grid-cols-2 gap-10 mt-12">
-            <p class="text-gray-600 text-xl md:text-2xl font-light leading-relaxed max-w-xl">
+            <p class="text-gray-300 text-xl md:text-2xl font-light leading-relaxed max-w-xl">
               Specializing in real‑time threat diagnostics, SIEM log analysis, and building resilient defensive architectures. Proactive threat hunter & network integrity expert.
             </p>
             <div class="flex flex-col items-start md:items-end">
-              <p class="font-mono text-sm font-semibold text-blue-600 uppercase">Academic Background</p>
-              <p class="text-3xl font-bold text-gray-800">Bachelor of Computer Applications (BCA)</p>
+              <p class="font-mono text-sm font-semibold text-indigo-400 uppercase">Academic Background</p>
+              <p class="text-2xl md:text-3xl font-bold text-white">Bachelor of Computer Applications (BCA)</p>
               <div class="section-divider mt-2"></div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ABOUT (professional profile) -->
-      <section id="about" class="px-6 md:px-16 py-24 bg-white/40">
+      <!-- About (Professional Profile) -->
+      <section id="about" class="px-6 md:px-16 py-24">
         <div class="max-w-7xl mx-auto">
-          <h2 class="font-sans text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900">01. Professional Profile</h2>
+          <h2 class="font-sans text-5xl md:text-6xl font-extrabold tracking-tight text-white">01. Professional Profile</h2>
           <div class="section-divider mb-10"></div>
           <div class="grid lg:grid-cols-3 gap-8">
-            <div class="lg:col-span-2 glass-card p-8 md:p-10 rounded-3xl reveal-item">
-              <h3 class="text-3xl font-bold text-gray-800 mb-4">Blue Team & Defense Strategy</h3>
-              <p class="text-gray-600 leading-relaxed text-lg">
+            <div class="lg:col-span-2 glass-card p-8 md:p-10 rounded-2xl reveal-item">
+              <h3 class="text-3xl font-bold text-indigo-300 mb-4">Blue Team & Defense Strategy</h3>
+              <p class="text-gray-300 leading-relaxed text-lg">
                 I operate at the intersection of telemetry analytics and threat intelligence. My approach involves continuous monitoring of system event streams, hardening network perimeters, and developing robust incident response playbooks. With a strong foundation in Linux environments and packet analysis, I ensure absolute integrity of digital assets.
               </p>
               <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-                <span class="px-4 py-2 border border-blue-200 text-sm font-mono text-blue-800 rounded-xl bg-blue-50/50">SIEM (Splunk)</span>
-                <span class="px-4 py-2 border border-blue-200 text-sm font-mono text-blue-800 rounded-xl bg-blue-50/50">Packet Analysis</span>
-                <span class="px-4 py-2 border border-blue-200 text-sm font-mono text-blue-800 rounded-xl bg-blue-50/50">Log Correlation</span>
-                <span class="px-4 py-2 border border-blue-200 text-sm font-mono text-blue-800 rounded-xl bg-blue-50/50">Linux / Unix</span>
+                <span class="px-4 py-2 border border-indigo-500/30 text-sm font-mono text-indigo-200 rounded-xl bg-indigo-950/30">SIEM (Splunk)</span>
+                <span class="px-4 py-2 border border-indigo-500/30 text-sm font-mono text-indigo-200 rounded-xl bg-indigo-950/30">Packet Analysis</span>
+                <span class="px-4 py-2 border border-indigo-500/30 text-sm font-mono text-indigo-200 rounded-xl bg-indigo-950/30">Log Correlation</span>
+                <span class="px-4 py-2 border border-indigo-500/30 text-sm font-mono text-indigo-200 rounded-xl bg-indigo-950/30">Linux / Unix</span>
               </div>
             </div>
             <div class="flex flex-col gap-6">
               <div class="glass-card p-7 rounded-2xl text-center reveal-item">
-                <div class="text-6xl font-black text-blue-600 mb-2 counter" data-target="4">0</div>
-                <div class="font-mono text-sm tracking-wider uppercase text-gray-500">Top % — TryHackMe Global</div>
+                <div class="text-6xl font-black text-indigo-400 mb-2 counter" data-target="4">0</div>
+                <div class="font-mono text-sm tracking-wider uppercase text-gray-400">Top % — TryHackMe Global</div>
               </div>
               <div class="glass-card p-7 rounded-2xl text-center reveal-item">
-                <div class="text-6xl font-black text-gray-800 mb-2 counter" data-target="109">0</div>
-                <div class="font-mono text-sm tracking-wider uppercase text-gray-500">Security Labs Completed</div>
+                <div class="text-6xl font-black text-white mb-2 counter" data-target="109">0</div>
+                <div class="font-mono text-sm tracking-wider uppercase text-gray-400">Security Labs Completed</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- JOURNEY (timeline) -->
+      <!-- Professional Journey -->
       <section id="journey" class="px-6 md:px-16 py-24">
         <div class="max-w-7xl mx-auto">
-          <h2 class="font-sans text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900">02. Professional Journey</h2>
+          <h2 class="font-sans text-5xl md:text-6xl font-extrabold tracking-tight text-white">02. Professional Journey</h2>
           <div class="section-divider mb-12"></div>
-          <div class="relative before:absolute before:inset-0 before:ml-5 md:before:left-1/2 before:h-full before:w-[2px] before:bg-gradient-to-b before:from-blue-200/0 before:via-blue-300 before:to-blue-200/0">
+          <div class="relative before:absolute before:inset-0 before:ml-5 md:before:left-1/2 before:h-full before:w-[2px] before:bg-gradient-to-b before:from-indigo-500/0 before:via-indigo-500 before:to-indigo-500/0">
             <div class="relative flex flex-col md:flex-row items-center gap-6 mb-12 timeline-item">
-              <div class="w-14 h-14 rounded-full border-2 border-blue-500 flex items-center justify-center bg-white shadow-md md:order-1"><i class="fa-solid fa-chart-line text-blue-600 text-xl"></i></div>
-              <div class="flex-1 glass-card p-7 rounded-3xl w-full md:w-[calc(50%-2rem)] ml-0 md:ml-auto">
-                <span class="font-mono text-xs font-bold text-blue-600 border border-blue-200 px-3 py-1 rounded-full">Current</span>
-                <h3 class="text-2xl font-extrabold mt-3 mb-2 text-gray-800">SOC Level 1 Analyst Path</h3>
-                <p class="text-gray-600 text-base">Advanced training in SIEM pipeline management, malware containment, and real‑time security correlation.</p>
+              <div class="w-14 h-14 rounded-full border-2 border-indigo-500 flex items-center justify-center bg-black/50 shadow-md md:order-1"><i class="fa-solid fa-chart-line text-indigo-400 text-xl"></i></div>
+              <div class="flex-1 glass-card p-7 rounded-2xl w-full md:w-[calc(50%-2rem)] ml-0 md:ml-auto">
+                <span class="font-mono text-xs font-bold text-indigo-400 border border-indigo-500/30 px-3 py-1 rounded-full">Current</span>
+                <h3 class="text-2xl font-extrabold mt-3 mb-2 text-white">SOC Level 1 Analyst Path</h3>
+                <p class="text-gray-300 text-base">Advanced training in SIEM pipeline management, malware containment, and real‑time security correlation.</p>
               </div>
             </div>
             <div class="relative flex flex-col md:flex-row items-center gap-6 mb-12 timeline-item">
-              <div class="w-14 h-14 rounded-full border-2 border-blue-300 flex items-center justify-center bg-white/70 md:order-2"><i class="fa-solid fa-code text-blue-500 text-xl"></i></div>
-              <div class="flex-1 glass-card p-7 rounded-3xl w-full md:w-[calc(50%-2rem)] md:mr-auto">
-                <span class="font-mono text-xs font-bold text-blue-500 border border-blue-200 px-3 py-1 rounded-full">Completed</span>
-                <h3 class="text-2xl font-extrabold mt-3 mb-2 text-gray-800">Cyber Security 101 — Defense</h3>
-                <p class="text-gray-600 text-base">Practical offensive techniques to understand adversarial TTPs. Built defensive playbooks.</p>
+              <div class="w-14 h-14 rounded-full border-2 border-indigo-400/50 flex items-center justify-center bg-black/40 md:order-2"><i class="fa-solid fa-code text-indigo-300 text-xl"></i></div>
+              <div class="flex-1 glass-card p-7 rounded-2xl w-full md:w-[calc(50%-2rem)] md:mr-auto">
+                <span class="font-mono text-xs font-bold text-indigo-400 border border-indigo-500/30 px-3 py-1 rounded-full">Completed</span>
+                <h3 class="text-2xl font-extrabold mt-3 mb-2 text-white">Cyber Security 101 — Defense</h3>
+                <p class="text-gray-300 text-base">Practical offensive techniques to understand adversarial TTPs. Built defensive playbooks.</p>
               </div>
             </div>
             <div class="relative flex flex-col md:flex-row items-center gap-6 timeline-item">
-              <div class="w-14 h-14 rounded-full border-2 border-blue-200 flex items-center justify-center bg-white/50 md:order-1"><i class="fa-solid fa-network-wired text-blue-400 text-xl"></i></div>
-              <div class="flex-1 glass-card p-7 rounded-3xl w-full md:w-[calc(50%-2rem)] ml-0 md:ml-auto">
-                <span class="font-mono text-xs font-bold text-blue-400 border border-blue-100 px-3 py-1 rounded-full">Foundation</span>
-                <h3 class="text-2xl font-extrabold mt-3 mb-2 text-gray-800">Pre‑Security & Networking</h3>
-                <p class="text-gray-600 text-base">Core networking concepts, Linux proficiency, security principles essential for defense.</p>
+              <div class="w-14 h-14 rounded-full border-2 border-indigo-400/30 flex items-center justify-center bg-black/30 md:order-1"><i class="fa-solid fa-network-wired text-indigo-300 text-xl"></i></div>
+              <div class="flex-1 glass-card p-7 rounded-2xl w-full md:w-[calc(50%-2rem)] ml-0 md:ml-auto">
+                <span class="font-mono text-xs font-bold text-indigo-400 border border-indigo-500/30 px-3 py-1 rounded-full">Foundation</span>
+                <h3 class="text-2xl font-extrabold mt-3 mb-2 text-white">Pre‑Security & Networking</h3>
+                <p class="text-gray-300 text-base">Core networking concepts, Linux proficiency, security principles essential for defense.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- CREDENTIALS -->
-      <section id="credentials" class="px-6 md:px-16 py-24 bg-white/40">
+      <!-- Credentials -->
+      <section id="credentials" class="px-6 md:px-16 py-24">
         <div class="max-w-7xl mx-auto">
-          <h2 class="font-sans text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900">03. Verified Credentials</h2>
+          <h2 class="font-sans text-5xl md:text-6xl font-extrabold tracking-tight text-white">03. Verified Credentials</h2>
           <div class="section-divider mb-10"></div>
           <div class="grid md:grid-cols-2 gap-8">
-            <a href="https://tryhackme.com/certificate/THM-ARJJJENRWO" target="_blank" class="glass-card p-7 rounded-3xl group transition reveal-item">
-              <i class="fa-solid fa-certificate text-3xl text-blue-600 mb-3 block"></i>
-              <h3 class="text-2xl font-bold text-gray-800">Cyber Security 101</h3>
-              <p class="text-gray-500 text-base mt-1">Defensive architecture validation, SIEM configuration.</p>
-              <div class="font-mono text-sm font-semibold text-blue-600 mt-5">TryHackMe — Verified</div>
+            <a href="https://tryhackme.com/certificate/THM-ARJJJENRWO" target="_blank" class="glass-card p-7 rounded-2xl group transition reveal-item">
+              <i class="fa-solid fa-certificate text-3xl text-indigo-400 mb-3 block"></i>
+              <h3 class="text-2xl font-bold text-white">Cyber Security 101</h3>
+              <p class="text-gray-400 text-base mt-1">Defensive architecture validation, SIEM configuration.</p>
+              <div class="font-mono text-sm font-semibold text-indigo-400 mt-5">TryHackMe — Verified</div>
             </a>
-            <a href="https://tryhackme.com/certificate/THM-FNKRNERDLO" target="_blank" class="glass-card p-7 rounded-3xl group transition reveal-item">
-              <i class="fa-solid fa-shield-halved text-3xl text-blue-600 mb-3 block"></i>
-              <h3 class="text-2xl font-bold text-gray-800">Pre‑Security Certification</h3>
-              <p class="text-gray-500 text-base mt-1">Core security principles & Linux command mastery.</p>
-              <div class="font-mono text-sm font-semibold text-blue-600 mt-5">TryHackMe — Verified</div>
+            <a href="https://tryhackme.com/certificate/THM-FNKRNERDLO" target="_blank" class="glass-card p-7 rounded-2xl group transition reveal-item">
+              <i class="fa-solid fa-shield-halved text-3xl text-indigo-400 mb-3 block"></i>
+              <h3 class="text-2xl font-bold text-white">Pre‑Security Certification</h3>
+              <p class="text-gray-400 text-base mt-1">Core security principles & Linux command mastery.</p>
+              <div class="font-mono text-sm font-semibold text-indigo-400 mt-5">TryHackMe — Verified</div>
             </a>
           </div>
-          <div class="mt-12 p-6 border-l-4 border-blue-500 bg-white/60 rounded-r-2xl reveal-item">
+          <div class="mt-12 p-6 border-l-4 border-indigo-500 bg-black/30 rounded-r-2xl reveal-item">
             <div class="flex items-center gap-3">
-              <i class="fa-solid fa-trophy text-2xl text-blue-600"></i>
-              <div><p class="font-bold text-gray-800 text-lg">Top 4% Cybersecurity Professional</p><p class="font-mono text-sm text-gray-500">Global recognition in defensive security</p></div>
+              <i class="fa-solid fa-trophy text-2xl text-indigo-400"></i>
+              <div><p class="font-bold text-white text-lg">Top 4% Cybersecurity Professional</p><p class="font-mono text-sm text-gray-400">Global recognition in defensive security</p></div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- CONTACT FOOTER -->
-      <footer id="contact" class="border-t border-gray-200 py-20 px-6 md:px-16 text-center bg-white">
+      <!-- Contact Footer -->
+      <footer id="contact" class="border-t border-white/10 py-20 px-6 md:px-16 text-center bg-black/30">
         <div class="max-w-4xl mx-auto">
-          <p class="font-mono text-sm font-semibold text-blue-600 uppercase tracking-wider mb-4">Get in touch</p>
-          <a href="mailto:alifaizan20@outlook.com" class="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-800 hover:text-blue-600 transition">alifaizan20@outlook.com</a>
+          <p class="font-mono text-sm font-semibold text-indigo-400 uppercase tracking-wider mb-4">Get in touch</p>
+          <a href="mailto:alifaizan20@outlook.com" class="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white hover:text-indigo-400 transition">alifaizan20@outlook.com</a>
           <div class="flex justify-center gap-8 mt-12 mb-12">
-            <a href="https://www.linkedin.com/in/mohdali02/" target="_blank" class="w-14 h-14 rounded-full border border-gray-300 flex items-center justify-center text-xl text-gray-600 hover:border-blue-500 hover:text-blue-600 transition"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://github.com/Mohd-Ali2" target="_blank" class="w-14 h-14 rounded-full border border-gray-300 flex items-center justify-center text-xl text-gray-600 hover:border-blue-500 hover:text-blue-600 transition"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/mohdali02/" target="_blank" class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center text-xl text-white/80 hover:border-indigo-400 hover:text-indigo-400 transition"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://github.com/Mohd-Ali2" target="_blank" class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center text-xl text-white/80 hover:border-indigo-400 hover:text-indigo-400 transition"><i class="fa-brands fa-github"></i></a>
           </div>
-          <div class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 font-mono text-sm text-gray-400">
+          <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 font-mono text-sm text-gray-500">
             <p>© 2026 Mohammad Ali — Cybersecurity Engineer</p>
             <p>Based in Mumbai, India</p>
           </div>
@@ -248,61 +287,72 @@
       </footer>
     </main>
 
-    <!-- ========================
-         FLOATING CHAT (AI + knowledge base + Gemini API ready)
-    ========================= -->
+    <!-- Floating Chat Widget (Gemini AI Powered) -->
     <div class="fixed bottom-6 right-6 z-50">
-      <button @click="chatOpen = !chatOpen" class="w-14 h-14 rounded-full bg-blue-600 shadow-lg flex items-center justify-center text-white text-xl hover:bg-blue-700 transition-all">
+      <button @click="chatOpen = !chatOpen" class="w-14 h-14 rounded-full bg-indigo-600 shadow-lg flex items-center justify-center text-white text-xl hover:bg-indigo-700 transition-all">
         <i class="fa-regular fa-comment-dots"></i>
       </button>
     </div>
 
-    <div v-if="chatOpen" class="fixed bottom-24 right-6 w-96 max-w-[calc(100vw-3rem)] chat-window rounded-2xl shadow-xl z-50 transition-all">
-      <div class="flex justify-between items-center px-5 py-4 border-b border-gray-100">
-        <span class="font-bold text-gray-800"><i class="fa-regular fa-message text-blue-500 mr-2"></i>Ask Mohammad</span>
-        <button @click="chatOpen = false" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark"></i></button>
+    <div v-if="chatOpen" class="fixed bottom-24 right-6 w-96 max-w-[calc(100vw-3rem)] chat-window rounded-2xl shadow-2xl z-50 transition-all">
+      <div class="flex justify-between items-center px-5 py-4 border-b border-gray-700">
+        <span class="font-bold text-white"><i class="fa-regular fa-message text-indigo-400 mr-2"></i>Ask Mohammad AI</span>
+        <button @click="chatOpen = false" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="chat-messages h-96 overflow-y-auto p-4 flex flex-col gap-3" ref="chatContainer">
         <div v-for="msg in messages" :class="msg.role === 'user' ? 'user-msg' : 'bot-msg'" class="max-w-[85%] rounded-2xl px-4 py-2 text-sm">
           {{ msg.content }}
         </div>
-        <div v-if="loading" class="bot-msg px-4 py-2 rounded-2xl text-sm italic text-gray-500">Typing... <i class="fa-regular fa-circle-notch fa-spin"></i></div>
+        <div v-if="loading" class="bot-msg px-4 py-2 rounded-2xl text-sm italic text-gray-300">Thinking... <i class="fa-regular fa-circle-notch fa-spin"></i></div>
       </div>
-      <div class="p-3 border-t border-gray-100 flex gap-2">
-        <input v-model="userInput" @keyup.enter="sendMessage" type="text" placeholder="Ask me anything..." class="chat-input flex-1 rounded-full px-4 py-2 text-gray-700 text-sm">
-        <button @click="sendMessage" class="bg-blue-600 text-white rounded-full px-5 py-2 text-sm font-medium hover:bg-blue-700 transition">Send</button>
+      <div class="p-3 border-t border-gray-700 flex gap-2">
+        <input v-model="userInput" @keyup.enter="sendMessage" type="text" placeholder="Ask me anything — skills, background, certifications..." class="chat-input flex-1 rounded-full px-4 py-2 text-gray-200 text-sm">
+        <button @click="sendMessage" class="bg-indigo-600 text-white rounded-full px-5 py-2 text-sm font-medium hover:bg-indigo-700 transition">Send</button>
       </div>
-      <div class="text-xs text-gray-400 text-center pb-3">⚡ Powered by Gemini AI + personal knowledge base</div>
+      <div class="text-xs text-gray-500 text-center pb-3">⚡ Powered by Google Gemini AI</div>
     </div>
   </div>
 
   <script>
-    // ---------------------------------------------------------
-    // 1) GEMINI API configuration (FREE, no credit card)
-    //    Replace "YOUR_GEMINI_API_KEY" with a real key from
-    //    https://aistudio.google.com/apikey
-    // ---------------------------------------------------------
-    const GEMINI_API_KEY = "AIzaSyB4Bpn7f2cLSG-ymsNpqHe4aSZnU7xG4mo";  // <-- paste your key here
+    // --------------------------------------------------------------
+    // GEMINI AI INTEGRATION (REAL LLM) — using provided API key
+    // --------------------------------------------------------------
+    const GEMINI_API_KEY = "AIzaSyB4Bpn7f2cLSG-ymsNpqHe4aSZnU7xG4mo";
     const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
 
-    // 2) personal knowledge base (used as context & fallback)
-    const personalContext = `
+    // Personal context for the AI (enhances answers)
+    const PERSONAL_CONTEXT = `
       Mohammad Ali is a Cybersecurity Engineer based in Mumbai, India.
       Education: Bachelor of Computer Applications (BCA).
       Skills: SIEM (Splunk), Packet Analysis, Log Correlation, Linux/Unix, incident response.
-      Certifications: Cyber Security 101 and Pre-Security (TryHackMe).
-      Rank: top 4% globally on TryHackMe, completed 109+ security labs.
-      Email: alifaizan20@outlook.com. GitHub: github.com/Mohd-Ali2. LinkedIn: linkedin.com/in/mohdali02.
-      Current focus: SOC Level 1 Analyst path. He is passionate about defensive security, threat hunting.
+      Certifications: Cyber Security 101 and Pre-Security (TryHackMe) — both verified.
+      Rankings: Top 4% globally on TryHackMe, completed 109+ security labs.
+      Email: alifaizan20@outlook.com.
+      GitHub: github.com/Mohd-Ali2.
+      LinkedIn: linkedin.com/in/mohdali02.
+      Current focus: SOC Level 1 Analyst path, passionate about defensive security and threat hunting.
+      He is a BCA graduate, proactive, and always improving.
     `;
 
-    // 3) Vue 3 + reactive chat
+    // Fallback local answers (if API fails)
+    const localFallback = (question) => {
+      const q = question.toLowerCase();
+      if (q.includes("skill") || q.includes("technology")) return "My core skills include SIEM (Splunk), Packet Analysis, Log Correlation, Linux, and incident response.";
+      if (q.includes("certif")) return "I hold Cyber Security 101 and Pre‑Security certifications from TryHackMe, top 4% globally.";
+      if (q.includes("location") || q.includes("mumbai")) return "I'm based in Mumbai, India.";
+      if (q.includes("education") || q.includes("bca")) return "I have a Bachelor of Computer Applications (BCA) degree.";
+      if (q.includes("email") || q.includes("contact")) return "You can email me at alifaizan20@outlook.com.";
+      if (q.includes("tryhackme") || q.includes("rank")) return "I'm in the top 4% on TryHackMe, with 109+ completed rooms.";
+      return "I'm Mohammad Ali, a cybersecurity engineer. Ask me about my skills, certifications, background, or contact details.";
+    };
+
+    // Vue App
     const { createApp, ref, nextTick } = Vue;
     const app = createApp({
       setup() {
         const chatOpen = ref(false);
         const messages = ref([
-          { role: "bot", content: "👋 Hi! I'm Mohammad's AI assistant. You can ask me about his skills, certifications, location, or anything related to his work." }
+          { role: "bot", content: "👋 Hey! I'm Mohammad's AI assistant. Ask me anything about his skills, certifications, experience, or contact info — I'll give you a real answer using Gemini AI." }
         ]);
         const userInput = ref("");
         const loading = ref(false);
@@ -314,17 +364,6 @@
           });
         };
 
-        // Helper: fallback answer (based on keywords) – acts as safety net if API fails
-        const getFallbackAnswer = (query) => {
-          const lower = query.toLowerCase();
-          if (lower.includes("skill") || lower.includes("technology")) return "My core skills include SIEM (Splunk), Packet Analysis, Log Correlation, Linux, and incident response.";
-          if (lower.includes("certification") || lower.includes("certificate")) return "I hold Cyber Security 101 and Pre‑Security certifications from TryHackMe, and I'm in the top 4% globally.";
-          if (lower.includes("location") || lower.includes("mumbai")) return "I'm based in Mumbai, India.";
-          if (lower.includes("education") || lower.includes("bca")) return "I have a Bachelor of Computer Applications (BCA) degree.";
-          if (lower.includes("contact") || lower.includes("email")) return "You can reach me at alifaizan20@outlook.com or connect on LinkedIn.";
-          return "I'm Mohammad Ali, a cybersecurity engineer. For specific details, please ask about my skills, certifications, background, or contact info.";
-        };
-
         const sendMessage = async () => {
           const text = userInput.value.trim();
           if (!text) return;
@@ -334,36 +373,28 @@
           loading.value = true;
 
           try {
-            let aiResponse = null;
-            // If GEMINI API KEY is configured (real key), call Gemini
-            if (GEMINI_API_KEY && GEMINI_API_KEY !== "YOUR_GEMINI_API_KEY") {
-              const requestBody = {
-                contents: [{
-                  parts: [{
-                    text: `You are a helpful, friendly AI assistant for Mohammad Ali (cybersecurity engineer). Answer naturally and concisely. Use this context about him if relevant: ${personalContext}\n\nUser: ${text}\nAssistant:`
-                  }]
-                }]
-              };
-              const res = await fetch(GEMINI_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(requestBody)
-              });
-              const data = await res.json();
-              if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-                aiResponse = data.candidates[0].content.parts[0].text;
-              } else {
-                throw new Error("Gemini API error, using fallback.");
-              }
+            // Build prompt with context to ensure accurate answers about Mohammad
+            const prompt = `You are a helpful, professional AI assistant for Mohammad Ali (cybersecurity engineer). Answer in a friendly tone, concisely. Use this context: ${PERSONAL_CONTEXT}\n\nUser: ${text}\nAssistant:`;
+            
+            const response = await fetch(GEMINI_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                contents: [{ parts: [{ text: prompt }] }]
+              })
+            });
+            
+            const data = await response.json();
+            let aiReply = null;
+            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+              aiReply = data.candidates[0].content.parts[0].text;
             } else {
-              // If no API key provided, use built‑in fallback only (still works!)
-              aiResponse = getFallbackAnswer(text);
+              throw new Error("Gemini returned empty");
             }
-
-            messages.value.push({ role: "bot", content: aiResponse });
+            messages.value.push({ role: "bot", content: aiReply });
           } catch (err) {
-            console.warn("Gemini API failed, using local fallback:", err);
-            messages.value.push({ role: "bot", content: getFallbackAnswer(text) });
+            console.warn("Gemini API error, using fallback:", err);
+            messages.value.push({ role: "bot", content: localFallback(text) });
           } finally {
             loading.value = false;
             scrollToBottom();
@@ -423,9 +454,10 @@
       });
     });
 
-    // little hero GSAP fade
-    gsap.from("h1 .block:first-child", { y: 30, opacity: 0, duration: 0.8, delay: 0.2 });
-    gsap.from("h1 .block:last-child", { y: 30, opacity: 0, duration: 0.8, delay: 0.4 });
+    // Hero text entrance
+    gsap.from("h1 .block:first-child", { y: 40, opacity: 0, duration: 0.9, delay: 0.2 });
+    gsap.from("h1 .block:last-child", { y: 40, opacity: 0, duration: 0.9, delay: 0.4 });
+    gsap.from(".text-gray-300.text-xl", { y: 30, opacity: 0, duration: 0.8, delay: 0.6 });
   </script>
 </body>
 </html>
