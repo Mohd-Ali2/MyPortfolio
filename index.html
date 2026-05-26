@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Mohammad Ali | Cyber Kinetic — Award‑Winning Portfolio</title>
+  <title>Mohammad Ali | Cyber Kinetic — AI‑Powered Portfolio</title>
   
-  <!-- Google Fonts: Inter + Space Grotesk (Web3 vibe) -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Core Libraries -->
+  <!-- GSAP, ScrollTrigger, Lenis -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -26,7 +26,7 @@
       overflow-x: hidden;
     }
     
-    /* Premium animated gradient (Web3 neon flow) */
+    /* Animated gradient background */
     .gradient-orb {
       position: fixed;
       top: 0;
@@ -34,7 +34,7 @@
       width: 100%;
       height: 100%;
       z-index: -2;
-      background: radial-gradient(circle at 20% 30%, #0a0f1a, #03060c);
+      background: radial-gradient(circle at 30% 20%, #0a0f1a, #020408);
     }
     .gradient-flow {
       position: fixed;
@@ -43,7 +43,7 @@
       width: 100%;
       height: 100%;
       z-index: -1;
-      background: linear-gradient(125deg, rgba(79,70,229,0.2), rgba(139,92,246,0.15), rgba(0,0,0,0.4));
+      background: linear-gradient(125deg, rgba(79,70,229,0.25), rgba(139,92,246,0.15), rgba(0,0,0,0.5));
       background-size: 300% 300%;
       animation: liquidShift 16s ease infinite;
       pointer-events: none;
@@ -54,21 +54,20 @@
       100% { background-position: 0% 50%; opacity: 0.6; }
     }
     
-    /* Glassmorphic cards with Web3 glow */
+    /* Glass cards - ensure visibility */
     .glass-card {
-      background: rgba(8, 15, 25, 0.65);
+      background: rgba(8, 15, 25, 0.75);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(79, 70, 229, 0.35);
       transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
     .glass-card:hover {
       border-color: #8b5cf6;
-      background: rgba(15, 25, 45, 0.85);
+      background: rgba(15, 25, 45, 0.9);
       transform: translateY(-6px);
       box-shadow: 0 20px 35px -15px rgba(79,70,229,0.4);
     }
     
-    /* Custom scrollbar */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: #0f172a; }
     ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 10px; }
@@ -80,7 +79,6 @@
       margin: 1.5rem 0;
     }
     
-    /* reveal animation */
     .reveal-item {
       opacity: 0;
       transform: translateY(40px);
@@ -91,7 +89,6 @@
       transform: translateY(0);
     }
     
-    /* Ask Me big button */
     .big-ask-btn {
       background: linear-gradient(135deg, #4f46e5, #7c3aed);
       box-shadow: 0 10px 30px -8px rgba(79, 70, 229, 0.6);
@@ -102,7 +99,6 @@
       box-shadow: 0 20px 35px -10px rgba(79, 70, 229, 0.8);
     }
     
-    /* Chat bubbles */
     .user-bubble {
       background: #4f46e5;
       border-bottom-right-radius: 6px;
@@ -113,15 +109,6 @@
       border: 1px solid #334155;
     }
     
-    /* Lenis smooth scroll */
-    html.lenis {
-      height: auto;
-    }
-    .lenis.lenis-smooth {
-      scroll-behavior: auto;
-    }
-    
-    /* 3D canvas */
     #three-canvas {
       position: fixed;
       top: 0;
@@ -130,10 +117,9 @@
       height: 100vh;
       z-index: 0;
       pointer-events: none;
-      opacity: 0.85;
+      opacity: 0.75;
     }
     
-    /* Neon glitch text */
     .glitch {
       animation: glitchPulse 3s infinite;
     }
@@ -150,17 +136,17 @@
   <canvas id="three-canvas"></canvas>
   
   <div id="app">
-    <!-- Premium navigation -->
+    <!-- Navigation -->
     <nav class="fixed top-0 w-full px-6 md:px-12 py-5 z-50 flex justify-between items-center bg-black/40 backdrop-blur-xl border-b border-white/10">
       <div class="font-space font-extrabold text-2xl tracking-tighter text-white">M.ALI</div>
       <div class="hidden md:flex gap-10 font-mono text-sm font-semibold uppercase tracking-wide text-white/80">
-        <a href="#about" class="hover:text-indigo-400 transition-colors duration-300">Profile</a>
-        <a href="#journey" class="hover:text-indigo-400 transition-colors duration-300">Journey</a>
-        <a href="#credentials" class="hover:text-indigo-400 transition-colors duration-300">Credentials</a>
-        <a href="#ask" class="hover:text-indigo-400 transition-colors duration-300">Ask AI</a>
-        <a href="#contact" class="hover:text-indigo-400 transition-colors duration-300">Contact</a>
+        <a href="#about" class="hover:text-indigo-400 transition">Profile</a>
+        <a href="#journey" class="hover:text-indigo-400 transition">Journey</a>
+        <a href="#credentials" class="hover:text-indigo-400 transition">Credentials</a>
+        <a href="#ask" class="hover:text-indigo-400 transition">Ask AI</a>
+        <a href="#contact" class="hover:text-indigo-400 transition">Contact</a>
       </div>
-      <a href="#contact" class="border border-indigo-500 text-indigo-300 font-mono text-sm uppercase px-5 py-2 rounded-full hover:bg-indigo-600 hover:text-white transition-all">Connect</a>
+      <a href="#contact" class="border border-indigo-500 text-indigo-300 font-mono text-sm uppercase px-5 py-2 rounded-full hover:bg-indigo-600 hover:text-white transition">Connect</a>
     </nav>
     
     <main class="relative z-10 pt-28">
@@ -189,7 +175,7 @@
         </div>
       </section>
       
-      <!-- About -->
+      <!-- About (Profile) -->
       <section id="about" class="px-6 md:px-16 py-28">
         <div class="max-w-7xl mx-auto">
           <h2 class="font-space text-5xl md:text-7xl font-extrabold text-white">01. Profile</h2>
@@ -219,35 +205,43 @@
         </div>
       </section>
       
-      <!-- Journey timeline -->
+      <!-- Journey timeline (fully visible) -->
       <section id="journey" class="px-6 md:px-16 py-28">
         <div class="max-w-7xl mx-auto">
           <h2 class="font-space text-5xl md:text-7xl font-extrabold text-white">02. Journey</h2>
           <div class="section-divider mb-12"></div>
-          <div class="relative before:absolute before:left-1/2 before:w-px before:h-full before:bg-gradient-to-b before:from-indigo-500/20 before:via-indigo-400 before:to-indigo-500/20 before:hidden md:before:block">
-            <div class="timeline-item relative flex flex-col md:flex-row gap-8 mb-16">
-              <div class="md:w-1/2 md:ml-auto glass-card p-7 rounded-2xl">
+          <div class="relative">
+            <!-- Desktop timeline line -->
+            <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-gradient-to-b from-indigo-500/20 via-indigo-400 to-indigo-500/20"></div>
+            
+            <!-- Item 1 -->
+            <div class="relative flex flex-col md:flex-row gap-8 mb-16">
+              <div class="md:w-1/2 md:ml-auto glass-card p-7 rounded-2xl reveal-item">
                 <span class="text-xs font-mono bg-indigo-600/20 px-3 py-1 rounded-full">CURRENT</span>
                 <h3 class="text-2xl font-bold mt-3">SOC Level 1 Analyst Path</h3>
-                <p class="text-gray-300 mt-2">SIEM pipeline management, malware containment, real‑time correlation.</p>
+                <p class="text-gray-300 mt-2">SIEM pipeline management, malware containment, real‑time correlation. Active training in threat hunting.</p>
               </div>
-              <div class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-indigo-500 border-4 border-black z-10 top-6"></div>
+              <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-indigo-500 border-4 border-black z-10 top-6"></div>
             </div>
-            <div class="timeline-item relative flex flex-col md:flex-row gap-8 mb-16">
-              <div class="md:w-1/2 glass-card p-7 rounded-2xl">
+            
+            <!-- Item 2 -->
+            <div class="relative flex flex-col md:flex-row gap-8 mb-16">
+              <div class="md:w-1/2 glass-card p-7 rounded-2xl reveal-item">
                 <span class="text-xs font-mono bg-indigo-600/20 px-3 py-1 rounded-full">COMPLETED</span>
                 <h3 class="text-2xl font-bold mt-3">Cyber Security 101 — Defense</h3>
-                <p class="text-gray-300 mt-2">Offensive techniques, defensive playbooks, threat emulation.</p>
+                <p class="text-gray-300 mt-2">Offensive techniques, defensive playbooks, threat emulation, and incident response foundations.</p>
               </div>
-              <div class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-indigo-400 border-4 border-black z-10 top-6"></div>
+              <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-indigo-400 border-4 border-black z-10 top-6"></div>
             </div>
-            <div class="timeline-item relative flex flex-col md:flex-row gap-8">
-              <div class="md:w-1/2 md:ml-auto glass-card p-7 rounded-2xl">
+            
+            <!-- Item 3 -->
+            <div class="relative flex flex-col md:flex-row gap-8">
+              <div class="md:w-1/2 md:ml-auto glass-card p-7 rounded-2xl reveal-item">
                 <span class="text-xs font-mono bg-indigo-600/20 px-3 py-1 rounded-full">FOUNDATION</span>
                 <h3 class="text-2xl font-bold mt-3">Pre‑Security & Networking</h3>
-                <p class="text-gray-300 mt-2">Core networking, Linux proficiency, security fundamentals.</p>
+                <p class="text-gray-300 mt-2">Core networking, Linux proficiency, security fundamentals, and introductory blue team concepts.</p>
               </div>
-              <div class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-indigo-300 border-4 border-black z-10 top-6"></div>
+              <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-indigo-300 border-4 border-black z-10 top-6"></div>
             </div>
           </div>
         </div>
@@ -262,13 +256,13 @@
             <a href="https://tryhackme.com/certificate/THM-ARJJJENRWO" target="_blank" class="glass-card p-7 rounded-2xl group reveal-item">
               <i class="fa-solid fa-certificate text-3xl text-indigo-400 mb-3"></i>
               <h3 class="text-2xl font-bold">Cyber Security 101</h3>
-              <p class="text-gray-400">Defensive architecture, SIEM configuration</p>
+              <p class="text-gray-400">Defensive architecture, SIEM configuration, hands-on labs</p>
               <div class="mt-4 text-sm text-indigo-400">TryHackMe Verified</div>
             </a>
             <a href="https://tryhackme.com/certificate/THM-FNKRNERDLO" target="_blank" class="glass-card p-7 rounded-2xl group reveal-item">
               <i class="fa-solid fa-shield-halved text-3xl text-indigo-400 mb-3"></i>
               <h3 class="text-2xl font-bold">Pre‑Security</h3>
-              <p class="text-gray-400">Core security + Linux mastery</p>
+              <p class="text-gray-400">Core security principles, Linux mastery, network foundations</p>
               <div class="mt-4 text-sm text-indigo-400">TryHackMe Verified</div>
             </a>
           </div>
@@ -281,12 +275,12 @@
         </div>
       </section>
       
-      <!-- ASK ME SECTION: BIG BUTTON + AI CHAT -->
+      <!-- ASK ME (AI Chat with OpenRouter API) -->
       <section id="ask" class="px-6 md:px-16 py-28 border-y border-indigo-900/30 bg-black/20">
         <div class="max-w-5xl mx-auto text-center">
           <h2 class="font-space text-5xl md:text-7xl font-extrabold text-white">Ask Me</h2>
           <div class="section-divider mx-auto mb-8"></div>
-          <p class="text-gray-300 text-xl mb-10">Live AI — any question about my skills, background, certifications. Powered by Gemini + intelligent fallback.</p>
+          <p class="text-gray-300 text-xl mb-10">Live AI — any question about my skills, background, certifications. Powered by OpenRouter (Gemini 2.0 Flash Lite).</p>
           
           <button v-if="!chatActive" @click="chatActive = true" class="big-ask-btn px-12 py-5 rounded-full text-2xl font-bold flex gap-3 mx-auto items-center">
             <i class="fa-regular fa-comment-dots text-3xl"></i> Ask Me Anything
@@ -307,7 +301,7 @@
               <input v-model="userInput" @keyup.enter="sendMessage" placeholder="e.g., What are your top skills?" class="flex-1 bg-black/60 border border-indigo-500/40 rounded-full px-5 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400">
               <button @click="sendMessage" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-full font-semibold transition">Ask</button>
             </div>
-            <p class="text-xs text-gray-500 mt-3 text-center">⚡ Real Gemini AI + local intelligence — guaranteed response</p>
+            <p class="text-xs text-gray-500 mt-3 text-center">⚡ Using OpenRouter (Gemini 2.0 Flash Lite) – free & always responsive</p>
           </div>
         </div>
       </section>
@@ -329,7 +323,7 @@
   
   <script>
     // ------------------------------
-    // 1. Three.js Advanced Scene (WebGL immersive)
+    // 1. Three.js Advanced Scene
     // ------------------------------
     const canvas = document.getElementById('three-canvas');
     const scene = new THREE.Scene();
@@ -341,7 +335,7 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     
-    // Particle field (floating data particles)
+    // Particle field
     const particleCount = 2200;
     const geom = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
@@ -355,13 +349,13 @@
     const particles = new THREE.Points(geom, particleMat);
     scene.add(particles);
     
-    // Central kinetic torus knot
+    // Central torus knot
     const knotGeo = new THREE.TorusKnotGeometry(3.4, 0.85, 240, 36, 3, 4);
-    const knotMat = new THREE.MeshStandardMaterial({ color: 0x4f46e5, wireframe: true, emissive: 0x2e1065, roughness: 0.3, metalness: 0.8 });
+    const knotMat = new THREE.MeshStandardMaterial({ color: 0x4f46e5, wireframe: true, emissive: 0x2e1065 });
     const knot = new THREE.Mesh(knotGeo, knotMat);
     scene.add(knot);
     
-    // Orbiting rings
+    // Orbiting ring
     const ringGeo = new THREE.TorusGeometry(4.8, 0.08, 128, 300);
     const ringMat = new THREE.MeshStandardMaterial({ color: 0xa855f7, emissive: 0x3b0764 });
     const ring = new THREE.Mesh(ringGeo, ringMat);
@@ -407,26 +401,17 @@
     });
     
     // ------------------------------
-    // 2. Lenis Smooth Scroll + GSAP ScrollTrigger
+    // 2. Lenis Smooth Scroll + GSAP
     // ------------------------------
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+    const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
     gsap.registerPlugin(ScrollTrigger);
     lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
+    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);
     
-    // GSAP counters & reveals
+    // Counters & reveals
     const counters = document.querySelectorAll('.counter');
     counters.forEach(c => {
       const target = parseInt(c.getAttribute('data-target'));
@@ -452,27 +437,23 @@
       });
     });
     
-    // Hero entrance
     gsap.from("h1 .block:first-child", { y: 100, opacity: 0, duration: 1.2, ease: "power4.out", delay: 0.2 });
     gsap.from("h1 .block:last-child", { y: 100, opacity: 0, duration: 1.2, ease: "power4.out", delay: 0.4 });
     
-    // Anchor smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          lenis.scrollTo(target, { offset: -80 });
-        }
+        if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -80 }); }
       });
     });
     
     // ------------------------------
-    // 3. Vue AI Chat (Gemini + local fallback)
+    // 3. AI Chat using OpenRouter (your new API key)
     // ------------------------------
-    const GEMINI_API_KEY = "AIzaSyB4Bpn7f2cLSG-ymsNpqHe4aSZnU7xG4mo";
-    const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
-    const CONTEXT = `
+    const OPENROUTER_API_KEY = "0181871613161f2c9150574ea778e00e";
+    const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
+    
+    const PERSONAL_CONTEXT = `
       Mohammad Ali is a Cybersecurity Engineer based in Mumbai, India.
       Education: BCA.
       Skills: SIEM (Splunk), Packet Analysis, Log Correlation, Linux/Unix, incident response, threat hunting.
@@ -482,25 +463,25 @@
       Current focus: SOC Level 1 Analyst path.
     `;
     
-    const localSmartAnswer = (q) => {
+    // Fallback local answers (intelligent)
+    const localAnswer = (q) => {
       const lower = q.toLowerCase();
-      if (lower.includes("skill") || lower.includes("tech")) return "My core skills: SIEM (Splunk), Packet Analysis, Log Correlation, Linux/Unix, incident response, and threat hunting.";
+      if (lower.includes("skill") || lower.includes("tool")) return "My core skills: SIEM (Splunk), Packet Analysis, Log Correlation, Linux/Unix, incident response, and threat hunting.";
       if (lower.includes("certif")) return "I hold Cyber Security 101 and Pre‑Security certifications from TryHackMe, top 4% globally.";
-      if (lower.includes("mumbai") || lower.includes("location")) return "I'm based in Mumbai, India.";
-      if (lower.includes("bca") || lower.includes("education")) return "I have a Bachelor of Computer Applications (BCA) degree.";
+      if (lower.includes("location") || lower.includes("mumbai")) return "I'm based in Mumbai, India.";
+      if (lower.includes("education") || lower.includes("bca")) return "I have a Bachelor of Computer Applications (BCA) degree.";
       if (lower.includes("email") || lower.includes("contact")) return "You can email me at alifaizan20@outlook.com.";
       if (lower.includes("tryhackme") || lower.includes("rank")) return "I'm in the top 4% on TryHackMe with 109+ completed labs.";
       if (lower.includes("github")) return "My GitHub: github.com/Mohd-Ali2.";
       if (lower.includes("linkedin")) return "LinkedIn: linkedin.com/in/mohdali02.";
-      if (lower.includes("experience")) return "I'm on the SOC Level 1 Analyst path, after Cyber Security 101 and Pre-Security tracks.";
-      return `I'm Mohammad Ali, a cybersecurity engineer. ${CONTEXT.split('.')[0]}. Ask me about my skills, certifications, or background.`;
+      return `I'm Mohammad Ali, a cybersecurity engineer. ${PERSONAL_CONTEXT.split('.')[0]}. Ask me about my skills, certifications, or background.`;
     };
     
     const { createApp, ref, nextTick } = Vue;
     const app = createApp({
       setup() {
         const chatActive = ref(false);
-        const messages = ref([{ role: "ai", content: "👋 I'm Mohammad's AI. Ask me anything about his work, skills, certifications, or background — live AI powered." }]);
+        const messages = ref([{ role: "ai", content: "👋 I'm Mohammad's AI. Ask me anything about his work, skills, certifications, or background — live AI powered by OpenRouter." }]);
         const userInput = ref("");
         const loading = ref(false);
         const chatContainer = ref(null);
@@ -514,19 +495,37 @@
           userInput.value = "";
           scrollChat();
           loading.value = true;
+          
           try {
-            const prompt = `You are an AI assistant for Mohammad Ali (cybersecurity engineer). Answer concisely, helpfully, using this context: ${CONTEXT}\n\nUser: ${text}\nAssistant:`;
-            const res = await fetch(GEMINI_URL, {
+            const systemPrompt = `You are a helpful AI assistant for Mohammad Ali (cybersecurity engineer). Answer concisely, warmly, and naturally. Use this context: ${PERSONAL_CONTEXT}`;
+            const response = await fetch(OPENROUTER_URL, {
               method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.5, maxOutputTokens: 400 } })
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+                'HTTP-Referer': window.location.origin,
+                'X-Title': 'Mohammad Ali Portfolio'
+              },
+              body: JSON.stringify({
+                model: "google/gemini-2.0-flash-lite-preview-02-05:free",
+                messages: [
+                  { role: "system", content: systemPrompt },
+                  { role: "user", content: text }
+                ],
+                max_tokens: 400,
+                temperature: 0.6
+              })
             });
-            const data = await res.json();
-            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-              messages.value.push({ role: "ai", content: data.candidates[0].content.parts[0].text });
-            } else throw new Error();
+            
+            const data = await response.json();
+            if (data.choices && data.choices[0]?.message?.content) {
+              messages.value.push({ role: "ai", content: data.choices[0].message.content });
+            } else {
+              throw new Error("API returned empty");
+            }
           } catch (err) {
-            messages.value.push({ role: "ai", content: localSmartAnswer(text) });
+            console.warn("OpenRouter error, using local fallback", err);
+            messages.value.push({ role: "ai", content: localAnswer(text) });
           } finally {
             loading.value = false;
             scrollChat();
@@ -534,7 +533,7 @@
         };
         
         const resetChat = () => {
-          messages.value = [{ role: "ai", content: "👋 I'm Mohammad's AI. Ask me anything about his work, skills, certifications, or background — live AI powered." }];
+          messages.value = [{ role: "ai", content: "👋 I'm Mohammad's AI. Ask me anything about his work, skills, certifications, or background — live AI powered by OpenRouter." }];
         };
         
         return { chatActive, messages, userInput, loading, chatContainer, sendMessage, resetChat };
