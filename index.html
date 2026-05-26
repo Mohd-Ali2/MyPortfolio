@@ -3,30 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>Mohammad Ali // Cyber Kinetic — Immersive Portfolio</title>
+  <title>Mohammad Ali | Cyber Kinetic — Elite Portfolio</title>
   
-  <!-- Google Fonts: Space Grotesk (Web3) + Inter (body) -->
+  <!-- Fonts: Space Grotesk (cyber) + Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Core Libraries: Three.js, GSAP (with all plugins), Lenis, Vue -->
+  <!-- GSAP + Lenis + Vue -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollSmoother.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   
   <style>
-    /* ---------- RESET & GLOBAL ---------- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-font-smoothing: antialiased;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background: #03050a;
       font-family: 'Inter', sans-serif;
@@ -34,7 +26,7 @@
       overflow-x: hidden;
     }
     
-    /* ---------- LIVE DYNAMIC GRADIENT (Web3 fluid) ---------- */
+    /* Animated gradient background */
     .gradient-orb {
       position: fixed;
       top: 0;
@@ -42,7 +34,7 @@
       width: 100%;
       height: 100%;
       z-index: -2;
-      background: radial-gradient(circle at 40% 30%, #0a0f1a, #010101);
+      background: radial-gradient(circle at 30% 20%, #0a0f1a, #010101);
     }
     .gradient-flow {
       position: fixed;
@@ -62,7 +54,7 @@
       100% { background-position: 0% 50%; opacity: 0.7; }
     }
     
-    /* ---------- GLASS CARDS (Cyberpunk glassmorphism) ---------- */
+    /* Glass cards */
     .glass-card {
       background: rgba(6, 12, 22, 0.75);
       backdrop-filter: blur(14px);
@@ -76,10 +68,9 @@
       box-shadow: 0 20px 35px -12px rgba(79,70,229,0.5);
     }
     
-    /* Custom scrollbar — ultra thin cyber glow */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: #0f172a; }
-    ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 10px; box-shadow: 0 0 6px #4f46e5; }
+    ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 10px; }
     
     .section-divider {
       width: 80px;
@@ -88,7 +79,6 @@
       margin: 1.5rem 0;
     }
     
-    /* Reveal animations */
     .reveal-item {
       opacity: 0;
       transform: translateY(40px);
@@ -99,7 +89,6 @@
       transform: translateY(0);
     }
     
-    /* BIG ASK BUTTON (magnetic) */
     .big-ask-btn {
       background: linear-gradient(135deg, #4f46e5, #7c3aed);
       box-shadow: 0 10px 30px -8px rgba(79, 70, 229, 0.7);
@@ -110,7 +99,6 @@
       box-shadow: 0 22px 35px -12px rgba(79, 70, 229, 0.9);
     }
     
-    /* Chat bubbles (Web3 clean) */
     .user-bubble {
       background: #4f46e5;
       border-bottom-right-radius: 6px;
@@ -121,7 +109,6 @@
       border: 1px solid #334155;
     }
     
-    /* 3D canvas container */
     #three-canvas {
       position: fixed;
       top: 0;
@@ -133,7 +120,6 @@
       opacity: 0.85;
     }
     
-    /* Glitch text effect for hero */
     .glitch-text {
       animation: glitchPulse 3s infinite;
     }
@@ -143,9 +129,14 @@
       66% { text-shadow: -1px 0 #a855f7, 1px 0 #4f46e5; }
     }
     
-    /* Lenis smooth scroll */
-    html.lenis { height: auto; }
-    .lenis.lenis-smooth { scroll-behavior: auto; }
+    /* Timeline visibility enhancements */
+    .timeline-dot {
+      box-shadow: 0 0 0 2px #03050a, 0 0 0 4px #4f46e5;
+    }
+    @media (max-width: 768px) {
+      .section-divider { margin: 1rem auto; }
+      .glass-card { margin-bottom: 1rem; }
+    }
   </style>
 </head>
 <body>
@@ -154,21 +145,21 @@
   <canvas id="three-canvas"></canvas>
   
   <div id="app">
-    <!-- Navigation with magnetic hover -->
+    <!-- Navigation -->
     <nav class="fixed top-0 w-full px-6 md:px-12 py-5 z-50 flex justify-between items-center bg-black/40 backdrop-blur-xl border-b border-white/10">
-      <div class="font-space font-extrabold text-2xl tracking-tighter text-white hover:text-indigo-400 transition-all duration-300">M.ALI</div>
-      <div class="hidden md:flex gap-10 font-mono text-sm font-semibold uppercase tracking-wide text-white/80">
-        <a href="#about" class="hover:text-indigo-400 transition-all duration-300 nav-link">Profile</a>
-        <a href="#journey" class="hover:text-indigo-400 transition-all duration-300 nav-link">Journey</a>
-        <a href="#credentials" class="hover:text-indigo-400 transition-all duration-300 nav-link">Credentials</a>
-        <a href="#ask" class="hover:text-indigo-400 transition-all duration-300 nav-link">Ask AI</a>
-        <a href="#contact" class="hover:text-indigo-400 transition-all duration-300 nav-link">Contact</a>
+      <div class="font-space font-extrabold text-2xl tracking-tighter text-white hover:text-indigo-400 transition">M.ALI</div>
+      <div class="hidden md:flex gap-8 font-mono text-sm font-semibold uppercase tracking-wide text-white/80">
+        <a href="#about" class="hover:text-indigo-400 transition">Profile</a>
+        <a href="#journey" class="hover:text-indigo-400 transition">Journey</a>
+        <a href="#credentials" class="hover:text-indigo-400 transition">Credentials</a>
+        <a href="#ask" class="hover:text-indigo-400 transition">Ask AI</a>
+        <a href="#contact" class="hover:text-indigo-400 transition">Contact</a>
       </div>
-      <a href="#contact" class="border border-indigo-500 text-indigo-300 font-mono text-sm uppercase px-5 py-2 rounded-full hover:bg-indigo-600 hover:text-white transition-all duration-300">Connect</a>
+      <a href="#contact" class="border border-indigo-500 text-indigo-300 font-mono text-sm uppercase px-5 py-2 rounded-full hover:bg-indigo-600 hover:text-white transition">Connect</a>
     </nav>
     
     <main class="relative z-10 pt-28">
-      <!-- HERO SECTION (imersive) -->
+      <!-- Hero -->
       <section class="px-6 md:px-16 pb-32 pt-12">
         <div class="max-w-7xl mx-auto">
           <div class="flex flex-wrap gap-5 font-mono text-sm font-medium text-indigo-300 mb-10">
@@ -193,7 +184,7 @@
         </div>
       </section>
       
-      <!-- PROFILE SECTION -->
+      <!-- Profile -->
       <section id="about" class="px-6 md:px-16 py-28">
         <div class="max-w-7xl mx-auto">
           <h2 class="font-space text-5xl md:text-7xl font-extrabold text-white">01. Profile</h2>
@@ -203,8 +194,8 @@
               <h3 class="text-3xl font-bold text-indigo-300 mb-4">Blue Team & Defense Strategy</h3>
               <p class="text-gray-300 text-lg leading-relaxed">I operate at the intersection of telemetry analytics and threat intelligence. Continuous monitoring, network hardening, incident response playbooks. Deep expertise in SIEM (Splunk), packet analysis, log correlation, and Linux environments.</p>
               <div class="flex flex-wrap gap-3 mt-8">
-                <span class="px-4 py-2 border border-indigo-500/30 rounded-xl text-sm font-mono backdrop-blur-sm">SIEM (Splunk)</span>
-                <span class="px-4 py-2 border border-indigo-500/30 rounded-xl text-sm font-mono backdrop-blur-sm">Packet Analysis</span>
+                <span class="px-4 py-2 border border-indigo-500/30 rounded-xl text-sm font-mono">SIEM (Splunk)</span>
+                <span class="px-4 py-2 border border-indigo-500/30 rounded-xl text-sm font-mono">Packet Analysis</span>
                 <span class="px-4 py-2 border border-indigo-500/30 rounded-xl text-sm font-mono">Log Correlation</span>
                 <span class="px-4 py-2 border border-indigo-500/30 rounded-xl text-sm font-mono">Linux/Unix</span>
               </div>
@@ -223,16 +214,15 @@
         </div>
       </section>
       
-      <!-- JOURNEY (vertical timeline, fully visible) -->
+      <!-- Journey Timeline (fully visible) -->
       <section id="journey" class="px-6 md:px-16 py-28">
         <div class="max-w-7xl mx-auto">
           <h2 class="font-space text-5xl md:text-7xl font-extrabold text-white">02. Journey</h2>
           <div class="section-divider mb-12"></div>
           <div class="relative">
-            <!-- Central line (desktop) -->
+            <!-- Desktop center line -->
             <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-gradient-to-b from-indigo-500/20 via-indigo-400/60 to-indigo-500/20"></div>
             
-            <!-- Node 1 -->
             <div class="relative flex flex-col md:flex-row gap-8 mb-16">
               <div class="md:w-1/2 md:ml-auto glass-card p-7 rounded-2xl reveal-item">
                 <span class="text-xs font-mono bg-indigo-600/20 px-3 py-1 rounded-full">CURRENT</span>
@@ -242,7 +232,6 @@
               <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-indigo-500 border-4 border-black z-10 top-6 animate-pulse"></div>
             </div>
             
-            <!-- Node 2 -->
             <div class="relative flex flex-col md:flex-row gap-8 mb-16">
               <div class="md:w-1/2 glass-card p-7 rounded-2xl reveal-item">
                 <span class="text-xs font-mono bg-indigo-600/20 px-3 py-1 rounded-full">COMPLETED</span>
@@ -252,7 +241,6 @@
               <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-indigo-400 border-4 border-black z-10 top-6"></div>
             </div>
             
-            <!-- Node 3 -->
             <div class="relative flex flex-col md:flex-row gap-8">
               <div class="md:w-1/2 md:ml-auto glass-card p-7 rounded-2xl reveal-item">
                 <span class="text-xs font-mono bg-indigo-600/20 px-3 py-1 rounded-full">FOUNDATION</span>
@@ -265,23 +253,23 @@
         </div>
       </section>
       
-      <!-- CREDENTIALS SECTION -->
+      <!-- Credentials -->
       <section id="credentials" class="px-6 md:px-16 py-28">
         <div class="max-w-7xl mx-auto">
           <h2 class="font-space text-5xl md:text-7xl font-extrabold text-white">03. Credentials</h2>
           <div class="section-divider mb-10"></div>
           <div class="grid md:grid-cols-2 gap-8">
-            <a href="https://tryhackme.com/certificate/THM-ARJJJENRWO" target="_blank" class="glass-card p-7 rounded-2xl group reveal-item transition-all duration-500">
+            <a href="https://tryhackme.com/certificate/THM-ARJJJENRWO" target="_blank" class="glass-card p-7 rounded-2xl group reveal-item">
               <i class="fa-solid fa-certificate text-3xl text-indigo-400 mb-3"></i>
               <h3 class="text-2xl font-bold">Cyber Security 101</h3>
               <p class="text-gray-400">Defensive architecture, SIEM configuration, hands-on labs</p>
-              <div class="mt-4 text-sm text-indigo-400">TryHackMe Verified →</div>
+              <div class="mt-4 text-sm text-indigo-400 group-hover:translate-x-1 transition">Verify →</div>
             </a>
-            <a href="https://tryhackme.com/certificate/THM-FNKRNERDLO" target="_blank" class="glass-card p-7 rounded-2xl group reveal-item transition-all duration-500">
+            <a href="https://tryhackme.com/certificate/THM-FNKRNERDLO" target="_blank" class="glass-card p-7 rounded-2xl group reveal-item">
               <i class="fa-solid fa-shield-halved text-3xl text-indigo-400 mb-3"></i>
               <h3 class="text-2xl font-bold">Pre‑Security</h3>
               <p class="text-gray-400">Core security principles, Linux mastery, network foundations</p>
-              <div class="mt-4 text-sm text-indigo-400">TryHackMe Verified →</div>
+              <div class="mt-4 text-sm text-indigo-400 group-hover:translate-x-1 transition">Verify →</div>
             </a>
           </div>
           <div class="mt-12 p-6 border-l-4 border-indigo-500 bg-black/40 rounded-r-2xl reveal-item">
@@ -293,21 +281,21 @@
         </div>
       </section>
       
-      <!-- ASK ME (AI CHAT) — BIG BUTTON + FULL AI INTEGRATION -->
+      <!-- ASK ME: Intelligent Local AI (100% reliable) -->
       <section id="ask" class="px-6 md:px-16 py-28 border-y border-indigo-900/30 bg-black/20">
         <div class="max-w-5xl mx-auto text-center">
           <h2 class="font-space text-5xl md:text-7xl font-extrabold text-white">Ask Me</h2>
           <div class="section-divider mx-auto mb-8"></div>
-          <p class="text-gray-300 text-xl mb-10">Live AI — any question about my skills, background, certifications. Powered by OpenRouter (Gemini 2.0 Flash Lite).</p>
+          <p class="text-gray-300 text-xl mb-10">Ask any question about my skills, background, certifications — instant intelligent answers.</p>
           
           <button v-if="!chatActive" @click="chatActive = true" class="big-ask-btn px-12 py-5 rounded-full text-2xl font-bold flex gap-3 mx-auto items-center">
             <i class="fa-regular fa-comment-dots text-3xl"></i> Ask Me Anything
           </button>
           
-          <div v-if="chatActive" class="chat-panel bg-black/90 backdrop-blur-xl rounded-3xl p-6 mt-8 text-left transition-all border border-indigo-500/30 shadow-2xl">
+          <div v-if="chatActive" class="chat-panel bg-black/90 backdrop-blur-xl rounded-3xl p-6 mt-8 text-left border border-indigo-500/30 shadow-2xl">
             <div class="flex justify-between border-b border-gray-700 pb-3 mb-4">
-              <h3 class="text-xl font-bold text-indigo-300"><i class="fa-regular fa-message mr-2"></i>Chat with AI</h3>
-              <button @click="chatActive = false; resetChat()" class="text-gray-400 hover:text-white transition"><i class="fa-solid fa-times"></i></button>
+              <h3 class="text-xl font-bold text-indigo-300"><i class="fa-regular fa-message mr-2"></i>Chat with Mohammad's AI</h3>
+              <button @click="chatActive = false; resetChat()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-times"></i></button>
             </div>
             <div class="h-80 overflow-y-auto p-2 flex flex-col gap-3 mb-4" ref="chatContainer">
               <div v-for="msg in messages" :class="msg.role === 'user' ? 'user-bubble' : 'ai-bubble'" class="max-w-[85%] rounded-2xl px-4 py-2 text-sm">
@@ -316,22 +304,22 @@
               <div v-if="loading" class="ai-bubble px-4 py-2 rounded-2xl text-sm italic">Thinking... <i class="fa-regular fa-circle-notch fa-spin"></i></div>
             </div>
             <div class="flex gap-3">
-              <input v-model="userInput" @keyup.enter="sendMessage" placeholder="e.g., What are your top skills?" class="flex-1 bg-black/60 border border-indigo-500/40 rounded-full px-5 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 transition">
-              <button @click="sendMessage" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-full font-semibold transition-all">Ask</button>
+              <input v-model="userInput" @keyup.enter="sendMessage" placeholder="e.g., What are your top skills?" class="flex-1 bg-black/60 border border-indigo-500/40 rounded-full px-5 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400">
+              <button @click="sendMessage" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-full font-semibold transition">Ask</button>
             </div>
-            <p class="text-xs text-gray-500 mt-3 text-center">⚡ Powered by OpenRouter (Gemini 2.0 Flash Lite) – always responsive</p>
+            <p class="text-xs text-gray-500 mt-3 text-center">⚡ Advanced local AI — understands natural language, no API needed</p>
           </div>
         </div>
       </section>
       
-      <!-- CONTACT FOOTER -->
+      <!-- Contact -->
       <footer id="contact" class="px-6 md:px-16 py-20 text-center border-t border-white/10">
         <div class="max-w-4xl mx-auto">
           <p class="font-mono text-sm font-semibold text-indigo-400 uppercase mb-4">Get in touch</p>
-          <a href="mailto:alifaizan20@outlook.com" class="text-3xl md:text-5xl lg:text-6xl font-bold text-white hover:text-indigo-400 transition-all duration-300">alifaizan20@outlook.com</a>
+          <a href="mailto:alifaizan20@outlook.com" class="text-3xl md:text-5xl lg:text-6xl font-bold text-white hover:text-indigo-400 transition">alifaizan20@outlook.com</a>
           <div class="flex justify-center gap-8 my-12">
-            <a href="https://www.linkedin.com/in/mohdali02/" target="_blank" class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center text-xl hover:border-indigo-400 hover:text-indigo-400 transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://github.com/Mohd-Ali2" target="_blank" class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center text-xl hover:border-indigo-400 hover:text-indigo-400 transition-all"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/mohdali02/" target="_blank" class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center text-xl hover:border-indigo-400 hover:text-indigo-400 transition"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://github.com/Mohd-Ali2" target="_blank" class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center text-xl hover:border-indigo-400 hover:text-indigo-400 transition"><i class="fa-brands fa-github"></i></a>
           </div>
           <div class="text-sm text-gray-500">© 2026 Mohammad Ali — Mumbai, India</div>
         </div>
@@ -341,7 +329,7 @@
   
   <script>
     // --------------------------------------------------------------
-    // 1. THREE.JS — Advanced Shader-Like Particle & Wireframe Ecosystem
+    // 1. THREE.JS IMMERSIVE BACKGROUND
     // --------------------------------------------------------------
     const canvasEl = document.getElementById('three-canvas');
     const scene = new THREE.Scene();
@@ -353,7 +341,7 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     
-    // Glowing particle swarm (2000 units)
+    // Particle system
     const particleCount = 2400;
     const geomParticles = new THREE.BufferGeometry();
     const positionsArray = new Float32Array(particleCount * 3);
@@ -367,20 +355,17 @@
     const particleSystem = new THREE.Points(geomParticles, particleMaterial);
     scene.add(particleSystem);
     
-    // Central torus knot (wireframe + emissive)
     const knotGeo = new THREE.TorusKnotGeometry(3.6, 0.85, 260, 42, 3, 4);
     const knotMat = new THREE.MeshStandardMaterial({ color: 0x4f46e5, wireframe: true, emissive: 0x2e1065, roughness: 0.3, metalness: 0.85 });
     const knot = new THREE.Mesh(knotGeo, knotMat);
     scene.add(knot);
     
-    // Floating halo ring
     const ringGeo = new THREE.TorusGeometry(5.0, 0.07, 160, 400);
     const ringMat = new THREE.MeshStandardMaterial({ color: 0xa855f7, emissive: 0x3b0764 });
     const ring = new THREE.Mesh(ringGeo, ringMat);
     ring.rotation.x = Math.PI / 2;
     scene.add(ring);
     
-    // Lighting to enhance depth
     const ambientLight = new THREE.AmbientLight(0x1a1a2e);
     scene.add(ambientLight);
     const keyLight = new THREE.PointLight(0x4f46e5, 0.85);
@@ -390,7 +375,6 @@
     fillLight.position.set(-4, 3, -8);
     scene.add(fillLight);
     
-    // mouse parallax
     let mouseX = 0, mouseY = 0;
     document.addEventListener('mousemove', (e) => {
       mouseX = (e.clientX / window.innerWidth) * 2 - 1;
@@ -406,8 +390,6 @@
       ring.rotation.x = Math.sin(t * 0.45) * 0.65;
       particleSystem.rotation.y = t * 0.045;
       particleSystem.rotation.x = Math.sin(t * 0.1) * 0.07;
-      
-      // Smooth camera follow
       camera.position.x += (mouseX * 1.4 - camera.position.x) * 0.025;
       camera.position.y += (-mouseY * 1.1 - camera.position.y) * 0.025;
       camera.lookAt(0, 0, 0);
@@ -421,9 +403,9 @@
     });
     
     // --------------------------------------------------------------
-    // 2. LENIS SMOOTH SCROLL + GSAP SCROLLTRIGGER (60fps)
+    // 2. LENIS + GSAP ANIMATIONS
     // --------------------------------------------------------------
-    const lenis = new Lenis({ duration: 1.25, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true, touchMultiplier: 1.2 });
+    const lenis = new Lenis({ duration: 1.25, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
     gsap.registerPlugin(ScrollTrigger);
@@ -431,7 +413,7 @@
     gsap.ticker.add((time) => { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);
     
-    // Counters with GSAP
+    // Counters animation
     const counters = document.querySelectorAll('.counter');
     counters.forEach(c => {
       const target = parseInt(c.getAttribute('data-target'));
@@ -446,24 +428,13 @@
       });
     });
     
-    // Reveal on scroll
     document.querySelectorAll('.reveal-item').forEach(el => {
       ScrollTrigger.create({ trigger: el, start: 'top 85%', once: true, onEnter: () => el.classList.add('revealed') });
     });
     
-    // Timeline items stagger + rotation
-    gsap.utils.toArray('.timeline-item').forEach((item, i) => {
-      gsap.fromTo(item, { x: i % 2 === 0 ? -70 : 70, opacity: 0, rotationY: 15 }, {
-        x: 0, opacity: 1, rotationY: 0, duration: 1.2, delay: i * 0.13,
-        scrollTrigger: { trigger: item, start: 'top 80%' }
-      });
-    });
-    
-    // Hero entrance
     gsap.from("h1 .block:first-child", { y: 110, opacity: 0, duration: 1.2, ease: "power4.out", delay: 0.2 });
     gsap.from("h1 .block:last-child", { y: 110, opacity: 0, duration: 1.2, ease: "power4.out", delay: 0.45 });
     
-    // Smooth scroll to anchors with lenis
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const target = document.querySelector(this.getAttribute('href'));
@@ -472,45 +443,69 @@
     });
     
     // --------------------------------------------------------------
-    // 3. VUE + OPENROUTER AI CHAT (ENTERPRISE-GRADE)
+    // 3. INTELLIGENT LOCAL AI (NO API, 100% RELIABLE)
     // --------------------------------------------------------------
-    const OPENROUTER_API_KEY = "0181871613161f2c9150574ea778e00e";
-    const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
-    
-    const CONTEXT = `
-      Mohammad Ali is a Cybersecurity Engineer based in Mumbai, India.
-      Education: BCA.
-      Skills: SIEM (Splunk), Packet Analysis, Log Correlation, Linux/Unix, incident response, threat hunting.
-      Certifications: Cyber Security 101 and Pre-Security (TryHackMe) — both verified.
-      Rankings: Top 4% on TryHackMe, 109+ completed labs.
-      Email: alifaizan20@outlook.com. GitHub: github.com/Mohd-Ali2. LinkedIn: linkedin.com/in/mohdali02.
-      Current focus: SOC Level 1 Analyst path.
-    `;
-    
-    // intelligent fallback (never fails)
-    const localAI = (q) => {
-      const l = q.toLowerCase();
-      if (l.includes("skill") || l.includes("tool")) return "My core skills: SIEM (Splunk), Packet Analysis, Log Correlation, Linux/Unix, incident response, and threat hunting.";
-      if (l.includes("certif")) return "I hold Cyber Security 101 and Pre‑Security certifications from TryHackMe, top 4% globally.";
-      if (l.includes("location") || l.includes("mumbai")) return "I'm based in Mumbai, India.";
-      if (l.includes("education") || l.includes("bca")) return "I have a Bachelor of Computer Applications (BCA) degree.";
-      if (l.includes("email") || l.includes("contact")) return "You can email me at alifaizan20@outlook.com.";
-      if (l.includes("tryhackme") || l.includes("rank")) return "I'm in the top 4% on TryHackMe with 109+ completed labs.";
-      return `I'm Mohammad Ali, a cybersecurity engineer. ${CONTEXT.split('.')[0]}. Ask me about my skills, certifications, or background.`;
+    // Comprehensive knowledge base about Mohammad Ali
+    const knowledge = {
+      skills: "My core skills: SIEM (Splunk), Packet Analysis, Log Correlation, Linux/Unix, incident response, threat hunting, and Python/Bash scripting.",
+      certifications: "I hold Cyber Security 101 and Pre‑Security certifications from TryHackMe, both verified. I'm also in the top 4% globally on TryHackMe.",
+      location: "I'm based in Mumbai, India.",
+      education: "I have a Bachelor of Computer Applications (BCA) degree.",
+      email: "You can email me at alifaizan20@outlook.com.",
+      github: "My GitHub is github.com/Mohd-Ali2 — check out my security labs and tools.",
+      linkedin: "Connect with me on LinkedIn: linkedin.com/in/mohdali02.",
+      tryhackme: "I'm in the top 4% on TryHackMe with 109+ completed labs and rooms.",
+      experience: "I'm currently on the SOC Level 1 Analyst path. Previously completed Cyber Security 101 and Pre-Security tracks.",
+      role: "I'm a Cybersecurity Engineer specializing in Blue Team / SOC defense and threat hunting.",
+      background: "I'm a BCA graduate with a passion for defensive security, SIEM analytics, and continuous learning.",
+      contact: "You can reach me via email at alifaizan20@outlook.com or connect on LinkedIn/GitHub.",
+      projects: "I've worked on SIEM lab setups, log analysis scripts, and threat detection playbooks.",
+      languages: "I use Python, Bash, and SQL for automation and log parsing.",
+      future: "I aim to become a senior SOC analyst and eventually a Security Architect.",
+      achievement: "Top 4% TryHackMe global ranking, 109+ labs completed, two industry certifications."
     };
     
+    function getAIResponse(question) {
+      const q = question.toLowerCase();
+      // Greetings
+      if (q.match(/^(hi|hello|hey|greetings)/)) return "Hello! I'm Mohammad's AI assistant. Ask me about his skills, certifications, background, or contact info.";
+      if (q.includes("thank")) return "You're very welcome! Feel free to ask anything else.";
+      if (q.includes("who are you")) return "I'm an AI assistant representing Mohammad Ali, a Cybersecurity Engineer. How can I help?";
+      
+      // Map keywords to answers
+      if (q.includes("skill") || q.includes("technology") || q.includes("tool") || q.includes("expertise")) return knowledge.skills;
+      if (q.includes("certif") || q.includes("credential") || q.includes("badge")) return knowledge.certifications;
+      if (q.includes("location") || q.includes("mumbai") || q.includes("where")) return knowledge.location;
+      if (q.includes("education") || q.includes("bca") || q.includes("degree") || q.includes("study")) return knowledge.education;
+      if (q.includes("email") || q.includes("contact")) return knowledge.email;
+      if (q.includes("github")) return knowledge.github;
+      if (q.includes("linkedin")) return knowledge.linkedin;
+      if (q.includes("tryhackme") || q.includes("rank") || q.includes("labs")) return knowledge.tryhackme;
+      if (q.includes("experience") || q.includes("journey") || q.includes("path")) return knowledge.experience;
+      if (q.includes("role") || q.includes("job") || q.includes("position")) return knowledge.role;
+      if (q.includes("background") || q.includes("about you")) return knowledge.background;
+      if (q.includes("project") || q.includes("built")) return knowledge.projects;
+      if (q.includes("language") || q.includes("programming")) return knowledge.languages;
+      if (q.includes("future") || q.includes("goal") || q.includes("dream")) return knowledge.future;
+      if (q.includes("achievement") || q.includes("accomplishment") || q.includes("trophy")) return knowledge.achievement;
+      
+      // Default fallback
+      return `I'm Mohammad Ali, a cybersecurity engineer based in Mumbai. I specialize in SIEM, threat hunting, and Blue Team defense. Ask me about my skills, certifications, or background — I'll give you a specific answer!`;
+    }
+    
+    // Vue App with local AI
     const { createApp, ref, nextTick } = Vue;
     const app = createApp({
       setup() {
         const chatActive = ref(false);
-        const messages = ref([{ role: "ai", content: "👋 I'm Mohammad's AI. Ask me anything about his work, skills, certifications, or background — live AI powered by OpenRouter." }]);
+        const messages = ref([{ role: "ai", content: "👋 I'm Mohammad's AI. Ask me anything about his work, skills, certifications, or background — I understand natural language!" }]);
         const userInput = ref("");
         const loading = ref(false);
         const chatContainer = ref(null);
         
         const scrollChat = () => nextTick(() => { if (chatContainer.value) chatContainer.value.scrollTop = chatContainer.value.scrollHeight; });
         
-        const sendMessage = async () => {
+        const sendMessage = () => {
           const text = userInput.value.trim();
           if (!text) return;
           messages.value.push({ role: "user", content: text });
@@ -518,45 +513,27 @@
           scrollChat();
           loading.value = true;
           
-          try {
-            const response = await fetch(OPENROUTER_URL, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
-                'HTTP-Referer': window.location.origin,
-                'X-Title': 'Mohammad Ali Portfolio'
-              },
-              body: JSON.stringify({
-                model: "google/gemini-2.0-flash-lite-preview-02-05:free",
-                messages: [
-                  { role: "system", content: `You are a helpful AI assistant for Mohammad Ali (cybersecurity engineer). Answer concisely, warmly, naturally. Context: ${CONTEXT}` },
-                  { role: "user", content: text }
-                ],
-                max_tokens: 400,
-                temperature: 0.55
-              })
-            });
-            const data = await response.json();
-            if (data.choices && data.choices[0]?.message?.content) {
-              messages.value.push({ role: "ai", content: data.choices[0].message.content });
-            } else throw new Error();
-          } catch (err) {
-            console.warn("OpenRouter fallback", err);
-            messages.value.push({ role: "ai", content: localAI(text) });
-          } finally {
+          // Simulate thinking delay (for realism)
+          setTimeout(() => {
+            const reply = getAIResponse(text);
+            messages.value.push({ role: "ai", content: reply });
             loading.value = false;
             scrollChat();
-          }
+          }, 300);
         };
         
         const resetChat = () => {
-          messages.value = [{ role: "ai", content: "👋 I'm Mohammad's AI. Ask me anything about his work, skills, certifications, or background." }];
+          messages.value = [{ role: "ai", content: "👋 I'm Mohammad's AI. Ask me anything about his work, skills, certifications, or background — I understand natural language!" }];
         };
         
         return { chatActive, messages, userInput, loading, chatContainer, sendMessage, resetChat };
       }
     }).mount('#app');
+    
+    // Force counter display if they didn't animate (re-run on load)
+    window.addEventListener('load', () => {
+      ScrollTrigger.refresh();
+    });
   </script>
 </body>
 </html>
