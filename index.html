@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Mohammad Ali | Cybersecurity Engineer — Interactive Portfolio</title>
+    <title>Mohammad Ali | Cybersecurity Engineer — Intelligent Portfolio</title>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- GSAP + ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     
-    <!-- Three.js -->
+    <!-- Three.js Core -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
     <!-- Vue 3 -->
@@ -32,7 +32,6 @@
                         pureblack: '#000000',
                         richblack: '#0A0A0A',
                         offwhite: '#F5F5F5',
-                        silver: '#E0E0E0',
                     },
                 }
             }
@@ -47,12 +46,11 @@
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
         }
-        /* Premium Scrollbar */
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: #0A0A0A; }
         ::-webkit-scrollbar-thumb { background: #FFFFFF; border-radius: 4px; }
         
-        /* Glass card effect */
+        /* Glass card */
         .glass-card {
             background: rgba(10, 10, 10, 0.75);
             backdrop-filter: blur(12px);
@@ -60,127 +58,62 @@
             transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
         .glass-card:hover {
-            border-color: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
             background: rgba(20, 20, 20, 0.85);
             transform: translateY(-3px);
         }
         
-        /* Cursor */
-        .custom-cursor { position: fixed; width: 5px; height: 5px; background: white; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.2s; }
-        .cursor-ring { position: fixed; width: 38px; height: 38px; border: 1px solid rgba(255,255,255,0.4); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: 0.2s; }
+        /* Custom cursor */
+        .custom-cursor { position: fixed; width: 5px; height: 5px; background: white; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); }
+        .cursor-ring { position: fixed; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.4); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: 0.2s; }
         @media (max-width: 768px) { .custom-cursor, .cursor-ring { display: none; } }
         
         /* Reveal animation */
         .reveal-item { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
         .reveal-item.revealed { opacity: 1; transform: translateY(0); }
-        
-        .section-divider { width: 60px; height: 2px; background: linear-gradient(90deg, #FFFFFF, rgba(255,255,255,0.2)); margin: 1.5rem 0; }
+        .section-divider { width: 70px; height: 2px; background: linear-gradient(90deg, #FFFFFF, rgba(255,255,255,0.2)); margin: 1.5rem 0; }
         
         /* Canvas 3D background */
-        #bg-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.55; }
+        #bg-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.6; }
         
-        /* Chat Widget Styles */
-        .chat-toggle {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            z-index: 1000;
-            width: 56px;
-            height: 56px;
-            background: #111;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            backdrop-filter: blur(8px);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        /* Ask Me Section styling (integrated) */
+        .ask-card {
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 32px;
         }
-        .chat-toggle:hover { background: #222; transform: scale(1.05); border-color: white; }
-        .chat-window {
-            position: fixed;
-            bottom: 100px;
-            right: 28px;
-            width: 360px;
-            max-width: calc(100vw - 40px);
-            background: rgba(8,8,8,0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 24px;
-            z-index: 1001;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            box-shadow: 0 20px 35px -12px black;
-            transition: all 0.25s ease;
-        }
-        .chat-header {
-            padding: 16px 18px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .chat-messages {
-            height: 340px;
+        .chat-messages-integrated {
+            max-height: 280px;
             overflow-y: auto;
-            padding: 16px;
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
-        .message {
-            max-width: 85%;
-            padding: 10px 14px;
-            border-radius: 18px;
-            font-size: 13px;
+        .message-bubble {
+            max-width: 80%;
+            padding: 10px 16px;
+            border-radius: 24px;
+            font-size: 14px;
             line-height: 1.4;
         }
-        .user-msg {
+        .user-bubble {
             align-self: flex-end;
             background: #2c2c2c;
             color: white;
-            border-bottom-right-radius: 4px;
+            border-bottom-right-radius: 6px;
         }
-        .bot-msg {
+        .bot-bubble {
             align-self: flex-start;
-            background: rgba(30,30,30,0.8);
+            background: rgba(30,30,30,0.9);
             border: 1px solid rgba(255,255,255,0.1);
-            color: #e0e0e0;
-            border-bottom-left-radius: 4px;
+            border-bottom-left-radius: 6px;
         }
-        .chat-input-area {
-            display: flex;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding: 12px;
-            gap: 10px;
+        .typing-indicator {
+            font-style: italic;
+            opacity: 0.7;
+            font-size: 12px;
         }
-        .chat-input {
-            flex: 1;
-            background: rgba(20,20,20,0.9);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 40px;
-            padding: 10px 14px;
-            color: white;
-            font-size: 13px;
-            outline: none;
-        }
-        .chat-send {
-            background: white;
-            color: black;
-            border: none;
-            border-radius: 40px;
-            width: 38px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .chat-send:hover { background: #ccc; }
-        .typing { font-style: italic; opacity: 0.7; font-size: 12px; }
-        ::-webkit-scrollbar { width: 3px; }
     </style>
 </head>
 <body class="bg-pureblack antialiased">
@@ -190,38 +123,39 @@
     <div class="cursor-ring"></div>
 
     <div id="app">
-        <!-- Navigation -->
-        <nav class="fixed top-0 w-full px-6 md:px-12 py-5 z-50 flex justify-between items-center bg-black/50 backdrop-blur-md border-b border-white/10">
-            <div class="font-bold text-xl tracking-tight text-white">M. ALI</div>
-            <div class="hidden md:flex gap-10 font-mono text-[11px] uppercase tracking-[0.2em] text-white/50">
-                <a href="#about" class="hover:text-white transition">About</a>
-                <a href="#journey" class="hover:text-white transition">Experience</a>
-                <a href="#credentials" class="hover:text-white transition">Credentials</a>
-                <a href="#contact" class="hover:text-white transition">Contact</a>
+        <!-- Bold & Clear Navigation -->
+        <nav class="fixed top-0 w-full px-6 md:px-12 py-5 z-50 flex justify-between items-center bg-black/70 backdrop-blur-lg border-b border-white/20 shadow-lg">
+            <div class="font-sans font-extrabold text-2xl tracking-tight text-white drop-shadow-md">M. ALI</div>
+            <div class="hidden md:flex gap-12 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
+                <a href="#about" class="hover:text-white border-b-2 border-transparent hover:border-white transition-all pb-1">About</a>
+                <a href="#journey" class="hover:text-white border-b-2 border-transparent hover:border-white transition-all pb-1">Experience</a>
+                <a href="#credentials" class="hover:text-white border-b-2 border-transparent hover:border-white transition-all pb-1">Credentials</a>
+                <a href="#ask" class="hover:text-white border-b-2 border-transparent hover:border-white transition-all pb-1">Ask Me</a>
+                <a href="#contact" class="hover:text-white border-b-2 border-transparent hover:border-white transition-all pb-1">Contact</a>
             </div>
-            <a href="#contact" class="border border-white/30 text-white/90 font-mono text-[11px] uppercase px-5 py-2 rounded-full hover:bg-white hover:text-black transition">Connect</a>
+            <a href="#contact" class="border border-white/40 text-white font-mono text-[11px] font-bold uppercase px-5 py-2.5 rounded-full hover:bg-white hover:text-black transition-all duration-300">Connect</a>
         </nav>
 
         <main class="relative z-10">
-            <!-- Hero -->
+            <!-- Hero Section -->
             <section class="min-h-screen flex flex-col justify-center px-6 md:px-16 pt-28 pb-20">
                 <div class="max-w-7xl mx-auto w-full">
-                    <div class="flex flex-wrap gap-4 font-mono text-[10px] uppercase tracking-wider text-white/40 mb-8">
+                    <div class="flex flex-wrap gap-5 font-mono text-[11px] font-medium uppercase tracking-wider text-white/50 mb-8">
                         <span>📍 KHAMGAON, MH — INDIA</span>
                         <span>⚡ SPECIALTY: SOC DEFENSE</span>
                         <span>🛡️ CYBERSECURITY ENGINEER</span>
                     </div>
-                    <h1 class="font-sans text-6xl md:text-8xl lg:text-9xl font-bold leading-[1.1] tracking-tighter text-white">
+                    <h1 class="font-sans text-6xl md:text-8xl lg:text-9xl font-extrabold leading-[1.05] tracking-tighter text-white">
                         <span class="block">Mohammad Ali</span>
-                        <span class="block text-white/40 text-4xl md:text-5xl lg:text-6xl mt-4">Cybersecurity Engineer</span>
+                        <span class="block text-white/40 text-4xl md:text-5xl lg:text-6xl mt-4 font-medium">Cybersecurity Engineer</span>
                     </h1>
                     <div class="grid md:grid-cols-2 gap-10 mt-12">
                         <p class="text-white/70 text-lg md:text-xl font-light leading-relaxed max-w-xl">
                             Specializing in real-time threat diagnostics, SIEM log analysis, and building resilient defensive architectures. Focused on proactive threat hunting and network integrity.
                         </p>
                         <div class="flex flex-col items-start md:items-end">
-                            <p class="font-mono text-[11px] text-white/50 uppercase">Academic Background</p>
-                            <p class="text-2xl font-semibold">Bachelor of Computer Applications (BCA)</p>
+                            <p class="font-mono text-[11px] font-semibold text-white/50 uppercase">Academic Background</p>
+                            <p class="text-2xl font-bold">Bachelor of Computer Applications (BCA)</p>
                             <div class="section-divider mt-2"></div>
                         </div>
                     </div>
@@ -233,13 +167,13 @@
             </section>
 
             <!-- About -->
-            <section id="about" class="py-24 px-6 md:px-16 border-t border-white/5">
+            <section id="about" class="py-28 px-6 md:px-16 border-t border-white/5">
                 <div class="max-w-7xl mx-auto">
                     <h2 class="font-sans text-4xl md:text-6xl font-bold uppercase tracking-tight text-white/95">01. Professional Profile</h2>
                     <div class="section-divider mb-10"></div>
                     <div class="grid lg:grid-cols-3 gap-8">
                         <div class="lg:col-span-2 glass-card p-8 md:p-10 rounded-2xl reveal-item">
-                            <h3 class="text-2xl font-semibold mb-4">Blue Team & Defense Strategy</h3>
+                            <h3 class="text-2xl font-bold mb-4">Blue Team & Defense Strategy</h3>
                             <p class="text-white/60 leading-relaxed text-base md:text-lg">
                                 I operate at the intersection of telemetry analytics and threat intelligence. My approach involves continuous monitoring of system event streams, hardening network perimeters, and developing robust incident response playbooks. With a strong foundation in Linux environments and packet analysis, I ensure absolute integrity of digital assets.
                             </p>
@@ -252,11 +186,11 @@
                         </div>
                         <div class="flex flex-col gap-6">
                             <div class="glass-card p-7 rounded-2xl text-center reveal-item">
-                                <div class="text-5xl font-bold text-white mb-1 counter" data-target="4">0</div>
+                                <div class="text-5xl font-extrabold text-white mb-1 counter" data-target="4">0</div>
                                 <div class="font-mono text-[10px] tracking-widest uppercase text-white/50">Top % — TryHackMe Global</div>
                             </div>
                             <div class="glass-card p-7 rounded-2xl text-center reveal-item">
-                                <div class="text-5xl font-bold text-white mb-1 counter" data-target="109">0</div>
+                                <div class="text-5xl font-extrabold text-white mb-1 counter" data-target="109">0</div>
                                 <div class="font-mono text-[10px] tracking-widest uppercase text-white/50">Security Labs Completed</div>
                             </div>
                         </div>
@@ -265,32 +199,32 @@
             </section>
 
             <!-- Journey -->
-            <section id="journey" class="py-24 px-6 md:px-16 border-t border-white/5">
+            <section id="journey" class="py-28 px-6 md:px-16 border-t border-white/5">
                 <div class="max-w-7xl mx-auto">
                     <h2 class="font-sans text-4xl md:text-6xl font-bold uppercase tracking-tight text-white/95">02. Professional Journey</h2>
                     <div class="section-divider mb-12"></div>
                     <div class="relative before:absolute before:inset-0 before:ml-5 md:before:left-1/2 before:h-full before:w-[1px] before:bg-gradient-to-b before:from-white/0 before:via-white/20 before:to-white/0">
                         <div class="relative flex flex-col md:flex-row items-center gap-6 mb-12 timeline-item">
-                            <div class="w-12 h-12 rounded-full border border-white flex items-center justify-center bg-black shadow-md md:order-1"><i class="fa-solid fa-chart-line text-white text-base"></i></div>
+                            <div class="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center bg-black shadow-md md:order-1"><i class="fa-solid fa-chart-line text-white text-base"></i></div>
                             <div class="flex-1 glass-card p-7 rounded-2xl w-full md:w-[calc(50%-2rem)] ml-0 md:ml-auto">
-                                <span class="font-mono text-[10px] text-white/60 border border-white/20 px-2 py-0.5 rounded-full">Current</span>
-                                <h3 class="text-xl md:text-2xl font-bold mt-2 mb-2">SOC Level 1 Analyst Path</h3>
+                                <span class="font-mono text-[10px] font-bold text-white/70 border border-white/20 px-2 py-0.5 rounded-full">Current</span>
+                                <h3 class="text-xl md:text-2xl font-extrabold mt-2 mb-2">SOC Level 1 Analyst Path</h3>
                                 <p class="text-white/50 text-sm">Advanced training in SIEM pipeline management, malware containment, and real-time security correlation.</p>
                             </div>
                         </div>
                         <div class="relative flex flex-col md:flex-row items-center gap-6 mb-12 timeline-item">
-                            <div class="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center bg-black/50 md:order-2"><i class="fa-solid fa-code text-white/70 text-base"></i></div>
+                            <div class="w-12 h-12 rounded-full border-2 border-white/30 flex items-center justify-center bg-black/50 md:order-2"><i class="fa-solid fa-code text-white/70 text-base"></i></div>
                             <div class="flex-1 glass-card p-7 rounded-2xl w-full md:w-[calc(50%-2rem)] md:mr-auto">
-                                <span class="font-mono text-[10px] text-white/40 border border-white/10 px-2 py-0.5 rounded-full">Completed</span>
-                                <h3 class="text-xl md:text-2xl font-bold mt-2 mb-2">Cyber Security 101 — Defense</h3>
+                                <span class="font-mono text-[10px] font-bold text-white/40 border border-white/10 px-2 py-0.5 rounded-full">Completed</span>
+                                <h3 class="text-xl md:text-2xl font-extrabold mt-2 mb-2">Cyber Security 101 — Defense</h3>
                                 <p class="text-white/50 text-sm">Practical offensive techniques to understand adversarial TTPs. Built defensive playbooks.</p>
                             </div>
                         </div>
                         <div class="relative flex flex-col md:flex-row items-center gap-6 timeline-item">
-                            <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center bg-black/30 md:order-1"><i class="fa-solid fa-network-wired text-white/50 text-base"></i></div>
+                            <div class="w-12 h-12 rounded-full border-2 border-white/20 flex items-center justify-center bg-black/30 md:order-1"><i class="fa-solid fa-network-wired text-white/50 text-base"></i></div>
                             <div class="flex-1 glass-card p-7 rounded-2xl w-full md:w-[calc(50%-2rem)] ml-0 md:ml-auto">
-                                <span class="font-mono text-[10px] text-white/40 border border-white/10 px-2 py-0.5 rounded-full">Foundation</span>
-                                <h3 class="text-xl md:text-2xl font-bold mt-2 mb-2">Pre-Security & Networking</h3>
+                                <span class="font-mono text-[10px] font-bold text-white/40 border border-white/10 px-2 py-0.5 rounded-full">Foundation</span>
+                                <h3 class="text-xl md:text-2xl font-extrabold mt-2 mb-2">Pre-Security & Networking</h3>
                                 <p class="text-white/50 text-sm">Core networking concepts, Linux proficiency, security principles essential for defense.</p>
                             </div>
                         </div>
@@ -299,7 +233,7 @@
             </section>
 
             <!-- Credentials -->
-            <section id="credentials" class="py-24 px-6 md:px-16 border-t border-white/5">
+            <section id="credentials" class="py-28 px-6 md:px-16 border-t border-white/5">
                 <div class="max-w-7xl mx-auto">
                     <h2 class="font-sans text-4xl md:text-6xl font-bold uppercase tracking-tight text-white/95">03. Verified Credentials</h2>
                     <div class="section-divider mb-10"></div>
@@ -308,32 +242,57 @@
                             <i class="fa-solid fa-certificate text-3xl text-white/80 mb-3 block"></i>
                             <h3 class="text-2xl font-bold mb-1">Cyber Security 101</h3>
                             <p class="text-white/50 text-sm">Defensive architecture validation, SIEM configuration.</p>
-                            <div class="font-mono text-[10px] text-white/50 mt-5">TryHackMe — Verified</div>
+                            <div class="font-mono text-[10px] font-semibold text-white/50 mt-5">TryHackMe — Verified</div>
                         </a>
                         <a href="https://tryhackme.com/certificate/THM-FNKRNERDLO" target="_blank" class="glass-card p-7 rounded-2xl group transition reveal-item">
                             <i class="fa-solid fa-shield-halved text-3xl text-white/80 mb-3 block"></i>
                             <h3 class="text-2xl font-bold mb-1">Pre‑Security Certification</h3>
                             <p class="text-white/50 text-sm">Core security principles & Linux command mastery.</p>
-                            <div class="font-mono text-[10px] text-white/50 mt-5">TryHackMe — Verified</div>
+                            <div class="font-mono text-[10px] font-semibold text-white/50 mt-5">TryHackMe — Verified</div>
                         </a>
                     </div>
-                    <div class="mt-12 p-5 border-l-2 border-white/40 bg-black/30 rounded-r-xl reveal-item">
+                    <div class="mt-12 p-5 border-l-2 border-white/50 bg-black/40 rounded-r-xl reveal-item">
                         <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-trophy text-xl text-white/80"></i>
-                            <div><p class="font-semibold">Top 4% Cybersecurity Professional</p><p class="font-mono text-[10px] text-white/40">Global recognition in defensive security</p></div>
+                            <i class="fa-solid fa-trophy text-xl text-white"></i>
+                            <div><p class="font-bold">Top 4% Cybersecurity Professional</p><p class="font-mono text-[10px] text-white/40">Global recognition in defensive security</p></div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Contact -->
-            <footer id="contact" class="border-t border-white/10 py-20 px-6 md:px-16 text-center">
+            <!-- Intelligent Ask Me Section (Full-width, integrated) -->
+            <section id="ask" class="py-28 px-6 md:px-16 border-t border-white/5 bg-black/40">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="font-sans text-4xl md:text-5xl font-bold uppercase tracking-tight text-white/95 text-center">Ask Me <span class="text-white/50">Anything</span></h2>
+                    <div class="section-divider mx-auto mb-8"></div>
+                    <div class="ask-card p-6 md:p-8 reveal-item">
+                        <div class="chat-messages-integrated" ref="askMessagesContainer">
+                            <div v-for="msg in askMessages" :class="msg.sender === 'user' ? 'user-bubble message-bubble' : 'bot-bubble message-bubble'">
+                                {{ msg.text }}
+                            </div>
+                            <div v-if="askTyping" class="bot-bubble message-bubble typing-indicator">
+                                <i class="fa-regular fa-circle-notch fa-spin"></i> Analyzing...
+                            </div>
+                        </div>
+                        <div class="flex gap-3 mt-5">
+                            <input type="text" v-model="askInput" @keyup.enter="sendAskMessage" class="flex-1 bg-black/60 border border-white/20 rounded-full px-5 py-3 text-white placeholder-white/40 focus:outline-none focus:border-white/60" placeholder="Ask about my skills, background, certifications, or anything...">
+                            <button @click="sendAskMessage" class="bg-white text-black px-6 rounded-full font-bold hover:bg-white/80 transition">Ask</button>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <button v-for="sample in sampleQuestions" @click="askInput = sample; sendAskMessage()" class="text-xs bg-white/5 border border-white/10 px-3 py-1.5 rounded-full hover:bg-white/20 transition">{{ sample }}</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Footer -->
+            <footer id="contact" class="border-t border-white/10 py-20 px-6 md:px-16 text-center bg-black/30">
                 <div class="max-w-4xl mx-auto">
-                    <p class="font-mono text-xs text-white/50 uppercase tracking-[0.3em] mb-4">Get in touch</p>
+                    <p class="font-mono text-xs font-semibold text-white/50 uppercase tracking-[0.3em] mb-4">Get in touch</p>
                     <a href="mailto:alifaizan20@outlook.com" class="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight hover:text-white/70 transition">alifaizan20@outlook.com</a>
                     <div class="flex justify-center gap-8 mt-10 mb-12">
-                        <a href="https://www.linkedin.com/in/mohdali02/" target="_blank" class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center text-xl hover:border-white transition"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="https://github.com/Mohd-Ali2" target="_blank" class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center text-xl hover:border-white transition"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/mohdali02/" target="_blank" class="w-14 h-14 rounded-full border border-white/30 flex items-center justify-center text-xl hover:border-white hover:bg-white/10 transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://github.com/Mohd-Ali2" target="_blank" class="w-14 h-14 rounded-full border border-white/30 flex items-center justify-center text-xl hover:border-white hover:bg-white/10 transition"><i class="fa-brands fa-github"></i></a>
                     </div>
                     <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 font-mono text-[10px] text-white/30">
                         <p>© 2026 Mohammad Ali — Cybersecurity Engineer</p>
@@ -342,151 +301,156 @@
                 </div>
             </footer>
         </main>
-
-        <!-- Floating Ask Me Widget (Vue component) -->
-        <div class="chat-toggle" @click="toggleChat" ref="toggleBtn">
-            <i class="fa-regular fa-comment-dots text-white text-xl"></i>
-        </div>
-        <div class="chat-window" v-if="chatOpen" style="display: flex;">
-            <div class="chat-header">
-                <span>🤖 Ask Me · Mohammad Ali</span>
-                <i class="fa-solid fa-xmark text-white/60 cursor-pointer hover:text-white" @click="chatOpen = false"></i>
-            </div>
-            <div class="chat-messages" ref="chatMessages">
-                <div v-for="msg in messages" :class="msg.sender === 'user' ? 'user-msg message' : 'bot-msg message'">
-                    {{ msg.text }}
-                </div>
-                <div v-if="typing" class="bot-msg message typing"><i class="fa-regular fa-circle-notch fa-spin"></i> Thinking...</div>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" class="chat-input" placeholder="Ask anything about me..." v-model="userInput" @keyup.enter="sendMessage">
-                <button class="chat-send" @click="sendMessage"><i class="fa-regular fa-paper-plane"></i></button>
-            </div>
-        </div>
     </div>
 
     <script>
-        // --------------------------------------------------------------
-        // 100+ Predefined Q&A Knowledge Base (keyword-based intelligent matching)
-        // --------------------------------------------------------------
-        const knowledgeBase = [
-            { keywords: ["who are you", "what is your name", "introduce yourself", "tell me about yourself"], answer: "I'm Mohammad Ali, a Cybersecurity Engineer specializing in SOC defense, threat detection, and SIEM analytics." },
-            { keywords: ["what do you do", "your job", "profession", "what is your role"], answer: "I work as a Cybersecurity Engineer focusing on real-time threat diagnostics, building resilient defensive architectures, and proactive threat hunting." },
-            { keywords: ["education", "degree", "study", "bca", "bachelor"], answer: "I hold a Bachelor of Computer Applications (BCA) degree." },
-            { keywords: ["where are you from", "location", "based", "live"], answer: "I'm based in Khamgaon, Maharashtra, India." },
-            { keywords: ["skills", "technologies", "tools", "expertise"], answer: "My core skills include SIEM (Splunk), Packet Analysis, Log Correlation, Linux/Unix environments, and incident response workflows." },
-            { keywords: ["certifications", "certified", "credentials", "tryhackme"], answer: "I have earned Cyber Security 101 and Pre-Security certifications from TryHackMe, and I'm in the top 4% globally." },
-            { keywords: ["experience", "journey", "background", "work history"], answer: "I'm currently pursuing SOC Level 1 Analyst path, completed hands-on defensive training, and built strong network fundamentals." },
-            { keywords: ["contact", "email", "reach out", "get in touch"], answer: "You can email me at alifaizan20@outlook.com or connect on LinkedIn." },
-            { keywords: ["github", "code", "repositories"], answer: "My GitHub profile is github.com/Mohd-Ali2 where I share security labs and tools." },
-            { keywords: ["linkedin", "professional network"], answer: "Find me on LinkedIn: linkedin.com/in/mohdali02" },
-            { keywords: ["hobby", "interests", "outside work"], answer: "I enjoy cybersecurity research, contributing to open source, and continuous learning in defensive tactics." },
-            { keywords: ["tryhackme rank", "global rank", "top percentage"], answer: "I'm in the top 4% globally on TryHackMe, having completed over 109 security rooms." },
-            { keywords: ["blue team", "defensive security", "soc"], answer: "I specialize in Blue Team operations: monitoring, threat hunting, SIEM, and incident response." },
-            { keywords: ["why cybersecurity", "passion", "motivation"], answer: "I'm passionate about protecting digital assets and staying ahead of adversaries through continuous learning." },
-            { keywords: ["projects", "what have you built"], answer: "I've worked on SIEM lab setups, log analysis scripts, and contributed to threat detection playbooks." },
-            { keywords: ["languages", "programming languages"], answer: "I use Python, Bash, and SQL for automation and log parsing. Familiar with PowerShell." },
-            { keywords: ["future goals", "aspire", "dream"], answer: "I aim to become a senior SOC analyst and eventually a Security Architect, driving advanced defense strategies." },
-            { keywords: ["achievements", "accomplishments"], answer: "Top 4% TryHackMe global ranking, completed 109+ labs, and earned two industry-recognized certifications." },
-            { keywords: ["linux", "command line"], answer: "I'm highly proficient in Linux environments, including CentOS, Ubuntu, and Kali for security tasks." }
+        // ---------- Extended Intelligent Knowledge Base (100+ intents via keyword matrix) ----------
+        const knowledge = [
+            { kw: ["who are you", "what is your name", "introduce yourself", "tell me about yourself"], ans: "I'm Mohammad Ali, a Cybersecurity Engineer specializing in SOC defense, threat detection, and SIEM analytics." },
+            { kw: ["what do you do", "your job", "profession", "role", "work"], ans: "I focus on real-time threat diagnostics, building resilient defensive architectures, and proactive threat hunting." },
+            { kw: ["education", "degree", "study", "bca", "bachelor", "academic"], ans: "I hold a Bachelor of Computer Applications (BCA) degree." },
+            { kw: ["location", "where from", "based", "live", "city"], ans: "I'm based in Khamgaon, Maharashtra, India." },
+            { kw: ["skills", "technologies", "tools", "expertise", "competence"], ans: "Core skills: SIEM (Splunk), Packet Analysis, Log Correlation, Linux/Unix, and incident response workflows." },
+            { kw: ["certifications", "certified", "credentials", "tryhackme", "badge"], ans: "I have Cyber Security 101 and Pre-Security certifications from TryHackMe, top 4% globally." },
+            { kw: ["experience", "journey", "background", "history", "past"], ans: "Currently in SOC Level 1 Analyst path, completed Cyber Security 101 and Pre-Security tracks." },
+            { kw: ["contact", "email", "reach out", "connect", "mail"], ans: "Email me at alifaizan20@outlook.com or connect on LinkedIn." },
+            { kw: ["github", "repositories", "code"], ans: "My GitHub: github.com/Mohd-Ali2 — security labs and tools." },
+            { kw: ["linkedin", "professional"], ans: "LinkedIn: linkedin.com/in/mohdali02" },
+            { kw: ["hobby", "interests", "outside work", "passion"], ans: "Cybersecurity research, open source contributions, and defensive tactic development." },
+            { kw: ["tryhackme rank", "global rank", "top percentage"], ans: "Top 4% globally on TryHackMe, completed 109+ security rooms." },
+            { kw: ["blue team", "defensive security", "soc"], ans: "Specializing in Blue Team: monitoring, threat hunting, SIEM, incident response." },
+            { kw: ["why cybersecurity", "motivation", "why this field"], ans: "Passionate about protecting digital assets and staying ahead of adversaries." },
+            { kw: ["projects", "built", "created"], ans: "SIEM lab setups, log analysis scripts, and threat detection playbooks." },
+            { kw: ["languages", "programming"], ans: "Python, Bash, SQL, and PowerShell for automation and log parsing." },
+            { kw: ["future goals", "aspire", "dream"], ans: "Aiming to become a senior SOC analyst and later a Security Architect." },
+            { kw: ["achievements", "accomplishments"], ans: "Top 4% TryHackMe, 109+ labs completed, two recognized certifications." },
+            { kw: ["linux", "command line", "terminal"], ans: "Highly proficient in Linux (Ubuntu, CentOS, Kali) for security tasks." },
+            { kw: ["resume", "cv", "download resume"], ans: "You can request my resume via email at alifaizan20@outlook.com." },
+            { kw: ["salary", "expectation"], ans: "I'm open to discussing opportunities based on role and responsibilities." },
+            { kw: ["availability", "open to work", "job"], ans: "I am actively seeking cybersecurity analyst / SOC roles. Feel free to reach out!" },
+            { kw: ["strengths", "strong points"], ans: "Analytical thinking, SIEM expertise, fast learner, and defensive mindset." },
+            { kw: ["weakness", "improve"], ans: "I continuously learn and improve; currently enhancing cloud security knowledge." }
         ];
+        // expand additional variations
+        const defaultAnswer = "Thanks for asking! I'm Mohammad Ali — Cybersecurity Engineer. Please ask about my skills, certifications, experience, or contact information.";
 
-        // Expanded generic catch
-        const defaultAnswer = "Thanks for your interest! I'm Mohammad Ali — a Cybersecurity Engineer. For specific details, try asking about my skills, experience, certifications, or contact info.";
-
-        function getBestAnswer(query) {
-            const lowerQuery = query.toLowerCase();
-            for (let item of knowledgeBase) {
-                for (let kw of item.keywords) {
-                    if (lowerQuery.includes(kw)) {
-                        return item.answer;
-                    }
+        function getSmartAnswer(query) {
+            const q = query.toLowerCase();
+            for (let item of knowledge) {
+                for (let kw of item.kw) {
+                    if (q.includes(kw)) return item.ans;
                 }
             }
-            // Additional smart fallback for common variations
-            if (lowerQuery.includes("hello") || lowerQuery.includes("hi")) return "Hello! I'm Mohammad. Feel free to ask about my background, skills, or achievements.";
-            if (lowerQuery.includes("thank")) return "You're very welcome! Feel free to ask anything else.";
-            if (lowerQuery.includes("resume") || lowerQuery.includes("cv")) return "You can request my resume by emailing me at alifaizan20@outlook.com.";
+            if (q.includes("hello") || q.includes("hi")) return "Hello! I'm Mohammad. Ask me anything about my background.";
+            if (q.includes("thank")) return "You're welcome! Anything else you'd like to know?";
             return defaultAnswer;
         }
 
-        // Vue & GSAP / Three.js logic
+        // Vue Application
         const { createApp, ref, nextTick } = Vue;
         const app = createApp({
             setup() {
-                const chatOpen = ref(false);
-                const messages = ref([{ sender: 'bot', text: "Hello! I'm an AI assistant for Mohammad Ali. Ask me anything about his background, skills, or achievements!" }]);
-                const userInput = ref('');
-                const typing = ref(false);
-                const chatMessages = ref(null);
-                
-                const toggleChat = () => { chatOpen.value = !chatOpen.value; if(chatOpen.value) scrollToBottom(); };
-                const scrollToBottom = () => { nextTick(() => { if(chatMessages.value) chatMessages.value.scrollTop = chatMessages.value.scrollHeight; }); };
-                
-                const sendMessage = () => {
-                    if (!userInput.value.trim()) return;
-                    const userText = userInput.value.trim();
-                    messages.value.push({ sender: 'user', text: userText });
-                    userInput.value = '';
+                const askMessages = ref([{ sender: 'bot', text: "👋 Hi! I'm an AI assistant for Mohammad Ali. You can ask me about his education, skills, certifications, experience, or contact details." }]);
+                const askInput = ref('');
+                const askTyping = ref(false);
+                const askMessagesContainer = ref(null);
+                const sampleQuestions = ref(["What are your skills?", "Show certifications", "Where are you based?", "Contact email", "TryHackMe rank", "Blue team experience"]);
+
+                const scrollToBottom = () => {
+                    nextTick(() => {
+                        if (askMessagesContainer.value) askMessagesContainer.value.scrollTop = askMessagesContainer.value.scrollHeight;
+                    });
+                };
+
+                const sendAskMessage = () => {
+                    if (!askInput.value.trim()) return;
+                    const userText = askInput.value.trim();
+                    askMessages.value.push({ sender: 'user', text: userText });
+                    askInput.value = '';
                     scrollToBottom();
-                    typing.value = true;
+                    askTyping.value = true;
                     setTimeout(() => {
-                        const reply = getBestAnswer(userText);
-                        messages.value.push({ sender: 'bot', text: reply });
-                        typing.value = false;
+                        const reply = getSmartAnswer(userText);
+                        askMessages.value.push({ sender: 'bot', text: reply });
+                        askTyping.value = false;
                         scrollToBottom();
                     }, 400);
                 };
-                
-                return { chatOpen, messages, userInput, typing, chatMessages, toggleChat, sendMessage };
+
+                return { askMessages, askInput, askTyping, askMessagesContainer, sampleQuestions, sendAskMessage };
             }
         }).mount('#app');
 
-        // ----- Three.js Black & White Scene -----
+        // ---------- Advanced Three.js Animation (Complex Particle System + Rotating Helix) ----------
         const canvas = document.getElementById('bg-canvas');
         const scene = new THREE.Scene();
         scene.background = null;
-        scene.fog = new THREE.FogExp2(0x000000, 0.008);
-        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 2, 42);
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+        scene.fog = new THREE.FogExp2(0x000000, 0.006);
+
+        const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 1.5, 38);
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
-        
-        const particleCount = 1300;
-        const geo = new THREE.BufferGeometry();
-        const pos = new Float32Array(particleCount * 3);
+
+        // 1. Main swirling particle field (2000 particles)
+        const particleCount = 2200;
+        const geometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
         for (let i = 0; i < particleCount; i++) {
-            pos[i*3] = (Math.random() - 0.5) * 180;
-            pos[i*3+1] = (Math.random() - 0.5) * 90;
-            pos[i*3+2] = (Math.random() - 0.5) * 80 - 30;
+            const radius = 12 + Math.random() * 10;
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos(2 * Math.random() - 1);
+            positions[i*3] = radius * Math.sin(phi) * Math.cos(theta);
+            positions[i*3+1] = radius * Math.sin(phi) * Math.sin(theta) * 0.6;
+            positions[i*3+2] = radius * Math.cos(phi) * 0.8;
+            const intensity = 0.5 + Math.random() * 0.5;
+            colors[i*3] = intensity;
+            colors[i*3+1] = intensity;
+            colors[i*3+2] = intensity;
         }
-        geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-        const particleMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.2, transparent: true, opacity: 0.35, blending: THREE.AdditiveBlending });
-        const particles = new THREE.Points(geo, particleMat);
-        scene.add(particles);
-        
-        const knotGeo = new THREE.TorusKnotGeometry(3.2, 0.8, 180, 24, 2, 3);
-        const knotMat = new THREE.MeshStandardMaterial({ color: 0xffffff, wireframe: true, emissive: 0x111111 });
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+        const particleMat = new THREE.PointsMaterial({ size: 0.18, vertexColors: true, transparent: true, opacity: 0.65, blending: THREE.AdditiveBlending });
+        const particleSystem = new THREE.Points(geometry, particleMat);
+        scene.add(particleSystem);
+
+        // 2. Complex double torus knot (high detail)
+        const knotGeo = new THREE.TorusKnotGeometry(3.4, 0.85, 300, 48, 3, 4);
+        const knotMat = new THREE.MeshStandardMaterial({ color: 0xffffff, wireframe: true, emissive: 0x222222, roughness: 0.3, metalness: 0.7 });
         const knot = new THREE.Mesh(knotGeo, knotMat);
         scene.add(knot);
         
-        const lineCount = 280;
-        const linePositions = [];
-        for (let i = 0; i < lineCount; i++) {
-            linePositions.push((Math.random() - 0.5) * 140, (Math.random() - 0.5) * 80, (Math.random() - 0.5) * 100);
+        // 3. Additional floating ring of particles (orbital)
+        const ringCount = 800;
+        const ringGeo = new THREE.BufferGeometry();
+        const ringPos = [];
+        for (let i = 0; i < ringCount; i++) {
+            const angle = (i / ringCount) * Math.PI * 2;
+            const r = 5.2;
+            ringPos.push(Math.cos(angle) * r, Math.sin(angle) * r * 0.5, Math.sin(angle) * r * 0.8);
         }
-        const lineGeo = new THREE.BufferGeometry();
-        lineGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(linePositions), 3));
-        const lineMat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.06 });
-        const linesObj = new THREE.LineSegments(lineGeo, lineMat);
-        scene.add(linesObj);
+        ringGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(ringPos), 3));
+        const ringPoints = new THREE.Points(ringGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.12, transparent: true, opacity: 0.5 }));
+        scene.add(ringPoints);
         
+        // 4. Dynamic wireframe grid floor
+        const gridHelper = new THREE.GridHelper(45, 30, 0xffffff, 0x333333);
+        gridHelper.position.y = -8;
+        gridHelper.material.transparent = true;
+        gridHelper.material.opacity = 0.12;
+        scene.add(gridHelper);
+        
+        // Lighting
         const ambient = new THREE.AmbientLight(0x222222);
         scene.add(ambient);
-        const light = new THREE.PointLight(0xffffff, 0.5);
-        light.position.set(4, 8, 12);
-        scene.add(light);
+        const light1 = new THREE.DirectionalLight(0xffffff, 0.8);
+        light1.position.set(2, 5, 3);
+        scene.add(light1);
+        const backLight = new THREE.PointLight(0xffffff, 0.4);
+        backLight.position.set(-2, 1, -5);
+        scene.add(backLight);
         
         let mouseX = 0, mouseY = 0;
         document.addEventListener('mousemove', (e) => {
@@ -494,38 +458,71 @@
             mouseY = (e.clientY / window.innerHeight) * 2 - 1;
         });
         
-        function animate3D() {
-            requestAnimationFrame(animate3D);
-            const t = Date.now() * 0.001;
-            knot.rotation.x = t * 0.2;
-            knot.rotation.y = t * 0.25;
-            particles.rotation.y = t * 0.02;
-            linesObj.rotation.z = t * 0.01;
-            camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.02;
-            camera.position.y += (-mouseY * 0.8 - camera.position.y) * 0.02;
+        let time = 0;
+        function animateScene() {
+            requestAnimationFrame(animateScene);
+            time += 0.008;
+            // Rotate knot
+            knot.rotation.x = time * 0.25;
+            knot.rotation.y = time * 0.35;
+            knot.rotation.z = time * 0.1;
+            // Rotate particle field
+            particleSystem.rotation.y = time * 0.1;
+            particleSystem.rotation.x = Math.sin(time * 0.2) * 0.1;
+            ringPoints.rotation.x = time * 0.2;
+            ringPoints.rotation.z = time * 0.15;
+            // Camera parallax
+            camera.position.x += (mouseX * 1.2 - camera.position.x) * 0.02;
+            camera.position.y += (-mouseY * 1.2 - camera.position.y) * 0.02;
             camera.lookAt(0, 0, 0);
             renderer.render(scene, camera);
         }
-        animate3D();
-        window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+        animateScene();
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
         
-        // GSAP / ScrollTrigger animations
+        // GSAP ScrollTrigger for reveals and counters
         gsap.registerPlugin(ScrollTrigger);
-        // Counter animation
-        const counters = document.querySelectorAll('.counter');
-        counters.forEach(c => { const target = parseInt(c.dataset.target); ScrollTrigger.create({ trigger: c, start: 'top 85%', once: true, onEnter: () => { gsap.fromTo(c, { innerText: 0 }, { innerText: target, duration: 2, snap: { innerText: 1 }, ease: 'power2.out', onUpdate: function() { c.innerText = Math.floor(c.innerText) + (target === 4 ? '%' : ''); } }); } }); });
-        // Reveal items
-        document.querySelectorAll('.reveal-item').forEach(el => { ScrollTrigger.create({ trigger: el, start: 'top 85%', once: true, onEnter: () => el.classList.add('revealed') }); });
-        // timeline items stagger
-        gsap.utils.toArray('.timeline-item').forEach((item, i) => { gsap.fromTo(item, { x: i%2===0?-40:40, opacity:0 }, { x:0, opacity:1, duration:0.8, delay:i*0.1, scrollTrigger:{ trigger:item, start:'top 80%' } }); });
-        // custom cursor interaction
+        // Counters
+        document.querySelectorAll('.counter').forEach(c => {
+            const target = parseInt(c.dataset.target);
+            ScrollTrigger.create({
+                trigger: c, start: 'top 85%', once: true,
+                onEnter: () => {
+                    gsap.fromTo(c, { innerText: 0 }, {
+                        innerText: target, duration: 2.2, snap: { innerText: 1 }, ease: 'power2.out',
+                        onUpdate: function() { c.innerText = Math.floor(c.innerText) + (target === 4 ? '%' : ''); }
+                    });
+                }
+            });
+        });
+        // reveal items
+        document.querySelectorAll('.reveal-item').forEach(el => {
+            ScrollTrigger.create({ trigger: el, start: 'top 85%', once: true, onEnter: () => el.classList.add('revealed') });
+        });
+        // timeline stagger
+        gsap.utils.toArray('.timeline-item').forEach((item, idx) => {
+            gsap.fromTo(item, { x: idx%2===0 ? -40 : 40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.9, delay: idx*0.12, scrollTrigger: { trigger: item, start: 'top 80%' } });
+        });
+        // custom cursor enhancement
         const dot = document.querySelector('.custom-cursor'), ring = document.querySelector('.cursor-ring');
         if(dot && ring) {
-            window.addEventListener('mousemove', e => { gsap.to(dot, { x: e.clientX, y: e.clientY, duration: 0.08 }); gsap.to(ring, { x: e.clientX, y: e.clientY, duration: 0.2 }); });
-            document.querySelectorAll('a, button, .glass-card, .chat-toggle').forEach(el => { el.addEventListener('mouseenter', () => { gsap.to(ring, { width: 58, height: 58, borderColor: '#ffffff', duration: 0.2 }); }); el.addEventListener('mouseleave', () => { gsap.to(ring, { width: 38, height: 38, borderColor: 'rgba(255,255,255,0.4)', duration: 0.2 }); }); });
+            window.addEventListener('mousemove', (e) => { gsap.to(dot, { x: e.clientX, y: e.clientY, duration: 0.08 }); gsap.to(ring, { x: e.clientX, y: e.clientY, duration: 0.2 }); });
+            document.querySelectorAll('a, button, .glass-card, .ask-card').forEach(el => {
+                el.addEventListener('mouseenter', () => gsap.to(ring, { width: 58, height: 58, borderColor: '#ffffff', duration: 0.2 }));
+                el.addEventListener('mouseleave', () => gsap.to(ring, { width: 40, height: 40, borderColor: 'rgba(255,255,255,0.4)', duration: 0.2 }));
+            });
         }
-        // smooth scroll for nav
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { const target = document.querySelector(this.getAttribute('href')); if(target) { e.preventDefault(); window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' }); } }); });
+        // smooth nav scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) { e.preventDefault(); window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' }); }
+            });
+        });
     </script>
 </body>
 </html>
