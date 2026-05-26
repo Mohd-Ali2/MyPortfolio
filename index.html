@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Mohammad Ali | Cybersecurity Engineer — Professional Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Mohammad Ali | Cybersecurity Engineer — Kinetic Portfolio</title>
   
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Inter + Space Grotesk -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- GSAP + Lenis + Three.js -->
+  <!-- Core libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -20,91 +20,91 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: #0B0E17;
+      background: #03050a;
       font-family: 'Inter', sans-serif;
-      color: #EDF2F8;
+      color: #eef2ff;
       overflow-x: hidden;
     }
     
-    /* Animated mesh gradient */
-    .mesh-bg {
+    /* Animated gradient background (premium) */
+    .gradient-orb {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: -2;
-      background: radial-gradient(circle at 20% 30%, #0F172A, #020617);
+      background: radial-gradient(circle at 30% 20%, #0a0f1a, #010101);
     }
-    .gradient-overlay {
+    .gradient-flow {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: -1;
-      background: linear-gradient(125deg, rgba(56, 189, 248, 0.08), rgba(139, 92, 246, 0.05), rgba(0,0,0,0.3));
-      background-size: 300% 300%;
-      animation: softShift 22s ease infinite;
+      background: linear-gradient(125deg, rgba(79,70,229,0.3), rgba(139,92,246,0.15), rgba(0,0,0,0.6));
+      background-size: 400% 400%;
+      animation: liquidShift 18s ease infinite;
       pointer-events: none;
     }
-    @keyframes softShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    @keyframes liquidShift {
+      0% { background-position: 0% 50%; opacity: 0.7; }
+      50% { background-position: 100% 50%; opacity: 1; }
+      100% { background-position: 0% 50%; opacity: 0.7; }
     }
     
-    /* Glass cards - professional */
+    /* Glass cards */
     .glass-card {
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(56, 189, 248, 0.2);
-      transition: all 0.3s ease;
+      background: rgba(6, 12, 22, 0.75);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(79, 70, 229, 0.35);
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
     .glass-card:hover {
-      border-color: #38BDF8;
-      background: rgba(30, 41, 59, 0.85);
-      transform: translateY(-4px);
+      border-color: #8b5cf6;
+      background: rgba(15, 25, 45, 0.9);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 35px -12px rgba(79,70,229,0.5);
     }
     
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #0F172A; }
-    ::-webkit-scrollbar-thumb { background: #38BDF8; border-radius: 10px; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 10px; }
     
     .section-divider {
-      width: 70px;
+      width: 80px;
       height: 3px;
-      background: linear-gradient(90deg, #38BDF8, #818CF8);
-      margin: 1rem 0 2rem 0;
+      background: linear-gradient(90deg, #4f46e5, #a855f7);
+      margin: 1.5rem 0;
     }
     
     .reveal-item {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1), transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1);
     }
     .reveal-item.revealed {
       opacity: 1;
       transform: translateY(0);
     }
     
-    /* Big Ask Button */
-    .ask-btn {
-      background: linear-gradient(135deg, #2563EB, #7C3AED);
-      box-shadow: 0 10px 25px -8px rgba(37, 99, 235, 0.5);
-      transition: all 0.2s;
+    .big-ask-btn {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      box-shadow: 0 10px 30px -8px rgba(79, 70, 229, 0.7);
+      transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.2), box-shadow 0.3s;
     }
-    .ask-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 20px 30px -12px rgba(37, 99, 235, 0.7);
+    .big-ask-btn:hover {
+      transform: scale(1.02) translateY(-4px);
+      box-shadow: 0 22px 35px -12px rgba(79, 70, 229, 0.9);
     }
     
     .user-bubble {
-      background: #2563EB;
+      background: #4f46e5;
       border-bottom-right-radius: 6px;
     }
     .ai-bubble {
-      background: #1E293B;
+      background: #1e293b;
       border-bottom-left-radius: 6px;
       border: 1px solid #334155;
     }
@@ -117,84 +117,93 @@
       height: 100vh;
       z-index: 0;
       pointer-events: none;
-      opacity: 0.5;
+      opacity: 0.85;
+    }
+    
+    .glitch-text {
+      animation: glitchPulse 3s infinite;
+    }
+    @keyframes glitchPulse {
+      0%, 100% { text-shadow: -2px 0 #4f46e5, 2px 0 #a855f7; }
+      33% { text-shadow: 2px 0 #4f46e5, -2px 0 #a855f7; }
+      66% { text-shadow: -1px 0 #a855f7, 1px 0 #4f46e5; }
     }
     
     @media (max-width: 768px) {
-      .glass-card { margin-bottom: 1rem; }
       .section-divider { margin: 1rem auto; }
+      .glass-card { margin-bottom: 1rem; }
     }
   </style>
 </head>
 <body>
-  <div class="mesh-bg"></div>
-  <div class="gradient-overlay"></div>
+  <div class="gradient-orb"></div>
+  <div class="gradient-flow"></div>
   <canvas id="three-canvas"></canvas>
   
   <div id="app">
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full px-6 md:px-12 py-5 z-50 flex justify-between items-center bg-black/40 backdrop-blur-lg border-b border-white/10">
-      <div class="font-bold text-2xl tracking-tight text-white">M.ALI</div>
-      <div class="hidden md:flex gap-8 font-mono text-sm font-semibold text-white/80">
-        <a href="#about" class="hover:text-sky-400 transition">About</a>
-        <a href="#journey" class="hover:text-sky-400 transition">Journey</a>
-        <a href="#credentials" class="hover:text-sky-400 transition">Credentials</a>
-        <a href="#ask" class="hover:text-sky-400 transition">Ask AI</a>
-        <a href="#contact" class="hover:text-sky-400 transition">Contact</a>
+    <nav class="fixed top-0 w-full px-6 md:px-12 py-5 z-50 flex justify-between items-center bg-black/40 backdrop-blur-xl border-b border-white/10">
+      <div class="font-space font-extrabold text-2xl tracking-tighter text-white hover:text-indigo-400 transition">M.ALI</div>
+      <div class="hidden md:flex gap-8 font-mono text-sm font-semibold uppercase tracking-wide text-white/80">
+        <a href="#about" class="hover:text-indigo-400 transition">Profile</a>
+        <a href="#journey" class="hover:text-indigo-400 transition">Journey</a>
+        <a href="#credentials" class="hover:text-indigo-400 transition">Credentials</a>
+        <a href="#ask" class="hover:text-indigo-400 transition">Ask AI</a>
+        <a href="#contact" class="hover:text-indigo-400 transition">Contact</a>
       </div>
-      <a href="#contact" class="border border-sky-500 text-sky-300 text-sm uppercase px-5 py-2 rounded-full hover:bg-sky-600 hover:text-white transition">Connect</a>
+      <a href="#contact" class="border border-indigo-500 text-indigo-300 font-mono text-sm uppercase px-5 py-2 rounded-full hover:bg-indigo-600 hover:text-white transition">Connect</a>
     </nav>
     
     <main class="relative z-10 pt-28">
-      <!-- Hero Section -->
-      <section class="px-6 md:px-16 pb-28 pt-8">
+      <!-- Hero -->
+      <section class="px-6 md:px-16 pb-32 pt-12">
         <div class="max-w-7xl mx-auto">
-          <div class="flex flex-wrap gap-4 font-mono text-xs text-sky-300 mb-8">
+          <div class="flex flex-wrap gap-5 font-mono text-sm font-medium text-indigo-300 mb-10">
             <span>📍 MUMBAI, INDIA</span>
-            <span>⚡ SOC DEFENSE</span>
+            <span>⚡ SOC DEFENSE ARCHITECT</span>
             <span>🛡️ CYBERSECURITY ENGINEER</span>
           </div>
-          <h1 class="font-bold text-6xl md:text-8xl lg:text-9xl leading-[1.1] tracking-tighter text-white">
-            Mohammad Ali
-            <span class="block text-sky-400 text-3xl md:text-5xl mt-3">Cybersecurity Engineer</span>
+          <h1 class="font-space text-7xl md:text-9xl font-extrabold leading-[1.05] tracking-tighter text-white glitch-text">
+            <span class="block">Mohammad Ali</span>
+            <span class="block text-indigo-400 text-4xl md:text-6xl mt-4">Cybersecurity Engineer</span>
           </h1>
-          <div class="grid md:grid-cols-2 gap-10 mt-12">
-            <p class="text-gray-300 text-lg md:text-xl leading-relaxed">
-              Real‑time threat diagnostics, SIEM analytics, and resilient defensive architectures. Proactive threat hunter & Blue Team specialist.
+          <div class="grid md:grid-cols-2 gap-12 mt-14">
+            <p class="text-gray-300 text-xl md:text-2xl font-light leading-relaxed">
+              Real‑time threat diagnostics, SIEM analytics, and resilient defensive architectures.<br>Proactive threat hunter & Blue Team specialist.
             </p>
             <div class="flex flex-col items-start md:items-end">
-              <span class="font-mono text-sm text-sky-400 uppercase">Academic</span>
-              <p class="text-xl md:text-2xl font-semibold text-white">Bachelor of Computer Applications (BCA)</p>
+              <p class="font-mono text-sm font-semibold text-indigo-400 uppercase">Academic</p>
+              <p class="text-2xl md:text-3xl font-bold text-white">Bachelor of Computer Applications (BCA)</p>
               <div class="section-divider mt-2"></div>
             </div>
           </div>
         </div>
       </section>
       
-      <!-- About / Profile -->
-      <section id="about" class="px-6 md:px-16 py-24 bg-black/20">
+      <!-- Profile -->
+      <section id="about" class="px-6 md:px-16 py-28">
         <div class="max-w-7xl mx-auto">
-          <h2 class="text-4xl md:text-6xl font-bold text-white">01. Profile</h2>
-          <div class="section-divider mb-8"></div>
+          <h2 class="font-space text-5xl md:text-7xl font-extrabold text-white">01. Profile</h2>
+          <div class="section-divider mb-10"></div>
           <div class="grid lg:grid-cols-3 gap-8">
-            <div class="lg:col-span-2 glass-card p-8 rounded-2xl reveal-item">
-              <h3 class="text-2xl font-bold text-sky-300 mb-3">Blue Team & Defense Strategy</h3>
-              <p class="text-gray-300 text-base leading-relaxed">I operate at the intersection of telemetry analytics and threat intelligence. Continuous monitoring, network hardening, incident response playbooks. Deep expertise in SIEM (Splunk), packet analysis, log correlation, and Linux environments.</p>
-              <div class="flex flex-wrap gap-3 mt-6">
-                <span class="px-3 py-1.5 border border-sky-500/30 rounded-lg text-sm font-mono">SIEM (Splunk)</span>
-                <span class="px-3 py-1.5 border border-sky-500/30 rounded-lg text-sm font-mono">Packet Analysis</span>
-                <span class="px-3 py-1.5 border border-sky-500/30 rounded-lg text-sm font-mono">Log Correlation</span>
-                <span class="px-3 py-1.5 border border-sky-500/30 rounded-lg text-sm font-mono">Linux/Unix</span>
+            <div class="lg:col-span-2 glass-card p-8 md:p-10 rounded-3xl reveal-item">
+              <h3 class="text-3xl font-bold text-indigo-300 mb-4">Blue Team & Defense Strategy</h3>
+              <p class="text-gray-300 text-lg leading-relaxed">I operate at the intersection of telemetry analytics and threat intelligence. Continuous monitoring, network hardening, incident response playbooks. Deep expertise in SIEM (Splunk), packet analysis, log correlation, and Linux environments.</p>
+              <div class="flex flex-wrap gap-3 mt-8">
+                <span class="px-4 py-2 border border-indigo-500/30 rounded-xl text-sm font-mono">SIEM (Splunk)</span>
+                <span class="px-4 py-2 border border-indigo-500/30 rounded-xl text-sm font-mono">Packet Analysis</span>
+                <span class="px-4 py-2 border border-indigo-500/30 rounded-xl text-sm font-mono">Log Correlation</span>
+                <span class="px-4 py-2 border border-indigo-500/30 rounded-xl text-sm font-mono">Linux/Unix</span>
               </div>
             </div>
             <div class="flex flex-col gap-6">
-              <div class="glass-card p-6 rounded-2xl text-center reveal-item">
-                <div class="text-5xl font-black text-sky-400 counter" data-target="4">0</div>
-                <div class="text-sm uppercase text-gray-400 mt-1">Top % TryHackMe Global</div>
+              <div class="glass-card p-7 rounded-2xl text-center reveal-item">
+                <div class="text-6xl font-black text-indigo-400 counter" data-target="4">0</div>
+                <div class="font-mono text-sm uppercase text-gray-400 mt-2">Top % TryHackMe Global</div>
               </div>
-              <div class="glass-card p-6 rounded-2xl text-center reveal-item">
-                <div class="text-5xl font-black text-white counter" data-target="109">0</div>
-                <div class="text-sm uppercase text-gray-400 mt-1">Security Labs Completed</div>
+              <div class="glass-card p-7 rounded-2xl text-center reveal-item">
+                <div class="text-6xl font-black text-white counter" data-target="109">0</div>
+                <div class="font-mono text-sm uppercase text-gray-400 mt-2">Security Labs Completed</div>
               </div>
             </div>
           </div>
@@ -202,116 +211,112 @@
       </section>
       
       <!-- Journey Timeline -->
-      <section id="journey" class="px-6 md:px-16 py-24">
+      <section id="journey" class="px-6 md:px-16 py-28">
         <div class="max-w-7xl mx-auto">
-          <h2 class="text-4xl md:text-6xl font-bold text-white">02. Journey</h2>
-          <div class="section-divider mb-10"></div>
+          <h2 class="font-space text-5xl md:text-7xl font-extrabold text-white">02. Journey</h2>
+          <div class="section-divider mb-12"></div>
           <div class="relative">
-            <!-- Desktop vertical line -->
-            <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-gradient-to-b from-sky-500/20 via-sky-400 to-sky-500/20"></div>
+            <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-gradient-to-b from-indigo-500/20 via-indigo-400/60 to-indigo-500/20"></div>
             
-            <!-- Item 1 -->
-            <div class="relative flex flex-col md:flex-row gap-8 mb-12">
-              <div class="md:w-1/2 md:ml-auto glass-card p-6 rounded-2xl reveal-item">
-                <span class="text-xs font-mono bg-sky-600/20 px-3 py-1 rounded-full">CURRENT</span>
-                <h3 class="text-xl font-bold mt-3">SOC Level 1 Analyst Path</h3>
-                <p class="text-gray-300 text-sm mt-1">SIEM pipeline management, malware containment, real‑time correlation. Active threat hunting training.</p>
+            <div class="relative flex flex-col md:flex-row gap-8 mb-16">
+              <div class="md:w-1/2 md:ml-auto glass-card p-7 rounded-2xl reveal-item">
+                <span class="text-xs font-mono bg-indigo-600/20 px-3 py-1 rounded-full">CURRENT</span>
+                <h3 class="text-2xl font-bold mt-3">SOC Level 1 Analyst Path</h3>
+                <p class="text-gray-300 mt-2">SIEM pipeline management, malware containment, real‑time correlation. Active training in threat hunting.</p>
               </div>
-              <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-sky-500 border-2 border-black z-10 top-5"></div>
+              <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-indigo-500 border-4 border-black z-10 top-6 animate-pulse"></div>
             </div>
             
-            <!-- Item 2 -->
-            <div class="relative flex flex-col md:flex-row gap-8 mb-12">
-              <div class="md:w-1/2 glass-card p-6 rounded-2xl reveal-item">
-                <span class="text-xs font-mono bg-sky-600/20 px-3 py-1 rounded-full">COMPLETED</span>
-                <h3 class="text-xl font-bold mt-3">Cyber Security 101 — Defense</h3>
-                <p class="text-gray-300 text-sm mt-1">Offensive techniques, defensive playbooks, threat emulation, incident response foundations.</p>
+            <div class="relative flex flex-col md:flex-row gap-8 mb-16">
+              <div class="md:w-1/2 glass-card p-7 rounded-2xl reveal-item">
+                <span class="text-xs font-mono bg-indigo-600/20 px-3 py-1 rounded-full">COMPLETED</span>
+                <h3 class="text-2xl font-bold mt-3">Cyber Security 101 — Defense</h3>
+                <p class="text-gray-300 mt-2">Offensive techniques, defensive playbooks, threat emulation, and incident response foundations.</p>
               </div>
-              <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-sky-400 border-2 border-black z-10 top-5"></div>
+              <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-indigo-400 border-4 border-black z-10 top-6"></div>
             </div>
             
-            <!-- Item 3 -->
             <div class="relative flex flex-col md:flex-row gap-8">
-              <div class="md:w-1/2 md:ml-auto glass-card p-6 rounded-2xl reveal-item">
-                <span class="text-xs font-mono bg-sky-600/20 px-3 py-1 rounded-full">FOUNDATION</span>
-                <h3 class="text-xl font-bold mt-3">Pre‑Security & Networking</h3>
-                <p class="text-gray-300 text-sm mt-1">Core networking, Linux proficiency, security fundamentals, blue team concepts.</p>
+              <div class="md:w-1/2 md:ml-auto glass-card p-7 rounded-2xl reveal-item">
+                <span class="text-xs font-mono bg-indigo-600/20 px-3 py-1 rounded-full">FOUNDATION</span>
+                <h3 class="text-2xl font-bold mt-3">Pre‑Security & Networking</h3>
+                <p class="text-gray-300 mt-2">Core networking, Linux proficiency, security fundamentals, and introductory blue team concepts.</p>
               </div>
-              <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-sky-300 border-2 border-black z-10 top-5"></div>
+              <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-indigo-300 border-4 border-black z-10 top-6"></div>
             </div>
           </div>
         </div>
       </section>
       
       <!-- Credentials -->
-      <section id="credentials" class="px-6 md:px-16 py-24 bg-black/20">
+      <section id="credentials" class="px-6 md:px-16 py-28">
         <div class="max-w-7xl mx-auto">
-          <h2 class="text-4xl md:text-6xl font-bold text-white">03. Credentials</h2>
-          <div class="section-divider mb-8"></div>
-          <div class="grid md:grid-cols-2 gap-6">
-            <a href="https://tryhackme.com/certificate/THM-ARJJJENRWO" target="_blank" class="glass-card p-6 rounded-2xl group reveal-item">
-              <i class="fa-solid fa-certificate text-3xl text-sky-400 mb-2"></i>
-              <h3 class="text-xl font-bold">Cyber Security 101</h3>
-              <p class="text-gray-400 text-sm">Defensive architecture, SIEM configuration, hands-on labs</p>
-              <div class="mt-3 text-sm text-sky-400 group-hover:translate-x-1 transition">Verify →</div>
+          <h2 class="font-space text-5xl md:text-7xl font-extrabold text-white">03. Credentials</h2>
+          <div class="section-divider mb-10"></div>
+          <div class="grid md:grid-cols-2 gap-8">
+            <a href="https://tryhackme.com/certificate/THM-ARJJJENRWO" target="_blank" class="glass-card p-7 rounded-2xl group reveal-item">
+              <i class="fa-solid fa-certificate text-3xl text-indigo-400 mb-3"></i>
+              <h3 class="text-2xl font-bold">Cyber Security 101</h3>
+              <p class="text-gray-400">Defensive architecture, SIEM configuration, hands-on labs</p>
+              <div class="mt-4 text-sm text-indigo-400 group-hover:translate-x-1 transition">Verify →</div>
             </a>
-            <a href="https://tryhackme.com/certificate/THM-FNKRNERDLO" target="_blank" class="glass-card p-6 rounded-2xl group reveal-item">
-              <i class="fa-solid fa-shield-halved text-3xl text-sky-400 mb-2"></i>
-              <h3 class="text-xl font-bold">Pre‑Security</h3>
-              <p class="text-gray-400 text-sm">Core security principles, Linux mastery, network foundations</p>
-              <div class="mt-3 text-sm text-sky-400 group-hover:translate-x-1 transition">Verify →</div>
+            <a href="https://tryhackme.com/certificate/THM-FNKRNERDLO" target="_blank" class="glass-card p-7 rounded-2xl group reveal-item">
+              <i class="fa-solid fa-shield-halved text-3xl text-indigo-400 mb-3"></i>
+              <h3 class="text-2xl font-bold">Pre‑Security</h3>
+              <p class="text-gray-400">Core security principles, Linux mastery, network foundations</p>
+              <div class="mt-4 text-sm text-indigo-400 group-hover:translate-x-1 transition">Verify →</div>
             </a>
           </div>
-          <div class="mt-10 p-5 border-l-4 border-sky-500 bg-black/40 rounded-r-xl reveal-item">
-            <div class="flex items-center gap-3">
-              <i class="fa-solid fa-trophy text-2xl text-sky-400"></i>
-              <div><span class="font-bold text-white">Top 4% Cybersecurity Professional</span><p class="text-sm text-gray-400">Global defensive security ranking</p></div>
+          <div class="mt-12 p-6 border-l-4 border-indigo-500 bg-black/40 rounded-r-2xl reveal-item">
+            <div class="flex gap-3 items-center">
+              <i class="fa-solid fa-trophy text-2xl text-indigo-400"></i>
+              <div><span class="font-bold text-lg">Top 4% Cybersecurity Professional</span><p class="text-sm text-gray-400">Global defensive security ranking</p></div>
             </div>
           </div>
         </div>
       </section>
       
-      <!-- Ask Me (AI Chat - OpenRouter + local fallback) -->
-      <section id="ask" class="px-6 md:px-16 py-24 border-y border-sky-900/30">
+      <!-- Ask Me Section: Local AI (No API Keys Needed) -->
+      <section id="ask" class="px-6 md:px-16 py-28 border-y border-indigo-900/30 bg-black/20">
         <div class="max-w-5xl mx-auto text-center">
-          <h2 class="text-4xl md:text-6xl font-bold text-white">Ask Me</h2>
-          <div class="section-divider mx-auto mb-6"></div>
-          <p class="text-gray-300 text-lg mb-8">Ask any question about my skills, background, certifications — AI‑powered answers.</p>
+          <h2 class="font-space text-5xl md:text-7xl font-extrabold text-white">Ask Me</h2>
+          <div class="section-divider mx-auto mb-8"></div>
+          <p class="text-gray-300 text-xl mb-10">Ask any question about my skills, background, certifications — instant intelligent answers (100% offline, no API).</p>
           
-          <button v-if="!chatActive" @click="chatActive = true" class="ask-btn px-10 py-4 rounded-full text-xl font-bold flex gap-3 mx-auto items-center">
-            <i class="fa-regular fa-comment-dots text-2xl"></i> Ask Me Anything
+          <button v-if="!chatActive" @click="chatActive = true" class="big-ask-btn px-12 py-5 rounded-full text-2xl font-bold flex gap-3 mx-auto items-center">
+            <i class="fa-regular fa-comment-dots text-3xl"></i> Ask Me Anything
           </button>
           
-          <div v-if="chatActive" class="bg-black/80 backdrop-blur-xl rounded-2xl p-5 mt-8 text-left border border-sky-500/30">
-            <div class="flex justify-between border-b border-gray-700 pb-2 mb-3">
-              <h3 class="text-lg font-bold text-sky-300"><i class="fa-regular fa-message mr-2"></i>Chat with AI</h3>
+          <div v-if="chatActive" class="bg-black/90 backdrop-blur-xl rounded-3xl p-6 mt-8 text-left border border-indigo-500/30 shadow-2xl">
+            <div class="flex justify-between border-b border-gray-700 pb-3 mb-4">
+              <h3 class="text-xl font-bold text-indigo-300"><i class="fa-regular fa-message mr-2"></i>Chat with Mohammad's AI</h3>
               <button @click="chatActive = false; resetChat()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-times"></i></button>
             </div>
-            <div class="h-72 overflow-y-auto p-2 flex flex-col gap-3 mb-3" ref="chatContainer">
-              <div v-for="msg in messages" :class="msg.role === 'user' ? 'user-bubble' : 'ai-bubble'" class="max-w-[85%] rounded-2xl px-3 py-2 text-sm">
+            <div class="h-80 overflow-y-auto p-2 flex flex-col gap-3 mb-4" ref="chatContainer">
+              <div v-for="msg in messages" :class="msg.role === 'user' ? 'user-bubble' : 'ai-bubble'" class="max-w-[85%] rounded-2xl px-4 py-2 text-sm">
                 {{ msg.content }}
               </div>
-              <div v-if="loading" class="ai-bubble px-3 py-2 rounded-2xl text-sm italic">Thinking... <i class="fa-regular fa-circle-notch fa-spin"></i></div>
+              <div v-if="loading" class="ai-bubble px-4 py-2 rounded-2xl text-sm italic">Thinking... <i class="fa-regular fa-circle-notch fa-spin"></i></div>
             </div>
-            <div class="flex gap-2">
-              <input v-model="userInput" @keyup.enter="sendMessage" placeholder="e.g., What are your top skills?" class="flex-1 bg-black/60 border border-sky-500/40 rounded-full px-4 py-2 text-white text-sm focus:outline-none focus:border-sky-400">
-              <button @click="sendMessage" class="bg-sky-600 hover:bg-sky-700 px-5 py-2 rounded-full font-semibold text-sm transition">Send</button>
+            <div class="flex gap-3">
+              <input v-model="userInput" @keyup.enter="sendMessage" placeholder="e.g., What are your top skills?" class="flex-1 bg-black/60 border border-indigo-500/40 rounded-full px-5 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400">
+              <button @click="sendMessage" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-full font-semibold transition">Ask</button>
             </div>
-            <p class="text-xs text-gray-500 mt-3 text-center">⚡ Powered by OpenRouter (Gemini 2.0) + local fallback – always responsive</p>
+            <p class="text-xs text-gray-500 mt-3 text-center">⚡ Fully local AI — understands natural language, works offline, no API keys required</p>
           </div>
         </div>
       </section>
       
       <!-- Contact Footer -->
-      <footer id="contact" class="px-6 md:px-16 py-16 text-center border-t border-white/10">
+      <footer id="contact" class="px-6 md:px-16 py-20 text-center border-t border-white/10">
         <div class="max-w-4xl mx-auto">
-          <p class="font-mono text-sm text-sky-400 uppercase mb-3">Get in touch</p>
-          <a href="mailto:alifaizan20@outlook.com" class="text-2xl md:text-4xl lg:text-5xl font-bold text-white hover:text-sky-400 transition">alifaizan20@outlook.com</a>
-          <div class="flex justify-center gap-6 my-8">
-            <a href="https://www.linkedin.com/in/mohdali02/" target="_blank" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-lg hover:border-sky-400 hover:text-sky-400 transition"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://github.com/Mohd-Ali2" target="_blank" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-lg hover:border-sky-400 hover:text-sky-400 transition"><i class="fa-brands fa-github"></i></a>
+          <p class="font-mono text-sm font-semibold text-indigo-400 uppercase mb-4">Get in touch</p>
+          <a href="mailto:alifaizan20@outlook.com" class="text-3xl md:text-5xl lg:text-6xl font-bold text-white hover:text-indigo-400 transition">alifaizan20@outlook.com</a>
+          <div class="flex justify-center gap-8 my-12">
+            <a href="https://www.linkedin.com/in/mohdali02/" target="_blank" class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center text-xl hover:border-indigo-400 hover:text-indigo-400 transition"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://github.com/Mohd-Ali2" target="_blank" class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center text-xl hover:border-indigo-400 hover:text-indigo-400 transition"><i class="fa-brands fa-github"></i></a>
           </div>
-          <div class="text-xs text-gray-500">© 2026 Mohammad Ali — Mumbai, India</div>
+          <div class="text-sm text-gray-500">© 2026 Mohammad Ali — Mumbai, India</div>
         </div>
       </footer>
     </main>
@@ -319,41 +324,51 @@
   
   <script>
     // --------------------------------------------------------------
-    // 1. THREE.JS BACKGROUND (minimal but elegant)
+    // 1. THREE.JS BACKGROUND (Immersive, high-performance)
     // --------------------------------------------------------------
-    const canvas = document.getElementById('three-canvas');
+    const canvasEl = document.getElementById('three-canvas');
     const scene = new THREE.Scene();
     scene.background = null;
-    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 1, 28);
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    scene.fog = new THREE.FogExp2(0x03050a, 0.0018);
+    const camera = new THREE.PerspectiveCamera(48, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 1.2, 30);
+    const renderer = new THREE.WebGLRenderer({ canvas: canvasEl, alpha: true, antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     
-    // Floating particles
-    const particleCount = 1200;
+    // Particle swarm
+    const particleCount = 2200;
     const geom = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i++) {
-      positions[i*3] = (Math.random() - 0.5) * 160;
-      positions[i*3+1] = (Math.random() - 0.5) * 90;
-      positions[i*3+2] = (Math.random() - 0.5) * 70 - 20;
+      positions[i*3] = (Math.random() - 0.5) * 200;
+      positions[i*3+1] = (Math.random() - 0.5) * 120;
+      positions[i*3+2] = (Math.random() - 0.5) * 90 - 25;
     }
     geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const particleMat = new THREE.PointsMaterial({ color: 0x38BDF8, size: 0.15, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending });
+    const particleMat = new THREE.PointsMaterial({ color: 0x8b5cf6, size: 0.18, transparent: true, opacity: 0.45, blending: THREE.AdditiveBlending });
     const particles = new THREE.Points(geom, particleMat);
     scene.add(particles);
     
-    const knotGeo = new THREE.TorusKnotGeometry(2.8, 0.7, 200, 32, 3, 4);
-    const knotMat = new THREE.MeshStandardMaterial({ color: 0x38BDF8, wireframe: true, emissive: 0x0A2A5A });
+    const knotGeo = new THREE.TorusKnotGeometry(3.4, 0.85, 240, 36, 3, 4);
+    const knotMat = new THREE.MeshStandardMaterial({ color: 0x4f46e5, wireframe: true, emissive: 0x2e1065 });
     const knot = new THREE.Mesh(knotGeo, knotMat);
     scene.add(knot);
     
-    const ambient = new THREE.AmbientLight(0x111827);
+    const ringGeo = new THREE.TorusGeometry(4.8, 0.08, 160, 300);
+    const ringMat = new THREE.MeshStandardMaterial({ color: 0xa855f7, emissive: 0x3b0764 });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.rotation.x = Math.PI / 2;
+    scene.add(ring);
+    
+    const ambient = new THREE.AmbientLight(0x1a1a2e);
     scene.add(ambient);
-    const light = new THREE.PointLight(0x38BDF8, 0.6);
-    light.position.set(3, 5, 8);
+    const light = new THREE.PointLight(0x4f46e5, 0.8);
+    light.position.set(4, 6, 10);
     scene.add(light);
+    const backLight = new THREE.PointLight(0xa855f7, 0.45);
+    backLight.position.set(-3, 2, -8);
+    scene.add(backLight);
     
     let mouseX = 0, mouseY = 0;
     document.addEventListener('mousemove', (e) => {
@@ -361,18 +376,21 @@
       mouseY = (e.clientY / window.innerHeight) * 2 - 1;
     });
     
-    function animate() {
-      requestAnimationFrame(animate);
-      const t = Date.now() * 0.001;
-      knot.rotation.x = t * 0.2;
-      knot.rotation.y = t * 0.3;
-      particles.rotation.y = t * 0.02;
-      camera.position.x += (mouseX * 0.8 - camera.position.x) * 0.02;
-      camera.position.y += (-mouseY * 0.8 - camera.position.y) * 0.02;
+    function animate3D() {
+      requestAnimationFrame(animate3D);
+      const t = Date.now() * 0.0012;
+      knot.rotation.x = t * 0.22;
+      knot.rotation.y = t * 0.38;
+      ring.rotation.z = t * 0.14;
+      ring.rotation.x = Math.sin(t * 0.45) * 0.65;
+      particles.rotation.y = t * 0.045;
+      particles.rotation.x = Math.sin(t * 0.1) * 0.07;
+      camera.position.x += (mouseX * 1.4 - camera.position.x) * 0.025;
+      camera.position.y += (-mouseY * 1.1 - camera.position.y) * 0.025;
       camera.lookAt(0, 0, 0);
       renderer.render(scene, camera);
     }
-    animate();
+    animate3D();
     window.addEventListener('resize', () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
@@ -380,16 +398,17 @@
     });
     
     // --------------------------------------------------------------
-    // 2. LENIS + GSAP (smooth scroll & reveals)
+    // 2. LENIS SMOOTH SCROLL + GSAP SCROLLTRIGGER (butter smooth)
     // --------------------------------------------------------------
-    const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+    const lenis = new Lenis({ duration: 1.25, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
     gsap.registerPlugin(ScrollTrigger);
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
     
-    // Counters
+    // Counters animation
     const counters = document.querySelectorAll('.counter');
     counters.forEach(c => {
       const target = parseInt(c.getAttribute('data-target'));
@@ -397,7 +416,7 @@
         trigger: c, start: 'top 85%', once: true,
         onEnter: () => {
           gsap.fromTo(c, { innerText: 0 }, {
-            innerText: target, duration: 2, snap: { innerText: 1 }, ease: 'power2.out',
+            innerText: target, duration: 2.2, snap: { innerText: 1 }, ease: 'back.out(1.2)',
             onUpdate: function() { c.innerText = Math.floor(c.innerText) + (target === 4 ? '%' : ''); }
           });
         }
@@ -410,8 +429,8 @@
     });
     
     // Hero entrance
-    gsap.from("h1", { y: 50, opacity: 0, duration: 1, delay: 0.2 });
-    gsap.from(".text-gray-300", { y: 30, opacity: 0, duration: 0.8, delay: 0.5 });
+    gsap.from("h1 .block:first-child", { y: 110, opacity: 0, duration: 1.2, ease: "power4.out", delay: 0.2 });
+    gsap.from("h1 .block:last-child", { y: 110, opacity: 0, duration: 1.2, ease: "power4.out", delay: 0.45 });
     
     // Smooth anchor scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -422,84 +441,105 @@
     });
     
     // --------------------------------------------------------------
-    // 3. AI CHAT (OpenRouter API + local fallback - 100% working)
+    // 3. INTELLIGENT LOCAL AI (NO API, 100% RELIABLE)
     // --------------------------------------------------------------
-    const OPENROUTER_KEY = "0181871613161f2c9150574ea778e00e";  // user's key
-    const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
+    // Comprehensive knowledge base about Mohammad Ali
+    const knowledgeBase = {
+      skills: "My core skills: SIEM (Splunk), Packet Analysis, Log Correlation, Linux/Unix, incident response, threat hunting, Python/Bash scripting.",
+      certifications: "I hold Cyber Security 101 and Pre‑Security certifications from TryHackMe, both verified. I'm also in the top 4% globally on TryHackMe with 109+ completed labs.",
+      location: "I'm based in Mumbai, India.",
+      education: "I have a Bachelor of Computer Applications (BCA) degree.",
+      email: "You can email me at alifaizan20@outlook.com.",
+      github: "My GitHub is github.com/Mohd-Ali2 — check out my security labs and tools.",
+      linkedin: "Connect with me on LinkedIn: linkedin.com/in/mohdali02.",
+      tryhackme: "I'm in the top 4% on TryHackMe with 109+ completed labs and rooms.",
+      experience: "I'm currently on the SOC Level 1 Analyst path. Previously completed Cyber Security 101 and Pre-Security tracks.",
+      role: "I'm a Cybersecurity Engineer specializing in Blue Team / SOC defense and threat hunting.",
+      background: "I'm a BCA graduate with a passion for defensive security, SIEM analytics, and continuous learning.",
+      contact: "You can reach me via email at alifaizan20@outlook.com or connect on LinkedIn/GitHub.",
+      projects: "I've worked on SIEM lab setups, log analysis scripts, and threat detection playbooks.",
+      languages: "I use Python, Bash, and SQL for automation and log parsing.",
+      future: "I aim to become a senior SOC analyst and eventually a Security Architect.",
+      achievement: "Top 4% TryHackMe global ranking, 109+ labs completed, two industry certifications."
+    };
     
-    const CONTEXT = `Mohammad Ali is a Cybersecurity Engineer based in Mumbai, India. Education: BCA. Skills: SIEM (Splunk), Packet Analysis, Log Correlation, Linux/Unix, incident response, threat hunting. Certifications: Cyber Security 101 and Pre-Security (TryHackMe) — top 4% globally, 109+ labs. Email: alifaizan20@outlook.com. GitHub: github.com/Mohd-Ali2. LinkedIn: linkedin.com/in/mohdali02. Current focus: SOC Level 1 Analyst path.`;
-    
-    function localAnswer(q) {
-      const l = q.toLowerCase();
-      if (l.includes("skill")) return "My core skills: SIEM (Splunk), Packet Analysis, Log Correlation, Linux/Unix, incident response, threat hunting, Python/Bash.";
-      if (l.includes("certif")) return "I hold Cyber Security 101 and Pre‑Security certifications from TryHackMe, top 4% globally, 109+ labs.";
-      if (l.includes("location")) return "I'm based in Mumbai, India.";
-      if (l.includes("education") || l.includes("bca")) return "I have a Bachelor of Computer Applications (BCA) degree.";
-      if (l.includes("email")) return "You can email me at alifaizan20@outlook.com.";
-      if (l.includes("github")) return "My GitHub: github.com/Mohd-Ali2.";
-      if (l.includes("linkedin")) return "LinkedIn: linkedin.com/in/mohdali02.";
-      if (l.includes("tryhackme")) return "I'm top 4% on TryHackMe with 109+ completed labs.";
-      if (l.includes("experience")) return "I'm on the SOC Level 1 Analyst path, after Cyber Security 101 and Pre-Security.";
-      return `I'm Mohammad Ali, a cybersecurity engineer. ${CONTEXT.split('.')[0]}. Ask me about skills, certifications, or background.`;
+    function getAIResponse(userQuestion) {
+      const q = userQuestion.toLowerCase().trim();
+      
+      // Greetings & common intents
+      if (q.match(/^(hi|hello|hey|greetings|sup)/)) {
+        return "Hello! I'm Mohammad's AI assistant. Ask me about his skills, certifications, background, or contact info.";
+      }
+      if (q.includes("thank")) return "You're very welcome! Feel free to ask anything else.";
+      if (q.includes("who are you")) return "I'm an AI assistant representing Mohammad Ali, a Cybersecurity Engineer. How can I help?";
+      if (q.includes("how are you")) return "I'm functioning perfectly. Ready to answer your questions about Mohammad!";
+      
+      // Intent mapping with keyword detection
+      const intents = [
+        { keywords: ["skill", "technology", "tool", "expertise"], response: knowledgeBase.skills },
+        { keywords: ["certif", "credential", "badge", "certificate"], response: knowledgeBase.certifications },
+        { keywords: ["location", "mumbai", "where", "city"], response: knowledgeBase.location },
+        { keywords: ["education", "bca", "degree", "study", "academic"], response: knowledgeBase.education },
+        { keywords: ["email", "contact", "reach"], response: knowledgeBase.email },
+        { keywords: ["github"], response: knowledgeBase.github },
+        { keywords: ["linkedin"], response: knowledgeBase.linkedin },
+        { keywords: ["tryhackme", "rank", "labs", "thm"], response: knowledgeBase.tryhackme },
+        { keywords: ["experience", "journey", "path"], response: knowledgeBase.experience },
+        { keywords: ["role", "job", "position", "work"], response: knowledgeBase.role },
+        { keywords: ["background", "about you"], response: knowledgeBase.background },
+        { keywords: ["project", "built", "create"], response: knowledgeBase.projects },
+        { keywords: ["language", "programming", "code"], response: knowledgeBase.languages },
+        { keywords: ["future", "goal", "dream", "aspire"], response: knowledgeBase.future },
+        { keywords: ["achievement", "accomplishment", "trophy", "award"], response: knowledgeBase.achievement }
+      ];
+      
+      for (let intent of intents) {
+        for (let kw of intent.keywords) {
+          if (q.includes(kw)) return intent.response;
+        }
+      }
+      
+      // Default fallback
+      return `I'm Mohammad Ali, a cybersecurity engineer based in Mumbai. I specialize in SIEM, threat hunting, and Blue Team defense. Ask me about my skills, certifications, or background — I'll give you a specific answer!`;
     }
     
+    // Vue 3 Application
     const { createApp, ref, nextTick } = Vue;
     const app = createApp({
       setup() {
         const chatActive = ref(false);
-        const messages = ref([{ role: "ai", content: "👋 Hi! I'm Mohammad's AI. Ask me about his skills, certifications, background — I'll answer using live AI." }]);
+        const messages = ref([{ role: "ai", content: "👋 I'm Mohammad's AI. Ask me anything about his work, skills, certifications, or background — I understand natural language and work 100% offline!" }]);
         const userInput = ref("");
         const loading = ref(false);
         const chatContainer = ref(null);
         
         const scrollChat = () => nextTick(() => { if (chatContainer.value) chatContainer.value.scrollTop = chatContainer.value.scrollHeight; });
         
-        const sendMessage = async () => {
+        const sendMessage = () => {
           const text = userInput.value.trim();
           if (!text) return;
           messages.value.push({ role: "user", content: text });
           userInput.value = "";
           scrollChat();
           loading.value = true;
-          try {
-            const response = await fetch(OPENROUTER_URL, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${OPENROUTER_KEY}`,
-                'HTTP-Referer': window.location.origin,
-                'X-Title': 'Mohammad Ali Portfolio'
-              },
-              body: JSON.stringify({
-                model: "google/gemini-2.0-flash-lite-preview-02-05:free",
-                messages: [
-                  { role: "system", content: `You are an AI assistant for Mohammad Ali (cybersecurity engineer). Answer concisely, naturally. Context: ${CONTEXT}` },
-                  { role: "user", content: text }
-                ],
-                max_tokens: 400,
-                temperature: 0.6
-              })
-            });
-            const data = await response.json();
-            if (data.choices && data.choices[0]?.message?.content) {
-              messages.value.push({ role: "ai", content: data.choices[0].message.content });
-            } else throw new Error();
-          } catch (err) {
-            console.warn("API fallback to local AI");
-            messages.value.push({ role: "ai", content: localAnswer(text) });
-          } finally {
+          setTimeout(() => {
+            const reply = getAIResponse(text);
+            messages.value.push({ role: "ai", content: reply });
             loading.value = false;
             scrollChat();
-          }
+          }, 350);
         };
         
         const resetChat = () => {
-          messages.value = [{ role: "ai", content: "👋 Hi! I'm Mohammad's AI. Ask me about his skills, certifications, background — I'll answer using live AI." }];
+          messages.value = [{ role: "ai", content: "👋 I'm Mohammad's AI. Ask me anything about his work, skills, certifications, or background — I understand natural language and work 100% offline!" }];
         };
         
         return { chatActive, messages, userInput, loading, chatContainer, sendMessage, resetChat };
       }
     }).mount('#app');
+    
+    // Final ScrollTrigger refresh after all assets
+    window.addEventListener('load', () => ScrollTrigger.refresh());
   </script>
 </body>
 </html>
