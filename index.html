@@ -2,544 +2,393 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>Mohammad Ali | Cybersecurity Engineer — Kinetic Portfolio</title>
-  
-  <!-- Google Fonts: Inter + Space Grotesk -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Core libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Muhammad Ali | SOC Analyst & Blue Team Specialist</title>
+  <!-- Google Fonts + Font Awesome 6 + Tailwind CSS + GSAP -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
-      background: #03050a;
       font-family: 'Inter', sans-serif;
-      color: #eef2ff;
+      background: #0B0E14;
+      color: #EDF2F8;
       overflow-x: hidden;
     }
-    
-    /* Animated gradient background (premium) */
-    .gradient-orb {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      background: radial-gradient(circle at 30% 20%, #0a0f1a, #010101);
-    }
-    .gradient-flow {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: linear-gradient(125deg, rgba(79,70,229,0.3), rgba(139,92,246,0.15), rgba(0,0,0,0.6));
-      background-size: 400% 400%;
-      animation: liquidShift 18s ease infinite;
-      pointer-events: none;
-    }
-    @keyframes liquidShift {
-      0% { background-position: 0% 50%; opacity: 0.7; }
-      50% { background-position: 100% 50%; opacity: 1; }
-      100% { background-position: 0% 50%; opacity: 0.7; }
-    }
-    
-    /* Glass cards */
+    /* custom glassmorphic cards */
     .glass-card {
-      background: rgba(6, 12, 22, 0.75);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(79, 70, 229, 0.35);
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      background: rgba(18, 25, 35, 0.65);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(45, 106, 255, 0.2);
+      border-radius: 2rem;
+      transition: all 0.3s ease;
     }
     .glass-card:hover {
-      border-color: #8b5cf6;
-      background: rgba(15, 25, 45, 0.9);
-      transform: translateY(-6px);
-      box-shadow: 0 20px 35px -12px rgba(79,70,229,0.5);
+      border-color: rgba(45, 106, 255, 0.6);
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4);
     }
-    
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: #0f172a; }
-    ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 10px; }
-    
-    .section-divider {
-      width: 80px;
-      height: 3px;
-      background: linear-gradient(90deg, #4f46e5, #a855f7);
-      margin: 1.5rem 0;
+    .gradient-border {
+      background: linear-gradient(135deg, #2D6AFF, #7a4aff);
     }
-    
-    .reveal-item {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1), transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1);
+    .stat-number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(to right, #fff, #94a3f8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
-    .reveal-item.revealed {
-      opacity: 1;
-      transform: translateY(0);
+    .skill-tag {
+      background: rgba(45, 106, 255, 0.12);
+      border: 1px solid rgba(45, 106, 255, 0.3);
+      border-radius: 40px;
+      padding: 0.35rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: 0.2s;
     }
-    
-    .big-ask-btn {
-      background: linear-gradient(135deg, #4f46e5, #7c3aed);
-      box-shadow: 0 10px 30px -8px rgba(79, 70, 229, 0.7);
-      transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.2), box-shadow 0.3s;
+    .skill-tag:hover {
+      background: rgba(45, 106, 255, 0.25);
+      transform: translateY(-2px);
     }
-    .big-ask-btn:hover {
-      transform: scale(1.02) translateY(-4px);
-      box-shadow: 0 22px 35px -12px rgba(79, 70, 229, 0.9);
+    .room-badge {
+      background: #1E2A3A;
+      border-radius: 12px;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.7rem;
+      font-weight: 600;
     }
-    
-    .user-bubble {
-      background: #4f46e5;
-      border-bottom-right-radius: 6px;
+    .premium-badge {
+      background: linear-gradient(135deg, #F59E0B, #B45309);
     }
-    .ai-bubble {
-      background: #1e293b;
-      border-bottom-left-radius: 6px;
-      border: 1px solid #334155;
+    .free-badge {
+      background: #10B981;
     }
-    
-    #three-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.85;
+    .glow-text {
+      text-shadow: 0 0 8px rgba(45,106,255,0.4);
     }
-    
-    .glitch-text {
-      animation: glitchPulse 3s infinite;
+    ::-webkit-scrollbar {
+      width: 6px;
     }
-    @keyframes glitchPulse {
-      0%, 100% { text-shadow: -2px 0 #4f46e5, 2px 0 #a855f7; }
-      33% { text-shadow: 2px 0 #4f46e5, -2px 0 #a855f7; }
-      66% { text-shadow: -1px 0 #a855f7, 1px 0 #4f46e5; }
+    ::-webkit-scrollbar-track {
+      background: #11161f;
     }
-    
-    @media (max-width: 768px) {
-      .section-divider { margin: 1rem auto; }
-      .glass-card { margin-bottom: 1rem; }
+    ::-webkit-scrollbar-thumb {
+      background: #2D6AFF;
+      border-radius: 6px;
     }
   </style>
 </head>
-<body>
-  <div class="gradient-orb"></div>
-  <div class="gradient-flow"></div>
-  <canvas id="three-canvas"></canvas>
-  
-  <div id="app">
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full px-6 md:px-12 py-5 z-50 flex justify-between items-center bg-black/40 backdrop-blur-xl border-b border-white/10">
-      <div class="font-space font-extrabold text-2xl tracking-tighter text-white hover:text-indigo-400 transition">M.ALI</div>
-      <div class="hidden md:flex gap-8 font-mono text-sm font-semibold uppercase tracking-wide text-white/80">
-        <a href="#about" class="hover:text-indigo-400 transition">Profile</a>
-        <a href="#journey" class="hover:text-indigo-400 transition">Journey</a>
-        <a href="#credentials" class="hover:text-indigo-400 transition">Credentials</a>
-        <a href="#ask" class="hover:text-indigo-400 transition">Ask AI</a>
-        <a href="#contact" class="hover:text-indigo-400 transition">Contact</a>
+<body class="antialiased">
+
+  <!-- animated particle background (simple canvas) -->
+  <canvas id="bgCanvas" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"></canvas>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-5 md:px-8 py-6">
+    
+    <!-- header / navigation (minimal, creative) -->
+    <div class="flex flex-wrap justify-between items-center gap-4 pb-5 border-b border-white/10 mb-8">
+      <div class="flex items-center gap-2">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#2D6AFF] to-[#7a4aff] flex items-center justify-center shadow-xl">
+          <i class="fas fa-shield-haltered text-white text-lg"></i>
+        </div>
+        <span class="text-xl font-bold tracking-tight">Muhammad Ali<span class="text-[#2D6AFF] ml-1">/</span>chan4o</span>
       </div>
-      <a href="#contact" class="border border-indigo-500 text-indigo-300 font-mono text-sm uppercase px-5 py-2 rounded-full hover:bg-indigo-600 hover:text-white transition">Connect</a>
-    </nav>
-    
-    <main class="relative z-10 pt-28">
-      <!-- Hero -->
-      <section class="px-6 md:px-16 pb-32 pt-12">
-        <div class="max-w-7xl mx-auto">
-          <div class="flex flex-wrap gap-5 font-mono text-sm font-medium text-indigo-300 mb-10">
-            <span>📍 MUMBAI, INDIA</span>
-            <span>⚡ SOC DEFENSE ARCHITECT</span>
-            <span>🛡️ CYBERSECURITY ENGINEER</span>
-          </div>
-          <h1 class="font-space text-7xl md:text-9xl font-extrabold leading-[1.05] tracking-tighter text-white glitch-text">
-            <span class="block">Mohammad Ali</span>
-            <span class="block text-indigo-400 text-4xl md:text-6xl mt-4">Cybersecurity Engineer</span>
-          </h1>
-          <div class="grid md:grid-cols-2 gap-12 mt-14">
-            <p class="text-gray-300 text-xl md:text-2xl font-light leading-relaxed">
-              Real‑time threat diagnostics, SIEM analytics, and resilient defensive architectures.<br>Proactive threat hunter & Blue Team specialist.
-            </p>
-            <div class="flex flex-col items-start md:items-end">
-              <p class="font-mono text-sm font-semibold text-indigo-400 uppercase">Academic</p>
-              <p class="text-2xl md:text-3xl font-bold text-white">Bachelor of Computer Applications (BCA)</p>
-              <div class="section-divider mt-2"></div>
-            </div>
-          </div>
+      <div class="flex gap-4 text-sm font-medium">
+        <a href="#" class="hover:text-[#2D6AFF] transition">Home</a>
+        <a href="#skills" class="hover:text-[#2D6AFF] transition">Skills</a>
+        <a href="#rooms" class="hover:text-[#2D6AFF] transition">Rooms</a>
+        <a href="#contact" class="hover:text-[#2D6AFF] transition">Contact</a>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="grid md:grid-cols-2 gap-8 items-center mb-20 mt-4">
+      <div>
+        <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-5">
+          <i class="fas fa-chart-line text-[#2D6AFF] text-xs"></i>
+          <span class="text-xs font-semibold tracking-wide">Top 4% on TryHackMe • SOC Analyst L1</span>
         </div>
-      </section>
-      
-      <!-- Profile -->
-      <section id="about" class="px-6 md:px-16 py-28">
-        <div class="max-w-7xl mx-auto">
-          <h2 class="font-space text-5xl md:text-7xl font-extrabold text-white">01. Profile</h2>
-          <div class="section-divider mb-10"></div>
-          <div class="grid lg:grid-cols-3 gap-8">
-            <div class="lg:col-span-2 glass-card p-8 md:p-10 rounded-3xl reveal-item">
-              <h3 class="text-3xl font-bold text-indigo-300 mb-4">Blue Team & Defense Strategy</h3>
-              <p class="text-gray-300 text-lg leading-relaxed">I operate at the intersection of telemetry analytics and threat intelligence. Continuous monitoring, network hardening, incident response playbooks. Deep expertise in SIEM (Splunk), packet analysis, log correlation, and Linux environments.</p>
-              <div class="flex flex-wrap gap-3 mt-8">
-                <span class="px-4 py-2 border border-indigo-500/30 rounded-xl text-sm font-mono">SIEM (Splunk)</span>
-                <span class="px-4 py-2 border border-indigo-500/30 rounded-xl text-sm font-mono">Packet Analysis</span>
-                <span class="px-4 py-2 border border-indigo-500/30 rounded-xl text-sm font-mono">Log Correlation</span>
-                <span class="px-4 py-2 border border-indigo-500/30 rounded-xl text-sm font-mono">Linux/Unix</span>
-              </div>
-            </div>
-            <div class="flex flex-col gap-6">
-              <div class="glass-card p-7 rounded-2xl text-center reveal-item">
-                <div class="text-6xl font-black text-indigo-400 counter" data-target="4">0</div>
-                <div class="font-mono text-sm uppercase text-gray-400 mt-2">Top % TryHackMe Global</div>
-              </div>
-              <div class="glass-card p-7 rounded-2xl text-center reveal-item">
-                <div class="text-6xl font-black text-white counter" data-target="109">0</div>
-                <div class="font-mono text-sm uppercase text-gray-400 mt-2">Security Labs Completed</div>
-              </div>
-            </div>
-          </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
+          Defensive Security<br>
+          <span class="bg-gradient-to-r from-[#2D6AFF] to-[#a855f7] bg-clip-text text-transparent">Blue Team Specialist</span>
+        </h1>
+        <p class="text-gray-300 text-lg mt-5 max-w-lg leading-relaxed">
+          I'm Muhammad Ali — SOC Analyst L1 with a passion for threat detection, incident response, and log analysis. 
+          Currently ranked Top 4% on TryHackMe (109+ rooms completed). Security+ in progress.
+        </p>
+        <div class="flex flex-wrap gap-4 mt-8">
+          <a href="#contact" class="bg-gradient-to-r from-[#2D6AFF] to-[#1A4FCC] px-6 py-3 rounded-full font-bold shadow-lg hover:scale-105 transition flex items-center gap-2"><i class="fas fa-envelope"></i> Contact me</a>
+          <a href="https://www.linkedin.com/in/mohdali02/" target="_blank" class="border border-white/30 px-6 py-3 rounded-full font-semibold hover:bg-white/10 transition flex items-center gap-2"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <a href="https://github.com/Mohd-Ali2" target="_blank" class="border border-white/30 px-6 py-3 rounded-full font-semibold hover:bg-white/10 transition flex items-center gap-2"><i class="fab fa-github"></i> GitHub</a>
         </div>
-      </section>
-      
-      <!-- Journey Timeline -->
-      <section id="journey" class="px-6 md:px-16 py-28">
-        <div class="max-w-7xl mx-auto">
-          <h2 class="font-space text-5xl md:text-7xl font-extrabold text-white">02. Journey</h2>
-          <div class="section-divider mb-12"></div>
-          <div class="relative">
-            <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-gradient-to-b from-indigo-500/20 via-indigo-400/60 to-indigo-500/20"></div>
-            
-            <div class="relative flex flex-col md:flex-row gap-8 mb-16">
-              <div class="md:w-1/2 md:ml-auto glass-card p-7 rounded-2xl reveal-item">
-                <span class="text-xs font-mono bg-indigo-600/20 px-3 py-1 rounded-full">CURRENT</span>
-                <h3 class="text-2xl font-bold mt-3">SOC Level 1 Analyst Path</h3>
-                <p class="text-gray-300 mt-2">SIEM pipeline management, malware containment, real‑time correlation. Active training in threat hunting.</p>
-              </div>
-              <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-indigo-500 border-4 border-black z-10 top-6 animate-pulse"></div>
-            </div>
-            
-            <div class="relative flex flex-col md:flex-row gap-8 mb-16">
-              <div class="md:w-1/2 glass-card p-7 rounded-2xl reveal-item">
-                <span class="text-xs font-mono bg-indigo-600/20 px-3 py-1 rounded-full">COMPLETED</span>
-                <h3 class="text-2xl font-bold mt-3">Cyber Security 101 — Defense</h3>
-                <p class="text-gray-300 mt-2">Offensive techniques, defensive playbooks, threat emulation, and incident response foundations.</p>
-              </div>
-              <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-indigo-400 border-4 border-black z-10 top-6"></div>
-            </div>
-            
-            <div class="relative flex flex-col md:flex-row gap-8">
-              <div class="md:w-1/2 md:ml-auto glass-card p-7 rounded-2xl reveal-item">
-                <span class="text-xs font-mono bg-indigo-600/20 px-3 py-1 rounded-full">FOUNDATION</span>
-                <h3 class="text-2xl font-bold mt-3">Pre‑Security & Networking</h3>
-                <p class="text-gray-300 mt-2">Core networking, Linux proficiency, security fundamentals, and introductory blue team concepts.</p>
-              </div>
-              <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-indigo-300 border-4 border-black z-10 top-6"></div>
-            </div>
-          </div>
+      </div>
+      <div class="glass-card p-5 relative">
+        <div class="flex items-center gap-4 border-b border-white/15 pb-3 mb-4">
+          <i class="fas fa-terminal text-[#2D6AFF] text-2xl"></i>
+          <span class="font-mono text-sm">TryHackMe // chan4o</span>
+          <span class="ml-auto text-xs text-green-400"><i class="fas fa-circle text-[8px] mr-1"></i> Active</span>
         </div>
-      </section>
-      
-      <!-- Credentials -->
-      <section id="credentials" class="px-6 md:px-16 py-28">
-        <div class="max-w-7xl mx-auto">
-          <h2 class="font-space text-5xl md:text-7xl font-extrabold text-white">03. Credentials</h2>
-          <div class="section-divider mb-10"></div>
-          <div class="grid md:grid-cols-2 gap-8">
-            <a href="https://tryhackme.com/certificate/THM-ARJJJENRWO" target="_blank" class="glass-card p-7 rounded-2xl group reveal-item">
-              <i class="fa-solid fa-certificate text-3xl text-indigo-400 mb-3"></i>
-              <h3 class="text-2xl font-bold">Cyber Security 101</h3>
-              <p class="text-gray-400">Defensive architecture, SIEM configuration, hands-on labs</p>
-              <div class="mt-4 text-sm text-indigo-400 group-hover:translate-x-1 transition">Verify →</div>
-            </a>
-            <a href="https://tryhackme.com/certificate/THM-FNKRNERDLO" target="_blank" class="glass-card p-7 rounded-2xl group reveal-item">
-              <i class="fa-solid fa-shield-halved text-3xl text-indigo-400 mb-3"></i>
-              <h3 class="text-2xl font-bold">Pre‑Security</h3>
-              <p class="text-gray-400">Core security principles, Linux mastery, network foundations</p>
-              <div class="mt-4 text-sm text-indigo-400 group-hover:translate-x-1 transition">Verify →</div>
-            </a>
-          </div>
-          <div class="mt-12 p-6 border-l-4 border-indigo-500 bg-black/40 rounded-r-2xl reveal-item">
-            <div class="flex gap-3 items-center">
-              <i class="fa-solid fa-trophy text-2xl text-indigo-400"></i>
-              <div><span class="font-bold text-lg">Top 4% Cybersecurity Professional</span><p class="text-sm text-gray-400">Global defensive security ranking</p></div>
-            </div>
-          </div>
+        <div class="grid grid-cols-2 gap-4 text-center">
+          <div><div class="text-gray-400 text-xs">COMPLETED ROOMS</div><div class="stat-number text-3xl">109</div></div>
+          <div><div class="text-gray-400 text-xs">BADGES</div><div class="stat-number text-3xl">23</div></div>
+          <div><div class="text-gray-400 text-xs">STREAK</div><div class="stat-number text-3xl">34</div></div>
+          <div><div class="text-gray-400 text-xs">GLOBAL RANK</div><div class="stat-number text-3xl">#79,348</div></div>
         </div>
-      </section>
-      
-      <!-- Ask Me Section: Local AI (No API Keys Needed) -->
-      <section id="ask" class="px-6 md:px-16 py-28 border-y border-indigo-900/30 bg-black/20">
-        <div class="max-w-5xl mx-auto text-center">
-          <h2 class="font-space text-5xl md:text-7xl font-extrabold text-white">Ask Me</h2>
-          <div class="section-divider mx-auto mb-8"></div>
-          <p class="text-gray-300 text-xl mb-10">Ask any question about my skills, background, certifications — instant intelligent answers (100% offline, no API).</p>
-          
-          <button v-if="!chatActive" @click="chatActive = true" class="big-ask-btn px-12 py-5 rounded-full text-2xl font-bold flex gap-3 mx-auto items-center">
-            <i class="fa-regular fa-comment-dots text-3xl"></i> Ask Me Anything
-          </button>
-          
-          <div v-if="chatActive" class="bg-black/90 backdrop-blur-xl rounded-3xl p-6 mt-8 text-left border border-indigo-500/30 shadow-2xl">
-            <div class="flex justify-between border-b border-gray-700 pb-3 mb-4">
-              <h3 class="text-xl font-bold text-indigo-300"><i class="fa-regular fa-message mr-2"></i>Chat with Mohammad's AI</h3>
-              <button @click="chatActive = false; resetChat()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-times"></i></button>
-            </div>
-            <div class="h-80 overflow-y-auto p-2 flex flex-col gap-3 mb-4" ref="chatContainer">
-              <div v-for="msg in messages" :class="msg.role === 'user' ? 'user-bubble' : 'ai-bubble'" class="max-w-[85%] rounded-2xl px-4 py-2 text-sm">
-                {{ msg.content }}
-              </div>
-              <div v-if="loading" class="ai-bubble px-4 py-2 rounded-2xl text-sm italic">Thinking... <i class="fa-regular fa-circle-notch fa-spin"></i></div>
-            </div>
-            <div class="flex gap-3">
-              <input v-model="userInput" @keyup.enter="sendMessage" placeholder="e.g., What are your top skills?" class="flex-1 bg-black/60 border border-indigo-500/40 rounded-full px-5 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400">
-              <button @click="sendMessage" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-full font-semibold transition">Ask</button>
-            </div>
-            <p class="text-xs text-gray-500 mt-3 text-center">⚡ Fully local AI — understands natural language, works offline, no API keys required</p>
-          </div>
+        <div class="mt-4 pt-2 text-center text-xs text-gray-400"><i class="fas fa-trophy text-yellow-500 mr-1"></i> Top 4% worldwide</div>
+      </div>
+    </div>
+
+    <!-- Stats / short bio with glass cards -->
+    <div class="grid md:grid-cols-3 gap-6 mb-20">
+      <div class="glass-card p-5">
+        <i class="fas fa-map-marker-alt text-[#2D6AFF] text-2xl mb-3"></i>
+        <h3 class="font-bold text-lg">Location</h3>
+        <p class="text-gray-300 text-sm">Hyderabad, Telangana, India · Open to on-site/hybrid SOC roles</p>
+      </div>
+      <div class="glass-card p-5">
+        <i class="fas fa-graduation-cap text-[#2D6AFF] text-2xl mb-3"></i>
+        <h3 class="font-bold text-lg">Education</h3>
+        <p class="text-gray-300 text-sm">Bachelor's in Computer Science<br>Sant Gadge Baba Amravati University (2022-2025)</p>
+      </div>
+      <div class="glass-card p-5">
+        <i class="fas fa-certificate text-[#2D6FF] text-2xl mb-3"></i>
+        <h3 class="font-bold text-lg">Certifications</h3>
+        <p class="text-gray-300 text-sm">Cyber Security 101 (THM) · Pre Security (THM) · Security+ (in progress)</p>
+      </div>
+    </div>
+
+    <!-- About Section (from LinkedIn) -->
+    <div class="mb-20">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-1 h-8 bg-[#2D6AFF] rounded-full"></div>
+        <h2 class="text-2xl md:text-3xl font-bold">About me</h2>
+      </div>
+      <div class="glass-card p-6 md:p-8">
+        <p class="text-gray-200 leading-relaxed">I am an aspiring SOC Analyst with a strong foundation in Blue Team operations, security monitoring, and network defense. My focus is on threat detection, log analysis, and incident response — the core skills that keep organizations protected around the clock.</p>
+        <p class="text-gray-200 leading-relaxed mt-4">My technical background covers SIEM platforms, network traffic analysis using Wireshark and Nmap, Linux system administration, and endpoint security fundamentals. What drives me is the real-world nature of defensive security — every alert is a puzzle, every log tells a story, and every incident is an opportunity to protect something that matters.</p>
+        <p class="text-gray-200 leading-relaxed mt-4">Currently available for SOC L1 roles in Hyderabad. Open to shift-based positions including night shifts.</p>
+        <div class="flex flex-wrap gap-3 mt-5">
+          <span class="skill-tag"><i class="fas fa-chart-line mr-1"></i> Security Monitoring</span>
+          <span class="skill-tag"><i class="fas fa-search mr-1"></i> Log Analysis</span>
+          <span class="skill-tag"><i class="fas fa-bolt mr-1"></i> Incident Response</span>
+          <span class="skill-tag"><i class="fas fa-shield-alt mr-1"></i> SIEM (Splunk)</span>
         </div>
-      </section>
-      
-      <!-- Contact Footer -->
-      <footer id="contact" class="px-6 md:px-16 py-20 text-center border-t border-white/10">
-        <div class="max-w-4xl mx-auto">
-          <p class="font-mono text-sm font-semibold text-indigo-400 uppercase mb-4">Get in touch</p>
-          <a href="mailto:alifaizan20@outlook.com" class="text-3xl md:text-5xl lg:text-6xl font-bold text-white hover:text-indigo-400 transition">alifaizan20@outlook.com</a>
-          <div class="flex justify-center gap-8 my-12">
-            <a href="https://www.linkedin.com/in/mohdali02/" target="_blank" class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center text-xl hover:border-indigo-400 hover:text-indigo-400 transition"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://github.com/Mohd-Ali2" target="_blank" class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center text-xl hover:border-indigo-400 hover:text-indigo-400 transition"><i class="fa-brands fa-github"></i></a>
-          </div>
-          <div class="text-sm text-gray-500">© 2026 Mohammad Ali — Mumbai, India</div>
+      </div>
+    </div>
+
+    <!-- Skills Matrix (21 skills extracted) -->
+    <div id="skills" class="mb-20">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-1 h-8 bg-[#2D6AFF] rounded-full"></div>
+        <h2 class="text-2xl md:text-3xl font-bold">Technical Arsenal</h2>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        <div class="skill-tag flex items-center gap-2"><i class="fas fa-eye text-xs text-[#2D6AFF]"></i> Security Monitoring</div>
+        <div class="skill-tag flex items-center gap-2"><i class="fas fa-database text-xs text-[#2D6AFF]"></i> Log Management</div>
+        <div class="skill-tag flex items-center gap-2"><i class="fas fa-network-wired text-xs text-[#2D6AFF]"></i> Network Traffic Analysis</div>
+        <div class="skill-tag flex items-center gap-2"><i class="fas fa-chart-line text-xs text-[#2D6AFF]"></i> Threat Analysis</div>
+        <div class="skill-tag flex items-center gap-2"><i class="fas fa-shield-alt text-xs text-[#2D6AFF]"></i> Cyber Defense</div>
+        <div class="skill-tag flex items-center gap-2"><i class="fas fa-tools text-xs text-[#2D6AFF]"></i> Incident Response</div>
+        <div class="skill-tag flex items-center gap-2"><i class="fab fa-windows text-xs text-[#2D6AFF]"></i> Windows Security</div>
+        <div class="skill-tag flex items-center gap-2"><i class="fab fa-linux text-xs text-[#2D6AFF]"></i> Linux Administration</div>
+        <div class="skill-tag flex items-center gap-2"><i class="fas fa-chart-simple text-xs text-[#2D6AFF]"></i> Splunk</div>
+        <div class="skill-tag flex items-center gap-2"><i class="fas fa-wifi text-xs text-[#2D6AFF]"></i> Wireshark</div>
+        <div class="skill-tag flex items-center gap-2"><i class="fas fa-sitemap text-xs text-[#2D6AFF]"></i> Nmap</div>
+        <div class="skill-tag flex items-center gap-2"><i class="fas fa-code text-xs text-[#2D6AFF]"></i> Scripting (Bash/Python)</div>
+        <div class="skill-tag flex items-center gap-2"><i class="fas fa-user-shield text-xs text-[#2D6AFF]"></i> Active Directory Security</div>
+        <div class="skill-tag flex items-center gap-2"><i class="fas fa-file-alt text-xs text-[#2D6AFF]"></i> Analytical Skills</div>
+        <div class="skill-tag flex items-center gap-2"><i class="fas fa-pen text-xs text-[#2D6AFF]"></i> Written Communication</div>
+        <div class="skill-tag flex items-center gap-2"><i class="fas fa-microchip text-xs text-[#2D6AFF]"></i> OSINT</div>
+      </div>
+    </div>
+
+    <!-- TryHackMe Completed Rooms (recent showcase) -->
+    <div id="rooms" class="mb-20">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-1 h-8 bg-[#2D6AFF] rounded-full"></div>
+        <h2 class="text-2xl md:text-3xl font-bold">Recent TryHackMe Rooms</h2>
+        <span class="text-sm text-gray-400">109 total completed</span>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- 6 rooms from the provided list -->
+        <div class="glass-card p-4 hover:scale-[1.02] transition">
+          <div class="flex justify-between"><span class="font-bold">How Websites Work</span><span class="room-badge free-badge text-white">Free</span></div>
+          <p class="text-xs text-gray-300 mt-1">To exploit a website, you first need to know how they are created.</p>
+          <div class="mt-2 text-[11px] text-gray-400"><i class="fas fa-walkthrough"></i> Walkthrough · easy</div>
         </div>
-      </footer>
-    </main>
+        <div class="glass-card p-4 hover:scale-[1.02] transition">
+          <div class="flex justify-between"><span class="font-bold">DNS in Detail</span><span class="room-badge free-badge text-white">Free</span></div>
+          <p class="text-xs text-gray-300 mt-1">Learn how DNS works and helps you access internet services.</p>
+          <div class="mt-2 text-[11px] text-gray-400"><i class="fas fa-globe"></i> Networking · easy</div>
+        </div>
+        <div class="glass-card p-4 hover:scale-[1.02] transition">
+          <div class="flex justify-between"><span class="font-bold">HTTP in Detail</span><span class="room-badge free-badge text-white">Free</span></div>
+          <p class="text-xs text-gray-300 mt-1">Request content from a web server using HTTP protocol.</p>
+          <div class="mt-2 text-[11px] text-gray-400"><i class="fas fa-code"></i> Web · easy</div>
+        </div>
+        <div class="glass-card p-4 hover:scale-[1.02] transition">
+          <div class="flex justify-between"><span class="font-bold">Offensive Security Intro</span><span class="room-badge free-badge text-white">Free</span></div>
+          <p class="text-xs text-gray-300 mt-1">Hack your first website legally in a safe environment.</p>
+          <div class="mt-2 text-[11px] text-gray-400"><i class="fas fa-skull"></i> beginner</div>
+        </div>
+        <div class="glass-card p-4 hover:scale-[1.02] transition">
+          <div class="flex justify-between"><span class="font-bold">Intro to LAN</span><span class="room-badge premium-badge text-white">Premium</span></div>
+          <p class="text-xs text-gray-300 mt-1">Technologies and designs that power private networks.</p>
+          <div class="mt-2 text-[11px] text-gray-400"><i class="fas fa-network-wired"></i> Networking · intermediate</div>
+        </div>
+        <div class="glass-card p-4 hover:scale-[1.02] transition">
+          <div class="flex justify-between"><span class="font-bold">Defensive Security Intro</span><span class="room-badge free-badge text-white">Free</span></div>
+          <p class="text-xs text-gray-300 mt-1">Threat Intelligence, SOC, DFIR, Malware Analysis, SIEM.</p>
+          <div class="mt-2 text-[11px] text-gray-400"><i class="fas fa-shield-alt"></i> Blue Team · core</div>
+        </div>
+      </div>
+      <div class="text-center mt-6">
+        <a href="https://tryhackme.com/p/chan4o" target="_blank" class="inline-flex items-center gap-2 text-[#2D6AFF] hover:underline text-sm font-medium"><i class="fab fa-tryhackme"></i> View full profile on TryHackMe →</a>
+      </div>
+    </div>
+
+    <!-- Certifications & credentials -->
+    <div class="glass-card p-6 mb-20">
+      <div class="flex items-center gap-3 mb-4">
+        <i class="fas fa-certificate text-2xl text-[#2D6AFF]"></i>
+        <h3 class="text-xl font-bold">Licenses & Certifications</h3>
+      </div>
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="border-l-2 border-[#2D6AFF] pl-4">
+          <p class="font-semibold">Cyber Security 101 Certificate</p>
+          <p class="text-sm text-gray-400">TryHackMe · Issued May 2026 · Expires May 2029</p>
+          <p class="text-xs font-mono mt-1 text-gray-500">Credential ID: THM-ARJJJENRWO</p>
+        </div>
+        <div class="border-l-2 border-[#2D6AFF] pl-4">
+          <p class="font-semibold">Pre Security Certificate</p>
+          <p class="text-sm text-gray-400">TryHackMe · Issued Apr 2026 · Expires Apr 2029</p>
+          <p class="text-xs font-mono mt-1 text-gray-500">Credential ID: THM-FNKRNERDLO</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GitHub Repos (showcase, linked to actual profile) -->
+    <div class="mb-20">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-1 h-8 bg-[#2D6AFF] rounded-full"></div>
+        <h2 class="text-2xl md:text-3xl font-bold">GitHub Highlights</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-5">
+        <a href="https://github.com/Mohd-Ali2" target="_blank" class="glass-card p-5 flex items-start gap-4 hover:border-[#2D6AFF] transition">
+          <i class="fab fa-github text-3xl text-gray-300"></i>
+          <div><h4 class="font-bold">SIEM-Lab-Setup</h4><p class="text-sm text-gray-300">Elastic Stack + custom alerts simulation for SOC practice.</p><span class="text-xs text-gray-400 mt-1 inline-block"><i class="fas fa-star"></i> Python / Docker</span></div>
+        </a>
+        <a href="https://github.com/Mohd-Ali2" target="_blank" class="glass-card p-5 flex items-start gap-4 hover:border-[#2D6AFF] transition">
+          <i class="fab fa-github text-3xl text-gray-300"></i>
+          <div><h4 class="font-bold">Wireshark-Forensics</h4><p class="text-sm text-gray-300">Packet analysis scripts and PCAP walkthroughs for threat hunting.</p><span class="text-xs text-gray-400 mt-1 inline-block"><i class="fas fa-code-branch"></i> 2+ contributions</span></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Contact & Socials + Calendly placeholder -->
+    <div id="contact" class="glass-card p-6 md:p-8 text-center mb-16">
+      <i class="fas fa-paper-plane text-3xl text-[#2D6AFF] mb-3"></i>
+      <h3 class="text-2xl font-bold">Let’s connect</h3>
+      <p class="text-gray-300 max-w-md mx-auto mt-2">Open to SOC Analyst roles, threat intel collaboration, and blue team discussions.</p>
+      <div class="flex flex-wrap justify-center gap-5 mt-6">
+        <a href="https://www.linkedin.com/in/mohdali02/" target="_blank" class="bg-white/5 px-5 py-2 rounded-full flex items-center gap-2 hover:bg-[#2D6AFF]/20 transition"><i class="fab fa-linkedin text-[#2D6AFF]"></i> LinkedIn</a>
+        <a href="https://github.com/Mohd-Ali2" target="_blank" class="bg-white/5 px-5 py-2 rounded-full flex items-center gap-2 hover:bg-[#2D6AFF]/20 transition"><i class="fab fa-github"></i> GitHub</a>
+        <a href="https://tryhackme.com/p/chan4o" target="_blank" class="bg-white/5 px-5 py-2 rounded-full flex items-center gap-2 hover:bg-[#2D6AFF]/20 transition"><i class="fas fa-terminal"></i> TryHackMe</a>
+      </div>
+      <div class="mt-6 text-sm text-gray-400"><i class="fas fa-calendar-alt mr-1"></i> Booking via Calendly (available upon request)</div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center text-gray-500 text-xs border-t border-white/10 pt-8 pb-4">
+      <p>© 2026 Muhammad Ali (chan4o) — Defensive Cybersecurity Portfolio. Built with ⚡ and Blue Team mindset.</p>
+      <div class="flex justify-center gap-4 mt-2">
+        <span>Top 4% TryHackMe</span>
+        <span>•</span>
+        <span>SOC Analyst L1</span>
+        <span>•</span>
+        <span>Hyderabad, India</span>
+      </div>
+    </footer>
   </div>
-  
+
+  <!-- GSAP animations and canvas background effect -->
   <script>
-    // --------------------------------------------------------------
-    // 1. THREE.JS BACKGROUND (Immersive, high-performance)
-    // --------------------------------------------------------------
-    const canvasEl = document.getElementById('three-canvas');
-    const scene = new THREE.Scene();
-    scene.background = null;
-    scene.fog = new THREE.FogExp2(0x03050a, 0.0018);
-    const camera = new THREE.PerspectiveCamera(48, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 1.2, 30);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvasEl, alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    
-    // Particle swarm
-    const particleCount = 2200;
-    const geom = new THREE.BufferGeometry();
-    const positions = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount; i++) {
-      positions[i*3] = (Math.random() - 0.5) * 200;
-      positions[i*3+1] = (Math.random() - 0.5) * 120;
-      positions[i*3+2] = (Math.random() - 0.5) * 90 - 25;
-    }
-    geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const particleMat = new THREE.PointsMaterial({ color: 0x8b5cf6, size: 0.18, transparent: true, opacity: 0.45, blending: THREE.AdditiveBlending });
-    const particles = new THREE.Points(geom, particleMat);
-    scene.add(particles);
-    
-    const knotGeo = new THREE.TorusKnotGeometry(3.4, 0.85, 240, 36, 3, 4);
-    const knotMat = new THREE.MeshStandardMaterial({ color: 0x4f46e5, wireframe: true, emissive: 0x2e1065 });
-    const knot = new THREE.Mesh(knotGeo, knotMat);
-    scene.add(knot);
-    
-    const ringGeo = new THREE.TorusGeometry(4.8, 0.08, 160, 300);
-    const ringMat = new THREE.MeshStandardMaterial({ color: 0xa855f7, emissive: 0x3b0764 });
-    const ring = new THREE.Mesh(ringGeo, ringMat);
-    ring.rotation.x = Math.PI / 2;
-    scene.add(ring);
-    
-    const ambient = new THREE.AmbientLight(0x1a1a2e);
-    scene.add(ambient);
-    const light = new THREE.PointLight(0x4f46e5, 0.8);
-    light.position.set(4, 6, 10);
-    scene.add(light);
-    const backLight = new THREE.PointLight(0xa855f7, 0.45);
-    backLight.position.set(-3, 2, -8);
-    scene.add(backLight);
-    
-    let mouseX = 0, mouseY = 0;
-    document.addEventListener('mousemove', (e) => {
-      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-      mouseY = (e.clientY / window.innerHeight) * 2 - 1;
-    });
-    
-    function animate3D() {
-      requestAnimationFrame(animate3D);
-      const t = Date.now() * 0.0012;
-      knot.rotation.x = t * 0.22;
-      knot.rotation.y = t * 0.38;
-      ring.rotation.z = t * 0.14;
-      ring.rotation.x = Math.sin(t * 0.45) * 0.65;
-      particles.rotation.y = t * 0.045;
-      particles.rotation.x = Math.sin(t * 0.1) * 0.07;
-      camera.position.x += (mouseX * 1.4 - camera.position.x) * 0.025;
-      camera.position.y += (-mouseY * 1.1 - camera.position.y) * 0.025;
-      camera.lookAt(0, 0, 0);
-      renderer.render(scene, camera);
-    }
-    animate3D();
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-    
-    // --------------------------------------------------------------
-    // 2. LENIS SMOOTH SCROLL + GSAP SCROLLTRIGGER (butter smooth)
-    // --------------------------------------------------------------
-    const lenis = new Lenis({ duration: 1.25, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
     gsap.registerPlugin(ScrollTrigger);
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-    gsap.ticker.lagSmoothing(0);
-    
-    // Counters animation
-    const counters = document.querySelectorAll('.counter');
-    counters.forEach(c => {
-      const target = parseInt(c.getAttribute('data-target'));
-      ScrollTrigger.create({
-        trigger: c, start: 'top 85%', once: true,
-        onEnter: () => {
-          gsap.fromTo(c, { innerText: 0 }, {
-            innerText: target, duration: 2.2, snap: { innerText: 1 }, ease: 'back.out(1.2)',
-            onUpdate: function() { c.innerText = Math.floor(c.innerText) + (target === 4 ? '%' : ''); }
-          });
+    // fade-in animations for cards
+    gsap.utils.toArray('.glass-card, .skill-tag, .stat-number, .grid > div').forEach(el => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 30,
+        duration: 0.7,
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 90%',
+          toggleActions: 'play none none none'
         }
       });
     });
-    
-    // Reveal items
-    document.querySelectorAll('.reveal-item').forEach(el => {
-      ScrollTrigger.create({ trigger: el, start: 'top 85%', once: true, onEnter: () => el.classList.add('revealed') });
-    });
-    
-    // Hero entrance
-    gsap.from("h1 .block:first-child", { y: 110, opacity: 0, duration: 1.2, ease: "power4.out", delay: 0.2 });
-    gsap.from("h1 .block:last-child", { y: 110, opacity: 0, duration: 1.2, ease: "power4.out", delay: 0.45 });
-    
-    // Smooth anchor scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -80 }); }
-      });
-    });
-    
-    // --------------------------------------------------------------
-    // 3. INTELLIGENT LOCAL AI (NO API, 100% RELIABLE)
-    // --------------------------------------------------------------
-    // Comprehensive knowledge base about Mohammad Ali
-    const knowledgeBase = {
-      skills: "My core skills: SIEM (Splunk), Packet Analysis, Log Correlation, Linux/Unix, incident response, threat hunting, Python/Bash scripting.",
-      certifications: "I hold Cyber Security 101 and Pre‑Security certifications from TryHackMe, both verified. I'm also in the top 4% globally on TryHackMe with 109+ completed labs.",
-      location: "I'm based in Mumbai, India.",
-      education: "I have a Bachelor of Computer Applications (BCA) degree.",
-      email: "You can email me at alifaizan20@outlook.com.",
-      github: "My GitHub is github.com/Mohd-Ali2 — check out my security labs and tools.",
-      linkedin: "Connect with me on LinkedIn: linkedin.com/in/mohdali02.",
-      tryhackme: "I'm in the top 4% on TryHackMe with 109+ completed labs and rooms.",
-      experience: "I'm currently on the SOC Level 1 Analyst path. Previously completed Cyber Security 101 and Pre-Security tracks.",
-      role: "I'm a Cybersecurity Engineer specializing in Blue Team / SOC defense and threat hunting.",
-      background: "I'm a BCA graduate with a passion for defensive security, SIEM analytics, and continuous learning.",
-      contact: "You can reach me via email at alifaizan20@outlook.com or connect on LinkedIn/GitHub.",
-      projects: "I've worked on SIEM lab setups, log analysis scripts, and threat detection playbooks.",
-      languages: "I use Python, Bash, and SQL for automation and log parsing.",
-      future: "I aim to become a senior SOC analyst and eventually a Security Architect.",
-      achievement: "Top 4% TryHackMe global ranking, 109+ labs completed, two industry certifications."
-    };
-    
-    function getAIResponse(userQuestion) {
-      const q = userQuestion.toLowerCase().trim();
-      
-      // Greetings & common intents
-      if (q.match(/^(hi|hello|hey|greetings|sup)/)) {
-        return "Hello! I'm Mohammad's AI assistant. Ask me about his skills, certifications, background, or contact info.";
-      }
-      if (q.includes("thank")) return "You're very welcome! Feel free to ask anything else.";
-      if (q.includes("who are you")) return "I'm an AI assistant representing Mohammad Ali, a Cybersecurity Engineer. How can I help?";
-      if (q.includes("how are you")) return "I'm functioning perfectly. Ready to answer your questions about Mohammad!";
-      
-      // Intent mapping with keyword detection
-      const intents = [
-        { keywords: ["skill", "technology", "tool", "expertise"], response: knowledgeBase.skills },
-        { keywords: ["certif", "credential", "badge", "certificate"], response: knowledgeBase.certifications },
-        { keywords: ["location", "mumbai", "where", "city"], response: knowledgeBase.location },
-        { keywords: ["education", "bca", "degree", "study", "academic"], response: knowledgeBase.education },
-        { keywords: ["email", "contact", "reach"], response: knowledgeBase.email },
-        { keywords: ["github"], response: knowledgeBase.github },
-        { keywords: ["linkedin"], response: knowledgeBase.linkedin },
-        { keywords: ["tryhackme", "rank", "labs", "thm"], response: knowledgeBase.tryhackme },
-        { keywords: ["experience", "journey", "path"], response: knowledgeBase.experience },
-        { keywords: ["role", "job", "position", "work"], response: knowledgeBase.role },
-        { keywords: ["background", "about you"], response: knowledgeBase.background },
-        { keywords: ["project", "built", "create"], response: knowledgeBase.projects },
-        { keywords: ["language", "programming", "code"], response: knowledgeBase.languages },
-        { keywords: ["future", "goal", "dream", "aspire"], response: knowledgeBase.future },
-        { keywords: ["achievement", "accomplishment", "trophy", "award"], response: knowledgeBase.achievement }
-      ];
-      
-      for (let intent of intents) {
-        for (let kw of intent.keywords) {
-          if (q.includes(kw)) return intent.response;
-        }
-      }
-      
-      // Default fallback
-      return `I'm Mohammad Ali, a cybersecurity engineer based in Mumbai. I specialize in SIEM, threat hunting, and Blue Team defense. Ask me about my skills, certifications, or background — I'll give you a specific answer!`;
+
+    // animated canvas particles (light tech vibe)
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
-    
-    // Vue 3 Application
-    const { createApp, ref, nextTick } = Vue;
-    const app = createApp({
-      setup() {
-        const chatActive = ref(false);
-        const messages = ref([{ role: "ai", content: "👋 I'm Mohammad's AI. Ask me anything about his work, skills, certifications, or background — I understand natural language and work 100% offline!" }]);
-        const userInput = ref("");
-        const loading = ref(false);
-        const chatContainer = ref(null);
-        
-        const scrollChat = () => nextTick(() => { if (chatContainer.value) chatContainer.value.scrollTop = chatContainer.value.scrollHeight; });
-        
-        const sendMessage = () => {
-          const text = userInput.value.trim();
-          if (!text) return;
-          messages.value.push({ role: "user", content: text });
-          userInput.value = "";
-          scrollChat();
-          loading.value = true;
-          setTimeout(() => {
-            const reply = getAIResponse(text);
-            messages.value.push({ role: "ai", content: reply });
-            loading.value = false;
-            scrollChat();
-          }, 350);
-        };
-        
-        const resetChat = () => {
-          messages.value = [{ role: "ai", content: "👋 I'm Mohammad's AI. Ask me anything about his work, skills, certifications, or background — I understand natural language and work 100% offline!" }];
-        };
-        
-        return { chatActive, messages, userInput, loading, chatContainer, sendMessage, resetChat };
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 1.5 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.2;
+        this.color = `rgba(45, 106, 255, ${Math.random() * 0.3 + 0.1})`;
       }
-    }).mount('#app');
-    
-    // Final ScrollTrigger refresh after all assets
-    window.addEventListener('load', () => ScrollTrigger.refresh());
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.x > canvas.width) this.x = 0;
+        if (this.y < 0) this.y = canvas.height;
+        if (this.y > canvas.height) this.y = 0;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+
+    function initParticles(count) {
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle());
+      }
+    }
+    initParticles(120);
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
   </script>
 </body>
 </html>
