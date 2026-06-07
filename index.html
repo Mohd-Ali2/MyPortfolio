@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#050a08" />
   <meta name="description" content="Ali Faizan / chan4o — SOC analyst portfolio focused on TryHackMe progress, defensive security fundamentals, and practical SOC readiness." />
-  <title>Ali Faizan // chan4o — SOC Analyst Profile</title>
+  <title>Ali Faizan // chan4o — 3D SOC Portfolio</title>
 
   <style>
     :root{
@@ -193,6 +193,11 @@
     .room small{font-family:var(--mono);color:var(--muted);position:relative;z-index:1}
     .room.easy small{color:var(--soft)}.room.info small{color:var(--soft-2)}
 
+    .project-card{min-height:310px;display:flex;flex-direction:column;justify-content:space-between}
+    .project-card .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+    .tag{display:inline-flex;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);border-radius:999px;padding:7px 9px;font:800 10px/1 var(--mono);text-transform:uppercase;color:#c7ebd2}
+    .project-card p{line-height:1.62;color:#bfe0ca}
+
     .timeline{position:relative;margin-top:28px;padding-left:22px;border-left:1px solid rgba(136,204,20,.22)}
     .time-node{position:relative;margin:0 0 22px;padding:0 0 0 22px}
     .time-node::before{content:"";position:absolute;left:-29px;top:3px;width:13px;height:13px;border-radius:50%;background:var(--thm);box-shadow:0 0 22px rgba(136,204,20,.8)}
@@ -284,7 +289,7 @@
         <li><a href="#profile" data-scroll>Profile</a></li>
         <li><a href="#skills" data-scroll>Skills</a></li>
         <li><a href="#rooms" data-scroll>Rooms</a></li>
-        <li><a href="#lab" data-scroll>SOC Map</a></li>
+        <li><a href="#lab" data-scroll>Security Map</a></li>
         <li><a href="#contact" data-scroll>Contact</a></li>
       </ul>
       <div class="nav-actions">
@@ -310,7 +315,7 @@
               <p class="lead reveal">I am Ali Faizan, known as <strong>chan4o</strong> on TryHackMe. My focus is SOC L1 readiness: defensive security, networking fundamentals, SIEM thinking, alert triage, and clean incident documentation.</p>
               <div class="hero-actions reveal">
                 <a class="btn primary" href="#rooms" data-scroll>View THM Progress</a>
-                <a class="btn ghost" href="#lab" data-scroll>View SOC Map</a>
+                <a class="btn ghost" href="#lab" data-scroll>Open Security Map</a>
                 <button class="btn ghost" type="button" id="openPalette">Command Menu /</button>
               </div>
             </div>
@@ -361,14 +366,14 @@
         <section id="mission">
           <div class="section-inner grid-2">
             <div>
-              <p class="eyebrow reveal">Current Direction</p>
-              <h2 class="reveal">SOC L1 focused. Practical. Consistent.</h2>
-              <p class="lead reveal">My current path is focused on threat-detection basics, log thinking, network fundamentals, alert handling, and disciplined learning progress.</p>
+              <p class="eyebrow reveal">Portfolio Direction</p>
+              <h2 class="reveal">Built like a SOC dashboard, not a generic resume site.</h2>
+              <p class="lead reveal">The page presents my current security journey clearly: threat detection basics, log thinking, network fundamentals, alert handling, and disciplined learning progress.</p>
             </div>
             <div class="panel reveal" data-tilt>
               <div class="kicker">Operating Mode</div>
-              <h3>SOC L1 readiness</h3>
-              <p class="muted" style="line-height:1.7">Entry-level positioning with proof: consistent lab work, defensive-security fundamentals, and the mindset to learn quickly inside an MSSP or SOC team.</p>
+              <h3>Fresher SOC L1 narrative</h3>
+              <p class="muted" style="line-height:1.7">I am not positioning myself as a senior analyst. I am showing consistency, practical lab work, defensive-security fundamentals, and the mindset to learn quickly inside an MSSP or SOC team.</p>
               <div class="mission-list">
                 <div class="mission-item"><div class="mission-icon">01</div><div><strong>Detect</strong><p>Understand alerts, logs, indicators, network signals, and basic attacker behavior.</p></div></div>
                 <div class="mission-item"><div class="mission-icon">02</div><div><strong>Triage</strong><p>Separate noise from suspicious activity using evidence, timestamps, context, and impact.</p></div></div>
@@ -386,11 +391,11 @@
               <div class="ping"></div><div class="ping"></div><div class="ping"></div><div class="ping"></div>
             </div>
             <div class="panel reveal" data-tilt>
-              <div class="kicker">SOC Mindset</div>
-              <h2>Look for signals. Verify context. Document clearly.</h2>
-              <p class="lead">My focus is to build the habits expected from a SOC L1 fresher: notice suspicious activity, check evidence, understand impact, and escalate with clean notes.</p>
+              <div class="kicker">Security Interface</div>
+              <h2>Focused, dark, and built around cyber operations.</h2>
+              <p class="lead">The interface uses dark panels, terminal-style cards, grid lines, motion, and security-console visuals to create a serious SOC profile without turning the page into a flashy gaming layout.</p>
               <div class="divider"></div>
-              <p class="muted" style="line-height:1.75">The goal is simple: become reliable with fundamentals first, then build stronger proof through real investigations, alert triage practice, and clear security writeups.</p>
+              <p class="muted" style="line-height:1.75">The moving background stays subtle so the focus remains on skills, rooms, security fundamentals, and contact details. The goal is a portfolio that feels technical, polished, and easy to scan.</p>
             </div>
           </div>
         </section>
@@ -438,7 +443,7 @@
         <section id="rooms">
           <div class="section-inner">
             <p class="eyebrow reveal">Completed Room Highlights</p>
-            <h2 class="reveal">A visible learning trail from fundamentals to defensive security.</h2>
+            <h2 class="reveal">A visible learning trail from web basics to defensive security.</h2>
             <p class="lead reveal">These room cards are intentionally concise so the foundation is easy to scan quickly.</p>
             <div class="rooms-grid">
               <div class="room easy reveal"><strong>How Websites Work</strong><small>easy · web fundamentals</small></div>
@@ -463,9 +468,9 @@
 
         <section id="lab" class="lab-section">
           <div class="section-inner">
-            <p class="eyebrow reveal">SOC Map</p>
-            <h2 class="reveal">Security topology with live terminal notes.</h2>
-            <p class="lead reveal">Drag inside the topology area to rotate the scene. It represents SIEM, endpoint, DNS, firewall, cloud, and analyst flow in a simple security-operations layout.</p>
+            <p class="eyebrow reveal">Interactive Security Map</p>
+            <h2 class="reveal">Operational topology with live terminal notes.</h2>
+            <p class="lead reveal">Rotate the map to inspect the environment. The layout connects SIEM, firewall, DNS, email security, cloud, EDR, endpoints, IAM, and analyst review in one operations view.</p>
             <div class="lab-shell">
               <div class="terminal reveal">
                 <div class="terminal-top"><span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span><span class="term-title">chan4o@soc-lab:~</span></div>
@@ -486,8 +491,8 @@
               <div class="lab-canvas-wrap reveal" data-tilt>
                 <canvas id="topology-canvas" aria-label="Interactive SOC topology scene"></canvas>
                 <div class="lab-overlay">
-                  <div class="lab-badge">DRAG: rotate topology</div>
-                  <div class="lab-badge">NODES: SIEM · DNS · EDR · CLOUD</div>
+                  <div class="lab-badge">ROTATE: inspect the environment</div>
+                  <div class="lab-badge">FLOW: SIEM · EMAIL · EDR · CLOUD</div>
                 </div>
               </div>
             </div>
@@ -497,9 +502,9 @@
         <section id="timeline-section">
           <div class="section-inner grid-2">
             <div>
-              <p class="eyebrow reveal">Next Proof</p>
-              <h2 class="reveal">Evidence will be added as it is completed.</h2>
-              <p class="lead reveal">Completed investigations, screenshots, and writeups will be added here once they are built, documented, and ready to discuss in interviews.</p>
+              <p class="eyebrow reveal">Roadmap</p>
+              <h2 class="reveal">What this portfolio should show next.</h2>
+              <p class="lead reveal">This section is kept honest: real proof will be added only after I build it, document it, and can explain it clearly in an interview.</p>
             </div>
             <div class="panel reveal" data-tilt>
               <div class="timeline">
@@ -547,7 +552,7 @@
   </div>
 
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command menu">
-    <input id="paletteInput" type="search" placeholder="Search sections or type: skills, rooms, lab, contact..." autocomplete="off" />
+    <input id="paletteInput" type="search" placeholder="Search sections or type: skills, rooms, map, contact..." autocomplete="off" />
     <div class="palette-results" id="paletteResults"></div>
   </div>
 
@@ -805,7 +810,7 @@
         {label:'Profile metrics', href:'#profile', meta:'TryHackMe snapshot'},
         {label:'Skills matrix', href:'#skills', meta:'SOC L1 fundamentals'},
         {label:'Completed rooms', href:'#rooms', meta:'THM learning trail'},
-        {label:'SOC map', href:'#lab', meta:'Interactive topology'},
+        {label:'Security map', href:'#lab', meta:'Operational topology'},
         {label:'Contact', href:'#contact', meta:'Email and links'}
       ];
 
@@ -944,128 +949,557 @@
       const canvas = $('#topology-canvas');
       if(!canvas || !window.BABYLON) return;
 
-      const engine = new BABYLON.Engine(canvas, true, { antialias: true, adaptToDeviceRatio: true });
+      const engine = new BABYLON.Engine(canvas, true, { antialias: true, adaptToDeviceRatio: true, stencil: true });
       const scene = new BABYLON.Scene(engine);
       scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
+      scene.imageProcessingConfiguration.contrast = 1.15;
+      scene.imageProcessingConfiguration.exposure = 1.05;
 
-      const camera = new BABYLON.ArcRotateCamera('socCamera', -Math.PI / 2.2, Math.PI / 2.45, 9, BABYLON.Vector3.Zero(), scene);
-      camera.lowerRadiusLimit = 5.2;
-      camera.upperRadiusLimit = 13;
-      camera.wheelPrecision = 48;
-      camera.inertia = .78;
+      const camera = new BABYLON.ArcRotateCamera('socCamera', -Math.PI / 2.18, Math.PI / 2.52, 12.4, new BABYLON.Vector3(0, .2, 0), scene);
+      camera.lowerRadiusLimit = 8.2;
+      camera.upperRadiusLimit = 17;
+      camera.lowerBetaLimit = .78;
+      camera.upperBetaLimit = 1.45;
+      camera.wheelPrecision = 46;
+      camera.inertia = .82;
+      camera.panningSensibility = 0;
       camera.attachControl(canvas, true);
 
+      const glow = new BABYLON.GlowLayer('glow', scene, { blurKernelSize: 72 });
+      glow.intensity = .72;
+
       const hemi = new BABYLON.HemisphericLight('softLight', new BABYLON.Vector3(0, 1, 0), scene);
-      hemi.intensity = .68;
-      const point = new BABYLON.PointLight('coreLight', new BABYLON.Vector3(0, 2.4, -2), scene);
+      hemi.intensity = .82;
+      hemi.groundColor = new BABYLON.Color3(.02, .08, .05);
+
+      const point = new BABYLON.PointLight('coreLight', new BABYLON.Vector3(0, 3.5, 0), scene);
       point.diffuse = new BABYLON.Color3(.45, 1, .38);
-      point.specular = new BABYLON.Color3(.3, 1, 1);
-      point.intensity = 1.8;
+      point.specular = new BABYLON.Color3(.35, .95, 1);
+      point.intensity = 2.4;
 
-      const matCore = new BABYLON.StandardMaterial('coreMat', scene);
-      matCore.emissiveColor = new BABYLON.Color3(.45, .95, .12);
-      matCore.diffuseColor = new BABYLON.Color3(.1, .45, .06);
-      matCore.alpha = .88;
+      const spot = new BABYLON.SpotLight('rimLight', new BABYLON.Vector3(0, 8, -7), new BABYLON.Vector3(0, -1, .8), Math.PI / 2.2, 8, scene);
+      spot.diffuse = new BABYLON.Color3(.14, .74, .94);
+      spot.intensity = .75;
 
-      const matCyan = new BABYLON.StandardMaterial('cyanMat', scene);
-      matCyan.emissiveColor = new BABYLON.Color3(.08, .7, .88);
-      matCyan.diffuseColor = new BABYLON.Color3(.02, .18, .24);
-      matCyan.alpha = .82;
-
-      const matDark = new BABYLON.StandardMaterial('darkMat', scene);
-      matDark.diffuseColor = new BABYLON.Color3(.01, .04, .025);
-      matDark.specularColor = new BABYLON.Color3(.1, .5, .18);
-      matDark.emissiveColor = new BABYLON.Color3(.02, .08, .04);
-
-      const hub = BABYLON.MeshBuilder.CreateSphere('SIEM Hub', { diameter: 1.18, segments: 48 }, scene);
-      hub.material = matCore;
-      const hubRing = BABYLON.MeshBuilder.CreateTorus('hubRing', { diameter: 2.2, thickness: .018, tessellation: 96 }, scene);
-      hubRing.material = matCyan;
-      hubRing.rotation.x = Math.PI / 2;
-
-      const ground = BABYLON.MeshBuilder.CreateDisc('gridDisc', { radius: 5.5, tessellation: 96 }, scene);
-      ground.rotation.x = Math.PI / 2;
-      ground.position.y = -1.38;
-      ground.material = matDark;
-
-      const labels = ['FIREWALL','DNS','EDR','CLOUD','EMAIL','ENDPOINT','IAM','ANALYST'];
-      const nodes = [];
-      labels.forEach((label, i) => {
-        const angle = (i / labels.length) * Math.PI * 2;
-        const radius = 4.05;
-        const x = Math.cos(angle) * radius;
-        const z = Math.sin(angle) * radius;
-        const y = Math.sin(i * .9) * .45;
-        const box = BABYLON.MeshBuilder.CreateBox(label, { width: .72, height: .72, depth: .72 }, scene);
-        box.position.set(x, y, z);
-        box.rotation.y = -angle;
-        box.material = i % 2 ? matCyan : matCore;
-        nodes.push(box);
-
-        const dynamicTexture = new BABYLON.DynamicTexture(`${label}Texture`, {width: 512, height: 160}, scene, true);
-        dynamicTexture.hasAlpha = true;
-        dynamicTexture.drawText(label, 34, 94, 'bold 54px monospace', '#dffff0', 'transparent', true);
-        const labelMat = new BABYLON.StandardMaterial(`${label}LabelMat`, scene);
-        labelMat.diffuseTexture = dynamicTexture;
-        labelMat.emissiveColor = new BABYLON.Color3(.65, 1, .78);
-        labelMat.opacityTexture = dynamicTexture;
-        const plane = BABYLON.MeshBuilder.CreatePlane(`${label}Label`, { width: 1.65, height: .46 }, scene);
-        plane.position.set(x, y + .72, z);
-        plane.billboardMode = BABYLON.Mesh.BILLBOARDMODE_ALL;
-        plane.material = labelMat;
-      });
-
-      nodes.forEach((node, i) => {
-        const points = [new BABYLON.Vector3(0,0,0), node.position.clone()];
-        const line = BABYLON.MeshBuilder.CreateLines(`beam-${i}`, { points }, scene);
-        line.color = i % 2 ? new BABYLON.Color3(.1, .84, 1) : new BABYLON.Color3(.53, .9, .08);
-        line.alpha = .5;
-      });
-
-      for(let i=0;i<4;i++){
-        const torus = BABYLON.MeshBuilder.CreateTorus(`orbit-${i}`, { diameter: 3.2 + i * .95, thickness: .008, tessellation: 160 }, scene);
-        torus.rotation.x = Math.PI / (2.4 + i * .16);
-        torus.rotation.z = i * .45;
-        torus.material = i % 2 ? matCyan : matCore;
+      function rgba(hex, alpha){
+        const n = hex.replace('#','');
+        const bigint = parseInt(n, 16);
+        const r = (bigint >> 16) & 255;
+        const g = (bigint >> 8) & 255;
+        const b = bigint & 255;
+        return `rgba(${r},${g},${b},${alpha})`;
       }
 
-      const particleSystem = new BABYLON.ParticleSystem('flowParticles', 1400, scene);
+      function roundedRect(ctx, x, y, width, height, radius){
+        const r = Math.min(radius, width / 2, height / 2);
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.lineTo(x + width - r, y);
+        ctx.quadraticCurveTo(x + width, y, x + width, y + r);
+        ctx.lineTo(x + width, y + height - r);
+        ctx.quadraticCurveTo(x + width, y + height, x + width - r, y + height);
+        ctx.lineTo(x + r, y + height);
+        ctx.quadraticCurveTo(x, y + height, x, y + height - r);
+        ctx.lineTo(x, y + r);
+        ctx.quadraticCurveTo(x, y, x + r, y);
+        ctx.closePath();
+      }
+
+      function drawIcon(ctx, type, x, y, size, color){
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = Math.max(8, size * .06);
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        if(type === 'cloud'){
+          ctx.beginPath();
+          ctx.arc(-size*.18, 0, size*.16, Math.PI*.95, Math.PI*1.95);
+          ctx.arc(0, -size*.08, size*.2, Math.PI, Math.PI*2);
+          ctx.arc(size*.22, 0, size*.15, Math.PI*1.05, Math.PI*1.95);
+          ctx.lineTo(size*.3, size*.15);
+          ctx.quadraticCurveTo(0, size*.24, -size*.33, size*.14);
+          ctx.closePath();
+          ctx.stroke();
+        } else if(type === 'email'){
+          roundedRect(ctx, -size*.34, -size*.22, size*.68, size*.44, size*.06);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(-size*.28, -size*.12);
+          ctx.lineTo(0, size*.04);
+          ctx.lineTo(size*.28, -size*.12);
+          ctx.stroke();
+        } else if(type === 'dns'){
+          ctx.beginPath();
+          ctx.ellipse(0, 0, size*.3, size*.24, 0, 0, Math.PI*2);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(-size*.3, 0); ctx.lineTo(size*.3, 0);
+          ctx.moveTo(0, -size*.24); ctx.lineTo(0, size*.24);
+          ctx.moveTo(-size*.22, -size*.12); ctx.lineTo(size*.22, -size*.12);
+          ctx.moveTo(-size*.22, size*.12); ctx.lineTo(size*.22, size*.12);
+          ctx.stroke();
+        } else if(type === 'firewall'){
+          ctx.beginPath();
+          ctx.moveTo(0, -size*.3);
+          ctx.lineTo(size*.24, -size*.18);
+          ctx.lineTo(size*.2, size*.1);
+          ctx.quadraticCurveTo(0, size*.33, -size*.2, size*.1);
+          ctx.lineTo(-size*.24, -size*.18);
+          ctx.closePath();
+          ctx.stroke();
+          for(let row=0; row<2; row++){
+            for(let col=0; col<2; col++){
+              const bx = -size*.14 + col*size*.14;
+              const by = -size*.08 + row*size*.12;
+              ctx.strokeRect(bx, by, size*.1, size*.07);
+            }
+          }
+        } else if(type === 'edr'){
+          ctx.beginPath();
+          ctx.arc(0, 0, size*.28, 0, Math.PI*2);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(0, 0, size*.16, 0, Math.PI*2);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(-size*.1, size*.04);
+          ctx.lineTo(-size*.01, size*.14);
+          ctx.lineTo(size*.16, -size*.12);
+          ctx.stroke();
+        } else if(type === 'endpoint'){
+          roundedRect(ctx, -size*.3, -size*.22, size*.6, size*.38, size*.05);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(-size*.08, size*.24);
+          ctx.lineTo(size*.08, size*.24);
+          ctx.moveTo(0, size*.16); ctx.lineTo(0, size*.24);
+          ctx.stroke();
+        } else if(type === 'iam'){
+          ctx.beginPath();
+          ctx.arc(0, -size*.09, size*.1, 0, Math.PI*2);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(-size*.18, size*.18);
+          ctx.quadraticCurveTo(0, size*.02, size*.18, size*.18);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(size*.18, -size*.04, size*.11, Math.PI, Math.PI*2);
+          ctx.lineTo(size*.29, size*.12);
+          ctx.lineTo(size*.08, size*.12);
+          ctx.lineTo(size*.08, -size*.04);
+          ctx.closePath();
+          ctx.stroke();
+        } else if(type === 'analyst'){
+          ctx.beginPath();
+          ctx.arc(-size*.1, -size*.12, size*.09, 0, Math.PI*2);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(-size*.22, size*.16);
+          ctx.quadraticCurveTo(-size*.1, 0, size*.02, size*.16);
+          ctx.stroke();
+          roundedRect(ctx, size*.04, -size*.16, size*.24, size*.2, size*.04);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(size*.12, size*.12);
+          ctx.lineTo(size*.2, size*.12);
+          ctx.stroke();
+        } else if(type === 'siem'){
+          roundedRect(ctx, -size*.33, -size*.22, size*.66, size*.44, size*.07);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(-size*.2, size*.08);
+          ctx.lineTo(-size*.2, -size*.08);
+          ctx.moveTo(-size*.05, size*.08);
+          ctx.lineTo(-size*.05, -size*.15);
+          ctx.moveTo(size*.1, size*.08);
+          ctx.lineTo(size*.1, -size*.02);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(size*.18, size*.04, size*.12, 0, Math.PI*2);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(size*.27, size*.13);
+          ctx.lineTo(size*.38, size*.24);
+          ctx.stroke();
+        } else {
+          ctx.beginPath();
+          ctx.arc(0, 0, size*.22, 0, Math.PI*2);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+
+      function makeCardTexture(name, label, type, primary, secondary){
+        const texture = new BABYLON.DynamicTexture(name, { width: 1024, height: 1024 }, scene, true);
+        const ctx = texture.getContext();
+        ctx.clearRect(0, 0, 1024, 1024);
+
+        const glowGrad = ctx.createRadialGradient(512, 240, 50, 512, 240, 330);
+        glowGrad.addColorStop(0, rgba(primary, .38));
+        glowGrad.addColorStop(.55, rgba(primary, .12));
+        glowGrad.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = glowGrad;
+        ctx.fillRect(0, 0, 1024, 1024);
+
+        roundedRect(ctx, 108, 118, 808, 788, 82);
+        ctx.fillStyle = 'rgba(8,18,16,.88)';
+        ctx.fill();
+        ctx.lineWidth = 6;
+        ctx.strokeStyle = rgba(primary, .76);
+        ctx.shadowColor = rgba(primary, .55);
+        ctx.shadowBlur = 26;
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        roundedRect(ctx, 150, 160, 724, 220, 64);
+        const topGrad = ctx.createLinearGradient(150, 160, 874, 380);
+        topGrad.addColorStop(0, rgba(primary, .22));
+        topGrad.addColorStop(1, rgba(secondary, .1));
+        ctx.fillStyle = topGrad;
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(512, 280, 126, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(1,10,8,.95)';
+        ctx.fill();
+        ctx.lineWidth = 8;
+        ctx.strokeStyle = rgba(primary, .8);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(512, 280, 144, 0, Math.PI * 2);
+        ctx.strokeStyle = rgba(secondary, .35);
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        drawIcon(ctx, type, 512, 280, 240, '#f2fff7');
+
+        ctx.font = '700 54px Inter, Arial, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#e8fff1';
+        ctx.fillText(label, 512, 502);
+
+        ctx.font = '600 24px SFMono-Regular, Consolas, monospace';
+        ctx.fillStyle = rgba('9bc6ae', 1);
+        ctx.fillText('SECURITY OPERATIONS NODE', 512, 548);
+
+        ctx.fillStyle = rgba(primary, .72);
+        ctx.fillRect(194, 616, 636, 2);
+
+        ctx.font = '600 22px SFMono-Regular, Consolas, monospace';
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#dfffee';
+        ctx.fillText('STATUS', 194, 678);
+        ctx.fillStyle = '#8ff4bc';
+        ctx.fillText('ACTIVE', 320, 678);
+        ctx.fillStyle = '#dfffee';
+        ctx.fillText('FLOW', 194, 730);
+        ctx.fillStyle = '#8fdcf0';
+        ctx.fillText('INGEST / ANALYZE / RESPOND', 290, 730);
+        ctx.fillStyle = '#dfffee';
+        ctx.fillText('ROLE', 194, 782);
+        ctx.fillStyle = '#d8ffd1';
+        ctx.fillText(label, 286, 782);
+
+        ctx.textAlign = 'center';
+        ctx.font = '500 18px SFMono-Regular, Consolas, monospace';
+        ctx.fillStyle = 'rgba(235,255,245,.55)';
+        ctx.fillText('chan4o security operations map', 512, 856);
+
+        texture.update();
+        return texture;
+      }
+
+      function makeGridTexture(name, primary, secondary){
+        const texture = new BABYLON.DynamicTexture(name, { width: 2048, height: 2048 }, scene, true);
+        const ctx = texture.getContext();
+        ctx.fillStyle = 'rgba(1,4,3,1)';
+        ctx.fillRect(0, 0, 2048, 2048);
+        ctx.strokeStyle = rgba(primary, .1);
+        ctx.lineWidth = 1;
+        for(let x = 0; x <= 2048; x += 96){
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 2048); ctx.stroke();
+        }
+        for(let y = 0; y <= 2048; y += 96){
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(2048, y); ctx.stroke();
+        }
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = rgba(secondary, .22);
+        [320, 640, 960].forEach(r => {
+          ctx.beginPath();
+          ctx.arc(1024, 1024, r, 0, Math.PI * 2);
+          ctx.stroke();
+        });
+        ctx.fillStyle = rgba(primary, .34);
+        ctx.fillRect(1022, 0, 4, 2048);
+        ctx.fillRect(0, 1022, 2048, 4);
+        texture.update();
+        return texture;
+      }
+
+      const floorMat = new BABYLON.StandardMaterial('floorMat', scene);
+      floorMat.diffuseTexture = makeGridTexture('floorGrid', '#88cc14', '#22d3ee');
+      floorMat.emissiveColor = new BABYLON.Color3(.05, .17, .12);
+      floorMat.specularColor = new BABYLON.Color3(.08, .24, .18);
+      floorMat.alpha = .92;
+      floorMat.backFaceCulling = false;
+
+      const floor = BABYLON.MeshBuilder.CreateGround('floor', { width: 16, height: 16 }, scene);
+      floor.position.y = -1.65;
+      floor.material = floorMat;
+
+      const floorEdge = BABYLON.MeshBuilder.CreateTorus('floorEdge', { diameter: 12.6, thickness: .06, tessellation: 220 }, scene);
+      floorEdge.position.y = -1.6;
+      floorEdge.rotation.x = Math.PI / 2;
+      const edgeMat = new BABYLON.StandardMaterial('edgeMat', scene);
+      edgeMat.emissiveColor = new BABYLON.Color3(.11, .8, .98);
+      edgeMat.diffuseColor = new BABYLON.Color3(.01, .08, .1);
+      edgeMat.alpha = .66;
+      floorEdge.material = edgeMat;
+
+      const coreRoot = new BABYLON.TransformNode('coreRoot', scene);
+      const coreBase = BABYLON.MeshBuilder.CreateCylinder('coreBase', { diameter: 2.3, height: .42, tessellation: 96 }, scene);
+      coreBase.parent = coreRoot;
+      coreBase.position.y = -.88;
+      const coreColumn = BABYLON.MeshBuilder.CreateCylinder('coreColumn', { diameterTop: .84, diameterBottom: 1.1, height: 1.7, tessellation: 96 }, scene);
+      coreColumn.parent = coreRoot;
+      coreColumn.position.y = .04;
+      const coreSphere = BABYLON.MeshBuilder.CreateSphere('coreSphere', { diameter: .92, segments: 64 }, scene);
+      coreSphere.parent = coreRoot;
+      coreSphere.position.y = 1.14;
+      const coreHalo = BABYLON.MeshBuilder.CreateTorus('coreHalo', { diameter: 2.8, thickness: .05, tessellation: 200 }, scene);
+      coreHalo.parent = coreRoot;
+      coreHalo.position.y = .92;
+      coreHalo.rotation.x = Math.PI / 2;
+      const coreHalo2 = BABYLON.MeshBuilder.CreateTorus('coreHalo2', { diameter: 3.5, thickness: .03, tessellation: 200 }, scene);
+      coreHalo2.parent = coreRoot;
+      coreHalo2.position.y = .22;
+      coreHalo2.rotation.x = Math.PI / 2;
+
+      const coreMat = new BABYLON.StandardMaterial('coreMat', scene);
+      coreMat.diffuseColor = new BABYLON.Color3(.05, .22, .1);
+      coreMat.emissiveColor = new BABYLON.Color3(.38, .95, .14);
+      coreMat.specularColor = new BABYLON.Color3(.5, 1, .6);
+      coreBase.material = coreMat;
+      coreColumn.material = coreMat;
+      coreSphere.material = coreMat;
+
+      const coreRingMat = new BABYLON.StandardMaterial('coreRingMat', scene);
+      coreRingMat.diffuseColor = new BABYLON.Color3(.02, .12, .14);
+      coreRingMat.emissiveColor = new BABYLON.Color3(.08, .74, .95);
+      coreHalo.material = coreRingMat;
+      coreHalo2.material = coreRingMat;
+
+      const coreCardMat = new BABYLON.StandardMaterial('coreCardMat', scene);
+      const coreTexture = makeCardTexture('coreTexture', 'SIEM', 'siem', '#88cc14', '#22d3ee');
+      coreCardMat.diffuseTexture = coreTexture;
+      coreCardMat.opacityTexture = coreTexture;
+      coreCardMat.emissiveTexture = coreTexture;
+      coreCardMat.disableLighting = true;
+      coreCardMat.backFaceCulling = false;
+      const coreCard = BABYLON.MeshBuilder.CreatePlane('coreCard', { width: 2.55, height: 2.55 }, scene);
+      coreCard.parent = coreRoot;
+      coreCard.position.set(0, 1.02, -1.7);
+      coreCard.rotation.x = .08;
+      coreCard.material = coreCardMat;
+
+      const nodesData = [
+        { label: 'FIREWALL', type: 'firewall', color: '#88cc14', accent: '#22d3ee', angle: -145, radius: 5.55, y: .08 },
+        { label: 'DNS', type: 'dns', color: '#22d3ee', accent: '#88cc14', angle: -103, radius: 5.15, y: .18 },
+        { label: 'EMAIL', type: 'email', color: '#88cc14', accent: '#22d3ee', angle: -52, radius: 5.78, y: .12 },
+        { label: 'CLOUD', type: 'cloud', color: '#22d3ee', accent: '#88cc14', angle: 0, radius: 5.95, y: .28 },
+        { label: 'EDR', type: 'edr', color: '#88cc14', accent: '#22d3ee', angle: 54, radius: 5.62, y: .14 },
+        { label: 'ENDPOINT', type: 'endpoint', color: '#22d3ee', accent: '#88cc14', angle: 100, radius: 5.2, y: .08 },
+        { label: 'IAM', type: 'iam', color: '#88cc14', accent: '#22d3ee', angle: 145, radius: 5.48, y: .16 },
+        { label: 'ANALYST', type: 'analyst', color: '#22d3ee', accent: '#88cc14', angle: 180, radius: 4.55, y: .24 }
+      ];
+
+      const nodeObjects = [];
+      function makeNode(data, index){
+        const root = new BABYLON.TransformNode(`${data.label}-root`, scene);
+        const angle = BABYLON.Tools.ToRadians(data.angle);
+        root.position = new BABYLON.Vector3(Math.cos(angle) * data.radius, data.y, Math.sin(angle) * data.radius);
+        root.rotation.y = -angle + Math.PI / 2;
+        root.metadata = { baseY: data.y, angle: angle, radius: data.radius, label: data.label };
+
+        const platform = BABYLON.MeshBuilder.CreateCylinder(`${data.label}-platform`, { diameter: 1.52, height: .26, tessellation: 72 }, scene);
+        platform.parent = root;
+        platform.position.y = -.85;
+        const platformMat = new BABYLON.StandardMaterial(`${data.label}-platformMat`, scene);
+        platformMat.diffuseColor = new BABYLON.Color3(.02, .07, .05);
+        platformMat.emissiveColor = BABYLON.Color3.FromHexString(data.color).scale(.36);
+        platform.material = platformMat;
+
+        const ring = BABYLON.MeshBuilder.CreateTorus(`${data.label}-ring`, { diameter: 1.95, thickness: .04, tessellation: 140 }, scene);
+        ring.parent = root;
+        ring.position.y = -.72;
+        ring.rotation.x = Math.PI / 2;
+        const ringMat = new BABYLON.StandardMaterial(`${data.label}-ringMat`, scene);
+        ringMat.diffuseColor = new BABYLON.Color3(.01, .08, .09);
+        ringMat.emissiveColor = BABYLON.Color3.FromHexString(data.accent).scale(.58);
+        ring.material = ringMat;
+
+        const pillar = BABYLON.MeshBuilder.CreateCylinder(`${data.label}-pillar`, { diameter: .18, height: 1.45, tessellation: 40 }, scene);
+        pillar.parent = root;
+        pillar.position.y = .02;
+        const pillarMat = new BABYLON.StandardMaterial(`${data.label}-pillarMat`, scene);
+        pillarMat.diffuseColor = new BABYLON.Color3(.03, .12, .09);
+        pillarMat.emissiveColor = BABYLON.Color3.FromHexString(data.color).scale(.14);
+        pillar.material = pillarMat;
+
+        const orb = BABYLON.MeshBuilder.CreateSphere(`${data.label}-orb`, { diameter: .46, segments: 40 }, scene);
+        orb.parent = root;
+        orb.position.y = .98;
+        const orbMat = new BABYLON.StandardMaterial(`${data.label}-orbMat`, scene);
+        orbMat.diffuseColor = BABYLON.Color3.FromHexString(data.accent).scale(.24);
+        orbMat.emissiveColor = BABYLON.Color3.FromHexString(data.color).scale(.76);
+        orb.material = orbMat;
+
+        const cardMat = new BABYLON.StandardMaterial(`${data.label}-cardMat`, scene);
+        const tex = makeCardTexture(`${data.label}-tex`, data.label, data.type, data.color, data.accent);
+        cardMat.diffuseTexture = tex;
+        cardMat.opacityTexture = tex;
+        cardMat.emissiveTexture = tex;
+        cardMat.disableLighting = true;
+        cardMat.backFaceCulling = false;
+
+        const card = BABYLON.MeshBuilder.CreatePlane(`${data.label}-card`, { width: 1.92, height: 1.92 }, scene);
+        card.parent = root;
+        card.position.set(0, .92, .72);
+        card.rotation.x = -.08;
+        card.material = cardMat;
+
+        const shadow = BABYLON.MeshBuilder.CreateDisc(`${data.label}-shadow`, { radius: .52, tessellation: 48 }, scene);
+        shadow.parent = root;
+        shadow.position.y = -.71;
+        shadow.rotation.x = Math.PI / 2;
+        const shadowMat = new BABYLON.StandardMaterial(`${data.label}-shadowMat`, scene);
+        shadowMat.diffuseColor = new BABYLON.Color3(0,0,0);
+        shadowMat.emissiveColor = BABYLON.Color3.FromHexString(data.color).scale(.16);
+        shadowMat.alpha = .42;
+        shadow.material = shadowMat;
+
+        nodeObjects.push({ root, platform, ring, orb, card, data });
+      }
+      nodesData.forEach(makeNode);
+
+      function bezierPoint(p0, p1, p2, p3, t){
+        const u = 1 - t;
+        const tt = t * t;
+        const uu = u * u;
+        const uuu = uu * u;
+        const ttt = tt * t;
+        return p0.scale(uuu)
+          .add(p1.scale(3 * uu * t))
+          .add(p2.scale(3 * u * tt))
+          .add(p3.scale(ttt));
+      }
+
+      function buildBezierPath(from, to, lift = 1.65, steps = 54){
+        const p0 = from.clone();
+        const p3 = to.clone();
+        const p1 = p0.add(new BABYLON.Vector3(p0.x * .22, lift, p0.z * .22));
+        const p2 = p3.add(new BABYLON.Vector3(p3.x * .12, lift * .65, p3.z * .12));
+        const pts = [];
+        for(let i = 0; i <= steps; i++) pts.push(bezierPoint(p0, p1, p2, p3, i / steps));
+        return pts;
+      }
+
+      const packetMatGreen = new BABYLON.StandardMaterial('packetMatGreen', scene);
+      packetMatGreen.emissiveColor = new BABYLON.Color3(.58, 1, .18);
+      packetMatGreen.diffuseColor = new BABYLON.Color3(.08, .15, .04);
+      const packetMatCyan = new BABYLON.StandardMaterial('packetMatCyan', scene);
+      packetMatCyan.emissiveColor = new BABYLON.Color3(.12, .84, 1);
+      packetMatCyan.diffuseColor = new BABYLON.Color3(.03, .1, .14);
+
+      const flows = [];
+      nodeObjects.forEach((node, idx) => {
+        const start = new BABYLON.Vector3(0, .42, 0);
+        const end = node.root.position.add(new BABYLON.Vector3(0, .28, 0));
+        const path = buildBezierPath(start, end, 2.15 + (idx % 3) * .35, 64);
+        const tube = BABYLON.MeshBuilder.CreateTube(`flow-${idx}`, { path, radius: .045, tessellation: 20, cap: BABYLON.Mesh.CAP_ALL }, scene);
+        const tubeMat = new BABYLON.StandardMaterial(`flowMat-${idx}`, scene);
+        const color = idx % 2 ? '#22d3ee' : '#88cc14';
+        tubeMat.diffuseColor = BABYLON.Color3.FromHexString(color).scale(.18);
+        tubeMat.emissiveColor = BABYLON.Color3.FromHexString(color).scale(.56);
+        tube.material = tubeMat;
+
+        const packetA = BABYLON.MeshBuilder.CreateSphere(`packetA-${idx}`, { diameter: .14, segments: 18 }, scene);
+        packetA.material = idx % 2 ? packetMatCyan : packetMatGreen;
+        const packetB = BABYLON.MeshBuilder.CreateSphere(`packetB-${idx}`, { diameter: .1, segments: 16 }, scene);
+        packetB.material = idx % 2 ? packetMatGreen : packetMatCyan;
+        flows.push({ path, packetA, packetB, speedA: .14 + idx * .006, speedB: .21 + idx * .004, offset: idx * .08 });
+      });
+
+      const stars = [];
+      for(let i = 0; i < 90; i++){
+        const star = BABYLON.MeshBuilder.CreateSphere(`star-${i}`, { diameter: .035 + Math.random() * .03, segments: 8 }, scene);
+        star.position.set((Math.random() - .5) * 18, Math.random() * 7 - .2, (Math.random() - .5) * 18);
+        const mat = new BABYLON.StandardMaterial(`starMat-${i}`, scene);
+        mat.emissiveColor = i % 3 === 0 ? new BABYLON.Color3(.58, 1, .18) : new BABYLON.Color3(.18, .92, 1);
+        mat.disableLighting = true;
+        star.material = mat;
+        stars.push(star);
+      }
+
+      const particleSystem = new BABYLON.ParticleSystem('flowParticles', 1600, scene);
       particleSystem.particleTexture = new BABYLON.Texture('https://assets.babylonjs.com/textures/flare.png', scene);
-      particleSystem.emitter = hub;
-      particleSystem.minEmitBox = new BABYLON.Vector3(-.2, -.2, -.2);
-      particleSystem.maxEmitBox = new BABYLON.Vector3(.2, .2, .2);
-      particleSystem.color1 = new BABYLON.Color4(.55, 1, .1, .8);
-      particleSystem.color2 = new BABYLON.Color4(.1, .84, 1, .75);
+      particleSystem.emitter = coreSphere;
+      particleSystem.minEmitBox = new BABYLON.Vector3(-.18, -.18, -.18);
+      particleSystem.maxEmitBox = new BABYLON.Vector3(.18, .18, .18);
+      particleSystem.color1 = new BABYLON.Color4(.55, 1, .14, .72);
+      particleSystem.color2 = new BABYLON.Color4(.12, .84, 1, .74);
       particleSystem.colorDead = new BABYLON.Color4(0, 0, 0, 0);
-      particleSystem.minSize = .025;
-      particleSystem.maxSize = .08;
-      particleSystem.minLifeTime = .65;
-      particleSystem.maxLifeTime = 1.9;
-      particleSystem.emitRate = 220;
+      particleSystem.minSize = .02;
+      particleSystem.maxSize = .09;
+      particleSystem.minLifeTime = .5;
+      particleSystem.maxLifeTime = 1.6;
+      particleSystem.emitRate = 280;
       particleSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
       particleSystem.gravity = new BABYLON.Vector3(0, 0, 0);
-      particleSystem.direction1 = new BABYLON.Vector3(-2, -.4, -2);
-      particleSystem.direction2 = new BABYLON.Vector3(2, .4, 2);
-      particleSystem.minEmitPower = .3;
-      particleSystem.maxEmitPower = 1.25;
-      particleSystem.updateSpeed = .012;
+      particleSystem.direction1 = new BABYLON.Vector3(-2.2, -.2, -2.2);
+      particleSystem.direction2 = new BABYLON.Vector3(2.2, .3, 2.2);
+      particleSystem.minEmitPower = .25;
+      particleSystem.maxEmitPower = 1.35;
+      particleSystem.updateSpeed = .014;
       particleSystem.start();
 
-      engine.runRenderLoop(() => {
+      scene.registerBeforeRender(() => {
+        const t = performance.now() * .001;
         if(motionEnabled){
-          const t = performance.now() * .001;
-          hub.rotation.y += .01;
-          hubRing.rotation.z -= .008;
-          nodes.forEach((node, i) => {
-            node.rotation.x += .006 + i * .0007;
-            node.rotation.y += .009;
-            node.position.y += Math.sin(t * 1.4 + i) * .0018;
+          coreRoot.rotation.y += .008;
+          coreHalo.rotation.z += .016;
+          coreHalo2.rotation.z -= .012;
+          coreSphere.scaling.setAll(1 + Math.sin(t * 2.1) * .05);
+          nodeObjects.forEach((node, idx) => {
+            node.root.position.y = node.root.metadata.baseY + Math.sin(t * 1.3 + idx * .65) * .06;
+            node.root.rotation.y = -node.root.metadata.angle + Math.PI / 2 + Math.sin(t * .7 + idx) * .03;
+            node.orb.position.y = .98 + Math.sin(t * 1.8 + idx) * .09;
+            node.ring.rotation.z += .004 + idx * .00018;
+            const pulse = 1 + Math.sin(t * 2 + idx) * .06;
+            node.orb.scaling.setAll(pulse);
+          });
+          flows.forEach((flow, idx) => {
+            const a = (t * flow.speedA + flow.offset) % 1;
+            const b = (1 - ((t * flow.speedB + flow.offset * 1.6) % 1));
+            const pa = flow.path[Math.floor(a * (flow.path.length - 1))];
+            const pb = flow.path[Math.floor(b * (flow.path.length - 1))];
+            flow.packetA.position.copyFrom(pa);
+            flow.packetB.position.copyFrom(pb);
+          });
+          stars.forEach((star, idx) => {
+            star.position.y += Math.sin(t * .6 + idx) * .0009;
+            star.rotation.y += .004;
           });
         }
-        scene.render();
       });
+
+      engine.runRenderLoop(() => scene.render());
       window.addEventListener('resize', () => engine.resize());
     }
+
 
     function init(){
       setupSmoothScroll();
