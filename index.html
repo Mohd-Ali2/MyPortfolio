@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#050a08" />
-  <meta name="description" content="Ali Faizan / chan4o — 3D interactive SOC analyst portfolio with GSAP, Three.js and Babylon.js." />
-  <title>Ali Faizan // chan4o — 3D SOC Portfolio</title>
+  <meta name="description" content="Ali Faizan / chan4o — SOC analyst portfolio focused on TryHackMe progress, defensive security fundamentals, and practical SOC readiness." />
+  <title>Ali Faizan // chan4o — SOC Analyst Profile</title>
 
   <style>
     :root{
@@ -193,11 +193,6 @@
     .room small{font-family:var(--mono);color:var(--muted);position:relative;z-index:1}
     .room.easy small{color:var(--soft)}.room.info small{color:var(--soft-2)}
 
-    .project-card{min-height:310px;display:flex;flex-direction:column;justify-content:space-between}
-    .project-card .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-    .tag{display:inline-flex;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);border-radius:999px;padding:7px 9px;font:800 10px/1 var(--mono);text-transform:uppercase;color:#c7ebd2}
-    .project-card p{line-height:1.62;color:#bfe0ca}
-
     .timeline{position:relative;margin-top:28px;padding-left:22px;border-left:1px solid rgba(136,204,20,.22)}
     .time-node{position:relative;margin:0 0 22px;padding:0 0 0 22px}
     .time-node::before{content:"";position:absolute;left:-29px;top:3px;width:13px;height:13px;border-radius:50%;background:var(--thm);box-shadow:0 0 22px rgba(136,204,20,.8)}
@@ -206,7 +201,7 @@
     .lab-section{min-height:980px;padding-bottom:130px}
     .lab-shell{display:grid;grid-template-columns:.82fr 1.18fr;gap:22px;align-items:stretch;margin-top:34px}
     .lab-canvas-wrap{border-radius:var(--radius);border:1px solid rgba(34,211,238,.22);background:rgba(0,0,0,.34);min-height:620px;overflow:hidden;position:relative;box-shadow:var(--shadow)}
-    #babylon-canvas{width:100%;height:100%;display:block;touch-action:none;outline:0}
+    #topology-canvas{width:100%;height:100%;display:block;touch-action:none;outline:0}
     .lab-overlay{position:absolute;left:18px;right:18px;bottom:18px;display:flex;justify-content:space-between;gap:12px;align-items:end;pointer-events:none}
     .lab-badge{border:1px solid rgba(34,211,238,.22);background:rgba(2,10,12,.7);backdrop-filter:blur(12px);border-radius:18px;padding:12px 14px;font:800 11px var(--mono);color:#ccfbff;box-shadow:0 12px 35px rgba(0,0,0,.28)}
     .terminal{border:1px solid rgba(136,204,20,.22);border-radius:var(--radius);background:#020604;box-shadow:var(--shadow);overflow:hidden;min-height:620px;display:flex;flex-direction:column}
@@ -289,8 +284,7 @@
         <li><a href="#profile" data-scroll>Profile</a></li>
         <li><a href="#skills" data-scroll>Skills</a></li>
         <li><a href="#rooms" data-scroll>Rooms</a></li>
-        <li><a href="#projects" data-scroll>Projects</a></li>
-        <li><a href="#lab" data-scroll>3D Lab</a></li>
+        <li><a href="#lab" data-scroll>SOC Map</a></li>
         <li><a href="#contact" data-scroll>Contact</a></li>
       </ul>
       <div class="nav-actions">
@@ -313,10 +307,10 @@
                 <span class="line"><span>Rebuild it.</span></span>
                 <span class="line"><span class="accent">Repeat it.</span></span>
               </h1>
-              <p class="lead reveal">I am Ali Faizan, known as <strong>chan4o</strong> on TryHackMe. This portfolio is designed as a cyber operations command center: defensive security, networking fundamentals, SIEM thinking, alert triage mindset, and high-energy interactive visuals.</p>
+              <p class="lead reveal">I am Ali Faizan, known as <strong>chan4o</strong> on TryHackMe. My focus is SOC L1 readiness: defensive security, networking fundamentals, SIEM thinking, alert triage, and clean incident documentation.</p>
               <div class="hero-actions reveal">
-                <a class="btn primary" href="#projects" data-scroll>View SOC Work</a>
-                <a class="btn ghost" href="#lab" data-scroll>Enter 3D Lab</a>
+                <a class="btn primary" href="#rooms" data-scroll>View THM Progress</a>
+                <a class="btn ghost" href="#lab" data-scroll>View SOC Map</a>
                 <button class="btn ghost" type="button" id="openPalette">Command Menu /</button>
               </div>
             </div>
@@ -331,7 +325,7 @@
                     <span class="terminal-chip">Capability Score: 49</span>
                   </div>
                 </div>
-                <p class="muted" style="line-height:1.65;margin-bottom:0">A THM-inspired profile snapshot focused on practical security foundations, consistent progress, and SOC-ready discipline.</p>
+                <p class="muted" style="line-height:1.65;margin-bottom:0">A concise security profile snapshot built around practical foundations, consistent lab progress, and SOC-ready discipline.</p>
                 <div class="metric-grid">
                   <div class="metric"><b data-count="4">0</b><span>Top Percent</span></div>
                   <div class="metric"><b data-count="76155">0</b><span>Rank</span></div>
@@ -367,14 +361,14 @@
         <section id="mission">
           <div class="section-inner grid-2">
             <div>
-              <p class="eyebrow reveal">Portfolio Direction</p>
-              <h2 class="reveal">Built like a SOC dashboard, not a generic resume site.</h2>
-              <p class="lead reveal">The visual style borrows the energy of TryHackMe, but the content positioning is professional: threat detection, log thinking, network fundamentals, alert handling, and disciplined learning progress.</p>
+              <p class="eyebrow reveal">Current Direction</p>
+              <h2 class="reveal">SOC L1 focused. Practical. Consistent.</h2>
+              <p class="lead reveal">My current path is focused on threat-detection basics, log thinking, network fundamentals, alert handling, and disciplined learning progress.</p>
             </div>
             <div class="panel reveal" data-tilt>
               <div class="kicker">Operating Mode</div>
-              <h3>Fresher SOC L1 narrative</h3>
-              <p class="muted" style="line-height:1.7">This site should tell recruiters one thing quickly: you are not pretending to be senior; you are showing proof of consistency, practical labs, defensive-security fundamentals, and the mindset to learn fast inside an MSSP or SOC team.</p>
+              <h3>SOC L1 readiness</h3>
+              <p class="muted" style="line-height:1.7">Entry-level positioning with proof: consistent lab work, defensive-security fundamentals, and the mindset to learn quickly inside an MSSP or SOC team.</p>
               <div class="mission-list">
                 <div class="mission-item"><div class="mission-icon">01</div><div><strong>Detect</strong><p>Understand alerts, logs, indicators, network signals, and basic attacker behavior.</p></div></div>
                 <div class="mission-item"><div class="mission-icon">02</div><div><strong>Triage</strong><p>Separate noise from suspicious activity using evidence, timestamps, context, and impact.</p></div></div>
@@ -392,11 +386,11 @@
               <div class="ping"></div><div class="ping"></div><div class="ping"></div><div class="ping"></div>
             </div>
             <div class="panel reveal" data-tilt>
-              <div class="kicker">Theme System</div>
-              <h2>THM-inspired, but cleaner and recruiter-ready.</h2>
-              <p class="lead">The design language uses neon green, dark panels, terminal cards, subtle grid lines, 3D WebGL, and scroll-linked motion. It feels cyber without becoming childish or noisy.</p>
+              <div class="kicker">SOC Mindset</div>
+              <h2>Look for signals. Verify context. Document clearly.</h2>
+              <p class="lead">My focus is to build the habits expected from a SOC L1 fresher: notice suspicious activity, check evidence, understand impact, and escalate with clean notes.</p>
               <div class="divider"></div>
-              <p class="muted" style="line-height:1.75">The background is a procedural looping gradient film. It behaves like a premium animated video layer while staying inside a single HTML file. Real MP4/WebM loops can be plugged into the markup later if you want even heavier visuals.</p>
+              <p class="muted" style="line-height:1.75">The goal is simple: become reliable with fundamentals first, then build stronger proof through real investigations, alert triage practice, and clear security writeups.</p>
             </div>
           </div>
         </section>
@@ -405,7 +399,7 @@
           <div class="section-inner">
             <p class="eyebrow reveal">Skills Matrix</p>
             <h2 class="reveal">Cybersecurity fundamentals mapped for SOC L1.</h2>
-            <p class="lead reveal">A clean skills presentation based on your TryHackMe room history and current SOC direction.</p>
+            <p class="lead reveal">A clean skills presentation based on TryHackMe progress and my current SOC direction.</p>
             <div class="grid-3" style="margin-top:30px">
               <article class="panel skill-card reveal" data-tilt>
                 <div class="kicker">Networking</div>
@@ -444,8 +438,8 @@
         <section id="rooms">
           <div class="section-inner">
             <p class="eyebrow reveal">Completed Room Highlights</p>
-            <h2 class="reveal">A visible learning trail from web basics to defensive security.</h2>
-            <p class="lead reveal">These room cards are intentionally concise. Recruiters can scan them quickly and understand your foundation.</p>
+            <h2 class="reveal">A visible learning trail from fundamentals to defensive security.</h2>
+            <p class="lead reveal">These room cards are intentionally concise so the foundation is easy to scan quickly.</p>
             <div class="rooms-grid">
               <div class="room easy reveal"><strong>How Websites Work</strong><small>easy · web fundamentals</small></div>
               <div class="room easy reveal"><strong>Putting it all together</strong><small>easy · web stack</small></div>
@@ -467,69 +461,11 @@
           </div>
         </section>
 
-        <section id="projects">
-          <div class="section-inner">
-            <p class="eyebrow reveal">Portfolio Projects</p>
-            <h2 class="reveal">Projects that make your SOC profile stronger.</h2>
-            <p class="lead reveal">These cards are written for your future GitHub/live demos. Replace the links with real projects as you build them.</p>
-            <div class="grid-3" style="margin-top:30px">
-              <article class="panel project-card reveal" data-tilt>
-                <div>
-                  <div class="kicker">Project 01</div>
-                  <h3>SIEM Alert Triage Console</h3>
-                  <p>A web dashboard showing sample alerts, severity, host context, suspicious IPs, event timeline, and analyst notes. Best for proving SOC L1 workflow understanding.</p>
-                </div>
-                <div class="tag-row"><span class="tag">SIEM</span><span class="tag">Logs</span><span class="tag">Triage</span></div>
-              </article>
-              <article class="panel project-card reveal" data-tilt>
-                <div>
-                  <div class="kicker">Project 02</div>
-                  <h3>Phishing Investigation Report</h3>
-                  <p>A structured case study: email headers, URLs, domain age, attachments, indicators, verdict, and recommended action. This shows documentation ability.</p>
-                </div>
-                <div class="tag-row"><span class="tag">Phishing</span><span class="tag">IOC</span><span class="tag">Report</span></div>
-              </article>
-              <article class="panel project-card reveal" data-tilt>
-                <div>
-                  <div class="kicker">Project 03</div>
-                  <h3>Network Packet Analysis Notes</h3>
-                  <p>A Wireshark-style investigation story explaining DNS, HTTP, TCP, suspicious traffic, and how evidence was collected from packets.</p>
-                </div>
-                <div class="tag-row"><span class="tag">Network</span><span class="tag">Packets</span><span class="tag">Evidence</span></div>
-              </article>
-              <article class="panel project-card reveal" data-tilt>
-                <div>
-                  <div class="kicker">Project 04</div>
-                  <h3>Windows Event Log Playbook</h3>
-                  <p>Short investigation playbook for login events, failed authentication, privilege changes, service creation, and suspicious process execution.</p>
-                </div>
-                <div class="tag-row"><span class="tag">Windows</span><span class="tag">Event Logs</span><span class="tag">Playbook</span></div>
-              </article>
-              <article class="panel project-card reveal" data-tilt>
-                <div>
-                  <div class="kicker">Project 05</div>
-                  <h3>TrustFlow Security Compliance Map</h3>
-                  <p>A founder-style security project connecting DPDP-first compliance thinking, audit readiness, evidence collection, and control mapping for Indian startups.</p>
-                </div>
-                <div class="tag-row"><span class="tag">DPDP</span><span class="tag">Controls</span><span class="tag">Audit</span></div>
-              </article>
-              <article class="panel project-card reveal" data-tilt>
-                <div>
-                  <div class="kicker">Project 06</div>
-                  <h3>Incident Report Template</h3>
-                  <p>A clean template for SOC cases: summary, scope, timeline, affected assets, evidence, containment steps, recommendations, and final analyst notes.</p>
-                </div>
-                <div class="tag-row"><span class="tag">IR</span><span class="tag">Writing</span><span class="tag">SOC</span></div>
-              </article>
-            </div>
-          </div>
-        </section>
-
         <section id="lab" class="lab-section">
           <div class="section-inner">
-            <p class="eyebrow reveal">3D Interactive Lab</p>
-            <h2 class="reveal">Babylon.js SOC topology scene + live terminal.</h2>
-            <p class="lead reveal">Drag inside the 3D lab to rotate. The scene visualizes SIEM, endpoint, DNS, firewall, cloud, and analyst flow as a glowing cyber topology.</p>
+            <p class="eyebrow reveal">SOC Map</p>
+            <h2 class="reveal">Security topology with live terminal notes.</h2>
+            <p class="lead reveal">Drag inside the topology area to rotate the scene. It represents SIEM, endpoint, DNS, firewall, cloud, and analyst flow in a simple security-operations layout.</p>
             <div class="lab-shell">
               <div class="terminal reveal">
                 <div class="terminal-top"><span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span><span class="term-title">chan4o@soc-lab:~</span></div>
@@ -548,7 +484,7 @@
                 </div>
               </div>
               <div class="lab-canvas-wrap reveal" data-tilt>
-                <canvas id="babylon-canvas" aria-label="Interactive 3D SOC topology scene"></canvas>
+                <canvas id="topology-canvas" aria-label="Interactive SOC topology scene"></canvas>
                 <div class="lab-overlay">
                   <div class="lab-badge">DRAG: rotate topology</div>
                   <div class="lab-badge">NODES: SIEM · DNS · EDR · CLOUD</div>
@@ -561,15 +497,15 @@
         <section id="timeline-section">
           <div class="section-inner grid-2">
             <div>
-              <p class="eyebrow reveal">Roadmap</p>
-              <h2 class="reveal">What this portfolio should show next.</h2>
-              <p class="lead reveal">The design is ready for more real proof. Add actual screenshots, incident writeups, GitHub links, and short case studies as you finish them.</p>
+              <p class="eyebrow reveal">Next Proof</p>
+              <h2 class="reveal">Evidence will be added as it is completed.</h2>
+              <p class="lead reveal">Completed investigations, screenshots, and writeups will be added here once they are built, documented, and ready to discuss in interviews.</p>
             </div>
             <div class="panel reveal" data-tilt>
               <div class="timeline">
-                <div class="time-node"><h3>Now</h3><p>TryHackMe SOC path, defensive security fundamentals, profile positioning for SOC L1 and MSSP roles.</p></div>
-                <div class="time-node"><h3>Next</h3><p>Upload three real SOC mini-projects: phishing investigation, SIEM triage console, and packet analysis report.</p></div>
-                <div class="time-node"><h3>After</h3><p>Convert project outcomes into LinkedIn posts, resume bullets, GitHub READMEs, and interview talking points.</p></div>
+                <div class="time-node"><h3>Now</h3><p>TryHackMe SOC path, defensive security fundamentals, and profile positioning for SOC L1 and MSSP roles.</p></div>
+                <div class="time-node"><h3>Next</h3><p>Build real evidence: phishing investigation notes, SIEM triage screenshots, and packet-analysis writeups.</p></div>
+                <div class="time-node"><h3>After</h3><p>Publish only completed work with clear summaries, evidence, analyst notes, and interview-ready explanations.</p></div>
               </div>
             </div>
           </div>
@@ -581,7 +517,7 @@
               <div>
                 <p class="eyebrow">Contact / Availability</p>
                 <h2>Ready for SOC L1, MSSP, and security internship conversations.</h2>
-                <p class="lead">Use this section for your real contact links. Keep it simple: LinkedIn, GitHub, TryHackMe, email, and location availability.</p>
+                <p class="lead">Open to fresher SOC conversations, MSSP opportunities, security internships, and roles where disciplined learning and practical lab progress matter.</p>
                 <div class="hero-actions">
                   <a class="btn primary" href="mailto:mohammadalifaizan123@gmail.com">Email Me</a>
                   <a class="btn ghost" href="#top" data-scroll>Back to Top</a>
@@ -600,7 +536,7 @@
       </main>
 
       <footer>
-        <p>Designed as a single-file 3D cyber portfolio using GSAP, Three.js, Babylon.js, procedural gradient film layers, and responsive glassmorphism panels.</p>
+        <p>Ali Faizan / chan4o — SOC L1 focused profile, TryHackMe progress, defensive security fundamentals, and practical learning discipline.</p>
       </footer>
     </div>
   </div>
@@ -611,7 +547,7 @@
   </div>
 
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command menu">
-    <input id="paletteInput" type="search" placeholder="Search sections or type: projects, skills, lab, contact..." autocomplete="off" />
+    <input id="paletteInput" type="search" placeholder="Search sections or type: skills, rooms, lab, contact..." autocomplete="off" />
     <div class="palette-results" id="paletteResults"></div>
   </div>
 
@@ -835,7 +771,7 @@
         'mission --mssp': [
           ['cmd', 'mission --mssp'],
           ['output', 'Goal: SOC L1 / MSSP fresher role. Strength: consistency + lab-based foundation.'],
-          ['warning', 'Next portfolio proof: real mini incident reports and SIEM triage screenshots.']
+          ['warning', 'Next proof to add after building: incident notes, SIEM triage screenshots, and packet-analysis writeups.']
         ],
         'contact --ready': [
           ['cmd', 'contact --ready'],
@@ -869,8 +805,7 @@
         {label:'Profile metrics', href:'#profile', meta:'TryHackMe snapshot'},
         {label:'Skills matrix', href:'#skills', meta:'SOC L1 fundamentals'},
         {label:'Completed rooms', href:'#rooms', meta:'THM learning trail'},
-        {label:'Portfolio projects', href:'#projects', meta:'Case studies and proof'},
-        {label:'3D lab', href:'#lab', meta:'Babylon topology'},
+        {label:'SOC map', href:'#lab', meta:'Interactive topology'},
         {label:'Contact', href:'#contact', meta:'Email and links'}
       ];
 
@@ -1005,8 +940,8 @@
       });
     }
 
-    function initBabylonLab(){
-      const canvas = $('#babylon-canvas');
+    function initTopologyLab(){
+      const canvas = $('#topology-canvas');
       if(!canvas || !window.BABYLON) return;
 
       const engine = new BABYLON.Engine(canvas, true, { antialias: true, adaptToDeviceRatio: true });
@@ -1142,7 +1077,7 @@
       setupFloatingActions();
       setPanelMouseGlow();
       initThreeHero();
-      initBabylonLab();
+      initTopologyLab();
       ScrollTrigger.refresh();
     }
 
