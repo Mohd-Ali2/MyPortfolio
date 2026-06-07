@@ -1,397 +1,1153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Muhammad Ali | Blue Team Specialist · SOC Analyst</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#050a08" />
+  <meta name="description" content="Ali Faizan / chan4o — 3D interactive SOC analyst portfolio with GSAP, Three.js and Babylon.js." />
+  <title>Ali Faizan // chan4o — 3D SOC Portfolio</title>
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #0A0F1A;
-      color: #EFF3F8;
-      overflow: hidden;
-      height: 100vh;
+    :root{
+      --bg:#030806;
+      --bg-2:#07130e;
+      --panel:rgba(9,22,17,.72);
+      --panel-2:rgba(14,35,26,.56);
+      --line:rgba(111,255,176,.18);
+      --line-strong:rgba(111,255,176,.48);
+      --text:#e8fff1;
+      --muted:#9bc6ae;
+      --soft:#65ffa7;
+      --soft-2:#22d3ee;
+      --danger:#ff4d6d;
+      --warn:#ffcc66;
+      --thm:#88cc14;
+      --ink:#000;
+      --shadow:0 30px 90px rgba(0,0,0,.48);
+      --radius:28px;
+      --radius-sm:18px;
+      --max:1220px;
+      --mono:"SFMono-Regular","Cascadia Code","Roboto Mono","Fira Code",Consolas,monospace;
+      --sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
     }
-    .gradient-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 30% 20%, #0A1A2F, #03070f);
-      z-index: -2;
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:auto;background:var(--bg)}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(30,255,122,.15), transparent 34%),
+        radial-gradient(circle at 85% 5%, rgba(34,211,238,.12), transparent 28%),
+        linear-gradient(180deg,#020504 0%,#05100b 45%,#020403 100%);
+      color:var(--text);
+      font-family:var(--sans);
+      overflow-x:hidden;
+      cursor:default;
     }
-    .blur-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: radial-gradient(circle at 40% 50%, rgba(0, 150, 255, 0.2), rgba(0, 0, 0, 0.4), rgba(0, 212, 255, 0.1));
-      filter: blur(70px);
-      animation: gradientLoop 16s ease infinite alternate;
-      pointer-events: none;
+
+    body::before{
+      content:"";
+      position:fixed;inset:0;z-index:-4;
+      background-image:
+        linear-gradient(rgba(118,255,171,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(118,255,171,.035) 1px, transparent 1px);
+      background-size:56px 56px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,.9), rgba(0,0,0,.2));
+      pointer-events:none;
     }
-    @keyframes gradientLoop {
-      0% { transform: scale(1) translate(0%, 0%); opacity: 0.5; }
-      50% { transform: scale(1.3) translate(5%, -5%); opacity: 0.8; }
-      100% { transform: scale(1) translate(-5%, 5%); opacity: 0.6; }
+
+    a{color:inherit;text-decoration:none}
+    button,input,textarea{font:inherit;color:inherit}
+    ::selection{background:rgba(136,204,20,.35);color:#fff}
+
+    .smooth-wrapper{position:fixed;inset:0;overflow:hidden;width:100%;}
+    .smooth-content{will-change:transform;min-height:100vh;}
+    .no-smooth .smooth-wrapper{position:relative;overflow:visible}
+    .no-smooth .smooth-content{transform:none!important}
+
+    .noise{
+      position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.08;mix-blend-mode:screen;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
     }
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(3, 100vw);
-      grid-template-rows: repeat(2, 100vh);
-      width: 300vw;
-      height: 200vh;
-      position: relative;
+
+    .scroll-progress{position:fixed;top:0;left:0;height:3px;width:100%;z-index:9998;background:rgba(255,255,255,.04)}
+    .scroll-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--thm),var(--soft-2));box-shadow:0 0 20px rgba(136,204,20,.75)}
+
+    .orbital-cursor{position:fixed;left:0;top:0;width:22px;height:22px;border:1px solid rgba(136,204,20,.65);border-radius:999px;z-index:9997;pointer-events:none;transform:translate(-50%,-50%);mix-blend-mode:difference;display:none}
+    @media (pointer:fine){.orbital-cursor{display:block}}
+
+    header.site-header{
+      position:fixed;top:20px;left:50%;transform:translateX(-50%);width:min(calc(100% - 32px),var(--max));z-index:9000;
+      border:1px solid rgba(136,204,20,.22);background:rgba(2,8,5,.52);backdrop-filter:blur(18px);border-radius:999px;box-shadow:0 20px 80px rgba(0,0,0,.25);
     }
-    .section {
-      width: 100vw;
-      height: 100vh;
-      overflow-y: auto;
-      padding: 2rem 4rem;
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 12px 10px 18px;gap:18px}
+    .brand{display:flex;align-items:center;gap:10px;font-family:var(--mono);letter-spacing:.02em;font-weight:800;color:#fff;white-space:nowrap}
+    .brand-mark{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--thm),#143c20);display:grid;place-items:center;color:#031006;box-shadow:0 0 30px rgba(136,204,20,.42);font-weight:900}
+    .nav-links{display:flex;align-items:center;gap:4px;list-style:none;padding:0;margin:0}
+    .nav-links a{display:inline-flex;padding:10px 12px;border-radius:999px;font-size:13px;color:var(--muted);transition:.25s ease}
+    .nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(136,204,20,.12)}
+    .nav-actions{display:flex;gap:8px;align-items:center}
+    .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(136,204,20,.22);border-radius:999px;padding:9px 12px;background:rgba(136,204,20,.08);font:700 12px/1 var(--mono);color:#dffff0;white-space:nowrap}
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--thm);box-shadow:0 0 18px var(--thm)}
+    .menu-btn{display:none;background:transparent;border:0;padding:8px;border-radius:12px}
+    .menu-btn span{display:block;width:22px;height:2px;background:#dffff0;margin:5px 0;border-radius:3px}
+
+    main{position:relative;z-index:1}
+    section{position:relative;padding:112px 20px;overflow:hidden}
+    .section-inner{width:min(100%,var(--max));margin:0 auto;position:relative;z-index:2}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+    .eyebrow::before{content:"";width:38px;height:1px;background:linear-gradient(90deg,var(--thm),transparent)}
+    h1,h2,h3,p{margin-top:0}
+    h1{font-size:clamp(48px,8.2vw,126px);line-height:.86;letter-spacing:-.08em;margin:0 0 24px;max-width:980px}
+    h2{font-size:clamp(34px,5vw,76px);line-height:.94;letter-spacing:-.055em;margin:0 0 22px;max-width:900px}
+    h3{font-size:clamp(20px,2.4vw,28px);letter-spacing:-.025em;margin:0 0 12px}
+    .lead{font-size:clamp(17px,2vw,22px);line-height:1.65;color:#cbead8;max-width:780px}
+    .muted{color:var(--muted)}
+    .mono{font-family:var(--mono)}
+    .accent{color:var(--thm);text-shadow:0 0 24px rgba(136,204,20,.45)}
+    .cyan{color:var(--soft-2)}
+
+    .hero{min-height:100vh;display:grid;align-items:center;padding-top:170px;padding-bottom:90px}
+    #hero-webgl{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.82}
+    .hero::after{content:"";position:absolute;inset:0;z-index:0;background:radial-gradient(circle at 65% 35%, transparent 0 20%, rgba(3,8,6,.48) 48%, rgba(3,8,6,.92) 88%)}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,.58fr);gap:34px;align-items:end}
+    .hero-copy{position:relative;z-index:2}
+    .hero-title .line{display:block;overflow:hidden}
+    .hero-title .line span{display:inline-block}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+    .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 18px;border-radius:999px;border:1px solid rgba(136,204,20,.34);background:rgba(136,204,20,.1);color:#f5fff8;font-weight:800;letter-spacing:-.01em;overflow:hidden;transition:.25s ease;box-shadow:0 14px 45px rgba(0,0,0,.18)}
+    .btn::before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent,rgba(255,255,255,.18),transparent);transform:translateX(-120%);transition:.65s ease}
+    .btn:hover::before{transform:translateX(120%)}
+    .btn.primary{background:linear-gradient(135deg,var(--thm),#2d7d1c);color:#041008;border-color:transparent}
+    .btn.ghost{background:rgba(255,255,255,.035);color:#dffff0;border-color:rgba(255,255,255,.14)}
+    .btn.small{min-height:38px;padding:0 13px;font-size:13px}
+
+    .hero-panel{position:relative;z-index:2;border:1px solid rgba(136,204,20,.25);border-radius:var(--radius);background:linear-gradient(180deg,rgba(6,17,12,.76),rgba(7,17,13,.48));backdrop-filter:blur(20px);box-shadow:var(--shadow);padding:18px;min-height:520px;overflow:hidden}
+    .hero-panel::before{content:"";position:absolute;inset:-2px;background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(136,204,20,.2), transparent 32%);opacity:.9;pointer-events:none}
+    .profile-card{position:relative;z-index:2;border:1px solid rgba(255,255,255,.09);border-radius:24px;padding:22px;background:rgba(0,0,0,.22)}
+    .profile-top{display:flex;gap:16px;align-items:center;margin-bottom:22px}
+    .avatar{width:74px;height:74px;border-radius:22px;background:linear-gradient(135deg,#0f2a17,#9fe31e);display:grid;place-items:center;box-shadow:0 0 42px rgba(136,204,20,.32);position:relative;overflow:hidden}
+    .avatar::before{content:"";width:42px;height:42px;border:2px solid rgba(1,7,4,.62);border-radius:50%;box-shadow:inset 0 -14px 0 rgba(1,7,4,.32)}
+    .avatar::after{content:"";position:absolute;bottom:9px;left:50%;transform:translateX(-50%);width:50px;height:18px;border-radius:50% 50% 0 0;background:rgba(1,7,4,.5)}
+    .profile-name{font-size:28px;font-weight:900;letter-spacing:-.04em;margin-bottom:4px}
+    .profile-rank{font:700 12px/1.5 var(--mono);color:#d8ffc9}
+    .terminal-chip{display:inline-flex;margin-top:7px;padding:6px 10px;border-radius:999px;background:rgba(136,204,20,.12);border:1px solid rgba(136,204,20,.2);font:700 11px var(--mono);color:var(--thm)}
+    .metric-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:18px}
+    .metric{border:1px solid rgba(255,255,255,.09);border-radius:18px;background:rgba(255,255,255,.035);padding:16px;position:relative;overflow:hidden}
+    .metric::after{content:"";position:absolute;inset:auto 0 0;height:2px;background:linear-gradient(90deg,var(--thm),transparent)}
+    .metric b{display:block;font-size:28px;letter-spacing:-.04em;margin-bottom:5px;color:#fff}
+    .metric span{font:700 11px/1.2 var(--mono);text-transform:uppercase;color:var(--muted)}
+    .capability{margin-top:16px;border:1px solid rgba(136,204,20,.2);border-radius:20px;padding:16px;background:rgba(136,204,20,.06)}
+    .cap-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-family:var(--mono);font-weight:800;color:#dffff0}
+    .bars{display:grid;gap:9px}
+    .bar{display:grid;grid-template-columns:110px 1fr 32px;gap:10px;align-items:center;font:700 11px var(--mono);color:#bce2c9}
+    .bar-track{height:8px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+    .bar-fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--thm),var(--soft-2));box-shadow:0 0 18px rgba(136,204,20,.35)}
+
+    .gradient-film{position:fixed;inset:-18%;z-index:-3;opacity:.45;filter:saturate(1.2) blur(6px);background-size:260% 260%;background-image:radial-gradient(circle at 20% 30%,rgba(136,204,20,.32),transparent 27%),radial-gradient(circle at 70% 20%,rgba(34,211,238,.22),transparent 25%),radial-gradient(circle at 58% 78%,rgba(110,58,255,.18),transparent 32%),linear-gradient(125deg,#030806,#061d10,#020504,#052116);animation:filmFlow 18s linear infinite alternate}
+    .gradient-film.two{opacity:.28;filter:saturate(1.6) blur(22px);animation-duration:28s;mix-blend-mode:screen}
+    @keyframes filmFlow{0%{background-position:0% 50%;transform:scale(1) rotate(0)}100%{background-position:100% 50%;transform:scale(1.05) rotate(2deg)}}
+
+    .stats-strip{padding:24px 20px;background:rgba(0,0,0,.26);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .stats-line{width:min(100%,var(--max));margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+    .stat-pill{border:1px solid rgba(255,255,255,.08);border-radius:18px;background:rgba(255,255,255,.035);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:72px}
+    .stat-pill span{font:700 11px var(--mono);text-transform:uppercase;color:var(--muted)}
+    .stat-pill b{font-size:28px;letter-spacing:-.04em;color:#fff}
+
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .panel{border:1px solid rgba(136,204,20,.18);border-radius:var(--radius);background:linear-gradient(180deg,rgba(8,22,15,.72),rgba(4,12,8,.52));box-shadow:var(--shadow);padding:24px;position:relative;overflow:hidden;backdrop-filter:blur(18px)}
+    .panel::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,0%),rgba(136,204,20,.11),transparent 35%);pointer-events:none;opacity:.9}
+    .panel > *{position:relative;z-index:1}
+    .kicker{font:800 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:14px}
+    .divider{height:1px;background:linear-gradient(90deg,var(--line-strong),transparent);margin:20px 0}
+
+    .mission-list{display:grid;gap:12px;margin-top:22px}
+    .mission-item{display:grid;grid-template-columns:42px 1fr;gap:14px;align-items:start;padding:14px;border:1px solid rgba(255,255,255,.08);border-radius:18px;background:rgba(255,255,255,.03)}
+    .mission-icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:rgba(136,204,20,.12);color:var(--thm);font-family:var(--mono);font-weight:900}
+    .mission-item p{margin:0;color:#b9dbc5;line-height:1.55}
+
+    .screen{min-height:360px;border-radius:26px;border:1px solid rgba(136,204,20,.24);background:#010503;box-shadow:inset 0 0 0 1px rgba(255,255,255,.04),0 24px 80px rgba(0,0,0,.42);position:relative;overflow:hidden}
+    .screen-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(136,204,20,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(136,204,20,.09) 1px,transparent 1px);background-size:36px 36px;mask-image:radial-gradient(circle,rgba(0,0,0,.85),transparent 75%)}
+    .radar{position:absolute;left:50%;top:50%;width:310px;height:310px;transform:translate(-50%,-50%);border:1px solid rgba(136,204,20,.25);border-radius:50%;box-shadow:0 0 60px rgba(136,204,20,.16),inset 0 0 42px rgba(136,204,20,.1)}
+    .radar::before,.radar::after{content:"";position:absolute;inset:52px;border:1px solid rgba(136,204,20,.17);border-radius:50%}
+    .radar::after{inset:105px}
+    .sweep{position:absolute;left:50%;top:50%;width:155px;height:2px;background:linear-gradient(90deg,var(--thm),transparent);transform-origin:left center;animation:sweep 4s linear infinite;box-shadow:0 0 18px rgba(136,204,20,.8)}
+    @keyframes sweep{to{transform:rotate(360deg)}}
+    .ping{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--soft-2);box-shadow:0 0 20px var(--soft-2);animation:ping 1.8s ease-in-out infinite alternate}
+    .ping:nth-child(4){left:28%;top:34%}.ping:nth-child(5){left:67%;top:56%;animation-delay:.4s}.ping:nth-child(6){left:47%;top:72%;animation-delay:.8s}.ping:nth-child(7){left:74%;top:30%;animation-delay:1.1s}
+    @keyframes ping{from{transform:scale(.7);opacity:.45}to{transform:scale(1.18);opacity:1}}
+
+    .skill-card{min-height:220px}
+    .skill-card ul{display:grid;gap:10px;margin:18px 0 0;padding:0;list-style:none}
+    .skill-card li{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid rgba(255,255,255,.07);padding-bottom:9px;color:#c8e8d3}
+    .skill-card li span:last-child{font-family:var(--mono);font-size:11px;color:var(--thm);white-space:nowrap}
+
+    .rooms-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+    .room{border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.035);border-radius:18px;padding:15px;min-height:112px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;transition:.3s ease}
+    .room::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(136,204,20,.11),transparent 45%);opacity:0;transition:.3s ease}
+    .room:hover{transform:translateY(-5px);border-color:rgba(136,204,20,.32)}
+    .room:hover::before{opacity:1}
+    .room strong{font-size:14px;line-height:1.25;position:relative;z-index:1}
+    .room small{font-family:var(--mono);color:var(--muted);position:relative;z-index:1}
+    .room.easy small{color:var(--soft)}.room.info small{color:var(--soft-2)}
+
+    .project-card{min-height:310px;display:flex;flex-direction:column;justify-content:space-between}
+    .project-card .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+    .tag{display:inline-flex;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);border-radius:999px;padding:7px 9px;font:800 10px/1 var(--mono);text-transform:uppercase;color:#c7ebd2}
+    .project-card p{line-height:1.62;color:#bfe0ca}
+
+    .timeline{position:relative;margin-top:28px;padding-left:22px;border-left:1px solid rgba(136,204,20,.22)}
+    .time-node{position:relative;margin:0 0 22px;padding:0 0 0 22px}
+    .time-node::before{content:"";position:absolute;left:-29px;top:3px;width:13px;height:13px;border-radius:50%;background:var(--thm);box-shadow:0 0 22px rgba(136,204,20,.8)}
+    .time-node h3{font-size:20px;margin-bottom:5px}.time-node p{margin:0;color:#b7d7c2;line-height:1.6}
+
+    .lab-section{min-height:980px;padding-bottom:130px}
+    .lab-shell{display:grid;grid-template-columns:.82fr 1.18fr;gap:22px;align-items:stretch;margin-top:34px}
+    .lab-canvas-wrap{border-radius:var(--radius);border:1px solid rgba(34,211,238,.22);background:rgba(0,0,0,.34);min-height:620px;overflow:hidden;position:relative;box-shadow:var(--shadow)}
+    #babylon-canvas{width:100%;height:100%;display:block;touch-action:none;outline:0}
+    .lab-overlay{position:absolute;left:18px;right:18px;bottom:18px;display:flex;justify-content:space-between;gap:12px;align-items:end;pointer-events:none}
+    .lab-badge{border:1px solid rgba(34,211,238,.22);background:rgba(2,10,12,.7);backdrop-filter:blur(12px);border-radius:18px;padding:12px 14px;font:800 11px var(--mono);color:#ccfbff;box-shadow:0 12px 35px rgba(0,0,0,.28)}
+    .terminal{border:1px solid rgba(136,204,20,.22);border-radius:var(--radius);background:#020604;box-shadow:var(--shadow);overflow:hidden;min-height:620px;display:flex;flex-direction:column}
+    .terminal-top{display:flex;gap:8px;align-items:center;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035)}
+    .term-dot{width:12px;height:12px;border-radius:50%;background:#ff5f56}.term-dot:nth-child(2){background:#ffbd2e}.term-dot:nth-child(3){background:#27c93f}
+    .term-title{margin-left:8px;font:800 12px var(--mono);color:#bde6ca}
+    .terminal-body{padding:18px;font-family:var(--mono);font-size:13px;line-height:1.8;color:#ccffe2;flex:1;overflow:auto;max-height:560px}
+    .terminal-line{display:block;white-space:pre-wrap}.prompt{color:var(--thm)}.cmd{color:#fff}.output{color:#a9cdb6}.warning{color:var(--warn)}.danger{color:var(--danger)}
+    .command-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+
+    .contact-card{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:center;background:linear-gradient(135deg,rgba(136,204,20,.16),rgba(34,211,238,.08),rgba(0,0,0,.28));border:1px solid rgba(136,204,20,.24);border-radius:36px;padding:34px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .contact-card::after{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(136,204,20,.3),transparent 66%)}
+    .contact-list{display:grid;gap:12px;position:relative;z-index:1}
+    .contact-item{display:flex;justify-content:space-between;gap:14px;border:1px solid rgba(255,255,255,.1);background:rgba(0,0,0,.16);border-radius:18px;padding:14px 16px;font-family:var(--mono);font-size:13px;color:#dffff0}
+
+    .floating-hud{position:fixed;right:22px;bottom:22px;z-index:8000;display:grid;gap:10px}
+    .hud-btn{width:46px;height:46px;border-radius:16px;border:1px solid rgba(136,204,20,.22);background:rgba(4,13,9,.74);backdrop-filter:blur(14px);display:grid;place-items:center;color:#dffff0;box-shadow:0 20px 60px rgba(0,0,0,.34);cursor:pointer;transition:.25s ease}
+    .hud-btn:hover{transform:translateY(-3px);border-color:rgba(136,204,20,.45);color:var(--thm)}
+
+    .palette{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.96);width:min(620px,calc(100% - 32px));z-index:9200;border:1px solid rgba(136,204,20,.28);background:rgba(3,10,7,.92);backdrop-filter:blur(24px);border-radius:28px;box-shadow:0 50px 140px rgba(0,0,0,.65);padding:18px;opacity:0;pointer-events:none;transition:.22s ease}
+    .palette.open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+    .palette input{width:100%;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(255,255,255,.05);padding:15px 16px;outline:0;font-family:var(--mono)}
+    .palette-results{display:grid;gap:8px;margin-top:12px;max-height:320px;overflow:auto}
+    .palette-results a{display:flex;justify-content:space-between;gap:10px;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px;color:#cbead8;background:rgba(255,255,255,.03)}
+    .palette-results a:hover{border-color:rgba(136,204,20,.38);color:#fff}
+
+    footer{padding:38px 20px 70px;color:#8eb69e;font-family:var(--mono);font-size:12px;text-align:center;border-top:1px solid rgba(255,255,255,.06)}
+
+    .reveal{opacity:0;transform:translateY(34px)}
+    .split-word{display:inline-block;overflow:hidden;vertical-align:top}
+    .split-word span{display:inline-block}
+
+    @media (max-width:1050px){
+      .hero-grid,.grid-2,.lab-shell,.contact-card{grid-template-columns:1fr}
+      .stats-line{grid-template-columns:repeat(3,1fr)}
+      .rooms-grid{grid-template-columns:repeat(3,1fr)}
+      .hero-panel{min-height:auto}
     }
-    .animate-item {
-      opacity: 0;
-      transform: translateY(30px);
+    @media (max-width:820px){
+      section{padding:82px 16px}
+      .nav-links{display:none;position:absolute;left:12px;right:12px;top:64px;padding:10px;background:rgba(2,8,5,.94);border:1px solid rgba(136,204,20,.22);border-radius:22px;box-shadow:0 30px 100px rgba(0,0,0,.6)}
+      .site-header.open .nav-links{display:grid}
+      .nav-links a{padding:13px 14px}
+      .menu-btn{display:block}
+      .chip.hide-mobile{display:none}
+      .grid-3,.grid-4,.stats-line,.rooms-grid{grid-template-columns:1fr 1fr}
+      .lab-canvas-wrap{min-height:480px}
+      .terminal{min-height:520px}
     }
-    .glass-card {
-      background: rgba(10, 20, 35, 0.65);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(0, 150, 255, 0.3);
-      border-radius: 2rem;
-      transition: all 0.3s ease;
+    @media (max-width:560px){
+      header.site-header{top:12px;width:calc(100% - 20px)}
+      .nav-inner{padding:8px 9px 8px 12px}
+      .brand{font-size:13px}.brand-mark{width:30px;height:30px}
+      .hero{padding-top:130px}.hero-actions{gap:9px}.btn{width:100%}
+      .metric-grid,.grid-3,.grid-4,.stats-line,.rooms-grid{grid-template-columns:1fr}
+      .profile-top{align-items:flex-start}.profile-name{font-size:23px}
+      .bar{grid-template-columns:82px 1fr 28px}
+      .contact-card{padding:22px;border-radius:26px}.contact-item{display:grid;gap:7px}
+      .floating-hud{right:14px;bottom:14px}.hud-btn{width:42px;height:42px}
     }
-    .glass-card:hover {
-      border-color: rgba(0, 212, 255, 0.8);
-      box-shadow: 0 0 15px rgba(0, 150, 255, 0.3);
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}
     }
-    .stat-number {
-      font-size: 2.8rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #fff, #00d4ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .skill-tag {
-      background: rgba(0, 150, 255, 0.12);
-      border: 1px solid rgba(0, 150, 255, 0.4);
-      border-radius: 40px;
-      padding: 0.35rem 1rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      transition: all 0.2s ease;
-      display: inline-block;
-      margin: 0.2rem 0.4rem;
-    }
-    .skill-tag:hover {
-      background: rgba(0, 150, 255, 0.25);
-      border-color: #00d4ff;
-      transform: translateY(-2px);
-    }
-    .room-badge {
-      background: #0F1A2A;
-      border-radius: 12px;
-      padding: 0.25rem 0.75rem;
-      font-size: 0.7rem;
-      font-weight: 600;
-    }
-    .premium-badge { background: linear-gradient(135deg, #ff8c00, #b85c00); }
-    .free-badge { background: #10B981; }
-    .liquid-glass-btn {
-      position: relative;
-      background: rgba(10, 20, 35, 0.6);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(0, 150, 255, 0.5);
-      border-radius: 2rem;
-      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      overflow: hidden;
-      z-index: 1;
-    }
-    .liquid-glass-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 30% 30%, rgba(0, 150, 255, 0.3), rgba(0, 212, 255, 0.2));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: -1;
-    }
-    .liquid-glass-btn:hover {
-      transform: scale(1.02);
-      border-color: #00d4ff;
-      box-shadow: 0 0 12px rgba(0, 150, 255, 0.5);
-    }
-    .liquid-glass-btn:hover::before { opacity: 1; }
-    .liquid-glass-btn:active { transform: scale(0.98); }
-    @media (max-width: 768px) { .section { padding: 1rem; } }
   </style>
 </head>
 <body>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+  <div class="orbital-cursor" aria-hidden="true"></div>
+  <div class="gradient-film" aria-hidden="true"></div>
+  <div class="gradient-film two" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
 
-<div class="gradient-bg"></div>
-<div class="blur-bg"></div>
+  <header class="site-header" id="siteHeader">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a class="brand" href="#top" data-scroll>
+        <span class="brand-mark">0xA</span>
+        <span>chan4o<span class="accent">.soc</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#profile" data-scroll>Profile</a></li>
+        <li><a href="#skills" data-scroll>Skills</a></li>
+        <li><a href="#rooms" data-scroll>Rooms</a></li>
+        <li><a href="#projects" data-scroll>Projects</a></li>
+        <li><a href="#lab" data-scroll>3D Lab</a></li>
+        <li><a href="#contact" data-scroll>Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <span class="chip hide-mobile"><span class="dot"></span> THM Top 4%</span>
+        <button class="menu-btn" type="button" aria-label="Open menu" id="menuBtn"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </header>
 
-<div class="grid-container" id="gridContainer">
-  <!-- SECTION 1: HERO + PROFESSIONAL SUMMARY -->
-  <div class="section" style="grid-column: 1 / 2; grid-row: 1 / 2;">
-    <div class="max-w-6xl mx-auto h-full flex flex-col justify-center">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <div class="inline-flex items-center gap-2 bg-white/5 border border-cyan-500/30 rounded-full px-4 py-1.5 mb-5 animate-item">
-            <i class="fas fa-chart-line text-cyan-500 text-xs"></i>
-            <span class="text-xs font-semibold tracking-wide">Top 4% on TryHackMe • SOC Analyst L1</span>
-          </div>
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight animate-item">
-            Muhammad Ali<br>
-            <span class="bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">Blue Team Specialist</span>
-          </h1>
-          <!-- Expanded Professional Summary -->
-          <div class="glass-card p-5 mt-5 animate-item">
-            <p class="text-gray-200 leading-relaxed text-sm">I am an aspiring SOC Analyst with a strong foundation in Blue Team operations, security monitoring, and network defense. My focus is on threat detection, log analysis, and incident response — the core skills that keep organizations protected around the clock.</p>
-            <p class="text-gray-200 leading-relaxed text-sm mt-2">My technical background covers SIEM platforms (Splunk, ELK), network traffic analysis using Wireshark and Nmap, Linux system administration, and endpoint security fundamentals. Every alert is a puzzle, every log tells a story, and every incident is an opportunity to protect something that matters.</p>
-            <p class="text-gray-200 leading-relaxed text-sm mt-2">Currently holding Cyber Security 101 and Pre Security certificates from TryHackMe, with CompTIA Security+ in progress. Ranked in the <span class="text-cyan-400 font-semibold">top 4% globally</span> on TryHackMe with 109+ rooms completed and a 34-day active streak.</p>
-            <p class="text-gray-200 leading-relaxed text-sm mt-2">Open to SOC L1 roles in Hyderabad. Available for shift-based positions including night shifts.</p>
-          </div>
-          <div class="flex flex-wrap gap-4 mt-5 animate-item">
-            <a href="#contact" class="liquid-glass-btn px-6 py-3 font-bold flex items-center gap-2"><i class="fas fa-envelope"></i> Contact me</a>
-            <a href="https://www.linkedin.com/in/mohdali02/" target="_blank" class="liquid-glass-btn px-6 py-3 font-semibold flex items-center gap-2"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="https://github.com/Mohd-Ali2" target="_blank" class="liquid-glass-btn px-6 py-3 font-semibold flex items-center gap-2"><i class="fab fa-github"></i> GitHub</a>
-          </div>
-        </div>
-        <div class="glass-card p-5 animate-item">
-          <div class="flex items-center gap-4 border-b border-white/15 pb-3 mb-4">
-            <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center shadow-md">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M2 17L12 22L22 17" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M2 12L12 17L22 12" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+  <div class="smooth-wrapper">
+    <div class="smooth-content" id="smoothContent">
+      <main id="top">
+        <section class="hero" id="home" aria-label="Hero">
+          <canvas id="hero-webgl" aria-hidden="true"></canvas>
+          <div class="section-inner hero-grid">
+            <div class="hero-copy">
+              <p class="eyebrow reveal">India / SOC Analyst Track / TryHackMe</p>
+              <h1 class="hero-title" aria-label="Break it rebuild it repeat it">
+                <span class="line"><span>Break it.</span></span>
+                <span class="line"><span>Rebuild it.</span></span>
+                <span class="line"><span class="accent">Repeat it.</span></span>
+              </h1>
+              <p class="lead reveal">I am Ali Faizan, known as <strong>chan4o</strong> on TryHackMe. This portfolio is designed as a cyber operations command center: defensive security, networking fundamentals, SIEM thinking, alert triage mindset, and high-energy interactive visuals.</p>
+              <div class="hero-actions reveal">
+                <a class="btn primary" href="#projects" data-scroll>View SOC Work</a>
+                <a class="btn ghost" href="#lab" data-scroll>Enter 3D Lab</a>
+                <button class="btn ghost" type="button" id="openPalette">Command Menu /</button>
+              </div>
             </div>
-            <span class="font-mono text-sm">TryHackMe // chan4o</span>
-            <span class="ml-auto text-xs text-green-400"><i class="fas fa-circle text-[8px] mr-1"></i> Active</span>
+
+            <aside class="hero-panel" data-tilt id="profile" aria-label="TryHackMe profile card">
+              <div class="profile-card">
+                <div class="profile-top">
+                  <div class="avatar" aria-hidden="true"></div>
+                  <div>
+                    <div class="profile-name">chan4o</div>
+                    <div class="profile-rank">[0xA][WIZARD] · 🇮🇳 · Professional</div>
+                    <span class="terminal-chip">Capability Score: 49</span>
+                  </div>
+                </div>
+                <p class="muted" style="line-height:1.65;margin-bottom:0">A THM-inspired profile snapshot focused on practical security foundations, consistent progress, and SOC-ready discipline.</p>
+                <div class="metric-grid">
+                  <div class="metric"><b data-count="4">0</b><span>Top Percent</span></div>
+                  <div class="metric"><b data-count="76155">0</b><span>Rank</span></div>
+                  <div class="metric"><b data-count="24">0</b><span>Badges</span></div>
+                  <div class="metric"><b data-count="45">0</b><span>Streak</span></div>
+                  <div class="metric"><b data-count="112">0</b><span>Completed Rooms</span></div>
+                  <div class="metric"><b data-count="49">0</b><span>Level / Score</span></div>
+                </div>
+                <div class="capability">
+                  <div class="cap-head"><span>Capability Matrix</span><span>49</span></div>
+                  <div class="bars">
+                    <div class="bar"><span>Consistency</span><div class="bar-track"><div class="bar-fill" data-fill="74"></div></div><span>74</span></div>
+                    <div class="bar"><span>Relevance</span><div class="bar-track"><div class="bar-fill" data-fill="68"></div></div><span>68</span></div>
+                    <div class="bar"><span>Versatility</span><div class="bar-track"><div class="bar-fill" data-fill="61"></div></div><span>61</span></div>
+                    <div class="bar"><span>Depth</span><div class="bar-track"><div class="bar-fill" data-fill="57"></div></div><span>57</span></div>
+                  </div>
+                </div>
+              </div>
+            </aside>
           </div>
-          <div class="grid grid-cols-2 gap-4 text-center">
-            <div><div class="text-gray-400 text-xs">COMPLETED ROOMS</div><div class="stat-number text-3xl" id="stat-rooms">0</div></div>
-            <div><div class="text-gray-400 text-xs">BADGES</div><div class="stat-number text-3xl" id="stat-badges">0</div></div>
-            <div><div class="text-gray-400 text-xs">STREAK</div><div class="stat-number text-3xl" id="stat-streak">0</div></div>
-            <div><div class="text-gray-400 text-xs">GLOBAL RANK</div><div class="stat-number text-3xl" id="stat-rank">0</div></div>
+        </section>
+
+        <div class="stats-strip" aria-label="Profile metrics">
+          <div class="stats-line">
+            <div class="stat-pill"><span>THM Rank</span><b>76,155</b></div>
+            <div class="stat-pill"><span>Standing</span><b>Top 4%</b></div>
+            <div class="stat-pill"><span>Badges</span><b>24</b></div>
+            <div class="stat-pill"><span>Streak</span><b>45</b></div>
+            <div class="stat-pill"><span>Rooms</span><b>112</b></div>
           </div>
-          <div class="mt-4 pt-2 text-center text-xs text-gray-400"><i class="fas fa-trophy text-yellow-500 mr-1"></i> Top 4% worldwide</div>
         </div>
-      </div>
+
+        <section id="mission">
+          <div class="section-inner grid-2">
+            <div>
+              <p class="eyebrow reveal">Portfolio Direction</p>
+              <h2 class="reveal">Built like a SOC dashboard, not a generic resume site.</h2>
+              <p class="lead reveal">The visual style borrows the energy of TryHackMe, but the content positioning is professional: threat detection, log thinking, network fundamentals, alert handling, and disciplined learning progress.</p>
+            </div>
+            <div class="panel reveal" data-tilt>
+              <div class="kicker">Operating Mode</div>
+              <h3>Fresher SOC L1 narrative</h3>
+              <p class="muted" style="line-height:1.7">This site should tell recruiters one thing quickly: you are not pretending to be senior; you are showing proof of consistency, practical labs, defensive-security fundamentals, and the mindset to learn fast inside an MSSP or SOC team.</p>
+              <div class="mission-list">
+                <div class="mission-item"><div class="mission-icon">01</div><div><strong>Detect</strong><p>Understand alerts, logs, indicators, network signals, and basic attacker behavior.</p></div></div>
+                <div class="mission-item"><div class="mission-icon">02</div><div><strong>Triage</strong><p>Separate noise from suspicious activity using evidence, timestamps, context, and impact.</p></div></div>
+                <div class="mission-item"><div class="mission-icon">03</div><div><strong>Document</strong><p>Write clean incident notes: what happened, why it matters, and what should be checked next.</p></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="visual">
+          <div class="section-inner grid-2">
+            <div class="screen reveal" data-tilt aria-hidden="true">
+              <div class="screen-grid"></div>
+              <div class="radar"><div class="sweep"></div></div>
+              <div class="ping"></div><div class="ping"></div><div class="ping"></div><div class="ping"></div>
+            </div>
+            <div class="panel reveal" data-tilt>
+              <div class="kicker">Theme System</div>
+              <h2>THM-inspired, but cleaner and recruiter-ready.</h2>
+              <p class="lead">The design language uses neon green, dark panels, terminal cards, subtle grid lines, 3D WebGL, and scroll-linked motion. It feels cyber without becoming childish or noisy.</p>
+              <div class="divider"></div>
+              <p class="muted" style="line-height:1.75">The background is a procedural looping gradient film. It behaves like a premium animated video layer while staying inside a single HTML file. Real MP4/WebM loops can be plugged into the markup later if you want even heavier visuals.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="skills">
+          <div class="section-inner">
+            <p class="eyebrow reveal">Skills Matrix</p>
+            <h2 class="reveal">Cybersecurity fundamentals mapped for SOC L1.</h2>
+            <p class="lead reveal">A clean skills presentation based on your TryHackMe room history and current SOC direction.</p>
+            <div class="grid-3" style="margin-top:30px">
+              <article class="panel skill-card reveal" data-tilt>
+                <div class="kicker">Networking</div>
+                <h3>Packets to protocols</h3>
+                <ul>
+                  <li><span>DNS / HTTP</span><span>THM</span></li>
+                  <li><span>OSI Model</span><span>Core</span></li>
+                  <li><span>LAN concepts</span><span>Core</span></li>
+                  <li><span>Packets & Frames</span><span>Core</span></li>
+                </ul>
+              </article>
+              <article class="panel skill-card reveal" data-tilt>
+                <div class="kicker">Defensive Security</div>
+                <h3>SOC-ready thinking</h3>
+                <ul>
+                  <li><span>Alert triage</span><span>Learning</span></li>
+                  <li><span>Threat intel basics</span><span>Learning</span></li>
+                  <li><span>SIEM workflow</span><span>Practice</span></li>
+                  <li><span>Incident notes</span><span>Practice</span></li>
+                </ul>
+              </article>
+              <article class="panel skill-card reveal" data-tilt>
+                <div class="kicker">Security Labs</div>
+                <h3>Hands-on progress</h3>
+                <ul>
+                  <li><span>TryHackMe rooms</span><span>112</span></li>
+                  <li><span>Badges</span><span>24</span></li>
+                  <li><span>Streak</span><span>45</span></li>
+                  <li><span>Top standing</span><span>4%</span></li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="rooms">
+          <div class="section-inner">
+            <p class="eyebrow reveal">Completed Room Highlights</p>
+            <h2 class="reveal">A visible learning trail from web basics to defensive security.</h2>
+            <p class="lead reveal">These room cards are intentionally concise. Recruiters can scan them quickly and understand your foundation.</p>
+            <div class="rooms-grid">
+              <div class="room easy reveal"><strong>How Websites Work</strong><small>easy · web fundamentals</small></div>
+              <div class="room easy reveal"><strong>Putting it all together</strong><small>easy · web stack</small></div>
+              <div class="room easy reveal"><strong>DNS in Detail</strong><small>easy · DNS</small></div>
+              <div class="room easy reveal"><strong>HTTP in Detail</strong><small>easy · protocol</small></div>
+              <div class="room info reveal"><strong>What is Networking?</strong><small>info · networking</small></div>
+              <div class="room info reveal"><strong>Intro to LAN</strong><small>info · private networks</small></div>
+              <div class="room info reveal"><strong>OSI Model</strong><small>info · framework</small></div>
+              <div class="room info reveal"><strong>Packets & Frames</strong><small>info · data flow</small></div>
+              <div class="room info reveal"><strong>Extending Your Network</strong><small>info · internet</small></div>
+              <div class="room easy reveal"><strong>Offensive Security Intro</strong><small>easy · legal hacking</small></div>
+              <div class="room easy reveal"><strong>Defensive Security Intro</strong><small>easy · SOC / DFIR</small></div>
+              <div class="room info reveal"><strong>Careers in Cyber</strong><small>info · career map</small></div>
+              <div class="room easy reveal"><strong>Virtualisation Basics</strong><small>easy · isolation</small></div>
+              <div class="room easy reveal"><strong>Client-Server Basics</strong><small>easy · architecture</small></div>
+              <div class="room easy reveal"><strong>Inside a Computer System</strong><small>easy · hardware</small></div>
+              <div class="room easy reveal"><strong>Computer Types</strong><small>easy · systems</small></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="projects">
+          <div class="section-inner">
+            <p class="eyebrow reveal">Portfolio Projects</p>
+            <h2 class="reveal">Projects that make your SOC profile stronger.</h2>
+            <p class="lead reveal">These cards are written for your future GitHub/live demos. Replace the links with real projects as you build them.</p>
+            <div class="grid-3" style="margin-top:30px">
+              <article class="panel project-card reveal" data-tilt>
+                <div>
+                  <div class="kicker">Project 01</div>
+                  <h3>SIEM Alert Triage Console</h3>
+                  <p>A web dashboard showing sample alerts, severity, host context, suspicious IPs, event timeline, and analyst notes. Best for proving SOC L1 workflow understanding.</p>
+                </div>
+                <div class="tag-row"><span class="tag">SIEM</span><span class="tag">Logs</span><span class="tag">Triage</span></div>
+              </article>
+              <article class="panel project-card reveal" data-tilt>
+                <div>
+                  <div class="kicker">Project 02</div>
+                  <h3>Phishing Investigation Report</h3>
+                  <p>A structured case study: email headers, URLs, domain age, attachments, indicators, verdict, and recommended action. This shows documentation ability.</p>
+                </div>
+                <div class="tag-row"><span class="tag">Phishing</span><span class="tag">IOC</span><span class="tag">Report</span></div>
+              </article>
+              <article class="panel project-card reveal" data-tilt>
+                <div>
+                  <div class="kicker">Project 03</div>
+                  <h3>Network Packet Analysis Notes</h3>
+                  <p>A Wireshark-style investigation story explaining DNS, HTTP, TCP, suspicious traffic, and how evidence was collected from packets.</p>
+                </div>
+                <div class="tag-row"><span class="tag">Network</span><span class="tag">Packets</span><span class="tag">Evidence</span></div>
+              </article>
+              <article class="panel project-card reveal" data-tilt>
+                <div>
+                  <div class="kicker">Project 04</div>
+                  <h3>Windows Event Log Playbook</h3>
+                  <p>Short investigation playbook for login events, failed authentication, privilege changes, service creation, and suspicious process execution.</p>
+                </div>
+                <div class="tag-row"><span class="tag">Windows</span><span class="tag">Event Logs</span><span class="tag">Playbook</span></div>
+              </article>
+              <article class="panel project-card reveal" data-tilt>
+                <div>
+                  <div class="kicker">Project 05</div>
+                  <h3>TrustFlow Security Compliance Map</h3>
+                  <p>A founder-style security project connecting DPDP-first compliance thinking, audit readiness, evidence collection, and control mapping for Indian startups.</p>
+                </div>
+                <div class="tag-row"><span class="tag">DPDP</span><span class="tag">Controls</span><span class="tag">Audit</span></div>
+              </article>
+              <article class="panel project-card reveal" data-tilt>
+                <div>
+                  <div class="kicker">Project 06</div>
+                  <h3>Incident Report Template</h3>
+                  <p>A clean template for SOC cases: summary, scope, timeline, affected assets, evidence, containment steps, recommendations, and final analyst notes.</p>
+                </div>
+                <div class="tag-row"><span class="tag">IR</span><span class="tag">Writing</span><span class="tag">SOC</span></div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="lab" class="lab-section">
+          <div class="section-inner">
+            <p class="eyebrow reveal">3D Interactive Lab</p>
+            <h2 class="reveal">Babylon.js SOC topology scene + live terminal.</h2>
+            <p class="lead reveal">Drag inside the 3D lab to rotate. The scene visualizes SIEM, endpoint, DNS, firewall, cloud, and analyst flow as a glowing cyber topology.</p>
+            <div class="lab-shell">
+              <div class="terminal reveal">
+                <div class="terminal-top"><span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span><span class="term-title">chan4o@soc-lab:~</span></div>
+                <div class="terminal-body" id="terminalBody" aria-live="polite">
+                  <span class="terminal-line"><span class="prompt">chan4o@soc-lab</span>:<span class="cyan">~</span>$ <span class="cmd">whoami</span></span>
+                  <span class="terminal-line output">Ali Faizan / chan4o — SOC Analyst track, TryHackMe top 4%, focused on defensive security.</span>
+                  <span class="terminal-line"><span class="prompt">chan4o@soc-lab</span>:<span class="cyan">~</span>$ <span class="cmd">cat thm_profile.json</span></span>
+                  <span class="terminal-line output">{ "rank": 76155, "badges": 24, "streak": 45, "completed_rooms": 112, "score": 49 }</span>
+                  <span class="terminal-line warning">Tip: use the command buttons below or press / for the command menu.</span>
+                  <div class="command-row">
+                    <button class="btn small ghost run-command" type="button" data-command="skills --soc">skills --soc</button>
+                    <button class="btn small ghost run-command" type="button" data-command="rooms --highlight">rooms --highlight</button>
+                    <button class="btn small ghost run-command" type="button" data-command="mission --mssp">mission --mssp</button>
+                    <button class="btn small ghost run-command" type="button" data-command="contact --ready">contact --ready</button>
+                  </div>
+                </div>
+              </div>
+              <div class="lab-canvas-wrap reveal" data-tilt>
+                <canvas id="babylon-canvas" aria-label="Interactive 3D SOC topology scene"></canvas>
+                <div class="lab-overlay">
+                  <div class="lab-badge">DRAG: rotate topology</div>
+                  <div class="lab-badge">NODES: SIEM · DNS · EDR · CLOUD</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="timeline-section">
+          <div class="section-inner grid-2">
+            <div>
+              <p class="eyebrow reveal">Roadmap</p>
+              <h2 class="reveal">What this portfolio should show next.</h2>
+              <p class="lead reveal">The design is ready for more real proof. Add actual screenshots, incident writeups, GitHub links, and short case studies as you finish them.</p>
+            </div>
+            <div class="panel reveal" data-tilt>
+              <div class="timeline">
+                <div class="time-node"><h3>Now</h3><p>TryHackMe SOC path, defensive security fundamentals, profile positioning for SOC L1 and MSSP roles.</p></div>
+                <div class="time-node"><h3>Next</h3><p>Upload three real SOC mini-projects: phishing investigation, SIEM triage console, and packet analysis report.</p></div>
+                <div class="time-node"><h3>After</h3><p>Convert project outcomes into LinkedIn posts, resume bullets, GitHub READMEs, and interview talking points.</p></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact">
+          <div class="section-inner">
+            <div class="contact-card reveal">
+              <div>
+                <p class="eyebrow">Contact / Availability</p>
+                <h2>Ready for SOC L1, MSSP, and security internship conversations.</h2>
+                <p class="lead">Use this section for your real contact links. Keep it simple: LinkedIn, GitHub, TryHackMe, email, and location availability.</p>
+                <div class="hero-actions">
+                  <a class="btn primary" href="mailto:mohammadalifaizan123@gmail.com">Email Me</a>
+                  <a class="btn ghost" href="#top" data-scroll>Back to Top</a>
+                </div>
+              </div>
+              <div class="contact-list">
+                <div class="contact-item"><span>Email</span><strong>mohammadalifaizan123@gmail.com</strong></div>
+                <div class="contact-item"><span>Handle</span><strong>@mohammadalifaizan123</strong></div>
+                <div class="contact-item"><span>TryHackMe</span><strong>chan4o</strong></div>
+                <div class="contact-item"><span>Focus</span><strong>SOC L1 / Defensive Security</strong></div>
+                <div class="contact-item"><span>Location</span><strong>India · Open to WFO/WFH</strong></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <p>Designed as a single-file 3D cyber portfolio using GSAP, Three.js, Babylon.js, procedural gradient film layers, and responsive glassmorphism panels.</p>
+      </footer>
     </div>
   </div>
 
-  <!-- SECTION 2: LOCATION + EDUCATION + CERTIFICATIONS -->
-  <div class="section" style="grid-column: 2 / 3; grid-row: 1 / 2;">
-    <div class="max-w-6xl mx-auto h-full flex flex-col justify-center">
-      <div class="grid md:grid-cols-3 gap-12">
-        <div class="animate-item"><i class="fas fa-map-marker-alt text-cyan-500 text-3xl mb-3"></i><h3 class="font-bold text-2xl">Location</h3><p class="text-gray-300 text-lg">Hyderabad, Telangana, India · Open to on-site/hybrid SOC roles</p></div>
-        <div class="animate-item"><i class="fas fa-graduation-cap text-cyan-500 text-3xl mb-3"></i><h3 class="font-bold text-2xl">Education</h3><p class="text-gray-300 text-lg">Bachelor's in Computer Science<br>Sant Gadge Baba Amravati University (2022-2025)</p></div>
-        <div class="animate-item"><i class="fas fa-certificate text-cyan-500 text-3xl mb-3"></i><h3 class="font-bold text-2xl">Certifications</h3><p class="text-gray-300 text-lg">Cyber Security 101 (THM) · Pre Security (THM) · Security+ (in progress)</p></div>
-      </div>
-    </div>
+  <div class="floating-hud" aria-label="Floating actions">
+    <button class="hud-btn" type="button" id="toTop" aria-label="Back to top">↑</button>
+    <button class="hud-btn" type="button" id="toggleMotion" aria-label="Toggle animation intensity">⚡</button>
   </div>
 
-  <!-- SECTION 3: ABOUT + TECHNICAL ARSENAL -->
-  <div class="section" style="grid-column: 2 / 3; grid-row: 2 / 3;">
-    <div class="max-w-6xl mx-auto h-full flex flex-col justify-center">
-      <div class="grid md:grid-cols-2 gap-12">
-        <div class="glass-card p-6 animate-item">
-          <h2 class="text-2xl font-bold border-b border-cyan-500 inline-block pb-2 mb-4"><i class="fas fa-user-astronaut mr-2"></i> About me</h2>
-          <p class="text-gray-200 leading-relaxed text-sm">I am an aspiring SOC Analyst with a strong foundation in Blue Team operations, security monitoring, and network defense. My focus is on threat detection, log analysis, and incident response — the core skills that keep organizations protected around the clock.</p>
-          <p class="text-gray-200 leading-relaxed text-sm mt-3">My technical background covers SIEM platforms, network traffic analysis using Wireshark and Nmap, Linux system administration, and endpoint security fundamentals. Every alert is a puzzle, every log tells a story.</p>
-          <p class="text-gray-200 leading-relaxed text-sm mt-3">Currently available for SOC L1 roles in Hyderabad. Open to shift-based positions including night shifts.</p>
-        </div>
-        <div class="glass-card p-6 animate-item">
-          <h2 class="text-2xl font-bold border-b border-cyan-500 inline-block pb-2 mb-4"><i class="fas fa-microchip"></i> Technical Arsenal</h2>
-          <div class="flex flex-wrap gap-1">
-            <span class="skill-tag">Security Monitoring</span> <span class="skill-tag">Log Management</span>
-            <span class="skill-tag">Network Traffic Analysis</span> <span class="skill-tag">Threat Analysis</span>
-            <span class="skill-tag">Cyber Defense</span> <span class="skill-tag">Incident Response</span>
-            <span class="skill-tag">Windows Security</span> <span class="skill-tag">Linux Administration</span>
-            <span class="skill-tag">Splunk</span> <span class="skill-tag">Wireshark</span>
-            <span class="skill-tag">Nmap</span> <span class="skill-tag">Scripting (Bash/Python)</span>
-            <span class="skill-tag">Active Directory Security</span> <span class="skill-tag">Analytical Skills</span>
-            <span class="skill-tag">OSINT</span>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command menu">
+    <input id="paletteInput" type="search" placeholder="Search sections or type: projects, skills, lab, contact..." autocomplete="off" />
+    <div class="palette-results" id="paletteResults"></div>
   </div>
 
-  <!-- SECTION 4: TRYHACKME ROOMS + CERTIFICATIONS -->
-  <div class="section" style="grid-column: 3 / 4; grid-row: 2 / 3;">
-    <div class="max-w-6xl mx-auto h-full flex flex-col justify-center">
-      <div class="grid md:grid-cols-2 gap-12">
-        <div class="glass-card p-6 animate-item">
-          <h2 class="text-2xl font-bold border-b border-cyan-500 inline-block pb-2 mb-4"><i class="fab fa-tryhackme"></i> Recent TryHackMe Rooms</h2>
-          <div class="space-y-2 max-h-[400px] overflow-y-auto pr-2">
-            <div class="flex justify-between items-center border-b border-white/10 pb-2"><span>How Websites Work</span><span class="room-badge free-badge">Free</span></div>
-            <div class="flex justify-between items-center border-b border-white/10 pb-2"><span>DNS in Detail</span><span class="room-badge free-badge">Free</span></div>
-            <div class="flex justify-between items-center border-b border-white/10 pb-2"><span>HTTP in Detail</span><span class="room-badge free-badge">Free</span></div>
-            <div class="flex justify-between items-center border-b border-white/10 pb-2"><span>Offensive Security Intro</span><span class="room-badge free-badge">Free</span></div>
-            <div class="flex justify-between items-center border-b border-white/10 pb-2"><span>Intro to LAN</span><span class="room-badge premium-badge">Premium</span></div>
-            <div class="flex justify-between items-center border-b border-white/10 pb-2"><span>Defensive Security Intro</span><span class="room-badge free-badge">Free</span></div>
-            <div class="flex justify-between items-center border-b border-white/10 pb-2"><span>Virtualisation Basics</span><span class="room-badge free-badge">Free</span></div>
-            <div class="flex justify-between items-center border-b border-white/10 pb-2"><span>OSI Model</span><span class="room-badge premium-badge">Premium</span></div>
-          </div>
-          <div class="mt-4 text-center"><a href="https://tryhackme.com/p/chan4o" target="_blank" class="text-cyan-400 text-sm">View full profile →</a></div>
-        </div>
-        <div class="glass-card p-6 animate-item">
-          <h2 class="text-2xl font-bold border-b border-cyan-500 inline-block pb-2 mb-4"><i class="fas fa-certificate text-cyan-500"></i> Licenses & Certifications</h2>
-          <div class="space-y-4">
-            <div class="border-l-4 border-cyan-500 pl-4"><p class="font-semibold">Cyber Security 101 Certificate</p><p class="text-sm text-gray-400">TryHackMe · Issued May 2026</p><p class="text-xs font-mono text-gray-500">THM-ARJJJENRWO</p></div>
-            <div class="border-l-4 border-cyan-500 pl-4"><p class="font-semibold">Pre Security Certificate</p><p class="text-sm text-gray-400">TryHackMe · Issued Apr 2026</p><p class="text-xs font-mono text-gray-500">THM-FNKRNERDLO</p></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECTION 5: GITHUB + CONTACT -->
-  <div class="section" style="grid-column: 3 / 4; grid-row: 1 / 2;">
-    <div class="max-w-6xl mx-auto h-full flex flex-col justify-center">
-      <div class="grid md:grid-cols-2 gap-12">
-        <div class="glass-card p-6 animate-item">
-          <h2 class="text-2xl font-bold border-b border-cyan-500 inline-block pb-2 mb-4"><i class="fab fa-github mr-2"></i> GitHub Highlights</h2>
-          <div class="space-y-4">
-            <a href="https://github.com/Mohd-Ali2" target="_blank" class="block p-3 bg-white/5 rounded-xl hover:bg-white/10 transition"><h3 class="font-bold">SIEM-Lab-Setup</h3><p class="text-sm text-gray-300">Elastic Stack + custom alerts simulation for SOC practice.</p><span class="text-xs text-gray-400"><i class="fas fa-star"></i> Python / Docker</span></a>
-            <a href="https://github.com/Mohd-Ali2" target="_blank" class="block p-3 bg-white/5 rounded-xl hover:bg-white/10 transition"><h3 class="font-bold">Wireshark-Forensics</h3><p class="text-sm text-gray-300">Packet analysis scripts and PCAP walkthroughs for threat hunting.</p><span class="text-xs text-gray-400"><i class="fas fa-code-branch"></i> 2+ contributions</span></a>
-          </div>
-        </div>
-        <div class="glass-card p-6 text-center flex flex-col justify-center animate-item">
-          <i class="fas fa-paper-plane text-4xl text-cyan-500 mb-4"></i>
-          <h2 class="text-2xl font-bold">Let's connect</h2>
-          <p class="text-gray-300 mt-2">Open to SOC Analyst roles, threat intel collaboration, and blue team discussions.</p>
-          <div class="flex flex-wrap justify-center gap-4 mt-6">
-            <a href="https://www.linkedin.com/in/mohdali02/" target="_blank" class="liquid-glass-btn px-5 py-2"><i class="fab fa-linkedin mr-1"></i> LinkedIn</a>
-            <a href="https://github.com/Mohd-Ali2" target="_blank" class="liquid-glass-btn px-5 py-2"><i class="fab fa-github mr-1"></i> GitHub</a>
-            <a href="https://tryhackme.com/p/chan4o" target="_blank" class="liquid-glass-btn px-5 py-2"><i class="fas fa-terminal mr-1"></i> TryHackMe</a>
-          </div>
-          <div class="mt-6 text-sm text-gray-400"><i class="fas fa-calendar-alt mr-1"></i> Booking via Calendly (available upon request)</div>
-        </div>
-      </div>
-      <footer class="text-center text-gray-500 text-xs mt-8 pt-4 border-t border-white/10 animate-item"><p>© 2026 Muhammad Ali (chan4o) — Defensive Cybersecurity Portfolio.</p></footer>
-    </div>
-  </div>
-</div>
-
-<script>
-  // Path coordinates
-  const path = [
-    { col: 1, row: 1 },
-    { col: 2, row: 1 },
-    { col: 2, row: 2 },
-    { col: 3, row: 2 },
-    { col: 3, row: 1 }
-  ];
-  let currentIndex = 0;
-  const gridContainer = document.getElementById('gridContainer');
-  let isScrolling = false;
-  const animatedSections = new Set();
-
-  function animateSection(sectionElement, index) {
-    if (animatedSections.has(index)) return;
-    const items = sectionElement.querySelectorAll('.animate-item');
-    if (items.length === 0) return;
-    gsap.set(items, { opacity: 0, y: 30 });
-    gsap.to(items, {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      stagger: 0.07,
-      ease: "power2.out",
-      overwrite: true,
-      onComplete: () => {
-        animatedSections.add(index);
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="https://cdn.babylonjs.com/babylon.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.166.1/build/three.module.js"
       }
-    });
-  }
-
-  function moveToSection(index) {
-    if (index < 0 || index >= path.length) return;
-    if (isScrolling) return;
-    isScrolling = true;
-    currentIndex = index;
-    const targetCol = path[currentIndex].col;
-    const targetRow = path[currentIndex].row;
-    const targetX = -(targetCol - 1) * window.innerWidth;
-    const targetY = -(targetRow - 1) * window.innerHeight;
-    gsap.to(gridContainer, {
-      x: targetX,
-      y: targetY,
-      duration: 0.8,
-      ease: "power2.out",
-      onComplete: () => {
-        isScrolling = false;
-        const sections = document.querySelectorAll('.section');
-        const activeSection = sections[currentIndex];
-        animateSection(activeSection, currentIndex);
-      }
-    });
-  }
-
-  let wheelTimeout = null;
-  window.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    if (wheelTimeout) return;
-    wheelTimeout = setTimeout(() => { wheelTimeout = null; }, 400);
-    const delta = e.deltaY;
-    if (delta > 0 && currentIndex < path.length - 1) {
-      moveToSection(currentIndex + 1);
-    } else if (delta < 0 && currentIndex > 0) {
-      moveToSection(currentIndex - 1);
     }
-  }, { passive: false });
+  </script>
+  <script type="module">
+    import * as THREE from "three";
 
-  let counterTriggered = false;
-  function startCounters() {
-    if (counterTriggered) return;
-    counterTriggered = true;
-    const targets = { rooms: 109, badges: 23, streak: 34, rank: 79348 };
-    function animateNumber(id, end, isRank) {
-      let obj = { val: 0 };
-      gsap.to(obj, {
-        val: end,
-        duration: 2.5,
-        ease: "power2.out",
-        onUpdate: () => {
-          let v = Math.floor(obj.val);
-          document.getElementById(id).innerText = isRank ? '#' + v.toLocaleString() : v.toLocaleString();
-        },
-        onComplete: () => {
-          document.getElementById(id).innerText = isRank ? '#' + end.toLocaleString() : end.toLocaleString();
-        }
+    const $ = (selector, scope = document) => scope.querySelector(selector);
+    const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
+    const root = document.documentElement;
+    const body = document.body;
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isCoarse = window.matchMedia("(pointer: coarse)").matches;
+    let motionEnabled = !prefersReduced;
+
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+    function setPanelMouseGlow(){
+      $$('[data-tilt]').forEach((card) => {
+        card.addEventListener('mousemove', (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const y = event.clientY - rect.top;
+          card.style.setProperty('--mx', `${x}px`);
+          card.style.setProperty('--my', `${y}px`);
+          if(!motionEnabled || isCoarse) return;
+          const rotateY = ((x / rect.width) - .5) * 9;
+          const rotateX = ((y / rect.height) - .5) * -9;
+          gsap.to(card, { rotateX, rotateY, transformPerspective: 900, transformOrigin: 'center', duration: .45, ease: 'power3.out' });
+        });
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, { rotateX: 0, rotateY: 0, duration: .7, ease: 'elastic.out(1,.5)' });
+        });
       });
     }
-    animateNumber('stat-rooms', targets.rooms, false);
-    animateNumber('stat-badges', targets.badges, false);
-    animateNumber('stat-streak', targets.streak, false);
-    animateNumber('stat-rank', targets.rank, true);
-  }
-  const firstSection = document.querySelector('.section');
-  const observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting && !counterTriggered) {
-      startCounters();
-    }
-  }, { threshold: 0.2 });
-  observer.observe(firstSection);
 
-  setTimeout(() => {
-    moveToSection(0);
-  }, 100);
-</script>
+    function setupSmoothScroll(){
+      if(prefersReduced || isCoarse){
+        body.classList.add('no-smooth');
+        return;
+      }
+
+      const content = $('#smoothContent');
+      let current = 0;
+      let target = 0;
+      let ease = 0.085;
+
+      function setHeight(){
+        const height = content.getBoundingClientRect().height;
+        body.style.height = `${height}px`;
+      }
+
+      ScrollTrigger.scrollerProxy(window, {
+        scrollTop(value){
+          if(arguments.length){
+            window.scrollTo(0, value);
+            current = value;
+            target = value;
+          }
+          return target;
+        },
+        getBoundingClientRect(){
+          return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
+        }
+      });
+
+      setHeight();
+      window.addEventListener('resize', () => {
+        setHeight();
+        ScrollTrigger.refresh();
+      });
+      window.addEventListener('scroll', () => { target = window.scrollY || window.pageYOffset; }, {passive:true});
+
+      gsap.ticker.add(() => {
+        if(!motionEnabled){
+          content.style.transform = `translate3d(0,${-target}px,0)`;
+          current = target;
+          ScrollTrigger.update();
+          return;
+        }
+        current += (target - current) * ease;
+        if(Math.abs(target - current) < .08) current = target;
+        content.style.transform = `translate3d(0,${-current}px,0)`;
+        ScrollTrigger.update();
+      });
+
+      ScrollTrigger.addEventListener('refreshInit', setHeight);
+    }
+
+    function setupNav(){
+      const header = $('#siteHeader');
+      $('#menuBtn')?.addEventListener('click', () => header.classList.toggle('open'));
+      $$('[data-scroll]').forEach(anchor => {
+        anchor.addEventListener('click', (event) => {
+          const href = anchor.getAttribute('href');
+          if(!href || !href.startsWith('#')) return;
+          const targetEl = $(href);
+          if(!targetEl) return;
+          event.preventDefault();
+          header.classList.remove('open');
+          gsap.to(window, { scrollTo: { y: targetEl, offsetY: 18 }, duration: 1.1, ease: 'power3.inOut' });
+        });
+      });
+
+      const sections = $$('section[id]');
+      const links = $$('.nav-links a');
+      sections.forEach(section => {
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'top center',
+          end: 'bottom center',
+          onToggle: self => {
+            if(self.isActive){
+              links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${section.id}`));
+            }
+          }
+        });
+      });
+    }
+
+    function setupAnimations(){
+      gsap.to('.scroll-progress span', {
+        width: '100%',
+        ease: 'none',
+        scrollTrigger: { start: 0, end: 'max', scrub: .2 }
+      });
+
+      gsap.from('.hero-title .line span', {
+        yPercent: 110,
+        rotateX: 28,
+        opacity: 0,
+        duration: 1.05,
+        stagger: .13,
+        delay: .15,
+        ease: 'power4.out'
+      });
+
+      $$('.reveal').forEach((el, index) => {
+        gsap.to(el, {
+          opacity: 1,
+          y: 0,
+          duration: .9,
+          ease: 'power3.out',
+          delay: Math.min(index * .015, .12),
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+        });
+      });
+
+      gsap.to('.gradient-film', { backgroundPosition: '220% 45%', duration: 26, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+      gsap.to('.screen', { yPercent: -5, scrollTrigger: { trigger: '#visual', start: 'top bottom', end: 'bottom top', scrub: true }});
+      gsap.to('.hero-copy', { yPercent: 8, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }});
+      gsap.to('.hero-panel', { yPercent: -10, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }});
+
+      $$('.metric b[data-count]').forEach(el => {
+        const value = Number(el.dataset.count);
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 90%',
+          once: true,
+          onEnter: () => {
+            const proxy = { value: 0 };
+            gsap.to(proxy, {
+              value,
+              duration: 1.35,
+              ease: 'power3.out',
+              onUpdate: () => { el.textContent = Math.round(proxy.value).toLocaleString('en-IN'); }
+            });
+          }
+        });
+      });
+
+      $$('.bar-fill').forEach(bar => {
+        ScrollTrigger.create({
+          trigger: bar,
+          start: 'top 92%',
+          once: true,
+          onEnter: () => gsap.to(bar, { width: `${bar.dataset.fill}%`, duration: 1.15, ease: 'power3.out' })
+        });
+      });
+    }
+
+    function setupCursor(){
+      const cursor = $('.orbital-cursor');
+      if(!cursor) return;
+      let x = window.innerWidth / 2;
+      let y = window.innerHeight / 2;
+      let tx = x;
+      let ty = y;
+      window.addEventListener('mousemove', (event) => { tx = event.clientX; ty = event.clientY; }, {passive:true});
+      gsap.ticker.add(() => {
+        x += (tx - x) * .22;
+        y += (ty - y) * .22;
+        cursor.style.transform = `translate3d(${x}px,${y}px,0) translate(-50%,-50%)`;
+      });
+    }
+
+    function setupTerminal(){
+      const bodyEl = $('#terminalBody');
+      const responses = {
+        'skills --soc': [
+          ['cmd', 'skills --soc'],
+          ['output', 'Networking: DNS, HTTP, OSI, LAN, packets, client-server basics.'],
+          ['output', 'Defensive: alert triage mindset, incident notes, SOC workflow, threat-intel basics.'],
+          ['output', 'Tools to add next: Wireshark, Splunk/Elastic basics, Windows Event Viewer, Sysmon.']
+        ],
+        'rooms --highlight': [
+          ['cmd', 'rooms --highlight'],
+          ['output', '112 completed rooms · 24 badges · 45 streak · Top 4% standing.'],
+          ['output', 'Highlights: DNS in Detail, HTTP in Detail, Defensive Security Intro, Packets & Frames, OSI Model.']
+        ],
+        'mission --mssp': [
+          ['cmd', 'mission --mssp'],
+          ['output', 'Goal: SOC L1 / MSSP fresher role. Strength: consistency + lab-based foundation.'],
+          ['warning', 'Next portfolio proof: real mini incident reports and SIEM triage screenshots.']
+        ],
+        'contact --ready': [
+          ['cmd', 'contact --ready'],
+          ['output', 'Email: mohammadalifaizan123@gmail.com'],
+          ['output', 'TryHackMe: chan4o'],
+          ['output', 'Availability: India · open to WFO/WFH and SOC fresher opportunities.']
+        ]
+      };
+
+      $$('.run-command').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const command = btn.dataset.command;
+          const lines = responses[command] || [];
+          lines.forEach(([type, text]) => {
+            const span = document.createElement('span');
+            span.className = `terminal-line ${type === 'cmd' ? '' : type}`;
+            if(type === 'cmd') span.innerHTML = `<span class="prompt">chan4o@soc-lab</span>:<span class="cyan">~</span>$ <span class="cmd">${text}</span>`;
+            else span.textContent = text;
+            bodyEl.insertBefore(span, bodyEl.querySelector('.command-row'));
+          });
+          bodyEl.scrollTop = bodyEl.scrollHeight;
+        });
+      });
+    }
+
+    function setupPalette(){
+      const palette = $('#palette');
+      const input = $('#paletteInput');
+      const results = $('#paletteResults');
+      const items = [
+        {label:'Profile metrics', href:'#profile', meta:'TryHackMe snapshot'},
+        {label:'Skills matrix', href:'#skills', meta:'SOC L1 fundamentals'},
+        {label:'Completed rooms', href:'#rooms', meta:'THM learning trail'},
+        {label:'Portfolio projects', href:'#projects', meta:'Case studies and proof'},
+        {label:'3D lab', href:'#lab', meta:'Babylon topology'},
+        {label:'Contact', href:'#contact', meta:'Email and links'}
+      ];
+
+      function render(query = ''){
+        const q = query.toLowerCase().trim();
+        const filtered = items.filter(item => `${item.label} ${item.meta}`.toLowerCase().includes(q));
+        results.innerHTML = filtered.map(item => `<a href="${item.href}" data-palette-link><strong>${item.label}</strong><span>${item.meta}</span></a>`).join('') || '<p class="muted" style="padding:10px">No matching section.</p>';
+      }
+      function open(){
+        palette.classList.add('open');
+        render(input.value);
+        setTimeout(() => input.focus(), 40);
+      }
+      function close(){ palette.classList.remove('open'); }
+      $('#openPalette')?.addEventListener('click', open);
+      document.addEventListener('keydown', (event) => {
+        if(event.key === '/' && document.activeElement !== input){ event.preventDefault(); open(); }
+        if(event.key === 'Escape') close();
+      });
+      input.addEventListener('input', () => render(input.value));
+      results.addEventListener('click', (event) => {
+        const link = event.target.closest('[data-palette-link]');
+        if(!link) return;
+        event.preventDefault();
+        close();
+        gsap.to(window, { scrollTo: { y: link.getAttribute('href'), offsetY: 18 }, duration: 1, ease: 'power3.inOut' });
+      });
+      render();
+    }
+
+    function setupFloatingActions(){
+      $('#toTop')?.addEventListener('click', () => gsap.to(window, { scrollTo: 0, duration: 1, ease: 'power3.inOut' }));
+      $('#toggleMotion')?.addEventListener('click', () => {
+        motionEnabled = !motionEnabled;
+        root.style.setProperty('--motion-state', motionEnabled ? '1' : '0');
+        document.dispatchEvent(new CustomEvent('motion-toggle', { detail: { enabled: motionEnabled }}));
+      });
+    }
+
+    function initThreeHero(){
+      const canvas = $('#hero-webgl');
+      if(!canvas) return;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, .1, 120);
+      camera.position.set(0, 1.2, 8.4);
+
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      const group = new THREE.Group();
+      scene.add(group);
+
+      const ringMaterial = new THREE.MeshBasicMaterial({ color: 0x88cc14, wireframe: true, transparent: true, opacity: .55 });
+      const cyanMaterial = new THREE.MeshBasicMaterial({ color: 0x22d3ee, wireframe: true, transparent: true, opacity: .35 });
+      const coreMaterial = new THREE.MeshBasicMaterial({ color: 0xe8fff1, wireframe: true, transparent: true, opacity: .16 });
+
+      const core = new THREE.Mesh(new THREE.IcosahedronGeometry(1.45, 2), coreMaterial);
+      group.add(core);
+
+      const torusA = new THREE.Mesh(new THREE.TorusKnotGeometry(1.9, .016, 180, 12, 3, 5), ringMaterial);
+      const torusB = new THREE.Mesh(new THREE.TorusGeometry(2.9, .01, 16, 180), cyanMaterial);
+      torusB.rotation.x = Math.PI / 2.6;
+      group.add(torusA, torusB);
+
+      const nodeMat = new THREE.MeshBasicMaterial({ color: 0x88cc14, transparent: true, opacity: .92 });
+      const nodes = [];
+      for(let i=0;i<18;i++){
+        const angle = (i / 18) * Math.PI * 2;
+        const radius = 2.8 + Math.sin(i * 1.7) * .55;
+        const node = new THREE.Mesh(new THREE.SphereGeometry(.045 + (i%3)*.012, 12, 12), nodeMat);
+        node.position.set(Math.cos(angle) * radius, Math.sin(i*.8) * .72, Math.sin(angle) * radius);
+        group.add(node);
+        nodes.push(node);
+      }
+
+      const lineGeo = new THREE.BufferGeometry();
+      const linePositions = [];
+      nodes.forEach((node, idx) => {
+        const next = nodes[(idx + 5) % nodes.length];
+        linePositions.push(node.position.x,node.position.y,node.position.z,next.position.x,next.position.y,next.position.z);
+      });
+      lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+      const line = new THREE.LineSegments(lineGeo, new THREE.LineBasicMaterial({ color: 0x88cc14, transparent:true, opacity:.19 }));
+      group.add(line);
+
+      const particleCount = window.innerWidth < 720 ? 900 : 1700;
+      const particlePositions = new Float32Array(particleCount * 3);
+      for(let i=0;i<particleCount;i++){
+        const r = 6 + Math.random() * 20;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos((Math.random() * 2) - 1);
+        particlePositions[i*3] = r * Math.sin(phi) * Math.cos(theta);
+        particlePositions[i*3+1] = r * Math.sin(phi) * Math.sin(theta) * .42;
+        particlePositions[i*3+2] = r * Math.cos(phi);
+      }
+      const pGeo = new THREE.BufferGeometry();
+      pGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+      const pMat = new THREE.PointsMaterial({ size: .016, color: 0xa9ffd1, transparent: true, opacity: .48, depthWrite:false });
+      const points = new THREE.Points(pGeo, pMat);
+      scene.add(points);
+
+      const mouse = { x: 0, y: 0 };
+      window.addEventListener('mousemove', (event) => {
+        mouse.x = (event.clientX / window.innerWidth - .5) * 2;
+        mouse.y = (event.clientY / window.innerHeight - .5) * 2;
+      }, {passive:true});
+
+      const clock = new THREE.Clock();
+      function animate(){
+        const t = clock.getElapsedTime();
+        const scroll = (window.scrollY || 0) / Math.max(1, document.body.scrollHeight - window.innerHeight);
+        if(motionEnabled){
+          group.rotation.y = t * .14 + mouse.x * .18 + scroll * 1.5;
+          group.rotation.x = Math.sin(t * .35) * .08 - mouse.y * .08;
+          torusA.rotation.z = t * .32;
+          torusB.rotation.y = -t * .18;
+          points.rotation.y = t * .018;
+          points.rotation.x = Math.sin(t * .12) * .025;
+          core.scale.setScalar(1 + Math.sin(t * 1.8) * .025);
+        }
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    }
+
+    function initBabylonLab(){
+      const canvas = $('#babylon-canvas');
+      if(!canvas || !window.BABYLON) return;
+
+      const engine = new BABYLON.Engine(canvas, true, { antialias: true, adaptToDeviceRatio: true });
+      const scene = new BABYLON.Scene(engine);
+      scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
+
+      const camera = new BABYLON.ArcRotateCamera('socCamera', -Math.PI / 2.2, Math.PI / 2.45, 9, BABYLON.Vector3.Zero(), scene);
+      camera.lowerRadiusLimit = 5.2;
+      camera.upperRadiusLimit = 13;
+      camera.wheelPrecision = 48;
+      camera.inertia = .78;
+      camera.attachControl(canvas, true);
+
+      const hemi = new BABYLON.HemisphericLight('softLight', new BABYLON.Vector3(0, 1, 0), scene);
+      hemi.intensity = .68;
+      const point = new BABYLON.PointLight('coreLight', new BABYLON.Vector3(0, 2.4, -2), scene);
+      point.diffuse = new BABYLON.Color3(.45, 1, .38);
+      point.specular = new BABYLON.Color3(.3, 1, 1);
+      point.intensity = 1.8;
+
+      const matCore = new BABYLON.StandardMaterial('coreMat', scene);
+      matCore.emissiveColor = new BABYLON.Color3(.45, .95, .12);
+      matCore.diffuseColor = new BABYLON.Color3(.1, .45, .06);
+      matCore.alpha = .88;
+
+      const matCyan = new BABYLON.StandardMaterial('cyanMat', scene);
+      matCyan.emissiveColor = new BABYLON.Color3(.08, .7, .88);
+      matCyan.diffuseColor = new BABYLON.Color3(.02, .18, .24);
+      matCyan.alpha = .82;
+
+      const matDark = new BABYLON.StandardMaterial('darkMat', scene);
+      matDark.diffuseColor = new BABYLON.Color3(.01, .04, .025);
+      matDark.specularColor = new BABYLON.Color3(.1, .5, .18);
+      matDark.emissiveColor = new BABYLON.Color3(.02, .08, .04);
+
+      const hub = BABYLON.MeshBuilder.CreateSphere('SIEM Hub', { diameter: 1.18, segments: 48 }, scene);
+      hub.material = matCore;
+      const hubRing = BABYLON.MeshBuilder.CreateTorus('hubRing', { diameter: 2.2, thickness: .018, tessellation: 96 }, scene);
+      hubRing.material = matCyan;
+      hubRing.rotation.x = Math.PI / 2;
+
+      const ground = BABYLON.MeshBuilder.CreateDisc('gridDisc', { radius: 5.5, tessellation: 96 }, scene);
+      ground.rotation.x = Math.PI / 2;
+      ground.position.y = -1.38;
+      ground.material = matDark;
+
+      const labels = ['FIREWALL','DNS','EDR','CLOUD','EMAIL','ENDPOINT','IAM','ANALYST'];
+      const nodes = [];
+      labels.forEach((label, i) => {
+        const angle = (i / labels.length) * Math.PI * 2;
+        const radius = 4.05;
+        const x = Math.cos(angle) * radius;
+        const z = Math.sin(angle) * radius;
+        const y = Math.sin(i * .9) * .45;
+        const box = BABYLON.MeshBuilder.CreateBox(label, { width: .72, height: .72, depth: .72 }, scene);
+        box.position.set(x, y, z);
+        box.rotation.y = -angle;
+        box.material = i % 2 ? matCyan : matCore;
+        nodes.push(box);
+
+        const dynamicTexture = new BABYLON.DynamicTexture(`${label}Texture`, {width: 512, height: 160}, scene, true);
+        dynamicTexture.hasAlpha = true;
+        dynamicTexture.drawText(label, 34, 94, 'bold 54px monospace', '#dffff0', 'transparent', true);
+        const labelMat = new BABYLON.StandardMaterial(`${label}LabelMat`, scene);
+        labelMat.diffuseTexture = dynamicTexture;
+        labelMat.emissiveColor = new BABYLON.Color3(.65, 1, .78);
+        labelMat.opacityTexture = dynamicTexture;
+        const plane = BABYLON.MeshBuilder.CreatePlane(`${label}Label`, { width: 1.65, height: .46 }, scene);
+        plane.position.set(x, y + .72, z);
+        plane.billboardMode = BABYLON.Mesh.BILLBOARDMODE_ALL;
+        plane.material = labelMat;
+      });
+
+      nodes.forEach((node, i) => {
+        const points = [new BABYLON.Vector3(0,0,0), node.position.clone()];
+        const line = BABYLON.MeshBuilder.CreateLines(`beam-${i}`, { points }, scene);
+        line.color = i % 2 ? new BABYLON.Color3(.1, .84, 1) : new BABYLON.Color3(.53, .9, .08);
+        line.alpha = .5;
+      });
+
+      for(let i=0;i<4;i++){
+        const torus = BABYLON.MeshBuilder.CreateTorus(`orbit-${i}`, { diameter: 3.2 + i * .95, thickness: .008, tessellation: 160 }, scene);
+        torus.rotation.x = Math.PI / (2.4 + i * .16);
+        torus.rotation.z = i * .45;
+        torus.material = i % 2 ? matCyan : matCore;
+      }
+
+      const particleSystem = new BABYLON.ParticleSystem('flowParticles', 1400, scene);
+      particleSystem.particleTexture = new BABYLON.Texture('https://assets.babylonjs.com/textures/flare.png', scene);
+      particleSystem.emitter = hub;
+      particleSystem.minEmitBox = new BABYLON.Vector3(-.2, -.2, -.2);
+      particleSystem.maxEmitBox = new BABYLON.Vector3(.2, .2, .2);
+      particleSystem.color1 = new BABYLON.Color4(.55, 1, .1, .8);
+      particleSystem.color2 = new BABYLON.Color4(.1, .84, 1, .75);
+      particleSystem.colorDead = new BABYLON.Color4(0, 0, 0, 0);
+      particleSystem.minSize = .025;
+      particleSystem.maxSize = .08;
+      particleSystem.minLifeTime = .65;
+      particleSystem.maxLifeTime = 1.9;
+      particleSystem.emitRate = 220;
+      particleSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+      particleSystem.gravity = new BABYLON.Vector3(0, 0, 0);
+      particleSystem.direction1 = new BABYLON.Vector3(-2, -.4, -2);
+      particleSystem.direction2 = new BABYLON.Vector3(2, .4, 2);
+      particleSystem.minEmitPower = .3;
+      particleSystem.maxEmitPower = 1.25;
+      particleSystem.updateSpeed = .012;
+      particleSystem.start();
+
+      engine.runRenderLoop(() => {
+        if(motionEnabled){
+          const t = performance.now() * .001;
+          hub.rotation.y += .01;
+          hubRing.rotation.z -= .008;
+          nodes.forEach((node, i) => {
+            node.rotation.x += .006 + i * .0007;
+            node.rotation.y += .009;
+            node.position.y += Math.sin(t * 1.4 + i) * .0018;
+          });
+        }
+        scene.render();
+      });
+      window.addEventListener('resize', () => engine.resize());
+    }
+
+    function init(){
+      setupSmoothScroll();
+      setupNav();
+      setupAnimations();
+      setupCursor();
+      setupTerminal();
+      setupPalette();
+      setupFloatingActions();
+      setPanelMouseGlow();
+      initThreeHero();
+      initBabylonLab();
+      ScrollTrigger.refresh();
+    }
+
+    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+  </script>
 </body>
 </html>
