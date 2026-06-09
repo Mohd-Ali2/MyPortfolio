@@ -1,3 +1,209 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <script type="module" src="/@vite/client"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#05030a" />
+  <meta name="description" content="Ali Faizan / chan4o — Glossy interactive SOC portfolio for TryHackMe progress, SOC L1 readiness, and security operations fundamentals." />
+  <title>Ali Faizan / chan4o — Glossy SOC Portfolio</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <div class="loader" aria-hidden="true">
+    <div class="loader__ring"></div>
+    <span>loading signal</span>
+  </div>
+
+  <canvas id="ghostCanvas" aria-hidden="true"></canvas>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <header class="site-header" data-reveal>
+    <a class="brand" href="#home" aria-label="Back to home">
+      <span class="brand__mark">0xA</span>
+      <span class="brand__text">chan4o<span>.soc</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="#profile">profile</a>
+      <a href="#rooms">rooms</a>
+      <a href="#map">map</a>
+      <a href="#contact">contact</a>
+    </nav>
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation"><span></span><span></span></button>
+  </header>
+
+  <main>
+    <section id="home" class="hero glossy-stage" aria-label="Glossy SOC hero slider">
+      <div class="gradient-field" aria-hidden="true">
+        <div class="sphere sphere--one"></div>
+        <div class="sphere sphere--two"></div>
+        <div class="sphere sphere--three"></div>
+        <div class="glow-core"></div>
+        <div class="grid-mesh"></div>
+        <div class="grain"></div>
+      </div>
+
+      <canvas id="glossyCanvas" class="glossy-canvas" aria-hidden="true"></canvas>
+
+      <div class="hero__shell">
+        <aside class="slide-index" aria-hidden="true">
+          <span class="slide-index__current">01</span>
+          <span class="slide-index__line"></span>
+          <span class="slide-index__total">04</span>
+        </aside>
+
+        <section class="hero-copy" aria-live="polite">
+          <p class="eyebrow">interactive soc profile</p>
+          <h1 class="hero-title"><span>break it</span><span>rebuild it</span><span>repeat it</span></h1>
+          <p class="hero-lead">Ali Faizan, known as <strong>chan4o</strong> on TryHackMe. Focused on SOC L1 readiness, defensive-security fundamentals, alert triage, and clean incident documentation.</p>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="#rooms">view progress</a>
+            <a class="btn btn--ghost" href="#map">open security map</a>
+          </div>
+        </section>
+
+        <aside class="hero-card glass-card" data-tilt>
+          <div class="card-chip">tryhackme snapshot</div>
+          <div class="profile-row">
+            <div class="profile-avatar" aria-hidden="true"><span></span></div>
+            <div>
+              <h2>chan4o</h2>
+              <p>[0xA][WIZARD] · 🇮🇳 · Professional</p>
+            </div>
+          </div>
+          <div class="metric-grid">
+            <article><b>Top 4%</b><span>standing</span></article>
+            <article><b>76,155</b><span>rank</span></article>
+            <article><b>24</b><span>badges</span></article>
+            <article><b>45</b><span>streak</span></article>
+            <article><b>112</b><span>rooms</span></article>
+            <article><b>49</b><span>score</span></article>
+          </div>
+        </aside>
+      </div>
+
+      <div class="slider-controls" aria-label="Hero slider controls">
+        <button class="slider-btn" type="button" data-slide-prev aria-label="Previous slide">‹</button>
+        <div class="slide-dots" role="tablist" aria-label="Portfolio slides"></div>
+        <button class="slider-btn" type="button" data-slide-next aria-label="Next slide">›</button>
+      </div>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>soc l1 readiness</span><span>tryhackme top 4%</span><span>defensive security</span><span>alert triage</span><span>network fundamentals</span><span>incident notes</span>
+          <span>soc l1 readiness</span><span>tryhackme top 4%</span><span>defensive security</span><span>alert triage</span><span>network fundamentals</span><span>incident notes</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="profile" class="section panel-section">
+      <div class="section__head" data-reveal>
+        <p class="eyebrow">profile direction</p>
+        <h2>built for SOC recruiters, not fake seniority.</h2>
+        <p>I am presenting the current journey honestly: strong fundamentals, consistent labs, defensive thinking, and readiness for SOC L1 or MSSP environments.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="glass-card feature-card" data-reveal data-tilt>
+          <span class="feature-number">01</span>
+          <h3>Detect</h3>
+          <p>Understand logs, indicators, suspicious behavior, basic attacker paths, and network signal context.</p>
+        </article>
+        <article class="glass-card feature-card" data-reveal data-tilt>
+          <span class="feature-number">02</span>
+          <h3>Triage</h3>
+          <p>Separate noise from real suspicion through timestamps, scope, affected hosts, and evidence quality.</p>
+        </article>
+        <article class="glass-card feature-card" data-reveal data-tilt>
+          <span class="feature-number">03</span>
+          <h3>Document</h3>
+          <p>Write clean notes with what happened, why it matters, and what should be checked next.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="rooms" class="section rooms-section">
+      <div class="section__head" data-reveal>
+        <p class="eyebrow">completed room highlights</p>
+        <h2>visible learning trail from web basics to defensive security.</h2>
+        <p>Short, scannable cards that show foundations without pretending finished projects exist yet.</p>
+      </div>
+      <div class="rooms-grid" data-room-grid></div>
+    </section>
+
+    <section id="map" class="section map-section">
+      <div class="section__head" data-reveal>
+        <p class="eyebrow">security operations map</p>
+        <h2>rotate the signal flow.</h2>
+        <p>Interactive topology for SIEM, firewall, DNS, email, cloud, EDR, endpoints, IAM, and analyst review.</p>
+      </div>
+      <div class="map-shell">
+        <div class="terminal glass-card" data-reveal>
+          <div class="terminal__top"><span></span><span></span><span></span><b>chan4o@soc-map</b></div>
+          <div class="terminal__body" id="terminalBody">
+            <p><em>chan4o@soc-map</em>:~$ whoami</p>
+            <p>Ali Faizan / chan4o — SOC Analyst track, TryHackMe top 4%.</p>
+            <p><em>chan4o@soc-map</em>:~$ cat thm_profile.json</p>
+            <p>{ "rank": 76155, "badges": 24, "streak": 45, "completed_rooms": 112, "score": 49 }</p>
+          </div>
+          <div class="terminal__actions">
+            <button data-command="skills">skills</button>
+            <button data-command="rooms">rooms</button>
+            <button data-command="mission">mission</button>
+          </div>
+        </div>
+        <div class="topology-frame glass-card" data-reveal data-tilt>
+          <canvas id="topologyCanvas" aria-label="Interactive SOC topology"></canvas>
+          <div class="map-labels"><span>drag to rotate</span><span>flow: ingest · analyze · respond</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section roadmap-section">
+      <div class="section__head" data-reveal>
+        <p class="eyebrow">next evidence</p>
+        <h2>projects will be added only after they are real.</h2>
+        <p>No fake case studies. Next additions should be phishing investigation notes, SIEM triage screenshots, and packet-analysis writeups.</p>
+      </div>
+      <div class="timeline glass-card" data-reveal>
+        <div><span>now</span><p>TryHackMe SOC path, defensive fundamentals, and SOC L1 positioning.</p></div>
+        <div><span>next</span><p>Build investigation writeups with screenshots, analyst notes, and clear remediation steps.</p></div>
+        <div><span>after</span><p>Publish completed evidence with concise interview-ready explanations.</p></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+      <div class="contact-card glass-card" data-reveal>
+        <div>
+          <p class="eyebrow">contact</p>
+          <h2>open for SOC L1 / MSSP opportunities.</h2>
+          <p>Immediate learner mindset, night-shift flexibility, and practical security foundations.</p>
+        </div>
+        <div class="contact-list">
+          <a href="mailto:mohammadalifaizan123@gmail.com">mohammadalifaizan123@gmail.com</a>
+          <span>India · SOC L1 Track</span>
+          <span>TryHackMe: chan4o</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© <span id="year"></span> Ali Faizan / chan4o</span>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r158/three.min.js" defer></script>
+  <script src="https://cdn.babylonjs.com/babylon.js" defer></script>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
