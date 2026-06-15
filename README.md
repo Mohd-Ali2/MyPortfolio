@@ -1,4 +1,4 @@
-# Mohammad Ali Faizan — Chrono-Atmo SOC Portfolio
+# Ali Faizan — Chrono-Atmo SOC Portfolio
 
 This repository has been converted from the previous liquid/glass build into a **Chrono-Atmo** scroll-driven atmospheric storytelling portfolio.
 
@@ -36,10 +36,11 @@ README.md
 
 ## Preserved content
 
-- Name: Mohammad Ali Faizan
+- Name: Ali Faizan
 - Role: SOC Analyst L1 / Security Analyst Trainee
 - Email: mohammadalifaizan123@gmail.com
 - GitHub: https://github.com/Mohd-Ali2
+- LinkedIn: https://www.linkedin.com/in/mohdali02/
 - TryHackMe: https://tryhackme.com/p/chan4o
 - Proof: 112+ rooms, Top 4%, 24 badges, 45-day streak
 - Projects: SIEM Detection Lab, Phishing Investigation, Windows Logs Timeline
