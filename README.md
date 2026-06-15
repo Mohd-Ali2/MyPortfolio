@@ -1,29 +1,19 @@
 # Ali Faizan — Chrono-Atmo SOC Portfolio
 
-This repository has been converted from the previous liquid/glass build into a **Chrono-Atmo** scroll-driven atmospheric storytelling portfolio.
+A scroll-driven atmospheric storytelling portfolio for SOC L1 roles.
 
-## Concept implemented
+## Latest polish
 
-- No glassmorphism, no generic cards, no bordered panels.
-- Full atmospheric sections with solid/gradient color worlds.
-- GSAP ScrollTrigger maps scroll progress to `body` background color per section.
-- Depth parallax:
-  - foreground text moves fastest,
-  - media/visual systems move medium speed,
-  - abstract background shapes move slowest.
-- Project reveal timing:
-  - problem appears at 20% section progress,
-  - solution appears at 50%,
-  - result appears at 80%.
-- Recursive variable font morphs heading weight/slant based on scroll progress.
-- Cursor-driven radial light follows the pointer.
-- Lenis smooth scroll.
-- Smart navigation is hidden by default and appears only when scrolling upward.
+- Added Ali Faizan's optimized portrait asset: `assets/ali-faizan-portrait.webp`.
+- Rebuilt the hero spacing with a cleaner editorial layout.
+- Hidden browser scrollbar while keeping scroll functionality.
+- Preserved the Chrono-Atmo concept: scroll-linked backgrounds, parallax depth, reveal stages, variable heading motion, cursor light, and Lenis smooth scroll.
 
 ## Structure
 
 ```text
 index.html
+assets/ali-faizan-portrait.webp
 styles/base.css
 styles/chrono.css
 styles/responsive.css
