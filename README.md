@@ -1,34 +1,18 @@
-# Ali Faizan — Signal / Noise SOC Portfolio
+# Ali Faizan — SOC Evidence Room Portfolio
 
-A recruiter-focused SOC Analyst L1 portfolio built around the concept **Signal / Noise**.
+A recruiter-focused SOC Analyst L1 portfolio using the Signal / Noise concept with a calmer evidence-room execution.
 
-## Implemented audit fixes
+## Implemented from the design teardown
 
-- Reduced extreme heading slant and weight for a more serious cybersecurity feel.
-- Added `Email Me` as the primary CTA in the hero and hire section.
-- Improved proof hierarchy and fixed metric typography, especially `Top 4%`.
-- Fixed the workflow section so descriptions no longer wrap one word per line.
-- Added tools used, evidence checked, verdict, MITRE context, and GitHub writeup CTAs to each case study.
-- Added visible keyboard focus states for accessibility.
-- Increased low-contrast gray text opacity.
-- Replaced hidden scrollbar with a thin custom scrollbar plus stronger scroll progress indicator.
-- Refined portrait crop into an editorial vertical mask.
-- Reduced parallax intensity to avoid layout drift and motion overload.
-
-## Structure
-
-```text
-index.html
-assets/ali-faizan-portrait.webp
-styles/base.css
-styles/signal.css
-styles/responsive.css
-scripts/main.js
-scripts/smooth-scroll.js
-scripts/signal-noise.js
-README.md
-.nojekyll
-```
+- Rebuilt the hero around recruiter decision-making.
+- Kept the portrait but made it quieter and more editorial.
+- Made navigation visible and useful instead of hidden.
+- Reduced typography distortion and used Inter for metrics/profile labels.
+- Made proof heavier and easier to verify.
+- Converted case studies into real evidence dossiers.
+- Added real case-study markdown files and linked to them honestly.
+- Fixed workflow readability and reduced parallax intensity.
+- Added focus states, thin scrollbar, and stronger progress indicator.
 
 ## Contact
 
