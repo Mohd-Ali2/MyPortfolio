@@ -3,80 +3,112 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Chrono-Atmo scroll-driven SOC Analyst L1 portfolio for Ali Faizan." />
-  <meta name="theme-color" content="#05070c" />
-  <title>Ali Faizan — SOC Analyst Portfolio</title>
+  <meta name="description" content="Ali Faizan — SOC Analyst L1 portfolio built around signal, noise, alert triage, phishing analysis, Windows logs, and recruiter-ready proof." />
+  <meta name="theme-color" content="#06070a" />
+  <title>Ali Faizan — SOC Analyst L1 Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Recursive:slnt,wght,CASL,CRSV,MONO@-15..0,300..1000,0..1,0..1,0..1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles/base.css?v=chrono-atmo-2" />
-  <link rel="stylesheet" href="styles/chrono.css?v=chrono-atmo-2" />
-  <link rel="stylesheet" href="styles/responsive.css?v=chrono-atmo-2" />
+  <link rel="stylesheet" href="styles/base.css?v=signal-noise-1" />
+  <link rel="stylesheet" href="styles/signal.css?v=signal-noise-1" />
+  <link rel="stylesheet" href="styles/responsive.css?v=signal-noise-1" />
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script type="module" src="scripts/main.js?v=chrono-atmo-2"></script>
+  <script type="module" src="scripts/main.js?v=signal-noise-1"></script>
 </head>
 <body>
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
   <div class="cursor-light" data-cursor-light aria-hidden="true"></div>
+
   <header class="smart-nav" data-smart-nav>
-    <a class="brand" href="#top" aria-label="Go to top">Ali Faizan</a>
-    <nav aria-label="Primary navigation"><a href="#proof">Proof</a><a href="#skills">Skills</a><a href="#lab-01">Labs</a><a href="#process">Process</a><a href="#hire">Hire</a><a href="#contact">Contact</a></nav>
+    <a class="brand" href="#top" aria-label="Go to top"><span>Signal / Noise</span><strong>Ali Faizan</strong></a>
+    <nav aria-label="Primary navigation">
+      <a href="#proof">Proof</a><a href="#cases">Cases</a><a href="#skills">Skills</a><a href="#workflow">Workflow</a><a href="#hire">Hire</a>
+    </nav>
   </header>
+
   <main id="top">
-    <section class="atmo-section hero" data-bg-start="#05070c" data-bg-end="#0b1220" data-section>
-      <div class="shape-field hero-shapes" data-depth="background"><span></span><span></span><span></span></div>
+    <section class="scene hero-scene" data-theme-start="#06070a" data-theme-end="#0e1623" data-scene>
+      <div class="noise-field" data-depth="background"><span></span><span></span><span></span></div>
       <div class="container hero-grid">
-        <div class="hero-copy foreground" data-depth="foreground">
-          <p class="overline hero-overline">Chrono-Atmo SOC investigations · Immediate joiner · 24×7 SOC shift ready</p>
+        <div class="hero-copy" data-depth="foreground">
+          <p class="eyebrow">Signal / Noise · SOC L1 · Immediate Joiner</p>
           <h1 class="morph-title hero-title">Ali Faizan</h1>
           <p class="role-line">SOC Analyst L1 / Security Analyst Trainee</p>
-          <p class="lead">I investigate noisy alerts with a practical L1 workflow: SIEM monitoring, log analysis, phishing review, IOC enrichment, MITRE mapping, and clean escalation notes.</p>
-          <div class="action-row"><a href="#lab-01">View SOC Labs</a><a href="#hire">Hire Me</a><a href="https://tryhackme.com/p/chan4o" target="_blank" rel="noreferrer">TryHackMe ↗</a></div>
+          <p class="hero-text">I turn noisy alerts into clear investigation notes across SIEM monitoring, log analysis, phishing review, IOC enrichment, MITRE mapping, and escalation-ready verdicts.</p>
+          <div class="hero-meta" aria-label="Availability summary">
+            <span>24×7 SOC shift ready</span><span>Hyderabad · Pune · Mumbai · Remote</span><span>THM SOC L1 + Security+ focus</span>
+          </div>
+          <div class="action-row"><a href="#cases">View Case Studies</a><a href="#hire">Hire Me</a><a href="https://www.linkedin.com/in/mohdali02/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://tryhackme.com/p/chan4o" target="_blank" rel="noreferrer">TryHackMe ↗</a></div>
         </div>
-        <figure class="portrait-stage" data-depth="media">
-          <div class="portrait-aura" aria-hidden="true"></div>
+        <figure class="portrait-system" data-depth="media">
+          <div class="portrait-code" aria-hidden="true"><span>4625</span><span>4688</span><span>IOC</span><span>MITRE</span></div>
           <img src="assets/ali-faizan-portrait.webp" alt="Black and white studio portrait of Ali Faizan" width="480" height="599" loading="eager" />
-          <figcaption><span>Open to SOC L1 roles</span><strong>Hyderabad · Pune · Mumbai · Remote</strong></figcaption>
+          <figcaption><span>Open to SOC L1 roles</span><strong>Immediate joiner · Night shift ready</strong></figcaption>
         </figure>
       </div>
     </section>
-    <section class="atmo-section proof" id="proof" data-bg-start="#0b1220" data-bg-end="#111a26" data-section>
-      <div class="shape-field" data-depth="background"><span></span><span></span></div>
-      <div class="container split-layout">
-        <div class="foreground" data-depth="foreground"><p class="overline">Public proof & profiles</p><h2 class="morph-title">TryHackMe progress, SOC labs, and LinkedIn presence in one place.</h2></div>
-        <div class="metric-lines" data-depth="media"><p><strong>112+</strong><span>TryHackMe rooms completed</span></p><p><strong>Top 4%</strong><span>TryHackMe profile rank</span></p><p><strong>24</strong><span>Badges earned</span></p><p><strong>45</strong><span>Day learning streak</span></p></div>
+
+    <section class="scene proof-scene" id="proof" data-theme-start="#0e1623" data-theme-end="#101c1b" data-scene>
+      <div class="noise-field" data-depth="background"><span></span><span></span></div>
+      <div class="container proof-layout">
+        <div class="section-intro" data-depth="foreground"><p class="eyebrow">Proof console</p><h2 class="morph-title">Public signals a recruiter can verify quickly.</h2><p>Instead of filler claims, this section surfaces the profile links and learning proof that support my SOC L1 direction.</p></div>
+        <div class="proof-console" data-depth="media">
+          <a href="https://tryhackme.com/p/chan4o" target="_blank" rel="noreferrer"><strong>112+</strong><span>TryHackMe rooms completed</span></a>
+          <a href="https://tryhackme.com/p/chan4o" target="_blank" rel="noreferrer"><strong>Top 4%</strong><span>TryHackMe profile rank</span></a>
+          <a href="https://tryhackme.com/p/chan4o" target="_blank" rel="noreferrer"><strong>24</strong><span>Badges earned</span></a>
+          <a href="https://tryhackme.com/p/chan4o" target="_blank" rel="noreferrer"><strong>45</strong><span>Day learning streak</span></a>
+          <a href="https://github.com/Mohd-Ali2" target="_blank" rel="noreferrer"><strong>GitHub</strong><span>Security notes and case-study writeups</span></a>
+          <a href="https://www.linkedin.com/in/mohdali02/" target="_blank" rel="noreferrer"><strong>LinkedIn</strong><span>Recruiter contact and public profile</span></a>
+        </div>
       </div>
     </section>
-    <section class="atmo-section skills" id="skills" data-bg-start="#111a26" data-bg-end="#12261f" data-section>
-      <div class="shape-field" data-depth="background"><span></span><span></span><span></span></div>
-      <div class="container split-layout">
-        <div class="foreground" data-depth="foreground"><p class="overline">SOC L1 skill map</p><h2 class="morph-title">Built around how SOC teams actually screen freshers.</h2><p class="section-copy">Clear groups: monitoring, SIEM/logs, investigation, reporting, and escalation. Everything supports the first SOC job goal.</p></div>
-        <div class="skill-lines" data-depth="media"><article><span>01</span><h3>SOC Monitoring</h3><p>Alert triage, queue hygiene, severity understanding, L1 escalation conditions, shift-ready notes.</p><em>Alert Triage · Monitoring · Escalation</em></article><article><span>02</span><h3>SIEM & Logs</h3><p>Failed login detection, Windows events, Linux logs, dashboard review, IOC enrichment, suspicious source checks.</p><em>Wazuh · Splunk Basics · Windows Logs</em></article><article><span>03</span><h3>Threat Investigation</h3><p>Phishing analysis, URL/domain review, reputation checks, MITRE mapping, final analyst verdict writing.</p><em>Phishing · MITRE · IOC Analysis</em></article></div>
+
+    <section class="scene cases-intro" id="cases" data-theme-start="#101c1b" data-theme-end="#281711" data-scene>
+      <div class="noise-field warm" data-depth="background"><span></span><span></span><span></span></div>
+      <div class="container section-intro wide" data-depth="foreground"><p class="eyebrow">Case studies</p><h2 class="morph-title">Three investigations written like SOC analyst notes.</h2><p>Each case follows a practical L1 path: problem, evidence, triage steps, MITRE context, verdict, and escalation recommendation.</p></div>
+    </section>
+
+    <section class="scene case-scene" id="case-login" data-theme-start="#281711" data-theme-end="#33170f" data-case data-scene>
+      <div class="noise-field warm" data-depth="background"><span></span><span></span></div>
+      <div class="container case-grid">
+        <div class="case-copy" data-depth="foreground"><p class="eyebrow">Case 01 · SIEM Detection Lab</p><h2 class="morph-title">Failed login and brute-force detection workflow.</h2><div class="case-step" data-reveal-step="0.2"><span>Problem</span><p>Repeated failed authentications can look noisy, but they may hide brute-force behavior or a success-after-failure pattern.</p></div><div class="case-step" data-reveal-step="0.5"><span>Solution</span><p>Review source IP, affected user, timestamps, expected baseline, reputation, and event pattern before deciding severity.</p></div><div class="case-step" data-reveal-step="0.8"><span>Result</span><p>Escalation-ready notes with verdict, evidence, timeline, and recommended next action.</p></div></div>
+        <div class="case-artifact login-artifact" data-depth="media" aria-label="Failed login evidence visualization"><div class="event-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div><p><span>event.action</span><strong>authentication_failed</strong></p><p><span>pattern</span><strong>failures → success</strong></p><p><span>verdict</span><strong>Needs escalation</strong></p></div>
       </div>
     </section>
-    <section class="atmo-section lab-section" id="lab-01" data-bg-start="#12261f" data-bg-end="#351912" data-project-section data-section>
-      <div class="shape-field warm" data-depth="background"><span></span><span></span><span></span></div>
-      <div class="container story-layout"><div class="story-copy" data-depth="foreground"><p class="overline">Project 01 · SIEM Detection Lab</p><h2 class="morph-title">Failed login and brute-force detection workflow.</h2><div class="story-block" data-reveal-step="0.2"><span>Problem</span><p>Repeated failed authentications can look noisy, but they may hide brute-force behavior or a success-after-failure pattern.</p></div><div class="story-block" data-reveal-step="0.5"><span>Solution</span><p>Review source IP, affected user, timestamps, expected baseline, reputation, and event pattern before deciding severity.</p></div><div class="story-block" data-reveal-step="0.8"><span>Result</span><p>Produce escalation-ready notes with verdict, evidence, timeline, and recommended next action.</p></div></div><div class="story-media signal-map" data-depth="media" aria-label="Failed login visual system"><div class="signal-rows"><i></i><i></i><i></i><i></i><i></i><i></i></div><p><span>event.action</span><strong>authentication_failed</strong></p><p><span>verdict</span><strong>Needs escalation</strong></p></div></div>
+
+    <section class="scene case-scene" id="case-phishing" data-theme-start="#33170f" data-theme-end="#10243d" data-case data-scene>
+      <div class="noise-field blue" data-depth="background"><span></span><span></span></div>
+      <div class="container case-grid reverse">
+        <div class="case-copy" data-depth="foreground"><p class="eyebrow">Case 02 · Phishing Investigation</p><h2 class="morph-title">Email header, URL, domain, and IOC analysis.</h2><div class="case-step" data-reveal-step="0.2"><span>Problem</span><p>A suspicious email can pass one control while still using reply-to mismatch, risky links, or misleading sender identity.</p></div><div class="case-step" data-reveal-step="0.5"><span>Solution</span><p>Check SPF, DKIM, DMARC, sender alignment, suspicious URLs, domain reputation, and extracted indicators.</p></div><div class="case-step" data-reveal-step="0.8"><span>Result</span><p>A clear analyst verdict with user guidance, reporting action, and indicators for blocking or monitoring.</p></div></div>
+        <div class="case-artifact phishing-artifact" data-depth="media" aria-label="Phishing email evidence visualization"><p class="subject"><small>Subject</small><strong>Account verification required</strong><span>Suspicious login link detected</span></p><div><span>SPF</span><b>Pass</b></div><div><span>DKIM</span><b>Fail</b></div><div><span>Reply-To</span><b>Mismatch</b></div><div><span>Verdict</span><b>Suspicious</b></div></div>
+      </div>
     </section>
-    <section class="atmo-section lab-section" id="lab-02" data-bg-start="#351912" data-bg-end="#102642" data-project-section data-section>
-      <div class="shape-field blue" data-depth="background"><span></span><span></span><span></span></div>
-      <div class="container story-layout reverse"><div class="story-copy" data-depth="foreground"><p class="overline">Project 02 · Phishing Investigation</p><h2 class="morph-title">Email header, URL, domain, and IOC analysis.</h2><div class="story-block" data-reveal-step="0.2"><span>Problem</span><p>A suspicious email can pass one control while still using reply-to mismatch, risky links, or misleading sender identity.</p></div><div class="story-block" data-reveal-step="0.5"><span>Solution</span><p>Check SPF, DKIM, DMARC, sender alignment, suspicious URLs, domain reputation, and extracted IOCs.</p></div><div class="story-block" data-reveal-step="0.8"><span>Result</span><p>Write a clear analyst verdict with user guidance, reporting action, and indicators for blocking or monitoring.</p></div></div><div class="story-media email-stream" data-depth="media" aria-label="Phishing email visual system"><p><small>Subject</small><strong>Account verification required</strong><span>Suspicious login link detected</span></p><div><span>SPF</span><b>Pass</b></div><div><span>DKIM</span><b>Fail</b></div><div><span>Verdict</span><b>Suspicious</b></div></div></div>
+
+    <section class="scene case-scene" id="case-windows" data-theme-start="#10243d" data-theme-end="#251638" data-case data-scene>
+      <div class="noise-field violet" data-depth="background"><span></span><span></span></div>
+      <div class="container case-grid">
+        <div class="case-copy" data-depth="foreground"><p class="eyebrow">Case 03 · Windows Logs</p><h2 class="morph-title">Suspicious activity timeline with MITRE mapping.</h2><div class="case-step" data-reveal-step="0.2"><span>Problem</span><p>Single Windows events are often weak alone. The real signal appears when user, host, process, and network activity connect.</p></div><div class="case-step" data-reveal-step="0.5"><span>Solution</span><p>Review Windows/Sysmon-style events, order by time, identify suspicious process behavior, and map to MITRE tactics.</p></div><div class="case-step" data-reveal-step="0.8"><span>Result</span><p>A readable incident timeline that helps a SOC lead understand scope, containment, and escalation priority.</p></div></div>
+        <div class="case-artifact timeline-artifact" data-depth="media" aria-label="Windows event timeline"><p><span>4625</span><strong>Failed logon</strong></p><p><span>4688</span><strong>Process creation</strong></p><p><span>5156</span><strong>Network connection</strong></p><p><span>MITRE</span><strong>Credential Access</strong></p></div>
+      </div>
     </section>
-    <section class="atmo-section lab-section" id="lab-03" data-bg-start="#102642" data-bg-end="#28173a" data-project-section data-section>
-      <div class="shape-field violet" data-depth="background"><span></span><span></span><span></span></div>
-      <div class="container story-layout"><div class="story-copy" data-depth="foreground"><p class="overline">Project 03 · Windows Logs</p><h2 class="morph-title">Suspicious activity timeline with MITRE mapping.</h2><div class="story-block" data-reveal-step="0.2"><span>Problem</span><p>Single Windows events are often weak alone. The real signal appears when user, host, process, and network activity are connected.</p></div><div class="story-block" data-reveal-step="0.5"><span>Solution</span><p>Review Windows/Sysmon-style events, order them by time, identify suspicious process behavior, and map to MITRE tactics.</p></div><div class="story-block" data-reveal-step="0.8"><span>Result</span><p>Create a readable timeline that helps a SOC lead understand scope, containment needs, and escalation priority.</p></div></div><div class="story-media timeline-stream" data-depth="media" aria-label="Windows event timeline"><p><span>4625</span><strong>Failed logon</strong></p><p><span>4688</span><strong>Process creation</strong></p><p><span>5156</span><strong>Network connection</strong></p><p><span>MITRE</span><strong>Credential Access</strong></p></div></div>
+
+    <section class="scene skills-scene" id="skills" data-theme-start="#251638" data-theme-end="#132225" data-scene>
+      <div class="noise-field" data-depth="background"><span></span><span></span></div>
+      <div class="container skills-layout">
+        <div class="section-intro" data-depth="foreground"><p class="eyebrow">SOC L1 skill map</p><h2 class="morph-title">Mapped to how SOC teams screen freshers.</h2><p>Grouped around the actual L1 workflow: monitoring, evidence review, suspicious activity analysis, and clean escalation.</p></div>
+        <div class="skill-stream" data-depth="media"><article><span>01</span><h3>SOC Monitoring</h3><p>Alert triage, queue hygiene, severity understanding, escalation conditions, shift-ready notes.</p></article><article><span>02</span><h3>SIEM & Logs</h3><p>Failed login detection, Windows events, Linux logs, dashboard review, IOC enrichment.</p></article><article><span>03</span><h3>Threat Investigation</h3><p>Phishing analysis, URL/domain review, reputation checks, MITRE mapping, analyst verdict writing.</p></article></div>
+      </div>
     </section>
-    <section class="atmo-section process" id="process" data-bg-start="#28173a" data-bg-end="#132225" data-section>
-      <div class="shape-field" data-depth="background"><span></span><span></span></div>
-      <div class="container split-layout"><div class="foreground" data-depth="foreground"><p class="overline">Investigation process</p><h2 class="morph-title">A calm workflow for noisy queues.</h2><p class="section-copy">Availability: Immediate Joiner. Shift: Open to 24×7 SOC. Focus: THM SOC L1 + Security+. Locations: Hyderabad, Pune, Mumbai, Bangalore, Chennai, Remote.</p></div><div class="process-lines" data-depth="media"><article><span>01</span><h3>Alert Intake</h3><p>Understand affected user, host, source, timestamps, alert logic, and normal baseline.</p></article><article><span>02</span><h3>Evidence Review</h3><p>Check logs, reputation, headers, event IDs, processes, and timeline indicators.</p></article><article><span>03</span><h3>Verdict & Escalation</h3><p>Write concise notes with reason, severity, MITRE mapping, containment suggestion, and escalation trigger.</p></article></div></div>
+
+    <section class="scene workflow-scene" id="workflow" data-theme-start="#132225" data-theme-end="#101018" data-scene>
+      <div class="noise-field" data-depth="background"><span></span><span></span></div>
+      <div class="container workflow-layout"><div class="section-intro" data-depth="foreground"><p class="eyebrow">Workflow</p><h2 class="morph-title">Noise → triage → evidence → verdict.</h2><p>My L1 process is intentionally simple: understand the alert, validate with evidence, write clean notes, and escalate only with a reason.</p></div><ol class="workflow-list" data-depth="media"><li><span>01</span><strong>Alert intake</strong><p>User, host, source, timestamp, rule logic, and baseline.</p></li><li><span>02</span><strong>Evidence review</strong><p>Logs, reputation, headers, event IDs, process and timeline indicators.</p></li><li><span>03</span><strong>Verdict</strong><p>Benign, suspicious, needs escalation, or needs monitoring.</p></li><li><span>04</span><strong>Escalation note</strong><p>Severity, reason, evidence, MITRE mapping, and next action.</p></li></ol></div>
     </section>
-    <section class="atmo-section hire" id="hire" data-bg-start="#132225" data-bg-end="#2d1826" data-section>
-      <div class="shape-field warm" data-depth="background"><span></span><span></span></div>
-      <div class="container split-layout"><div class="foreground" data-depth="foreground"><p class="overline">Hire Me</p><h2 class="morph-title">Available for SOC L1, MDR Trainee, Security Analyst L1, and SOC Internship roles.</h2><p class="section-copy">I can join immediately and I am comfortable with night shifts. I am building practical proof through TryHackMe, SIEM labs, phishing analysis, Windows logs, and incident-style write-ups.</p></div><div class="contact-actions" data-depth="media"><a href="mailto:mohammadalifaizan123@gmail.com">Email Me</a><a href="https://github.com/Mohd-Ali2" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/mohdali02/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://tryhackme.com/p/chan4o" target="_blank" rel="noreferrer">TryHackMe ↗</a></div></div>
-    </section>
-    <section class="atmo-section contact" id="contact" data-bg-start="#2d1826" data-bg-end="#05070c" data-section>
-      <div class="shape-field" data-depth="background"><span></span><span></span></div>
-      <div class="container split-layout"><div class="foreground" data-depth="foreground"><p class="overline">Contact</p><h2 class="morph-title">Let’s connect for SOC opportunities.</h2><p class="section-copy">GitHub, LinkedIn, and TryHackMe are connected. Add resume URL when ready.</p></div><div class="contact-actions" data-depth="media"><a href="mailto:mohammadalifaizan123@gmail.com">mohammadalifaizan123@gmail.com</a><a href="https://github.com/Mohd-Ali2" target="_blank" rel="noreferrer">github.com/Mohd-Ali2</a><a href="https://www.linkedin.com/in/mohdali02/" target="_blank" rel="noreferrer">linkedin.com/in/mohdali02</a><a href="https://tryhackme.com/p/chan4o" target="_blank" rel="noreferrer">tryhackme.com/p/chan4o</a></div></div>
+
+    <section class="scene hire-scene" id="hire" data-theme-start="#101018" data-theme-end="#06070a" data-scene>
+      <div class="noise-field warm" data-depth="background"><span></span><span></span></div>
+      <div class="container hire-layout"><div data-depth="foreground"><p class="eyebrow">Hire Me</p><h2 class="morph-title">Available for SOC L1, MDR Trainee, Security Analyst L1, and SOC Internship roles.</h2><p class="hire-copy">Immediate joiner · Open to night shifts · Hyderabad / Pune / Mumbai / Bangalore / Chennai / Remote · Minimum ₹15k target.</p></div><div class="hire-actions" data-depth="media"><a href="mailto:mohammadalifaizan123@gmail.com">Email Me</a><a href="https://www.linkedin.com/in/mohdali02/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://github.com/Mohd-Ali2" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://tryhackme.com/p/chan4o" target="_blank" rel="noreferrer">TryHackMe ↗</a></div></div>
     </section>
   </main>
 </body>

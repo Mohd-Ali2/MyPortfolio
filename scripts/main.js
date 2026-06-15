@@ -1,1 +1,1 @@
-import{initLenis}from'./smooth-scroll.js';import{initChronoAtmo}from'./chrono-atmo.js';const boot=async()=>{await initLenis();initChronoAtmo()};document.readyState==='loading'?document.addEventListener('DOMContentLoaded',boot,{once:true}):boot();
+import{initLenis}from'./smooth-scroll.js';import{initSignalNoise}from'./signal-noise.js';const boot=async()=>{await initLenis();initSignalNoise()};document.readyState==='loading'?document.addEventListener('DOMContentLoaded',boot,{once:true}):boot();
