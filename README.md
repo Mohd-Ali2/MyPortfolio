@@ -1,44 +1,40 @@
-# Mohammad Ali Faizan — iOS 27 Liquid Glass SOC Portfolio
+# Mohammad Ali Faizan — Chrono-Atmo SOC Portfolio
 
-Rebuilt as a static production-style portfolio using the three practical liquid-glass layers described in the reference:
+This repository has been converted from the previous liquid/glass build into a **Chrono-Atmo** scroll-driven atmospheric storytelling portfolio.
 
-1. **CSS Glassmorphism** — `backdrop-filter`, translucent panels, highlight tracking, GPU layer promotion, and fallback styles.
-2. **SVG Filter Distortion** — inline SVG displacement filter `#ios-liquid-distortion` applied to glass highlight layers for local refractive texture.
-3. **WebGL / GLSL Depth Layer** — `scripts/glsl-liquid.js` renders a GPU-animated liquid/refraction veil. Three.js and Babylon.js add optional depth overlays.
+## Concept implemented
 
-## Stack
-
-- HTML + CSS + modular JavaScript
-- CSS `backdrop-filter` with fallback
-- SVG displacement filter
-- WebGL GLSL shader
-- GSAP + ScrollTrigger
-- Motion CDN layer for Framer Motion-style animation
-- Three.js
-- Babylon.js
-- Uploaded background image: `assets/surface-liquid-bg.webp`
+- No glassmorphism, no generic cards, no bordered panels.
+- Full atmospheric sections with solid/gradient color worlds.
+- GSAP ScrollTrigger maps scroll progress to `body` background color per section.
+- Depth parallax:
+  - foreground text moves fastest,
+  - media/visual systems move medium speed,
+  - abstract background shapes move slowest.
+- Project reveal timing:
+  - problem appears at 20% section progress,
+  - solution appears at 50%,
+  - result appears at 80%.
+- Recursive variable font morphs heading weight/slant based on scroll progress.
+- Cursor-driven radial light follows the pointer.
+- Lenis smooth scroll.
+- Smart navigation is hidden by default and appears only when scrolling upward.
 
 ## Structure
 
 ```text
 index.html
-assets/surface-liquid-bg.webp
 styles/base.css
-styles/glass.css
-styles/components.css
+styles/chrono.css
 styles/responsive.css
 scripts/main.js
-scripts/ui.js
-scripts/glsl-liquid.js
-scripts/gsap-scenes.js
-scripts/motion-layer.js
-scripts/three-scene.js
-scripts/babylon-scene.js
+scripts/smooth-scroll.js
+scripts/chrono-atmo.js
 README.md
 .nojekyll
 ```
 
-## Wired content
+## Preserved content
 
 - Name: Mohammad Ali Faizan
 - Role: SOC Analyst L1 / Security Analyst Trainee
@@ -46,5 +42,4 @@ README.md
 - GitHub: https://github.com/Mohd-Ali2
 - TryHackMe: https://tryhackme.com/p/chan4o
 - Proof: 112+ rooms, Top 4%, 24 badges, 45-day streak
-
-If GitHub Pages shows old styling, hard refresh with Ctrl + Shift + R because versioned CSS/JS files may still be cached briefly.
+- Projects: SIEM Detection Lab, Phishing Investigation, Windows Logs Timeline
