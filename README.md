@@ -1,15 +1,22 @@
-# Mohammad Ali Faizan — Premium Liquid Glass SOC Portfolio
+# Mohammad Ali Faizan — iOS 27 Liquid Glass SOC Portfolio
 
-This repo has been rebuilt from scratch as a production-style iOS / liquid-glass SOC Analyst L1 portfolio.
+Rebuilt as a static production-style portfolio using the three practical liquid-glass layers described in the reference:
+
+1. **CSS Glassmorphism** — `backdrop-filter`, translucent panels, highlight tracking, GPU layer promotion, and fallback styles.
+2. **SVG Filter Distortion** — inline SVG displacement filter `#ios-liquid-distortion` applied to glass highlight layers for local refractive texture.
+3. **WebGL / GLSL Depth Layer** — `scripts/glsl-liquid.js` renders a GPU-animated liquid/refraction veil. Three.js and Babylon.js add optional depth overlays.
 
 ## Stack
 
-- HTML, CSS, and modular JavaScript
-- Motion CDN layer for Framer Motion-style animations
-- GSAP + ScrollTrigger for entrance and scroll animation
-- Three.js for the WebGL liquid veil
-- Babylon.js for the secondary animated glass-lens overlay
-- Optimized uploaded background image: `assets/surface-liquid-bg.webp`
+- HTML + CSS + modular JavaScript
+- CSS `backdrop-filter` with fallback
+- SVG displacement filter
+- WebGL GLSL shader
+- GSAP + ScrollTrigger
+- Motion CDN layer for Framer Motion-style animation
+- Three.js
+- Babylon.js
+- Uploaded background image: `assets/surface-liquid-bg.webp`
 
 ## Structure
 
@@ -17,12 +24,14 @@ This repo has been rebuilt from scratch as a production-style iOS / liquid-glass
 index.html
 assets/surface-liquid-bg.webp
 styles/base.css
-styles/liquid.css
+styles/glass.css
+styles/components.css
 styles/responsive.css
 scripts/main.js
 scripts/ui.js
+scripts/glsl-liquid.js
 scripts/gsap-scenes.js
-scripts/framer-motion.js
+scripts/motion-layer.js
 scripts/three-scene.js
 scripts/babylon-scene.js
 README.md
@@ -38,4 +47,4 @@ README.md
 - TryHackMe: https://tryhackme.com/p/chan4o
 - Proof: 112+ rooms, Top 4%, 24 badges, 45-day streak
 
-Replace the placeholder LinkedIn / Resume link inside `index.html` after final URLs are ready.
+If GitHub Pages shows old styling, hard refresh with Ctrl + Shift + R because versioned CSS/JS files may still be cached briefly.
