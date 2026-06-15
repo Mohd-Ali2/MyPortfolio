@@ -1,28 +1,17 @@
-# Ali Faizan — SOC Evidence Room Portfolio
+# Ali Faizan — Obsidian Steel SOC Portfolio
 
-A recruiter-focused SOC Analyst L1 portfolio using the Signal / Noise concept with a calmer evidence-room execution.
+A recruiter-focused SOC Analyst L1 portfolio redesigned as an Obsidian Steel Signal Deck.
 
-## Implemented from the design teardown
+## Current direction
 
-- Rebuilt the hero around recruiter decision-making.
-- Kept the portrait but made it quieter and more editorial.
-- Made navigation visible and useful instead of hidden.
-- Reduced typography distortion and used Inter for metrics/profile labels.
-- Made proof heavier and easier to verify.
-- Converted case studies into real evidence dossiers.
-- Added real case-study markdown files and linked to them honestly.
-- Fixed workflow readability and reduced parallax intensity.
-- Added focus states, thin scrollbar, and stronger progress indicator.
-
-## Background direction
-
-The background now uses a restrained **SOC evidence room** atmosphere instead of generic blobs or cyberpunk wallpaper:
-
-- dark charcoal base with faint analyst-room grid texture
-- subtle section-specific glow: cyan for proof, amber for login, blue for phishing, violet for Windows logs
-- low-opacity signal beams and event-code fragments used only where they support the narrative
-- calmer workflow and hire backgrounds so the closing CTA stays readable
-- no loud hacking images, no matrix rain, no fake dashboard wallpaper
+- full black, graphite, and steel-grey palette
+- minimal color and stronger premium contrast
+- visible navigation and side index rail
+- editorial hero with a sharper portrait composition
+- steel grid and monolith pattern system
+- horizontal case-study rail for the investigation dossiers
+- clean Inter typography for metrics and profile labels
+- real case-study markdown links remain connected
 
 ## Contact
 
