@@ -1,25 +1,35 @@
-# Mohammad Ali Faizan — Liquid Glass SOC Portfolio
+# Mohammad Ali Faizan — Premium Liquid Glass SOC Portfolio
 
-A clean iOS-style / liquid-glass SOC Analyst L1 portfolio.
+This repo has been rebuilt from scratch as a production-style iOS / liquid-glass SOC Analyst L1 portfolio.
 
-## What changed
+## Stack
 
-- Repo was replaced with a clean liquid-glass build.
-- No React, Babel, Framer Motion, or heavy runtime dependency.
-- Uses native HTML, CSS, and lightweight JavaScript.
-- Premium iOS-inspired glass surfaces, glossy edges, mesh background, animated orbs, pointer glow, reveal animations, mobile nav, and reduced-motion support.
-- Includes `Hire Me` section and recruiter-ready SOC L1 positioning.
+- HTML, CSS, and modular JavaScript
+- Motion CDN layer for Framer Motion-style animations
+- GSAP + ScrollTrigger for entrance and scroll animation
+- Three.js for the WebGL liquid veil
+- Babylon.js for the secondary animated glass-lens overlay
+- Optimized uploaded background image: `assets/surface-liquid-bg.webp`
 
-## Files
+## Structure
 
 ```text
 index.html
-css/styles.css
-js/main.js
+assets/surface-liquid-bg.webp
+styles/base.css
+styles/liquid.css
+styles/responsive.css
+scripts/main.js
+scripts/ui.js
+scripts/gsap-scenes.js
+scripts/framer-motion.js
+scripts/three-scene.js
+scripts/babylon-scene.js
 README.md
+.nojekyll
 ```
 
-## Current live content
+## Wired content
 
 - Name: Mohammad Ali Faizan
 - Role: SOC Analyst L1 / Security Analyst Trainee
@@ -28,6 +38,4 @@ README.md
 - TryHackMe: https://tryhackme.com/p/chan4o
 - Proof: 112+ rooms, Top 4%, 24 badges, 45-day streak
 
-## Before hosting
-
-Replace the placeholder LinkedIn / Resume link in `index.html` after you have the final URLs.
+Replace the placeholder LinkedIn / Resume link inside `index.html` after final URLs are ready.

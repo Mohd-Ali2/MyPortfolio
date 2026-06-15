@@ -3,160 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mohammad Ali Faizan — SOC Analyst Portfolio</title>
-  <meta name="description" content="Liquid glass iOS-style SOC Analyst L1 portfolio for Mohammad Ali Faizan." />
-  <meta name="theme-color" content="#eef6ff" />
+  <meta name="description" content="Premium iOS-inspired liquid glass SOC Analyst L1 portfolio for Mohammad Ali Faizan." />
+  <meta name="theme-color" content="#030406" />
+  <title>Mohammad Ali Faizan — Liquid Glass SOC Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="./styles/base.css?v=ios-liquid-4" />
+  <link rel="stylesheet" href="./styles/liquid.css?v=ios-liquid-4" />
+  <link rel="stylesheet" href="./styles/responsive.css?v=ios-liquid-4" />
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.babylonjs.com/babylon.js"></script>
+  <script type="module" src="./scripts/main.js?v=ios-liquid-4"></script>
 </head>
 <body>
-  <div class="mesh-bg" aria-hidden="true">
-    <span class="orb orb-a"></span>
-    <span class="orb orb-b"></span>
-    <span class="orb orb-c"></span>
-    <span class="orb orb-d"></span>
-  </div>
-  <div class="grain" aria-hidden="true"></div>
-  <div class="cursor-light" data-cursor-light aria-hidden="true"></div>
+  <div class="background-media" aria-hidden="true"></div>
+  <canvas id="three-veil" class="scene-canvas" aria-hidden="true"></canvas>
+  <canvas id="babylon-lens" class="scene-canvas scene-canvas-soft" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-aura" data-cursor-aura aria-hidden="true"></div>
 
   <header class="site-header" id="top">
-    <nav class="liquid-nav" aria-label="Main navigation">
-      <a class="brand" href="#top" aria-label="Back to top">
-        <span class="brand-mark">MA</span>
-        <span><strong>Ali Faizan</strong><small>SOC Analyst L1</small></span>
-      </a>
-      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle><span></span><span></span></button>
-      <div class="nav-links" data-nav-links>
-        <a href="#proof">Proof</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#workflow">Workflow</a>
-        <a href="#hire">Hire Me</a>
-        <a href="#contact">Contact</a>
-      </div>
+    <nav class="nav-shell liquid-surface" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Go to top"><span class="brand-glyph">MA</span><span class="brand-copy"><strong>Ali Faizan</strong><small>SOC Analyst L1</small></span></a>
+      <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" data-nav-toggle><span></span><span></span></button>
+      <div class="nav-links" data-nav-menu><a href="#proof">Proof</a><a href="#skills">Skills</a><a href="#labs">Labs</a><a href="#process">Process</a><a href="#hire">Hire Me</a><a href="#contact">Contact</a></div>
     </nav>
   </header>
 
   <main>
-    <section class="hero section-pad">
-      <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <p class="eyebrow"><span></span> Immediate joiner · Night shift ready · India / Remote</p>
-          <h1>Liquid glass portfolio for clear <em>SOC investigations.</em></h1>
-          <p class="lead">I am focused on SOC L1 work: SIEM monitoring, alert triage, log analysis, phishing investigation, IOC enrichment, MITRE mapping, and clean incident documentation.</p>
-          <div class="hero-actions">
-            <a class="btn btn-dark" href="#projects">View SOC Projects</a>
-            <a class="btn btn-glass" href="#hire">Hire Me</a>
-            <a class="btn btn-glass" href="https://tryhackme.com/p/chan4o" target="_blank" rel="noreferrer">TryHackMe ↗</a>
-          </div>
-          <div class="stat-strip" id="proof">
-            <article class="liquid-card stat reveal"><strong>112+</strong><span>TryHackMe rooms completed</span></article>
-            <article class="liquid-card stat reveal"><strong>Top 4%</strong><span>TryHackMe profile rank</span></article>
-            <article class="liquid-card stat reveal"><strong>24</strong><span>Badges earned</span></article>
-            <article class="liquid-card stat reveal"><strong>45</strong><span>Day learning streak</span></article>
-          </div>
+    <section class="hero section-panel" data-section="hero">
+      <div class="container hero-layout">
+        <div class="hero-copy" data-motion="hero-copy">
+          <div class="status-pill liquid-surface"><span class="status-dot"></span>Immediate joiner · 24×7 SOC shift ready · India / Remote</div>
+          <h1 class="hero-title">Premium SOC portfolio with <span>liquid glass</span> investigation flow.</h1>
+          <p class="hero-lead">I investigate noisy alerts with a practical L1 workflow: SIEM monitoring, log analysis, phishing review, IOC enrichment, MITRE mapping, and clean escalation notes.</p>
+          <div class="hero-actions"><a class="button button-primary" href="#labs" data-magnetic>View SOC Labs</a><a class="button button-glass" href="#hire" data-magnetic>Hire Me</a><a class="button button-ghost" href="https://tryhackme.com/p/chan4o" target="_blank" rel="noreferrer" data-magnetic>TryHackMe ↗</a></div>
         </div>
-
-        <div class="hero-device reveal" data-tilt>
-          <div class="iphone-shell liquid-card">
-            <div class="dynamic-island"></div>
-            <div class="device-top">
-              <div><small>Live SOC View</small><strong>Alert Queue</strong></div>
-              <span class="live-pill">Online</span>
-            </div>
-            <article class="alert-main glass-panel">
-              <div class="alert-head"><span>MEDIUM</span><b>Suspicious Login Pattern</b></div>
-              <p>Multiple failed authentication attempts followed by a successful login. Checking user context, source IP, timestamp pattern, and enrichment verdict.</p>
-              <div class="severity"><i style="width:76%"></i></div>
-            </article>
-            <div class="mini-chart glass-panel" aria-label="Failed login event chart">
-              <i style="--h:34%"></i><i style="--h:68%"></i><i style="--h:48%"></i><i style="--h:86%"></i><i style="--h:56%"></i><i style="--h:92%"></i><i style="--h:62%"></i><i style="--h:78%"></i>
-            </div>
-            <div class="event-list">
-              <div class="event-row glass-panel"><span>🛡️</span><div><b>SIEM Triage</b><small>Wazuh / Splunk style workflow</small></div><em>Open</em></div>
-              <div class="event-row glass-panel"><span>✉️</span><div><b>Phishing Verdict</b><small>Headers · URLs · IOCs</small></div><em>Done</em></div>
-              <div class="event-row glass-panel"><span>🧭</span><div><b>MITRE Mapping</b><small>Initial Access · Credential Access</small></div><em>Mapped</em></div>
-            </div>
-          </div>
-          <div class="float-chip chip-one liquid-card"><strong>Security+</strong><span>In Progress</span></div>
-          <div class="float-chip chip-two liquid-card"><strong>THM SOC L1</strong><span>Active path</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-pad" id="skills">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="kicker">Core Skills</p>
-          <h2>Screening-ready SOC L1 skill map.</h2>
-          <p>Grouped the way SOC leads scan freshers: monitoring, logs, investigations, tooling, and escalation notes.</p>
-        </div>
-        <div class="cards-grid three">
-          <article class="liquid-card skill reveal"><span>📡</span><h3>SOC Monitoring</h3><p>Alert triage, severity assessment, shift notes, escalation conditions, and incident response basics.</p><div class="tags"><b>Alert Triage</b><b>Escalation</b><b>Monitoring</b></div></article>
-          <article class="liquid-card skill reveal"><span>📊</span><h3>SIEM & Logs</h3><p>Windows/Linux logs, failed login patterns, authentication events, SIEM dashboards, and IOC enrichment.</p><div class="tags"><b>Wazuh</b><b>Splunk Basics</b><b>Windows Logs</b></div></article>
-          <article class="liquid-card skill reveal"><span>🕵️</span><h3>Threat Investigation</h3><p>Phishing analysis, suspicious URLs/domains, VirusTotal checks, URLScan, MITRE ATT&CK, and verdict writing.</p><div class="tags"><b>Phishing</b><b>IOC Analysis</b><b>MITRE</b></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-pad" id="projects">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="kicker">Featured Projects</p>
-          <h2>Three proof-driven SOC projects.</h2>
-          <p>Each write-up is designed like a mini incident report: objective, logs, steps, findings, IOCs, MITRE mapping, and recommendation.</p>
-        </div>
-        <div class="project-stack">
-          <article class="project liquid-card reveal">
-            <div><p class="project-label">Project 01 · SIEM Detection Lab</p><h3>Failed login and brute-force detection workflow.</h3><p>A practical SIEM-style investigation showing authentication alert triage, source enrichment, timeline review, and escalation notes.</p><ul><li>Identify repeated failed authentication attempts.</li><li>Check user context, source IP reputation, and timestamp pattern.</li><li>Write final incident summary with escalation conditions.</li></ul></div>
-            <div class="project-visual glass-panel"><div class="window-dots"><i></i><i></i><i></i></div><div class="barset"><i style="--h:42%"></i><i style="--h:74%"></i><i style="--h:58%"></i><i style="--h:91%"></i><i style="--h:65%"></i><i style="--h:86%"></i></div><p><span>event.action</span><b>authentication_failed</b></p><p><span>verdict</span><b>Needs escalation</b></p></div>
-          </article>
-          <article class="project liquid-card reveal reverse">
-            <div><p class="project-label">Project 02 · Phishing Investigation</p><h3>Email header, URL, domain, and IOC analysis.</h3><p>A phishing workflow covering evidence collection, sender alignment, URL reputation, IOC extraction, and final analyst verdict.</p><ul><li>Analyze SPF, DKIM, DMARC, and reply-to mismatch.</li><li>Check suspicious links with reputation tools.</li><li>Extract IOCs and recommend reporting actions.</li></ul></div>
-            <div class="project-visual glass-panel"><div class="email-preview"><small>Subject</small><strong>Account verification required</strong><span>Suspicious login link detected</span></div><p><span>SPF</span><b>Pass</b></p><p><span>DKIM</span><b>Fail</b></p><p><span>Verdict</span><b>Suspicious</b></p></div>
-          </article>
-          <article class="project liquid-card reveal">
-            <div><p class="project-label">Project 03 · Windows Logs</p><h3>Suspicious activity timeline with MITRE mapping.</h3><p>A Windows event investigation connecting user, host, process, and network activity into a readable analyst timeline.</p><ul><li>Review Windows/Sysmon-style event IDs.</li><li>Build timeline across authentication, process, and network activity.</li><li>Map behavior to MITRE tactics and containment notes.</li></ul></div>
-            <div class="project-visual glass-panel timeline-mini"><p><span>4625</span><b>Failed logon</b></p><p><span>4688</span><b>Process creation</b></p><p><span>5156</span><b>Network connection</b></p><p><span>MITRE</span><b>Credential Access</b></p></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-pad" id="workflow">
-      <div class="container workflow-grid">
-        <aside class="liquid-card profile-card reveal">
-          <div class="avatar-row"><div class="avatar">MA</div><div><h3>Mohammad Ali Faizan</h3><p>SOC Analyst L1 / Security Analyst Trainee</p></div></div>
-          <div class="profile-list"><p><span>Availability</span><b>Immediate Joiner</b></p><p><span>Shift</span><b>Open to 24×7 SOC</b></p><p><span>Focus</span><b>THM SOC L1 + Security+</b></p><p><span>Locations</span><b>Hyd · Pune · Mumbai · BLR · Chennai · Remote</b></p></div>
+        <aside class="hero-console liquid-device" data-tilt data-motion="hero-console" aria-label="SOC dashboard preview">
+          <div class="device-island"></div>
+          <div class="console-head"><div><small>Live SOC View</small><strong>Alert Command</strong></div><span class="live-tag">Monitoring</span></div>
+          <article class="alert-card glass-layer"><div class="alert-meta"><span>Medium Severity</span><b>Suspicious Login Pattern</b></div><p>Failed authentications from an unusual source followed by a successful login. Validate user context, source reputation, timeline, and escalation condition.</p><div class="confidence"><i></i></div></article>
+          <div class="signal-board glass-layer"><div class="signal-top"><span>Failed Login Events</span><strong>12</strong></div><div class="signal-bars" aria-hidden="true"><i style="--h:34%"></i><i style="--h:72%"></i><i style="--h:48%"></i><i style="--h:88%"></i><i style="--h:56%"></i><i style="--h:94%"></i><i style="--h:67%"></i><i style="--h:78%"></i></div></div>
+          <div class="queue-list"><div class="queue-item glass-layer"><span>🛡️</span><div><b>SIEM Triage</b><small>Source · user · host · time</small></div><em>Open</em></div><div class="queue-item glass-layer"><span>✉️</span><div><b>Phishing Verdict</b><small>Headers · URLs · IOCs</small></div><em>Done</em></div><div class="queue-item glass-layer"><span>🧭</span><div><b>MITRE Mapping</b><small>Initial Access · Credential Access</small></div><em>Mapped</em></div></div>
         </aside>
-        <div class="steps">
-          <article class="liquid-card step reveal"><span>01</span><div><h3>Alert Intake</h3><p>Understand the alert, affected user/host, time window, source, and expected normal behavior.</p></div></article>
-          <article class="liquid-card step reveal"><span>02</span><div><h3>Evidence Review</h3><p>Check logs, IP/domain reputation, headers, event IDs, process data, and timeline indicators.</p></div></article>
-          <article class="liquid-card step reveal"><span>03</span><div><h3>Verdict & Escalation</h3><p>Write concise analyst notes with severity, reason, MITRE mapping, containment suggestion, and escalation trigger.</p></div></article>
-        </div>
       </div>
     </section>
 
-    <section class="section-pad hire" id="hire">
-      <div class="container">
-        <div class="hire-card liquid-dark reveal">
-          <div><p class="kicker">Hire Me</p><h2>Available for SOC L1, MDR Trainee, Security Analyst L1, and SOC Internship roles.</h2><p>I can join immediately and I am comfortable with 24×7 SOC shifts. I am building practical proof through TryHackMe, SIEM labs, phishing analysis, Windows logs, and incident-style GitHub write-ups.</p></div>
-          <div class="hire-actions"><a class="btn btn-white" href="mailto:mohammadalifaizan123@gmail.com">Email Me</a><a class="btn btn-glass-dark" href="https://github.com/Mohd-Ali2" target="_blank" rel="noreferrer">GitHub ↗</a><a class="btn btn-glass-dark" href="https://tryhackme.com/p/chan4o" target="_blank" rel="noreferrer">TryHackMe ↗</a></div>
-        </div>
-      </div>
-    </section>
+    <section class="section-panel proof-section" id="proof" data-section="proof"><div class="container"><div class="section-heading" data-motion="section-heading"><p class="eyebrow">Verified learning proof</p><h2>Recruiter-ready evidence, not empty claims.</h2></div><div class="proof-grid"><article class="metric-card liquid-surface" data-motion-card><strong>112+</strong><span>TryHackMe rooms completed</span></article><article class="metric-card liquid-surface" data-motion-card><strong>Top 4%</strong><span>TryHackMe profile rank</span></article><article class="metric-card liquid-surface" data-motion-card><strong>24</strong><span>Badges earned</span></article><article class="metric-card liquid-surface" data-motion-card><strong>45</strong><span>Day learning streak</span></article></div></div></section>
 
-    <section class="section-pad" id="contact">
-      <div class="container contact-grid">
-        <div class="section-head reveal"><p class="kicker">Contact</p><h2>Let’s connect for SOC opportunities.</h2><p>Replace LinkedIn and resume links when ready. GitHub and TryHackMe are already linked.</p></div>
-        <div class="contact-links reveal"><a class="liquid-card" href="mailto:mohammadalifaizan123@gmail.com">Email <span>↗</span></a><a class="liquid-card" href="https://github.com/Mohd-Ali2" target="_blank" rel="noreferrer">GitHub <span>↗</span></a><a class="liquid-card" href="https://tryhackme.com/p/chan4o" target="_blank" rel="noreferrer">TryHackMe <span>↗</span></a><a class="liquid-card" href="#">LinkedIn / Resume <span>add later</span></a></div>
-      </div>
-    </section>
+    <section class="section-panel" id="skills" data-section="skills"><div class="container"><div class="section-heading split" data-motion="section-heading"><div><p class="eyebrow">SOC L1 skill map</p><h2>Built around how SOC teams actually screen freshers.</h2></div><p class="section-copy">Clear groups: monitoring, SIEM/logs, investigation, reporting, and escalation. Everything supports the first SOC job goal.</p></div><div class="skills-grid"><article class="skill-card liquid-surface" data-motion-card><span>01</span><h3>SOC Monitoring</h3><p>Alert triage, queue hygiene, severity understanding, L1 escalation conditions, shift-ready notes.</p><div><b>Alert Triage</b><b>Monitoring</b><b>Escalation</b></div></article><article class="skill-card liquid-surface" data-motion-card><span>02</span><h3>SIEM & Logs</h3><p>Failed login detection, Windows events, Linux logs, dashboard review, IOC enrichment, suspicious source checks.</p><div><b>Wazuh</b><b>Splunk Basics</b><b>Windows Logs</b></div></article><article class="skill-card liquid-surface" data-motion-card><span>03</span><h3>Threat Investigation</h3><p>Phishing analysis, URL/domain review, reputation checks, MITRE mapping, final analyst verdict writing.</p><div><b>Phishing</b><b>MITRE</b><b>IOC Analysis</b></div></article></div></div></section>
+
+    <section class="section-panel" id="labs" data-section="labs"><div class="container"><div class="section-heading split" data-motion="section-heading"><div><p class="eyebrow">Featured labs</p><h2>Three portfolio projects that feel like real L1 work.</h2></div><p class="section-copy">Each project should read like a mini incident report: objective, evidence, investigation steps, IOCs, MITRE mapping, verdict, and recommendation.</p></div><div class="lab-stack"><article class="lab-card liquid-surface" data-motion-card><div class="lab-copy"><p class="lab-label">Project 01 · SIEM Detection Lab</p><h3>Failed login and brute-force detection workflow.</h3><p>Authentication alert triage with source enrichment, user context, timeline review, and escalation-ready documentation.</p><ul><li>Detect repeated failed authentications.</li><li>Check IP reputation and source behavior.</li><li>Write analyst verdict and escalation conditions.</li></ul></div><div class="lab-visual glass-layer"><div class="window-dots"><i></i><i></i><i></i></div><div class="visual-bars"><i style="--h:42%"></i><i style="--h:74%"></i><i style="--h:58%"></i><i style="--h:91%"></i><i style="--h:65%"></i></div><p><span>event.action</span><b>authentication_failed</b></p><p><span>verdict</span><b>Needs escalation</b></p></div></article><article class="lab-card liquid-surface reverse" data-motion-card><div class="lab-copy"><p class="lab-label">Project 02 · Phishing Investigation</p><h3>Email header, URL, domain, and IOC analysis.</h3><p>Investigate suspicious email evidence, sender alignment, URL behavior, and final verdict for user protection.</p><ul><li>Analyze SPF, DKIM, DMARC, and reply-to mismatch.</li><li>Check suspicious links and domain reputation.</li><li>Extract IOCs and create recommendations.</li></ul></div><div class="lab-visual glass-layer"><div class="email-card"><small>Subject</small><strong>Account verification required</strong><span>Suspicious login link detected</span></div><p><span>SPF</span><b>Pass</b></p><p><span>DKIM</span><b>Fail</b></p><p><span>Verdict</span><b>Suspicious</b></p></div></article><article class="lab-card liquid-surface" data-motion-card><div class="lab-copy"><p class="lab-label">Project 03 · Windows Logs</p><h3>Suspicious activity timeline with MITRE mapping.</h3><p>Connect user, host, process, and network events into a timeline that a SOC lead can understand quickly.</p><ul><li>Review Windows/Sysmon-style events.</li><li>Build a clean incident timeline.</li><li>Map behavior to MITRE tactics.</li></ul></div><div class="lab-visual glass-layer timeline-list"><p><span>4625</span><b>Failed logon</b></p><p><span>4688</span><b>Process creation</b></p><p><span>5156</span><b>Network connection</b></p><p><span>MITRE</span><b>Credential Access</b></p></div></article></div></div></section>
+
+    <section class="section-panel" id="process" data-section="process"><div class="container process-grid"><aside class="profile-panel liquid-surface" data-motion-card><div class="avatar-row"><div class="avatar">MA</div><div><h3>Mohammad Ali Faizan</h3><p>SOC Analyst L1 / Security Analyst Trainee</p></div></div><div class="profile-list"><p><span>Availability</span><b>Immediate Joiner</b></p><p><span>Shift</span><b>Open to 24×7 SOC</b></p><p><span>Focus</span><b>THM SOC L1 + Security+</b></p><p><span>Locations</span><b>Hyderabad · Pune · Mumbai · Bangalore · Chennai · Remote</b></p></div></aside><div class="process-steps"><article class="process-card liquid-surface" data-motion-card><span>01</span><div><h3>Alert Intake</h3><p>Understand affected user, host, source, timestamps, alert logic, and normal baseline.</p></div></article><article class="process-card liquid-surface" data-motion-card><span>02</span><div><h3>Evidence Review</h3><p>Check logs, reputation, headers, event IDs, processes, and timeline indicators.</p></div></article><article class="process-card liquid-surface" data-motion-card><span>03</span><div><h3>Verdict & Escalation</h3><p>Write concise notes with reason, severity, MITRE mapping, containment suggestion, and escalation trigger.</p></div></article></div></div></section>
+
+    <section class="section-panel hire-panel" id="hire" data-section="hire"><div class="container"><div class="hire-card liquid-dark" data-motion="hire-card"><div><p class="eyebrow">Hire Me</p><h2>Available for SOC L1, MDR Trainee, Security Analyst L1, and SOC Internship roles.</h2><p>I can join immediately and I am comfortable with night shifts. I am building practical proof through TryHackMe, SIEM labs, phishing analysis, Windows logs, and incident-style write-ups.</p></div><div class="hire-actions"><a class="button button-light" href="mailto:mohammadalifaizan123@gmail.com" data-magnetic>Email Me</a><a class="button button-dark-glass" href="https://github.com/Mohd-Ali2" target="_blank" rel="noreferrer" data-magnetic>GitHub ↗</a><a class="button button-dark-glass" href="https://tryhackme.com/p/chan4o" target="_blank" rel="noreferrer" data-magnetic>TryHackMe ↗</a></div></div></div></section>
+
+    <section class="section-panel" id="contact" data-section="contact"><div class="container contact-layout"><div class="section-heading" data-motion="section-heading"><p class="eyebrow">Contact</p><h2>Let’s connect for SOC opportunities.</h2><p class="section-copy">GitHub and TryHackMe are connected. Add LinkedIn and resume URLs when ready.</p></div><div class="contact-list" data-motion-card><a class="liquid-surface" href="mailto:mohammadalifaizan123@gmail.com">Email <span>↗</span></a><a class="liquid-surface" href="https://github.com/Mohd-Ali2" target="_blank" rel="noreferrer">GitHub <span>↗</span></a><a class="liquid-surface" href="https://tryhackme.com/p/chan4o" target="_blank" rel="noreferrer">TryHackMe <span>↗</span></a><a class="liquid-surface" href="#">LinkedIn / Resume <span>Add later</span></a></div></div></section>
   </main>
-
-  <footer><div class="container">Liquid Glass SOC Portfolio · Built with HTML, CSS, and lightweight JavaScript</div></footer>
-  <script src="js/main.js" defer></script>
+  <footer class="footer"><div class="container">Premium liquid glass SOC portfolio · HTML · CSS · JavaScript · Motion · GSAP · Three.js · Babylon.js</div></footer>
 </body>
 </html>
