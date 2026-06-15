@@ -9,12 +9,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles/base.css?v=obsidian-deck-1" />
-  <link rel="stylesheet" href="styles/evidence-room.css?v=obsidian-deck-1" />
-  <link rel="stylesheet" href="styles/responsive.css?v=obsidian-deck-1" />
+  <link rel="stylesheet" href="styles/base.css?v=obsidian-deck-2" />
+  <link rel="stylesheet" href="styles/evidence-room.css?v=obsidian-deck-2" />
+  <link rel="stylesheet" href="styles/responsive.css?v=obsidian-deck-2" />
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script type="module" src="scripts/main.js?v=obsidian-deck-1"></script>
+  <script type="module" src="scripts/main.js?v=obsidian-deck-2"></script>
 </head>
 <body>
   <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
@@ -51,7 +51,7 @@
     </section>
 
     <section class="cases-horizontal" id="cases" data-horizontal-section>
-      <div class="case-intro"><p class="kicker">Case rail</p><h2>Three SOC dossiers.</h2><span>Scroll to move through evidence.</span></div>
+      <div class="case-intro"><p class="kicker">Case rail</p><h2>Three SOC dossiers.</h2><span>Scroll vertically — the cards slide horizontally.</span></div>
       <div class="case-track" data-horizontal-rail>
         <article class="case-panel"><p class="kicker">01 · Failed Login Investigation</p><h3>Brute-force pattern from failed logons.</h3><div class="tools"><span>Wazuh</span><span>Windows Logs</span><span>VirusTotal</span><span>MITRE ATT&CK</span></div><dl><dt>Problem</dt><dd>Repeated failed authentications followed by a successful login.</dd><dt>Evidence</dt><dd>Source IP, affected user, timestamps, baseline, reputation, host context.</dd><dt>Verdict</dt><dd>Suspicious pattern. Escalation recommended.</dd><dt>MITRE</dt><dd>Credential Access / Brute Force.</dd></dl><a href="https://github.com/Mohd-Ali2/MyPortfolio/blob/main/case-studies/failed-login-investigation.md" target="_blank" rel="noreferrer">Read dossier ↗</a></article>
         <article class="case-panel"><p class="kicker">02 · Phishing Header Analysis</p><h3>Suspicious email with mismatched trust signals.</h3><div class="tools"><span>Email Headers</span><span>URLScan</span><span>VirusTotal</span><span>IOC Extraction</span></div><dl><dt>Problem</dt><dd>Message can pass one control while hiding reply-to mismatch or risky links.</dd><dt>Evidence</dt><dd>SPF, DKIM, DMARC, sender alignment, URL reputation, extracted IOCs.</dd><dt>Verdict</dt><dd>Suspicious email. Report and monitor indicators.</dd><dt>Signal</dt><dd>SPF pass · DKIM fail · Reply-To mismatch.</dd></dl><a href="https://github.com/Mohd-Ali2/MyPortfolio/blob/main/case-studies/phishing-header-analysis.md" target="_blank" rel="noreferrer">Read dossier ↗</a></article>
