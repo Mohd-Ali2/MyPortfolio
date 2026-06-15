@@ -14,6 +14,16 @@ A recruiter-focused SOC Analyst L1 portfolio using the Signal / Noise concept wi
 - Fixed workflow readability and reduced parallax intensity.
 - Added focus states, thin scrollbar, and stronger progress indicator.
 
+## Background direction
+
+The background now uses a restrained **SOC evidence room** atmosphere instead of generic blobs or cyberpunk wallpaper:
+
+- dark charcoal base with faint analyst-room grid texture
+- subtle section-specific glow: cyan for proof, amber for login, blue for phishing, violet for Windows logs
+- low-opacity signal beams and event-code fragments used only where they support the narrative
+- calmer workflow and hire backgrounds so the closing CTA stays readable
+- no loud hacking images, no matrix rain, no fake dashboard wallpaper
+
 ## Contact
 
 - Email: mohammadalifaizan123@gmail.com
